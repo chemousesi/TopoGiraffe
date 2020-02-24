@@ -2,3 +2,10 @@ hello, this line was added by chemsou
 hello, this line was added by Zoo;
 nous soommes en  plein cours  logique
 Hello, this line was added by بقليس 
+Guys i'm not done yet with the prototype
+if (prototype == true){
+    sout('Ghaya ak chayf');
+} 
+else{
+    Ala mayjich ghdwa . end hna b3d xD.
+}
