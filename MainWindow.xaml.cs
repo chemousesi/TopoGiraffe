@@ -13,10 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Projet2pc
+namespace WPFDemo
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -24,20 +24,5 @@ namespace Projet2pc
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog op = new Microsoft.Win32.OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "*.jpg,.png,.jpeg|*.jpg;*.jpeg;*.png|" +
-              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-              " (*.png)|*.png";
-            if (op.ShowDialog() == true)
-            {
-                imagr.Source = new BitmapImage(new Uri(op.FileName));
-            }
-        }
-
-       
     }
 }

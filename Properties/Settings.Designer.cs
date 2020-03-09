@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Projet2pc.Properties
+namespace WPFDemo.Properties
 {
 
 
