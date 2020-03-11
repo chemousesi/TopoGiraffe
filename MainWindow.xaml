@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFDemo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" >
+        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" WindowStyle="None" >
     <Window.Resources>
         <Color x:Key="ToolsBar">#353635D6</Color>
     </Window.Resources>
+    <Window.Background>
+        <SolidColorBrush Opacity="0.8" Color="White"/>
+    </Window.Background>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -49,13 +52,42 @@
                     <TextBox  Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7,32.8,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">LONGUEUR</TextBox>
                 </StackPanel>
             </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="84"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                  
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" >
+                            <Button  x:Name="display" Width="90" Height="84"  BorderBrush="Transparent"
+                                BorderThickness="0"  Margin="10,0,0,0" >
+                                <Image Source="visibility.png" Width="30" Height="30" />
+                            </Button>
+                            <Button  x:Name="import" Width="90" Height="84"  BorderBrush="Transparent"
+                                BorderThickness="0"  Margin="0,0,0,0" >
+                                <Image Source="import.png" Width="30" Height="30" />
+                            </Button>
+                            
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+            </Grid>
             <Grid Grid.Column="0" Background="#C5C5C5" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-0.2,0" >
-                    <Button  Name="btn1" Width="60" Height="80"  Background="{x:Null}" BorderBrush="#FFC5C5" Margin="0,0,0,20" >
-                        <Image Source="assets\img\zoomlogo.png" ></Image>
+                    <Button  Name="btn1" Width="60" Height="80"  Background="{x:Null}" BorderBrush="Transparent"
+        BorderThickness="0" Margin="0,0,0,20" >
+                        <Image Source="zoom-in.png" Height="30" Width="30"  ></Image>
                     </Button>
-                    <Button x:Name="btn2" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="#FFC5C5"  >
-                        <Image Source="assets\img\pentool.png"   />
+                    <Button x:Name="btn2" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
+        BorderThickness="0"  >
+                        <Image Source="ink.png" Height="30" Width="30"  />
                     </Button>
                 </StackPanel>
             </Grid>

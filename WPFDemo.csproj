@@ -106,5 +106,17 @@
   <ItemGroup>
     <Resource Include="draw.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="zoom-in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="visibility.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
