@@ -12,3 +12,17 @@ C:\Users\dell\source\repos\WPFDemo\obj\Debug\WPFDemo.Properties.Resources.resour
 C:\Users\dell\source\repos\WPFDemo\obj\Debug\WPFDemo.csproj.GenerateResource.cache
 C:\Users\dell\source\repos\WPFDemo\obj\Debug\WPFDemo.exe
 C:\Users\dell\source\repos\WPFDemo\obj\Debug\WPFDemo.pdb
+C:\Users\ADM\Dev\ESI\TopoGiraffe\bin\Debug\WPFDemo.exe.config
+C:\Users\ADM\Dev\ESI\TopoGiraffe\bin\Debug\WPFDemo.exe
+C:\Users\ADM\Dev\ESI\TopoGiraffe\bin\Debug\WPFDemo.pdb
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.csprojAssemblyReference.cache
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\MainWindow.g.cs
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\App.g.cs
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo_MarkupCompile.cache
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo_MarkupCompile.lref
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\MainWindow.baml
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.g.resources
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.Properties.Resources.resources
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.csproj.GenerateResource.cache
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.exe
+C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.pdb
