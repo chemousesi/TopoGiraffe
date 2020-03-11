@@ -15,18 +15,22 @@
             <RowDefinition Height="84"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#353635" Opacity="1" >
+        <Grid Grid.Row="0" Background="#053047" Opacity=".84" >
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
-                <Button  x:Name="btn11" Width="90" Height="84"  BorderBrush="#FF353635" Margin="40,0,0,0" >
+                <Button  x:Name="btn11" Width="90" Height="84"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" >
                     <Image Source="draw.png" Width="30" Height="30" />
                 </Button>
-                <Button  x:Name="btn12" Width="90" Height="84"  Background="{x:Null}" BorderBrush="#FF353635" Margin="40,0,0,0" >
+                <Button  x:Name="btn12" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" >
                     <Image Source="tour.png" Width="30" Height="30"/>
                 </Button>
-                <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}" BorderBrush="#FF353635" Margin="40,0,0,0" >
+                <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" >
                     <Image Source="report.png" Width="30" Height="30"/>
                 </Button>
-                <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}" BorderBrush="#FF353635" Margin="40,0,0,0" Foreground="#FFA37A7A" >
+                <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" >
                     <Image Source="gear.png" Width="30" Height="30"/>
                 </Button>
             </StackPanel>
