@@ -26,3 +26,5 @@ C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.Properties.Resources.resource
 C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.csproj.GenerateResource.cache
 C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.exe
 C:\Users\ADM\Dev\ESI\TopoGiraffe\obj\Debug\WPFDemo.pdb
+C:\Users\Chamsou\Desktop\TopoGiraffe\obj\Debug\WPFDemo.exe
+C:\Users\Chamsou\Desktop\TopoGiraffe\obj\Debug\WPFDemo.pdb
