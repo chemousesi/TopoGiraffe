@@ -24,19 +24,19 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                 <Button  x:Name="btn11" Width="90" Height="84"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" >
-                    <Image Source="draw.png" Width="30" Height="30" />
+                    <Image Source="/assets/img/draw.png" Width="30" Height="30" />
                 </Button>
                 <Button  x:Name="btn12" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" >
-                    <Image Source="tour.png" Width="30" Height="30"/>
+                    <Image Source="/assets/img/tour.png" Width="30" Height="30"/>
                 </Button>
                 <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" >
-                    <Image Source="report.png" Width="30" Height="30"/>
+                    <Image Source="/assets/img/report.png" Width="30" Height="30"/>
                 </Button>
                 <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" >
-                    <Image Source="gear.png" Width="30" Height="30"/>
+                    <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
                 </Button>
             </StackPanel>
         </Grid>
@@ -107,11 +107,11 @@
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" >
                             <Button  x:Name="display" Width="90" Height="84"  BorderBrush="Transparent"
                                 BorderThickness="0" >
-                                <Image Source="visibility.png" Width="30" Height="30" />
+                                <Image Source="/assets/img/visibility.png" Width="30" Height="30" />
                             </Button>
                             <Button  x:Name="import" Width="85" Height="84"  BorderBrush="Transparent"
                                 BorderThickness="0" Click="import_Click" >
-                                <Image Source="import.png" Width="30" Height="30" />
+                                <Image Source="/assets/img/import.png" Width="30" Height="30" />
                             </Button>
 
                         </StackPanel>
@@ -129,11 +129,11 @@
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-0.2,0" >
                     <Button  Name="btn1" Width="60" Height="80"  Background="{x:Null}" BorderBrush="Transparent"
         BorderThickness="0" Margin="0,0,0,20" >
-                        <Image Source="zoom-in.png" Height="30" Width="30"  ></Image>
+                        <Image Source="/assets/img/zoom-in.png" Height="30" Width="30"  ></Image>
                     </Button>
                     <Button x:Name="btn2" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
         BorderThickness="0" Click="btn2_Click"  >
-                        <Image Source="ink.png" Height="30" Width="30"  />
+                        <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
                     </Button>
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
                 </StackPanel>
