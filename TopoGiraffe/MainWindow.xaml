@@ -60,14 +60,15 @@
                 <Grid>
                     <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1" Stretch="Fill" />
 
-                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseDown="mainCanvas_MouseDown" MouseMove="mainCanvas_MouseMove" MouseEnter="mainCanvas_MouseEnter" >
+                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseDown="mainCanvas_MouseDown" MouseMove="mainCanvas_MouseMove" MouseEnter="mainCanvas_MouseEnter" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
+                        <Button Content="Button"/>
 
                     </Canvas>
                 </Grid>
-                    
+
 
             </utils:ZoomBorder>
 
@@ -87,6 +88,7 @@
                     <TextBox  Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">MIN</TextBox>
                     <TextBox  Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7,32.8,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">LONGUEUR</TextBox>
                 </StackPanel>
+                <Button x:Name="btn3" Content="Button" HorizontalAlignment="Left" Margin="112,353,0,0" Grid.Row="1" VerticalAlignment="Top" Height="51" Width="128" Click="btn3_Click"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -120,7 +122,7 @@
                 </Grid>
 
 
-                
+
 
 
 
@@ -138,15 +140,15 @@
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
                 </StackPanel>
             </Grid>
-            
-            
+
+
         </Grid>
 
 
 
 
 
-        
+
 
     </Grid>
 </Window>
