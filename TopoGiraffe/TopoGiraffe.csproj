@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="assets\img\draw.png" />
+    <None Remove="assets\img\gear.png" />
+    <None Remove="assets\img\import.png" />
+    <None Remove="assets\img\ink.png" />
+    <None Remove="assets\img\report.png" />
+    <None Remove="assets\img\tour.png" />
+    <None Remove="assets\img\visibility.png" />
+    <None Remove="assets\img\zoom-in.png" />
+    <None Remove="draw.png" />
+    <None Remove="gear.png" />
+    <None Remove="import.png" />
+    <None Remove="ink.png" />
+    <None Remove="report.png" />
+    <None Remove="tour.png" />
+    <None Remove="visibility.png" />
+    <None Remove="zoom-in.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\img\ink.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\img\draw.png" />
+    <Resource Include="assets\img\gear.png" />
+    <Resource Include="assets\img\import.png" />
+    <Resource Include="assets\img\report.png" />
+    <Resource Include="assets\img\tour.png" />
+    <Resource Include="assets\img\visibility.png" />
+    <Resource Include="assets\img\zoom-in.png" />
+  </ItemGroup>
+
+</Project>
