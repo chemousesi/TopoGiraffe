@@ -7,7 +7,7 @@
         xmlns:utils="clr-namespace:TopoGiraffe"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip"  >
+        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" >
     <Window.Resources>
         <Color x:Key="ToolsBar">#353635D6</Color>
     </Window.Resources>
@@ -60,7 +60,7 @@
                 <Grid>
                     <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1" Stretch="Fill" />
 
-                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseDown="mainCanvas_MouseDown" MouseMove="mainCanvas_MouseMove" MouseEnter="mainCanvas_MouseEnter" >
+                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseDown="mainCanvas_MouseDown" <!--MouseMove="mainCanvas_MouseMove"--> MouseEnter="mainCanvas_MouseEnter" >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>

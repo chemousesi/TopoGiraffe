@@ -31,8 +31,10 @@ namespace TopoGiraffe
         //PointCollection myPointCollection2 = new PointCollection();
 
         Polyline courbeActuelle;
-        
-        List<Ellipse> cercles = new List<Ellipse>();
+        Ellipse cerclePremierPoint = new Ellipse();
+
+        // List<Ellipse> cercles = new List<Ellipse>();
+
 
 
 
@@ -40,6 +42,7 @@ namespace TopoGiraffe
         public MainWindow()
         {
             InitializeComponent();
+            this.Title = "TopoGiraffe";
         }
 
         private void import_Click(object sender, RoutedEventArgs e)
@@ -75,16 +78,7 @@ namespace TopoGiraffe
 
                 
                 courbeActuelle.Points.Add(new Point(x, y));
-
-                Ellipse cerclePoint = new Ellipse();
-
-                cerclePoint.Width = 8;
-                cerclePoint.Height = 8;
-                cerclePoint.Fill = System.Windows.Media.Brushes.BlueViolet;
-                Canvas.SetLeft(cerclePoint, x - (cerclePoint.Width / 2));
-                Canvas.SetTop(cerclePoint, y - (cerclePoint.Height / 2));
-                cercles.Add(cerclePoint);
-                mainCanvas.Children.Add(cerclePoint);
+               
 
             }
         }
@@ -105,21 +99,21 @@ namespace TopoGiraffe
 
                 courbeActuelle = (Polyline)polylines[polylines.Count - 1];
                 
-                //myPolyline.Points = myPointCollection2;
-
+       
             }
 
         }
 
 
+            /*      cette fonction va colorer le dernier point de la courbe quand on souhaite la fermer
+             *   
        
-
         private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             int x = Convert.ToInt32(Mouse.GetPosition(mainCanvas).X);
             int y = Convert.ToInt32(Mouse.GetPosition(mainCanvas).Y);
             Boolean cercleDuPremierPointDessine = false;
-            Ellipse cerclePremierPoint;
+
 
 
 
@@ -132,37 +126,45 @@ namespace TopoGiraffe
                 {
 
                     Point premierPoint = points[0];
-                    cerclePremierPoint = cercles[0];
+                    
                     
 
-                    if ((Math.Abs(premierPoint.X - x) < 20) && (Math.Abs(premierPoint.Y - y) < 20) && (!cercleDuPremierPointDessine) )
+                    if ((Math.Abs(premierPoint.X - x) < 20) && (Math.Abs(premierPoint.Y - y) < 20) && (cercleDuPremierPointDessine==false) )
                     {
-
+                        cercleDuPremierPointDessine = true;
                         
                         cerclePremierPoint.Width = 10;
                         cerclePremierPoint.Height = 10;
                         cerclePremierPoint.Fill = System.Windows.Media.Brushes.Red;
-                        cercleDuPremierPointDessine = true;
+
+                        Canvas.SetLeft(cerclePremierPoint, premierPoint.X - (cerclePremierPoint.Width / 2));
+                        Canvas.SetTop(cerclePremierPoint, premierPoint.Y - (cerclePremierPoint.Height / 2));
                         
+                        mainCanvas.Children.Add(cerclePremierPoint);
+                       
 
                     }
-                    else
+
+                    if ((Math.Abs(premierPoint.X - x) > 20) && (Math.Abs(premierPoint.Y - y) > 20) && (cercleDuPremierPointDessine = true))
                     {
-                        if((Math.Abs(premierPoint.X - x) > 20) && (Math.Abs(premierPoint.Y - y) > 20))
+                        if (mainCanvas.Children.Contains(cerclePremierPoint))
                         {
-                            cerclePremierPoint.Width = 8;
-                            cerclePremierPoint.Height = 8;
-                            cerclePremierPoint.Fill = System.Windows.Media.Brushes.BlueViolet;
+                            mainCanvas.Children.Remove(cerclePremierPoint);
+
                         }
 
-                    }
+
+
+                    }  
+
+                    
 
                 }
 
             }
         }
 
-
+    */
 
 
         private void btn2_Click(object sender, RoutedEventArgs e)
@@ -197,6 +199,23 @@ namespace TopoGiraffe
             {
                 mainCanvas.Cursor = Cursors.Cross;
             }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        // getters and setters
+        public Ellipse CerclePremierPoint
+        {
+            get { return cerclePremierPoint; }
         }
     }
 }
