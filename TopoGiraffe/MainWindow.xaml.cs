@@ -1,17 +1,11 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TopoGiraffe
@@ -36,14 +30,17 @@ namespace TopoGiraffe
         // List<Ellipse> cercles = new List<Ellipse>();
 
 
-
-
+       
 
         public MainWindow()
         {
             InitializeComponent();
             this.Title = "TopoGiraffe";
+            cmbColors.ItemsSource = typeof(Colors).GetProperties();
+
+
         }
+        
 
         private void import_Click(object sender, RoutedEventArgs e)
         {
@@ -57,8 +54,6 @@ namespace TopoGiraffe
                 imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
 
             }
-
-
 
         }
 
@@ -167,6 +162,12 @@ namespace TopoGiraffe
     */
 
 
+
+
+
+
+
+
         private void btn2_Click(object sender, RoutedEventArgs e)
         {
 
@@ -178,6 +179,8 @@ namespace TopoGiraffe
             
             
             myPolyline.Stroke = System.Windows.Media.Brushes.Black;
+        
+
             myPolyline.StrokeThickness = 2;
             myPolyline.FillRule = FillRule.EvenOdd;
             
@@ -206,6 +209,23 @@ namespace TopoGiraffe
 
 
 
+       
+        public void RemoveText(object sender, EventArgs e)
+                {
+                    if (altitudeTextBox.Text == "Enter text here...")
+                    {
+                        altitudeTextBox.Text = "";
+                    }
+                }
+
+          public void AddText(object sender, EventArgs e)
+            {
+                if (string.IsNullOrWhiteSpace(altitudeTextBox.Text))
+                altitudeTextBox.Text = "Enter text here...";
+            }
+          
+
+
 
 
 
@@ -216,6 +236,62 @@ namespace TopoGiraffe
         public Ellipse CerclePremierPoint
         {
             get { return cerclePremierPoint; }
+        }
+
+
+        // to eliminate placeholders
+
+        private void altitudeTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            altitudeTextBox.Text = "";
+        }
+
+        private void maxTextBox_GotFocus(object sender, RoutedEventArgs e)
+        { 
+            maxTextBox.Text = "";
+        }
+
+        private void minTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            minTextBox.Text = "";
+        }
+
+        private void longueurTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            longueurTextBox.Text = "";
+        }
+
+        private void deleteAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (mainCanvas.Children.Count == 0)
+            {
+                MessageBox.Show("no polygone to delete");
+            }
+            else
+            {
+                mainCanvas.Children.Remove(courbeActuelle);
+            }
+        }
+
+        private void deletePreviousButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (mainCanvas.Children.Count == 0)
+            {
+                MessageBox.Show("no polygone to delete");
+            }else
+            {
+                if (courbeActuelle.Points.Count > 0)
+                {
+                    courbeActuelle.Points.Remove(courbeActuelle.Points[courbeActuelle.Points.Count - 1]);
+
+                }
+                else
+                {
+                    
+                    MessageBox.Show("You cant get back anymore");
+                }
+            }
         }
     }
 }
