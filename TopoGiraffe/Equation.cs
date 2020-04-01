@@ -4,15 +4,10 @@ using System.Text;
 
 namespace TopoGiraffe
 {
-    public class intersection
+    public class Equation
     {
-
-
-
-
-
-
-
+        public double a;
+        public double b;
 
     }
 }

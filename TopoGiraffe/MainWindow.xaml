@@ -39,6 +39,10 @@
                     <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
                 </Button>
             </StackPanel>
+            <Button Content="add line" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Center" Height="32" RenderTransformOrigin="-1.022,1.117" Width="104" Click="Button_Click"/>
+            <Border BorderThickness="1" BorderBrush="Black">
+                <CheckBox x:Name="checkb" Content="CheckBox" Margin="50,41,-50,-41" Checked="CheckBox_Checked"/>
+            </Border>
         </Grid>
         <Grid  Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -64,7 +68,6 @@
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
-                        <Button Content="Button"/>
 
                     </Canvas>
                 </Grid>
@@ -88,7 +91,7 @@
                     <TextBox  Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">MIN</TextBox>
                     <TextBox  Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7,32.8,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">LONGUEUR</TextBox>
                 </StackPanel>
-                <Button x:Name="btn3" Content="Button" HorizontalAlignment="Left" Margin="112,353,0,0" Grid.Row="1" VerticalAlignment="Top" Height="51" Width="128" Click="btn3_Click"/>
+                <Button Content="Button" HorizontalAlignment="Left" Margin="23,353,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_1" Width="93"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
