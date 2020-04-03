@@ -1,12 +1,16 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 
 namespace TopoGiraffe
 {
@@ -29,18 +33,49 @@ namespace TopoGiraffe
 
         // List<Ellipse> cercles = new List<Ellipse>();
 
-
+        
        
+
+        class RectangleName
+        {
+            public Rectangle Rect { get; set; }
+            public string Name { get; set; }
+        }
+
+
+
+
+
+
+
 
         public MainWindow()
         {
             InitializeComponent();
-            this.Title = "TopoGiraffe";
-            cmbColors.ItemsSource = typeof(Colors).GetProperties();
+            //this.Title = "TopoGiraffe";
+            //cmbColors.ItemsSource = typeof(Colors).GetProperties();
+
+
+            var values = typeof(Brushes).GetProperties().
+                Select(p => new {Name =  p.Name, Brush = p.GetValue(null) as Brush }).
+                ToArray();
+            var brushNames = values.Select(v => v.Name);
+
+
+            List<RectangleName> rectangleNames = new List<RectangleName>();
+
+            foreach(string brushName in brushNames)
+            {
+                RectangleName rn = new RectangleName { Rect = new Rectangle { Fill = new BrushConverter().ConvertFromString(brushName) as Brush }, Name = brushName };
+                rectangleNames.Add(rn);
+            }
+
+            colorComboBox.ItemsSource = rectangleNames;
+            colorComboBox.SelectedIndex = 7;
 
 
         }
-        
+
 
         private void import_Click(object sender, RoutedEventArgs e)
         {
@@ -63,17 +98,16 @@ namespace TopoGiraffe
 
         private void mainCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            
             double x = Mouse.GetPosition(mainCanvas).X;
             double y = Mouse.GetPosition(mainCanvas).Y;
 
 
             if (activerDessinCheckBox.IsChecked == true)
             {
-
+                Point lastPoint = new Point(x, y);
                 
-                courbeActuelle.Points.Add(new Point(x, y));
-               
+                courbeActuelle.Points.Add(lastPoint);
 
             }
         }
@@ -100,87 +134,112 @@ namespace TopoGiraffe
         }
 
 
-            /*      cette fonction va colorer le dernier point de la courbe quand on souhaite la fermer
-             *   
-       
-        private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
+        /*      cette fonction va colorer le dernier point de la courbe quand on souhaite la fermer
+         *   
+
+    private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
+    {
+        int x = Convert.ToInt32(Mouse.GetPosition(mainCanvas).X);
+        int y = Convert.ToInt32(Mouse.GetPosition(mainCanvas).Y);
+        Boolean cercleDuPremierPointDessine = false;
+
+
+
+
+        if (polylines.Count != 0)
         {
-            int x = Convert.ToInt32(Mouse.GetPosition(mainCanvas).X);
-            int y = Convert.ToInt32(Mouse.GetPosition(mainCanvas).Y);
-            Boolean cercleDuPremierPointDessine = false;
+            PointCollection points = polylines[polylines.Count - 1].Points;
 
 
-
-
-            if (polylines.Count != 0)
+            if (points.Count > 2)
             {
-                PointCollection points = polylines[polylines.Count - 1].Points;
+
+                Point premierPoint = points[0];
 
 
-                if (points.Count > 2)
+
+                if ((Math.Abs(premierPoint.X - x) < 20) && (Math.Abs(premierPoint.Y - y) < 20) && (cercleDuPremierPointDessine==false) )
                 {
+                    cercleDuPremierPointDessine = true;
 
-                    Point premierPoint = points[0];
-                    
-                    
+                    cerclePremierPoint.Width = 10;
+                    cerclePremierPoint.Height = 10;
+                    cerclePremierPoint.Fill = System.Windows.Media.Brushes.Red;
 
-                    if ((Math.Abs(premierPoint.X - x) < 20) && (Math.Abs(premierPoint.Y - y) < 20) && (cercleDuPremierPointDessine==false) )
+                    Canvas.SetLeft(cerclePremierPoint, premierPoint.X - (cerclePremierPoint.Width / 2));
+                    Canvas.SetTop(cerclePremierPoint, premierPoint.Y - (cerclePremierPoint.Height / 2));
+
+                    mainCanvas.Children.Add(cerclePremierPoint);
+
+
+                }
+
+                if ((Math.Abs(premierPoint.X - x) > 20) && (Math.Abs(premierPoint.Y - y) > 20) && (cercleDuPremierPointDessine = true))
+                {
+                    if (mainCanvas.Children.Contains(cerclePremierPoint))
                     {
-                        cercleDuPremierPointDessine = true;
-                        
-                        cerclePremierPoint.Width = 10;
-                        cerclePremierPoint.Height = 10;
-                        cerclePremierPoint.Fill = System.Windows.Media.Brushes.Red;
-
-                        Canvas.SetLeft(cerclePremierPoint, premierPoint.X - (cerclePremierPoint.Width / 2));
-                        Canvas.SetTop(cerclePremierPoint, premierPoint.Y - (cerclePremierPoint.Height / 2));
-                        
-                        mainCanvas.Children.Add(cerclePremierPoint);
-                       
+                        mainCanvas.Children.Remove(cerclePremierPoint);
 
                     }
 
-                    if ((Math.Abs(premierPoint.X - x) > 20) && (Math.Abs(premierPoint.Y - y) > 20) && (cercleDuPremierPointDessine = true))
-                    {
-                        if (mainCanvas.Children.Contains(cerclePremierPoint))
-                        {
-                            mainCanvas.Children.Remove(cerclePremierPoint);
 
-                        }
+
+                }  
 
 
 
-                    }  
+            }
 
-                    
+        }
+    }
 
-                }
+*/
+
+
+            // for a live preview of the line 
+        private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            if ((activerDessinCheckBox.IsChecked == true) && (courbeActuelle.Points.Count > 0))
+            {
+
+
+
+                Line newLine = new Line();
+                double x = Mouse.GetPosition(mainCanvas).X;
+                double y = Mouse.GetPosition(mainCanvas).Y;
+
+
+                newLine.Stroke = System.Windows.Media.Brushes.Black;
+                newLine.X1 = courbeActuelle.Points[courbeActuelle.Points.Count - 1].X;
+                newLine.Y1 = courbeActuelle.Points[courbeActuelle.Points.Count - 1].Y;
+
+                newLine.X2 = x;
+                newLine.Y2 = y;
+                //newLine.HorizontalAlignment = HorizontalAlignment.Left;
+                //newLine.VerticalAlignment = VerticalAlignment.Center;
+                newLine.StrokeThickness = 3; 
+                mainCanvas.Children.Add(newLine);
+                //Thread.Sleep(10);
+                
+
+                mainCanvas.Children.Remove(newLine);
 
             }
         }
 
-    */
+       
 
 
-
-
-
-
-
-
-        private void btn2_Click(object sender, RoutedEventArgs e)
+        private void dessinerButton_Click(object sender, RoutedEventArgs e)
         {
 
             Polyline myPolyline = new Polyline();
             polylines.Add(myPolyline);
             activerDessinCheckBox.IsChecked = true;
-
             // styling
-            
-            
-            myPolyline.Stroke = System.Windows.Media.Brushes.Black;
-        
 
+            myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
             myPolyline.StrokeThickness = 2;
             myPolyline.FillRule = FillRule.EvenOdd;
             
@@ -227,7 +286,7 @@ namespace TopoGiraffe
 
 
 
-
+        
 
 
 
@@ -270,7 +329,8 @@ namespace TopoGiraffe
             }
             else
             {
-                mainCanvas.Children.Remove(courbeActuelle);
+                polylines.Clear();
+                mainCanvas.Children.Clear();
             }
         }
 
@@ -288,10 +348,47 @@ namespace TopoGiraffe
                 }
                 else
                 {
+                    polylines.Remove(polylines[polylines.Count - 1]);
                     
-                    MessageBox.Show("You cant get back anymore");
+                    if (polylines.Count > 0)
+                    {
+                        courbeActuelle = polylines[polylines.Count - 1];
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("no polygone to delete");
+                    }
+
                 }
             }
+        }
+
+        // image visibilty with the display button
+        private void display_Click(object sender, RoutedEventArgs e)
+        { 
+           if (imgPhoto.Visibility == Visibility.Visible)
+            {
+                imgPhoto.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                imgPhoto.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void altitudeTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (altitudeTextBox.Text == "")
+            {
+                altitudeTextBox.Text = "Altitude";
+
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
