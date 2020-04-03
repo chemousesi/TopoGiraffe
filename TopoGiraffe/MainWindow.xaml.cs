@@ -52,10 +52,11 @@ namespace TopoGiraffe
         public MainWindow()
         {
             InitializeComponent();
-            //this.Title = "TopoGiraffe";
-            //cmbColors.ItemsSource = typeof(Colors).GetProperties();
+            this.Title = "TopoGiraffe";
 
 
+
+            // this here is for the colors
             var values = typeof(Brushes).GetProperties().
                 Select(p => new {Name =  p.Name, Brush = p.GetValue(null) as Brush }).
                 ToArray();
@@ -72,9 +73,12 @@ namespace TopoGiraffe
 
             colorComboBox.ItemsSource = rectangleNames;
             colorComboBox.SelectedIndex = 7;
+            // colors end here
+
 
 
         }
+
 
 
         private void import_Click(object sender, RoutedEventArgs e)
@@ -93,30 +97,9 @@ namespace TopoGiraffe
         }
 
 
-        
-
-
-        private void mainCanvas_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            
-            double x = Mouse.GetPosition(mainCanvas).X;
-            double y = Mouse.GetPosition(mainCanvas).Y;
-
-
-            if (activerDessinCheckBox.IsChecked == true)
-            {
-                Point lastPoint = new Point(x, y);
-                
-                courbeActuelle.Points.Add(lastPoint);
-
-            }
-        }
-
 
         private void activerDessinCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            
-
             if (polylines.Count == 0)
             {
                 MessageBox.Show("Il Faut avoir au moins une courbe");
@@ -124,13 +107,9 @@ namespace TopoGiraffe
 
             }
             else
-            {
-
+            { 
                 courbeActuelle = (Polyline)polylines[polylines.Count - 1];
-                
-       
             }
-
         }
 
 
@@ -197,6 +176,7 @@ namespace TopoGiraffe
 
 
             // for a live preview of the line 
+            
         private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
         {
 
@@ -227,7 +207,7 @@ namespace TopoGiraffe
 
             }
         }
-
+    
        
 
 
@@ -243,10 +223,7 @@ namespace TopoGiraffe
             myPolyline.StrokeThickness = 2;
             myPolyline.FillRule = FillRule.EvenOdd;
             
-
-
             courbeActuelle = myPolyline;
-
             mainCanvas.Children.Add(courbeActuelle);
 
 
@@ -262,34 +239,6 @@ namespace TopoGiraffe
                 mainCanvas.Cursor = Cursors.Cross;
             }
         }
-
-
-
-
-
-
-       
-        public void RemoveText(object sender, EventArgs e)
-                {
-                    if (altitudeTextBox.Text == "Enter text here...")
-                    {
-                        altitudeTextBox.Text = "";
-                    }
-                }
-
-          public void AddText(object sender, EventArgs e)
-            {
-                if (string.IsNullOrWhiteSpace(altitudeTextBox.Text))
-                altitudeTextBox.Text = "Enter text here...";
-            }
-          
-
-
-
-        
-
-
-
 
         // getters and setters
         public Ellipse CerclePremierPoint
@@ -319,6 +268,8 @@ namespace TopoGiraffe
         {
             longueurTextBox.Text = "";
         }
+
+
 
         private void deleteAllButton_Click(object sender, RoutedEventArgs e)
         {
@@ -364,6 +315,11 @@ namespace TopoGiraffe
             }
         }
 
+
+
+
+
+
         // image visibilty with the display button
         private void display_Click(object sender, RoutedEventArgs e)
         { 
@@ -382,13 +338,32 @@ namespace TopoGiraffe
             if (altitudeTextBox.Text == "")
             {
                 altitudeTextBox.Text = "Altitude";
-
             }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void border_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void mainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            double x = Mouse.GetPosition(mainCanvas).X;
+            double y = Mouse.GetPosition(mainCanvas).Y;
+
+
+            if (activerDessinCheckBox.IsChecked == true)
+            {
+                Point lastPoint = new Point(x, y);
+
+                courbeActuelle.Points.Add(lastPoint);
+
+            }
         }
     }
 }
