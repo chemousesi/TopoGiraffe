@@ -7,7 +7,7 @@
         xmlns:utils="clr-namespace:TopoGiraffe"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip"  >
+        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" >
     <Window.Resources>
         <Color x:Key="ToolsBar">#353635D6</Color>
     </Window.Resources>
@@ -60,14 +60,14 @@
                 <Grid>
                     <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1" Stretch="Fill" />
 
-                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseDown="mainCanvas_MouseDown" MouseMove="mainCanvas_MouseMove" MouseEnter="mainCanvas_MouseEnter" >
+                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseDown="mainCanvas_MouseDown" MouseEnter="mainCanvas_MouseEnter" >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
 
                     </Canvas>
                 </Grid>
-                    
+
 
             </utils:ZoomBorder>
 
@@ -81,13 +81,47 @@
                     <RowDefinition Height="11*"/>
                     <RowDefinition Height="189*"/>
                 </Grid.RowDefinitions>
-                <StackPanel VerticalAlignment="Top" Height="323" Margin="0,25,0,0" Grid.Row="1" >
-                    <TextBox  Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ></TextBox>
-                    <TextBox  Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">MAX</TextBox>
-                    <TextBox  Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">MIN</TextBox>
-                    <TextBox  Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7,32.8,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">LONGUEUR</TextBox>
+                <StackPanel VerticalAlignment="Top" Height="388" Margin="0,25,0,0" Grid.Row="1" >
+                    <TextBox x:Name="altitudeTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" GotFocus="altitudeTextBox_GotFocus" Text="Altitude" Opacity="0.995" UndoLimit="98" SelectionOpacity="1" ></TextBox>
+                    <TextBox x:Name="maxTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Max" GotFocus="maxTextBox_GotFocus"></TextBox>
+                    <TextBox x:Name="minTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Min" GotFocus="minTextBox_GotFocus"/>
+                    <TextBox x:Name="longueurTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7,32.8,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Longueur" GotFocus="longueurTextBox_GotFocus"/>
+
+
+                    <TextBlock Text="Colors (creating a new model)" Margin="33,7,32.8,.5"></TextBlock>
+                    <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="Red" Height="20" Width="20"/>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+
+                        </ComboBox.ItemTemplate>
+
+
+                    </ComboBox>
+
+
+
+                    <TextBlock Text="Colors (from the system)" Margin="33,7,32.8,.5"></TextBlock>
+                    <ComboBox Name="cmbColors" Margin="33,7,32.8,7">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
             </Grid>
+
+
+
+
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="84"/>
@@ -120,7 +154,7 @@
                 </Grid>
 
 
-                
+
 
 
 
@@ -128,25 +162,38 @@
             <Grid Grid.Column="0" Background="#C5C5C5" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-0.2,0" >
                     <Button  Name="btn1" Width="60" Height="80"  Background="{x:Null}" BorderBrush="Transparent"
-        BorderThickness="0" Margin="0,0,0,20" >
+                        BorderThickness="0" Margin="0,0,0,20" >
                         <Image Source="/assets/img/zoom-in.png" Height="30" Width="30"  ></Image>
                     </Button>
+                   
                     <Button x:Name="btn2" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
-        BorderThickness="0" Click="btn2_Click"  >
-                        <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
+                           BorderThickness="0" Click="btn2_Click"  >
+                           <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
+                    </Button>
+                    
+                    
+                    <Button x:Name="deleteAllButton" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
+                         BorderThickness="0" Click="deleteAllButton_Click" >
+                        <Image Source="/assets/img/deleteAll.png" Height="40" Width="40"  />
+
+                        
+
+
+                    </Button>
+                    <Button x:Name="deletePreviousButton" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
+                                BorderThickness="0" Click="deletePreviousButton_Click"   >
+                                <Image Source="/assets/img/deletePrevious.png" Height="35" Width="44"  />
                     </Button>
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
+                    <ComboBox Width="117"/>
+
                 </StackPanel>
+
             </Grid>
-            
-            
+
+
         </Grid>
 
-
-
-
-
-        
 
     </Grid>
 </Window>

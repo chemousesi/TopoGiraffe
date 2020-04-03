@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {}
+    "C:\\Users\\Chamsou\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\repos\\TopoGiraffe\\TopoGiraffe\\TopoGiraffe.csproj",
+      "projectUniqueName": "C:\\Users\\Chamsou\\Desktop\\testPull\\TopoGiraffe\\TopoGiraffe\\TopoGiraffe.csproj",
       "projectName": "TopoGiraffe",
-      "projectPath": "C:\\Users\\DELL\\repos\\TopoGiraffe\\TopoGiraffe\\TopoGiraffe.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\repos\\TopoGiraffe\\TopoGiraffe\\obj\\",
+      "projectPath": "C:\\Users\\Chamsou\\Desktop\\testPull\\TopoGiraffe\\TopoGiraffe\\TopoGiraffe.csproj",
+      "packagesPath": "C:\\Users\\Chamsou\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Chamsou\\Desktop\\testPull\\TopoGiraffe\\TopoGiraffe\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Chamsou\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
