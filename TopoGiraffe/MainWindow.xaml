@@ -20,13 +20,13 @@
         <SolidColorBrush Opacity="0.8" Color="White"/>
     </Window.Background>
 
-    
-    
-    
-    
-    
+
+
+
+
+
     <Grid>
-        
+
 
 
 
@@ -100,7 +100,7 @@
                             <ContextMenu>
                                 <MenuItem Header="Importer une image" Click="import_Click"/>
                                 <MenuItem Header="Changer la visibilité" Click="display_Click" />
-                                
+
                             </ContextMenu>
                         </Canvas.ContextMenu>
 
@@ -196,30 +196,23 @@
                            BorderThickness="0" Click="dessinerButton_Click"  >
                         <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
                     </Button>
+                    <Button x:Name="add_line" Width="97" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
+                          BorderThickness="0" HorizontalAlignment="Center"  Margin="0,0,0,0" VerticalAlignment="Top"  IsDefault="True" Click="add_line_Click">
+                        <Image Source="/assets/img/line.png" Height="76" Width="79"  />
+                    </Button>
 
 
                     <Button x:Name="deleteAllButton" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
                          BorderThickness="0" Click="deleteAllButton_Click" >
                         <Image Source="/assets/img/deleteAll.png" Height="40" Width="40"  />
-
-
-
-                </StackPanel>
-                <Button x:Name="add_line" Width="97" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
-        BorderThickness="0" HorizontalAlignment="Center"  Margin="0,300,0,0" VerticalAlignment="Top"  IsDefault="True" Click="add_line_Click">
-                    <Image Source="/assets/img/line.png" Height="76" Width="79"  />
-                </Button>
-            </Grid>
-
-
-        </Grid>
-
                     </Button>
                     <Button x:Name="deletePreviousButton" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
                                 BorderThickness="0" Click="deletePreviousButton_Click"   >
                         <Image Source="/assets/img/deletePrevious.png" Height="35" Width="44"  />
                     </Button>
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
+
+
 
                 </StackPanel>
 

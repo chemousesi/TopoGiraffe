@@ -31,7 +31,7 @@ namespace TopoGiraffe
         Polyline courbeActuelle;
         Ellipse cerclePremierPoint = new Ellipse();
 
-        // List<Ellipse> cercles = new List<Ellipse>();
+         List<Ellipse> cercles = new List<Ellipse>();
 
         PolyLineSegment polylinesegment = new PolyLineSegment();
         bool btn2Clicked = false; bool addLineClicked = false;
@@ -58,47 +58,8 @@ namespace TopoGiraffe
             this.Title = "TopoGiraffe";
 
 
-            Polyline poly = new Polyline();
-            int LinePointscpt = 0;
 
-            private void mainCanvas_MouseDown(object sender, MouseButtonEventArgs e)
-            {
-            }else if (addLineClicked == true)
-            {
-                LinePointscpt++;
-                poly.Points.Add(new Point(x, y));
-                // calcul des points d'intersection
-                if (LinePointscpt == 2)
-                {
 
-                    line.X1 = poly.Points[0].X;
-                    line.Y1 = poly.Points[0].Y;
-                    line.X2 = poly.Points[1].X;
-                    line.Y2 = poly.Points[1].Y;
-
-                    foreach (Polyline polyline in polylines)
-                    {
-                        FindIntersection(polyline, line);
-                    }
-
-                    // dessin des cercles representant les points d'intersection
-                    foreach (IntersectionDetail inters in IntersectionPoints)
-                    {
-                        Ellipse cercle = new Ellipse();
-                        cercle.Width = 15;
-                        cercle.Height = 15;
-                        cercle.Fill = System.Windows.Media.Brushes.Red;
-                        Canvas.SetLeft(cercle, inters.point.X - (cercle.Width / 2));
-                        Canvas.SetTop(cercle, inters.point.Y - (cercle.Height / 2));
-                        cercles.Add(cercle);
-                        mainCanvas.Children.Add(cercle);
-                    }
-
-                    addLineClicked = false;
-                }
-
-            } // finish here
-        }
             // this here is for the colors
             var values = typeof(Brushes).GetProperties().
                 Select(p => new {Name =  p.Name, Brush = p.GetValue(null) as Brush }).
@@ -109,8 +70,8 @@ namespace TopoGiraffe
 
             List<RectangleName> rectangleNames = new List<RectangleName>();
 
-            foreach(string brushName in brushNames)
-          
+            foreach(string brushName in brushNames) { 
+         
                 RectangleName rn = new RectangleName { Rect = new Rectangle { Fill = new BrushConverter().ConvertFromString(brushName) as Brush }, Name = brushName };
                 rectangleNames.Add(rn);
             }
@@ -141,15 +102,7 @@ namespace TopoGiraffe
             }
 
         }
-                cerclePoint.Width = 8;
-                cerclePoint.Height = 8;
-                cerclePoint.Fill = System.Windows.Media.Brushes.BlueViolet;
-                Canvas.SetLeft(cerclePoint, x - (cerclePoint.Width / 2));
-                Canvas.SetTop(cerclePoint, y - (cerclePoint.Height / 2));
-                cercles.Add(cerclePoint);
-                mainCanvas.Children.Add(cerclePoint);
-                
-
+              
           
 
 
@@ -405,20 +358,55 @@ namespace TopoGiraffe
         {
 
         }
-
+        Polyline poly = new Polyline();
+        int LinePointscpt = 0;
         private void mainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             double x = Mouse.GetPosition(mainCanvas).X;
             double y = Mouse.GetPosition(mainCanvas).Y;
 
 
-            if (activerDessinCheckBox.IsChecked == true)
+            if (btn2Clicked == true)
             {
                 Point lastPoint = new Point(x, y);
 
                 courbeActuelle.Points.Add(lastPoint);
 
-            }
+            }else if (addLineClicked == true)
+                    {
+                        LinePointscpt++;
+                        poly.Points.Add(new Point(x, y));
+                        // calcul des points d'intersection
+                        if (LinePointscpt == 2)
+                        {
+
+                            line.X1 = poly.Points[0].X;
+                            line.Y1 = poly.Points[0].Y;
+                            line.X2 = poly.Points[1].X;
+                            line.Y2 = poly.Points[1].Y;
+
+                            foreach (Polyline polyline in polylines)
+                            {
+                                FindIntersection(polyline, line);
+                            }
+
+                            // dessin des cercles representant les points d'intersection
+                            foreach (IntersectionDetail inters in IntersectionPoints)
+                            {
+                                Ellipse cercle = new Ellipse();
+                                cercle.Width = 15;
+                                cercle.Height = 15;
+                                cercle.Fill = System.Windows.Media.Brushes.Red;
+                                Canvas.SetLeft(cercle, inters.point.X - (cercle.Width / 2));
+                                Canvas.SetTop(cercle, inters.point.Y - (cercle.Height / 2));
+                                cercles.Add(cercle);
+                                mainCanvas.Children.Add(cercle);
+                            }
+
+                            addLineClicked = false;
+                        }
+
+                    } // finish here
         }
             
 
