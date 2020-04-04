@@ -237,12 +237,14 @@ namespace TopoGiraffe
         }
 
 
-        private List<DrawingVisual> hits = new List<DrawingVisual>();
-        List<IntersectionDetail> IntersectionPoints  = new List<IntersectionDetail>();
-      
-        // code d'intersection ------------------------------------------------------------------
+       List<IntersectionDetail> IntersectionPoints  = new List<IntersectionDetail>();
 
-            public void FindIntersection( Polyline p , Line line)
+        // code d'intersection -------------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+        Line line = new Line();
+        public void FindIntersection( Polyline p , Line line)
             {
                 Line myLine = new Line();
                 IntersectionDetail inter;
@@ -311,98 +313,25 @@ namespace TopoGiraffe
                 return equation;
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //code using C# propreties ------------------------------------------------------------
-
-        private List<object> hitResultsList = new List<object>();
-
-        
-
-        private void mainCanvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            // transformation de l'objet polyline à un objet pathfigure ( herite de geometry)
-
-            PathGeometry myPathGeometry = new PathGeometry();
-            PathFigure pathFigure2 = new PathFigure();
-            PolyLineSegment myPolyLineSegment = new PolyLineSegment();
-            myPolyLineSegment.Points = polylines[0].Points;
-            pathFigure2.Segments.Add(myPolyLineSegment);
-            myPathGeometry.Figures.Add(pathFigure2);
-
-            // vider la liste des resultats du Hit Test
-            hitResultsList.Clear();
-
-            foreach (Polyline p in  polylines){
-                // set up d'une CallBack funtion pour recevoir l'enum du resultat du hit test
-                VisualTreeHelper.HitTest(p, new HitTestFilterCallback(MyHitTestFilter),
-                    new HitTestResultCallback(MyHitTestResult),
-                    new GeometryHitTestParameters(myPathGeometry));
-
-            }
-           
-
-            // affichage du nombre d'intersections.
-            if (hitResultsList.Count >= 0)
+            private void add_line_Click(object sender, RoutedEventArgs e)
             {
-                MessageBox.Show("Number of Visuals Hit: " + hitResultsList.Count);
-            }
-        }
+                addLineClicked = true;
+                btn2Clicked = false;
+                LinePointscpt = 0;
 
-        // fonction Callback qui determine le comportement du Hittest
-        public HitTestResultBehavior MyHitTestResult(HitTestResult result)
-        {
-            // Add the hit test result to the list that will be processed after the enumeration.
-            //ajout du resultat à la liste 
-            hitResultsList.Add(result.VisualHit);
+                // styling
 
-            // Set the behavior to return visuals at all z-order levels.
-            return HitTestResultBehavior.Stop;
-        }
-        public HitTestFilterBehavior MyHitTestFilter(DependencyObject o)
-        {
-            // Test for the object value you want to filter.
-            if (o.GetType() == typeof(Canvas))
-            {
-                // Visual object and descendants are NOT part of hit test results enumeration.
-                return HitTestFilterBehavior.Continue;
+                line.Stroke = Brushes.Black;
+                line.StrokeThickness = 2;
+                poly.Stroke = Brushes.Black;
+                poly.StrokeThickness = 2;
+                poly.FillRule = FillRule.EvenOdd;
+                mainCanvas.Children.Add(poly);
+
             }
-            else
-            {
-                // Visual object is part of hit test results enumeration.
-                return HitTestFilterBehavior.Continue;
-            }
-        }
-        Line line = new Line();
+     
     
 
-        private void add_line_Click(object sender, RoutedEventArgs e)
-        {
-            addLineClicked = true;
-            btn2Clicked = false;
-            LinePointscpt = 0;
-
-            // styling
-
-            line.Stroke = Brushes.Black;
-            line.StrokeThickness = 2;
-            poly.Stroke = Brushes.Black;
-            poly.StrokeThickness = 2;
-            poly.FillRule = FillRule.EvenOdd;
-            mainCanvas.Children.Add(poly);
-
-        }
+        
     }
 }

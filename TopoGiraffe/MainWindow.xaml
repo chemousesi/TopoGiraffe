@@ -61,7 +61,7 @@
                 <Grid>
                     <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1" Stretch="Fill" />
 
-                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseDown="mainCanvas_MouseDown" MouseMove="mainCanvas_MouseMove" MouseEnter="mainCanvas_MouseEnter" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" >
+                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseDown="mainCanvas_MouseDown" MouseMove="mainCanvas_MouseMove" MouseEnter="mainCanvas_MouseEnter"  >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
