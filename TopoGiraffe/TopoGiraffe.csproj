@@ -4,9 +4,12 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\img\deleteAll.png" />
+    <None Remove="assets\img\deletePrevious.png" />
     <None Remove="assets\img\draw.png" />
     <None Remove="assets\img\gear.png" />
     <None Remove="assets\img\import.png" />
@@ -27,6 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\img\deleteAll.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\img\deletePrevious.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="assets\img\ink.png" />
   </ItemGroup>
 
@@ -41,6 +50,10 @@
     <Resource Include="assets\img\tour.png" />
     <Resource Include="assets\img\visibility.png" />
     <Resource Include="assets\img\zoom-in.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
