@@ -35,7 +35,10 @@ namespace TopoGiraffe
 
         PolyLineSegment polylinesegment = new PolyLineSegment();
         bool btn2Clicked = false; bool addLineClicked = false;
-        
+        Polyline poly = new Polyline();
+        int LinePointscpt = 0;
+
+
 
 
 
@@ -50,8 +53,7 @@ namespace TopoGiraffe
 
 
 
-
-
+                     
         public MainWindow()
         {
             InitializeComponent();
@@ -303,7 +305,13 @@ namespace TopoGiraffe
                 if (courbeActuelle.Points.Count > 0)
                 {
                     courbeActuelle.Points.Remove(courbeActuelle.Points[courbeActuelle.Points.Count - 1]);
-
+                    foreach(Ellipse cercle in cercles)
+                    {
+                        mainCanvas.Children.Remove(cercle);
+                       
+                    }
+                    cercles.Clear();
+                    IntersectionPoints.Clear();
                 }
                 else
                 {
@@ -358,8 +366,10 @@ namespace TopoGiraffe
         {
 
         }
-        Polyline poly = new Polyline();
-        int LinePointscpt = 0;
+
+
+       
+
         private void mainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             double x = Mouse.GetPosition(mainCanvas).X;
@@ -489,18 +499,19 @@ namespace TopoGiraffe
 
                 private void add_line_Click(object sender, RoutedEventArgs e)
                 {
+                    poly = new Polyline();
                     addLineClicked = true;
                     btn2Clicked = false;
                     LinePointscpt = 0;
 
-                    // styling
-
                     line.Stroke = Brushes.Black;
-                line.StrokeThickness = 2;
-                poly.Stroke = Brushes.Black;
-                poly.StrokeThickness = 2;
-                poly.FillRule = FillRule.EvenOdd;
-                mainCanvas.Children.Add(poly);
+                    line.StrokeThickness = 2;
+                    poly.Stroke = Brushes.Black;
+                    poly.StrokeThickness = 2;
+                    poly.FillRule = FillRule.EvenOdd;
+                    polylines.Add(poly);
+                    courbeActuelle = poly;
+                    mainCanvas.Children.Add(poly);
 
             }
      
