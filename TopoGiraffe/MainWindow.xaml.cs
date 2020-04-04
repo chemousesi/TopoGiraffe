@@ -31,10 +31,16 @@ namespace TopoGiraffe
         Polyline courbeActuelle;
         Ellipse cerclePremierPoint = new Ellipse();
 
-        // List<Ellipse> cercles = new List<Ellipse>();
+         List<Ellipse> cercles = new List<Ellipse>();
 
-        
-       
+        PolyLineSegment polylinesegment = new PolyLineSegment();
+        bool btn2Clicked = false; bool addLineClicked = false;
+        Polyline poly = new Polyline();
+        int LinePointscpt = 0;
+
+
+
+
 
         class RectangleName
         {
@@ -47,12 +53,12 @@ namespace TopoGiraffe
 
 
 
-
-
+                     
         public MainWindow()
         {
             InitializeComponent();
             this.Title = "TopoGiraffe";
+
 
 
 
@@ -62,11 +68,12 @@ namespace TopoGiraffe
                 ToArray();
             var brushNames = values.Select(v => v.Name);
 
+         
 
             List<RectangleName> rectangleNames = new List<RectangleName>();
 
-            foreach(string brushName in brushNames)
-            {
+            foreach(string brushName in brushNames) { 
+         
                 RectangleName rn = new RectangleName { Rect = new Rectangle { Fill = new BrushConverter().ConvertFromString(brushName) as Brush }, Name = brushName };
                 rectangleNames.Add(rn);
             }
@@ -75,6 +82,8 @@ namespace TopoGiraffe
             colorComboBox.SelectedIndex = 7;
             // colors end here
 
+              
+          
 
 
         }
@@ -95,7 +104,8 @@ namespace TopoGiraffe
             }
 
         }
-
+              
+          
 
 
         private void activerDessinCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -213,7 +223,7 @@ namespace TopoGiraffe
 
         private void dessinerButton_Click(object sender, RoutedEventArgs e)
         {
-
+            btn2Clicked = true;
             Polyline myPolyline = new Polyline();
             polylines.Add(myPolyline);
             activerDessinCheckBox.IsChecked = true;
@@ -295,7 +305,13 @@ namespace TopoGiraffe
                 if (courbeActuelle.Points.Count > 0)
                 {
                     courbeActuelle.Points.Remove(courbeActuelle.Points[courbeActuelle.Points.Count - 1]);
-
+                    foreach(Ellipse cercle in cercles)
+                    {
+                        mainCanvas.Children.Remove(cercle);
+                       
+                    }
+                    cercles.Clear();
+                    IntersectionPoints.Clear();
                 }
                 else
                 {
@@ -351,19 +367,153 @@ namespace TopoGiraffe
 
         }
 
+
+       
+
         private void mainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             double x = Mouse.GetPosition(mainCanvas).X;
             double y = Mouse.GetPosition(mainCanvas).Y;
 
 
-            if (activerDessinCheckBox.IsChecked == true)
+            if (btn2Clicked == true)
             {
                 Point lastPoint = new Point(x, y);
 
                 courbeActuelle.Points.Add(lastPoint);
 
-            }
+            }else if (addLineClicked == true)
+                    {
+                        LinePointscpt++;
+                        poly.Points.Add(new Point(x, y));
+                        // calcul des points d'intersection
+                        if (LinePointscpt == 2)
+                        {
+
+                            line.X1 = poly.Points[0].X;
+                            line.Y1 = poly.Points[0].Y;
+                            line.X2 = poly.Points[1].X;
+                            line.Y2 = poly.Points[1].Y;
+
+                            foreach (Polyline polyline in polylines)
+                            {
+                                FindIntersection(polyline, line);
+                            }
+
+                            // dessin des cercles representant les points d'intersection
+                            foreach (IntersectionDetail inters in IntersectionPoints)
+                            {
+                                Ellipse cercle = new Ellipse();
+                                cercle.Width = 15;
+                                cercle.Height = 15;
+                                cercle.Fill = System.Windows.Media.Brushes.Red;
+                                Canvas.SetLeft(cercle, inters.point.X - (cercle.Width / 2));
+                                Canvas.SetTop(cercle, inters.point.Y - (cercle.Height / 2));
+                                cercles.Add(cercle);
+                                mainCanvas.Children.Add(cercle);
+                            }
+
+                            addLineClicked = false;
+                        }
+
+                    } // finish here
         }
+            
+
+
+           List<IntersectionDetail> IntersectionPoints  = new List<IntersectionDetail>();
+
+            // code d'intersection -------------------------------------------------------------------------------------------------------------------------------
+            //----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+            Line line = new Line();
+            public void FindIntersection( Polyline p , Line line)
+                {
+                    Line myLine = new Line();
+                    IntersectionDetail inter;
+
+                    for (int i = 0; i < p.Points.Count - 1; i++)
+                    {
+                        myLine.X1 = p.Points[i].X;      myLine.Y1 = p.Points[i].Y;
+                        myLine.X2 = p.Points[i + 1].X;  myLine.Y2 = p.Points[i + 1].Y;
+                        inter = intersectLines(myLine, line);
+                        if ( inter.intersect == true )
+                        {
+                            IntersectionPoints.Add(inter);
+                        }
+
+
+                     }
+
+
+                }
+                   // intersection d'un segment avec une ligne 
+                public IntersectionDetail intersectLines(Line line1 , Line line2)
+                {
+                    Equation equation1;
+                    Equation equation2;
+                    Boolean intersect = new Boolean();
+
+                    Point interscetionPoint = new Point();
+                    Point a1 = new Point(line1.X1, line1.Y1);
+                    Point b1 = new Point(line1.X2, line1.Y2);
+                    Point a2 = new Point(line2.X1, line2.Y1);
+                    Point b2 = new Point(line2.X2, line2.Y2);
+
+                    equation1 = GetSegmentEquation(a1, b1);
+                    equation2 = GetSegmentEquation(a2, b2);
+
+                    if (equation1.a == equation2.a)
+                    {
+                    intersect = false;
+                    } else {
+                
+                    interscetionPoint.X = -(equation1.b - equation2.b) / (equation1.a - equation2.a);
+                    interscetionPoint.Y = (equation2.a * interscetionPoint.X) + equation2.b;
+
+                        if ( (Math.Max(line1.X1, line1.X2) >= interscetionPoint.X) && ( interscetionPoint.X >=  Math.Min(line1.X1, line1.X2)) 
+                        && (Math.Max(line1.Y1, line1.Y2) >= interscetionPoint.Y) && (interscetionPoint.Y >= Math.Min(line1.Y1, line1.Y2))
+                        && (Math.Max(line2.X1, line2.X2) >= interscetionPoint.X) && (interscetionPoint.X >= Math.Min(line2.X1, line2.X2))
+                        && (Math.Max(line2.Y1, line2.Y2) >= interscetionPoint.Y) && (interscetionPoint.Y >= Math.Min(line2.Y1, line2.Y2)))
+                        {
+                             intersect = true;
+                        }
+
+                    }
+
+                 return new IntersectionDetail(interscetionPoint, intersect);
+
+                } 
+
+
+                public Equation GetSegmentEquation(Point a , Point b)
+                {
+                    Equation equation = new Equation();
+
+                equation.a = (a.Y - b.Y) / (a.X - b.X);
+                equation.b = -(equation.a)*(a.X) + a.Y;
+
+                    return equation;
+                }
+
+                private void add_line_Click(object sender, RoutedEventArgs e)
+                {
+                    poly = new Polyline();
+                    addLineClicked = true;
+                    btn2Clicked = false;
+                    LinePointscpt = 0;
+                    poly.Stroke = Brushes.Indigo;
+                    poly.StrokeThickness = 5;
+                    poly.FillRule = FillRule.EvenOdd;
+                    polylines.Add(poly);
+                    courbeActuelle = poly;
+                    mainCanvas.Children.Add(poly);
+
+            }
+     
+    
+
+        
     }
 }
