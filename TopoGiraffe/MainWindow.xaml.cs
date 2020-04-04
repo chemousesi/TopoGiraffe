@@ -503,11 +503,8 @@ namespace TopoGiraffe
                     addLineClicked = true;
                     btn2Clicked = false;
                     LinePointscpt = 0;
-
-                    line.Stroke = Brushes.Black;
-                    line.StrokeThickness = 2;
-                    poly.Stroke = Brushes.Black;
-                    poly.StrokeThickness = 2;
+                    poly.Stroke = Brushes.Indigo;
+                    poly.StrokeThickness = 5;
                     poly.FillRule = FillRule.EvenOdd;
                     polylines.Add(poly);
                     courbeActuelle = poly;
