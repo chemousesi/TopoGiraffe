@@ -35,6 +35,7 @@ namespace TopoGiraffe
         
         List<Ellipse> cercles = new List<Ellipse>();
         PolyLineSegment polylinesegment = new PolyLineSegment();
+        bool btn2Clicked = false; bool addLineClicked = false;
         
 
 
@@ -64,22 +65,18 @@ namespace TopoGiraffe
 
 
         Polyline poly = new Polyline();
+        int LinePointscpt = 0;
 
         private void mainCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
             double x = Mouse.GetPosition(mainCanvas).X;
             double y = Mouse.GetPosition(mainCanvas).Y;
-            if (checkb.IsChecked == true)
+         
+
+            if (btn2Clicked== true)
             {
-                MessageBox.Show("le point est " + x + " , " + y);
-            }
-
-
-            if (activerDessinCheckBox.IsChecked == true)
-            {
-
-                
+              
                 courbeActuelle.Points.Add(new Point(x, y));
 
                 Ellipse cerclePoint = new Ellipse();
@@ -91,9 +88,41 @@ namespace TopoGiraffe
                 Canvas.SetTop(cerclePoint, y - (cerclePoint.Height / 2));
                 cercles.Add(cerclePoint);
                 mainCanvas.Children.Add(cerclePoint);
+                
 
-            }else {
+            }else if (addLineClicked== true){
+                LinePointscpt++;
                 poly.Points.Add(new Point(x, y));
+                // calcul des points d'intersection
+                if (LinePointscpt == 2)
+                {
+
+                    line.X1 = poly.Points[0].X;
+                    line.Y1 = poly.Points[0].Y;
+                    line.X2 = poly.Points[1].X;
+                    line.Y2 = poly.Points[1].Y;
+
+                    foreach (Polyline polyline in polylines)
+                    {
+                        FindIntersection(polyline, line);
+                    }
+
+                    // dessin des cercles representant les points d'intersection
+                    foreach (IntersectionDetail inters in IntersectionPoints)
+                    {
+                        Ellipse cercle = new Ellipse();
+                        cercle.Width = 15;
+                        cercle.Height = 15;
+                        cercle.Fill = System.Windows.Media.Brushes.Red;
+                        Canvas.SetLeft(cercle, inters.point.X - (cercle.Width / 2));
+                        Canvas.SetTop(cercle, inters.point.Y - (cercle.Height / 2));
+                        cercles.Add(cercle);
+                        mainCanvas.Children.Add(cercle);
+                    }
+
+                    addLineClicked = false;
+                } 
+               
              }
         }
 
@@ -175,7 +204,7 @@ namespace TopoGiraffe
 
         private void btn2_Click(object sender, RoutedEventArgs e)
         {
-
+            btn2Clicked = true;
             Polyline myPolyline = new Polyline();
             polylines.Add(myPolyline);
             activerDessinCheckBox.IsChecked = true;
@@ -218,7 +247,7 @@ namespace TopoGiraffe
                 Line myLine = new Line();
                 IntersectionDetail inter;
 
-                for (int i = 0; i < p.Points.Count - 2; i++)
+                for (int i = 0; i < p.Points.Count - 1; i++)
                 {
                     myLine.X1 = p.Points[i].X;      myLine.Y1 = p.Points[i].Y;
                     myLine.X2 = p.Points[i + 1].X;  myLine.Y2 = p.Points[i + 1].Y;
@@ -357,52 +386,22 @@ namespace TopoGiraffe
             }
         }
         Line line = new Line();
-        private void Button_Click(object sender, RoutedEventArgs e)
+    
+
+        private void add_line_Click(object sender, RoutedEventArgs e)
         {
-            
-            activerDessinCheckBox.IsChecked = false;
+            addLineClicked = true;
+            btn2Clicked = false;
+            LinePointscpt = 0;
 
             // styling
 
-            line.X1 = poly.Points[0].X;
-            line.Y1 = poly.Points[0].Y;
-            line.X2 = poly.Points[1].X;
-            line.Y2 = poly.Points[1].Y;
-
-
-            line.Stroke = System.Windows.Media.Brushes.Black;
+            line.Stroke = Brushes.Black;
             line.StrokeThickness = 2;
-
-            poly.Stroke = System.Windows.Media.Brushes.Black;
+            poly.Stroke = Brushes.Black;
             poly.StrokeThickness = 2;
             poly.FillRule = FillRule.EvenOdd;
             mainCanvas.Children.Add(poly);
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-
-            foreach(Polyline polyline in polylines) { 
-                 FindIntersection(polyline, line);
-            }
-            foreach (IntersectionDetail inters in IntersectionPoints)
-            {
-                //MessageBox.Show("le point est " + inters.point.X + "," + inters.point.Y);
-                Ellipse cercle = new Ellipse();
-
-                cercle.Width = 15;
-                cercle.Height = 15;
-                cercle.Fill = System.Windows.Media.Brushes.Red;
-                Canvas.SetLeft(cercle, inters.point.X - (cercle.Width / 2));
-                Canvas.SetTop(cercle, inters.point.Y - (cercle.Height / 2));
-                cercles.Add(cercle);
-                mainCanvas.Children.Add(cercle);
-            }
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
 
         }
     }
