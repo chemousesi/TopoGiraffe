@@ -7,20 +7,20 @@ namespace TopoGiraffe.Noyau
 {
     class CourbeNiveau
     {
-        private Polygon courbe;
+        private Polyline courbe;
         private double altitude;
         private string couleur;
         private string styleDessin;// pour faire la difference avec les courbes maitresses et les courbes intermediares
 
         
-        public CourbeNiveau(Polygon courbe, double altitude, string couleur)
+        public CourbeNiveau(Polyline courbe, double altitude, string couleur)
         {
             this.courbe = courbe;
             this.altitude = altitude;
             this.couleur = couleur;
         }
 
-        public Polygon Courbe
+        public Polyline Courbe
         {
             get { return courbe;  }
             set { courbe = value; }
