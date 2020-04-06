@@ -292,6 +292,13 @@ namespace TopoGiraffe
             {
                 polylines.Clear();
                 mainCanvas.Children.Clear();
+                foreach (Ellipse cercle in cercles)
+                {
+                    mainCanvas.Children.Remove(cercle);
+
+                }
+                cercles.Clear();
+                IntersectionPoints.Clear();
             }
         }
 
