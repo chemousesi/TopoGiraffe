@@ -15,6 +15,7 @@
     <None Remove="assets\img\import.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\line.png" />
+    <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\visibility.png" />
@@ -46,6 +47,7 @@
     <Content Include="assets\img\line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="assets\img\navigation.png" />
     <Resource Include="assets\img\report.png" />
     <Resource Include="assets\img\tour.png" />
     <Resource Include="assets\img\visibility.png" />

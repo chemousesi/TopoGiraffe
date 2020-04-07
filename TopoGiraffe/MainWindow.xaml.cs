@@ -30,11 +30,12 @@ namespace TopoGiraffe
 
         Polyline courbeActuelle;
         Ellipse cerclePremierPoint = new Ellipse();
-
+        List<ArtPoint> PointsArticulation = new List<ArtPoint>();
          List<Ellipse> cercles = new List<Ellipse>();
 
         PolyLineSegment polylinesegment = new PolyLineSegment();
-        bool btn2Clicked = false; bool addLineClicked = false;
+        bool btn2Clicked = false; bool addLineClicked = false; bool navClicked = false;
+        bool finish = false;
         Polyline poly = new Polyline();
         int LinePointscpt = 0;
 
@@ -185,10 +186,18 @@ namespace TopoGiraffe
 */
 
 
-            // for a live preview of the line 
-            
+        // for a live preview of the line
+        int cpt;
+           
         private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
         {
+            double x = Mouse.GetPosition(mainCanvas).X;
+            double y = Mouse.GetPosition(mainCanvas).Y;
+            if (cpt > 1)
+            {
+                mainCanvas.Children.Remove(courbeActuelle);
+
+            }
 
             if ((activerDessinCheckBox.IsChecked == true) && (courbeActuelle.Points.Count > 0))
             {
@@ -196,8 +205,7 @@ namespace TopoGiraffe
 
 
                 Line newLine = new Line();
-                double x = Mouse.GetPosition(mainCanvas).X;
-                double y = Mouse.GetPosition(mainCanvas).Y;
+               
 
 
                 newLine.Stroke = System.Windows.Media.Brushes.Black;
@@ -216,6 +224,61 @@ namespace TopoGiraffe
                 mainCanvas.Children.Remove(newLine);
 
             }
+            if (navClicked == true)
+            {
+
+                // verifier si on veut relier la courbe ou pas pour creer un point d'articulation
+
+                foreach (ArtPoint el in PointsArticulation)
+                {
+                   
+                    if ( el.cercle.IsMouseDirectlyOver == true)
+                    {
+                        el.cercle.Fill = Brushes.Orange;
+                        el.cercle.Focus();
+
+                    }else
+                    {
+                        el.cercle.Fill = Brushes.Purple;
+                    }
+                }
+                if (Move == true /*&& finish == false*/) { 
+                Polyline po = (Polyline)Skew[0];
+                ArtPoint a = (ArtPoint)Skew[1];
+                Polyline polu = new Polyline();
+                Canvas.SetLeft(a.cercle, x - (a.cercle.Width / 2));
+                Canvas.SetTop(a.cercle, y - (a.cercle.Height / 2));
+                    polu.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+                    polu.StrokeThickness = 2;
+                    polu.FillRule = FillRule.EvenOdd;
+
+                    mainCanvas.Children.Add(polu);
+                    for (int i = 0; i < po.Points.Count ; i++)
+                    {
+                        cpt++;
+                  
+                            if (po.Points[i] == (a.p))
+                            {
+                               polu.Points.Add(e.GetPosition(mainCanvas)); ;
+                            }
+                            else
+                            {
+                                polu.Points.Add(po.Points[i]);
+                            }
+                       
+
+                        }
+                    mainCanvas.Children.Remove(courbeActuelle);
+                    courbeActuelle = polu;
+
+
+                }
+
+
+               
+
+            }
+
         }
     
        
@@ -374,7 +437,7 @@ namespace TopoGiraffe
 
         }
 
-
+        bool Move = false;
        
 
         private void mainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -389,43 +452,106 @@ namespace TopoGiraffe
 
                 courbeActuelle.Points.Add(lastPoint);
 
-            }else if (addLineClicked == true)
+
+                // ajout des points d'articulation----------------------------------------------------------------------
+                //creation d'un Hit test
+                Point pt = e.GetPosition((UIElement)sender);
+                hitResultsList.Clear();
+
+                // verifier si on veut relier la courbe ou pas pour creer un point d'articulation
+
+                VisualTreeHelper.HitTest(mainCanvas, new HitTestFilterCallback(MyHitTestFilter), new HitTestResultCallback(MyHitTestResult),
+                    new PointHitTestParameters(pt));
+                bool el = false;
+                foreach (Object o in hitResultsList)
+                {
+                    if (o.GetType() == typeof(Ellipse))
                     {
-                        LinePointscpt++;
-                        poly.Points.Add(new Point(x, y));
-                        // calcul des points d'intersection
-                        if (LinePointscpt == 2)
-                        {
+                        el = true;
+                    }
+                }
+                if (el == false)
+                {
 
-                            line.X1 = poly.Points[0].X;
-                            line.Y1 = poly.Points[0].Y;
-                            line.X2 = poly.Points[1].X;
-                            line.Y2 = poly.Points[1].Y;
+                    Ellipse circle = new Ellipse();
+                    ArtPoint artPoint = new ArtPoint(circle, lastPoint);
+                    circle.Width = 8;
+                    circle.Height = 8;
+                    circle.Fill = Brushes.Purple;
+                    Canvas.SetLeft(circle, lastPoint.X - (circle.Width / 2));
+                    Canvas.SetTop(circle, lastPoint.Y - (circle.Height / 2));
+                    PointsArticulation.Add(artPoint);
+                    mainCanvas.Children.Add(circle);
+                    el = false;
+                }
 
-                            foreach (Polyline polyline in polylines)
-                            {
-                                FindIntersection(polyline, line);
-                            }
+            }
+            else if (addLineClicked == true)
+            {
+                LinePointscpt++;
+                poly.Points.Add(new Point(x, y));
+                // calcul des points d'intersection
+                if (LinePointscpt == 2)
+                {
 
-                            // dessin des cercles representant les points d'intersection
-                            foreach (IntersectionDetail inters in IntersectionPoints)
-                            {
-                                Ellipse cercle = new Ellipse();
-                                cercle.Width = 15;
-                                cercle.Height = 15;
-                                cercle.Fill = System.Windows.Media.Brushes.Red;
-                                Canvas.SetLeft(cercle, inters.point.X - (cercle.Width / 2));
-                                Canvas.SetTop(cercle, inters.point.Y - (cercle.Height / 2));
-                                cercles.Add(cercle);
-                                mainCanvas.Children.Add(cercle);
-                            }
+                    line.X1 = poly.Points[0].X;
+                    line.Y1 = poly.Points[0].Y;
+                    line.X2 = poly.Points[1].X;
+                    line.Y2 = poly.Points[1].Y;
 
-                            addLineClicked = false;
-                        }
+                    foreach (Polyline polyline in polylines)
+                    {
+                        FindIntersection(polyline, line);
+                    }
 
-                    } // finish here
-        }
+                    // dessin des cercles representant les points d'intersection
+                    foreach (IntersectionDetail inters in IntersectionPoints)
+                    {
+                        Ellipse cercle = new Ellipse();
+                        cercle.Width = 15;
+                        cercle.Height = 15;
+                        cercle.Fill = System.Windows.Media.Brushes.Red;
+                        Canvas.SetLeft(cercle, inters.point.X - (cercle.Width / 2));
+                        Canvas.SetTop(cercle, inters.point.Y - (cercle.Height / 2));
+                        cercles.Add(cercle);
+                        mainCanvas.Children.Add(cercle);
+                    }
+
+                    addLineClicked = false;
+                }
+
+            } else if (navClicked == true)
+            {
+                Point pt = e.GetPosition((UIElement)sender);
+                hitResultsList.Clear();
+                Ellipse circle;
+
+                // verifier si on veut relier la courbe ou pas pour creer un point d'articulation
+
+                VisualTreeHelper.HitTest(mainCanvas, new HitTestFilterCallback(MyHitTestFilter), new HitTestResultCallback(MyHitTestResult),
+                    new PointHitTestParameters(pt));
+                foreach (Object o in hitResultsList)
+                {
+                   if(o.GetType() == typeof(Polyline))
+                    {
+                        Skew.Add((Polyline) o);
+                        Move = true;
+                        finish = false;
+
+                    }
+                }
+                foreach(ArtPoint a in PointsArticulation) { 
+                    if (a.cercle.IsMouseDirectlyOver == true)
+                    {
+                        
+                        a.cercle.Fill = Brushes.Orange;
+                        Skew.Add(a);
+                    }
+                }
+            }
             
+        }
+        List<object> Skew =  new List<object>();
 
 
            List<IntersectionDetail> IntersectionPoints  = new List<IntersectionDetail>();
@@ -518,9 +644,81 @@ namespace TopoGiraffe
                     mainCanvas.Children.Add(poly);
 
             }
-     
-    
+        //code using C# propreties ------------------------------------------------------------
+        //PolyLineSegment polylinesegment = new PolyLineSegment();
 
+        private List<object> hitResultsList = new List<object>();
+
+
+
+        private void mainCanvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // transformation de l'objet polyline à un objet pathfigure ( herite de geometry)
+
+            //PathGeometry myPathGeometry = new PathGeometry();
+            //PathFigure pathFigure2 = new PathFigure();
+            //PolyLineSegment myPolyLineSegment = new PolyLineSegment();
+            //myPolyLineSegment.Points = polylines[0].Points;
+            //pathFigure2.Segments.Add(myPolyLineSegment);
+            //myPathGeometry.Figures.Add(pathFigure2);
+            Point pt = e.GetPosition((UIElement)sender);
+
+            // vider la liste des resultats du Hit Test
+
+            hitResultsList.Clear();
+
+       
+                // set up d'une CallBack funtion pour recevoir l'enum du resultat du hit test
+                VisualTreeHelper.HitTest(mainCanvas, new HitTestFilterCallback(MyHitTestFilter),
+                    new HitTestResultCallback(MyHitTestResult),
+                     new PointHitTestParameters(pt));
+
+            
+
+
+            // affichage du nombre d'intersections.
+            if (hitResultsList.Count >= 0)
+            {
+                MessageBox.Show("Number of Visuals Hit: " + hitResultsList.Count);
+            }
+        }
+
+        // fonction Callback qui determine le comportement du Hittest
+        public HitTestResultBehavior MyHitTestResult(HitTestResult result)
+        {
+            // Add the hit test result to the list that will be processed after the enumeration.
+            //ajout du resultat à la liste 
+            hitResultsList.Add(result.VisualHit);
+
+            // Set the behavior to return visuals at all z-order levels.
+            return HitTestResultBehavior.Continue;
+        }
+        public HitTestFilterBehavior MyHitTestFilter(DependencyObject o)
+        {
+            // Test for the object value you want to filter.
+            if (o.GetType() == typeof(Canvas) /*|| o.GetType() == typeof(Polyline)*/)
+            {
+                // Visual object and descendants are NOT part of hit test results enumeration.
+                return HitTestFilterBehavior.ContinueSkipSelf;
+            }
+            else
+            {
+                // Visual object is part of hit test results enumeration.
+                return HitTestFilterBehavior.Continue;
+            }
+        }
         
+        private void nav_Click(object sender, RoutedEventArgs e)
+        {
+            navClicked = true;
+            addLineClicked = false;
+            btn2Clicked = false;
+        }
+
+       
+        //private void mainCanvas_MouseUp(object sender, MouseButtonEventArgs e)
+        //{
+        //    finish = true;
+        //}
     }
 }

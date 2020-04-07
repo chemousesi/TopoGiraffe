@@ -92,7 +92,7 @@
                 <Grid>
                     <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1" Stretch="Fill" />
 
-                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" >
+                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
@@ -187,9 +187,9 @@
             </Grid>
             <Grid Grid.Column="0" Background="#C5C5C5" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-0.2,0" >
-                    <Button  Name="btn1" Width="60" Height="80"  Background="{x:Null}" BorderBrush="Transparent"
-                        BorderThickness="0" Margin="0,0,0,20" >
-                        <Image Source="/assets/img/zoom-in.png" Height="30" Width="30"  ></Image>
+                    <Button  Name="nav" Width="60" Height="80"  Background="{x:Null}" BorderBrush="Transparent"
+                        BorderThickness="0" Margin="0,0,0,20" Click="nav_Click" >
+                        <Image Source="/assets/img/navigation.png" Height="30" Width="30"  ></Image>
                     </Button>
 
                     <Button x:Name="dessinerButton" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
@@ -209,6 +209,10 @@
                     <Button x:Name="deletePreviousButton" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
                                 BorderThickness="0" Click="deletePreviousButton_Click"   >
                         <Image Source="/assets/img/deletePrevious.png" Height="35" Width="44"  />
+                    </Button>
+                    <Button  Name="btn1" Width="60" Height="80"  Background="{x:Null}" BorderBrush="Transparent"
+                        BorderThickness="0" Margin="0,0,0,20" >
+                        <Image Source="/assets/img/zoom-in.png" Height="30" Width="30"  ></Image>
                     </Button>
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
 
