@@ -188,7 +188,6 @@ namespace TopoGiraffe
         Point ptMouseStart, ptElementStart;
 
         // for a live preview of the line
-        int cpt;
         //public void Polyline_MouseDown(object sender, MouseEventArgs e)
         //{
         //    Thickness margin = new Thickness(0, 0, 0, 0);
@@ -231,14 +230,16 @@ namespace TopoGiraffe
 
                         foreach (ArtPoint a in PointsArticulation)
                         {
-                            if (a.cercle.Equals(elDraggingEllip))
+                            if (a.cercle.Equals(elDraggingEllipse))
                             {
                                 elDraggingEllip.cercle = a.cercle;
                                 elDraggingEllip.p = a.p;
                             }
                         }
-
-                        Polyline_Modify((Polyline)Skew[0], elDraggingEllip.p, Mouse.GetPosition(mainCanvas));
+               
+                    
+                        Polyline_Modify(EditPolyline, elDraggingEllip.p, Mouse.GetPosition(mainCanvas));
+                                          
                     }
                 //}
 
@@ -269,20 +270,20 @@ namespace TopoGiraffe
 
 
 
-
+        Polyline EditPolyline = new Polyline();
 
         // -------------------------------------------------------------------------------
         //--------------------------------------------------------------------------------- editing polylines
 
         public void Polyline_Modify(Polyline polyline , Point p , Point p2)
             {
-            mainCanvas.Children.Remove(courbeActuelle);
 
 
-
+            EditPolyline = polyline;
+                       
             Polyline Interpoly = new Polyline();
                  int i = 0;
-                    foreach(Point point in polyline.Points)
+                    foreach(Point point in EditPolyline.Points)
                     {
                         if (point == p)
                         {
@@ -290,30 +291,27 @@ namespace TopoGiraffe
                         }
                         else
                         {
-                        Interpoly.Points.Add(polyline.Points[i]);
+                        Interpoly.Points.Add(EditPolyline.Points[i]);
 
                         }
                      i++;
                     }
+            mainCanvas.Children.Remove(EditPolyline);
 
             Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-            Interpoly.StrokeThickness = 2;
+            Interpoly.StrokeThickness = 5;
             Interpoly.FillRule = FillRule.EvenOdd;
             mainCanvas.Children.Add(Interpoly);
-            courbeActuelle = Interpoly;
+            EditPolyline = Interpoly;
                   
             }
-            
+        
             
         private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             double x = Mouse.GetPosition(mainCanvas).X;
             double y = Mouse.GetPosition(mainCanvas).Y;
-            if (cpt > 1)
-            {
-                mainCanvas.Children.Remove(courbeActuelle);
-
-            }
+         
 
             if ((activerDessinCheckBox.IsChecked == true) && (courbeActuelle.Points.Count > 0))
             {
@@ -614,7 +612,7 @@ namespace TopoGiraffe
                 {
                    if(o.GetType() == typeof(Polyline))
                     {
-                        Skew.Add((Polyline) o);
+                        EditPolyline = (Polyline) o;
                         Move = true;
                         finish = false;
 
