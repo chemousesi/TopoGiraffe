@@ -205,6 +205,7 @@ namespace TopoGiraffe
         //
         Polyline polytest = new Polyline();
         Ellipse DraggingEllipse;
+        ArtPoint elDraggingEllip = new ArtPoint();
         public void Cercle_Mousemove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (((Ellipse)elDraggingEllipse) == null) return;
@@ -225,7 +226,7 @@ namespace TopoGiraffe
                         Canvas.SetLeft(elDraggingEllipse, ptMouse.X - 10 / 2);
                         Canvas.SetTop(elDraggingEllipse, ptMouse.Y - 10 / 2);
 
-                        ArtPoint elDraggingEllip = new ArtPoint();
+                       
                         Ellipse ellipse;
 
                         foreach (ArtPoint a in PointsArticulation)
@@ -239,7 +240,9 @@ namespace TopoGiraffe
                
                     
                         Polyline_Modify(EditPolyline, elDraggingEllip.p, Mouse.GetPosition(mainCanvas));
-                                          
+                   // elDraggingEllip.p = Mouse.GetPosition(mainCanvas);
+
+
                     }
                 //}
 
@@ -271,6 +274,7 @@ namespace TopoGiraffe
 
 
         Polyline EditPolyline = new Polyline();
+        int cpt = 0;
 
         // -------------------------------------------------------------------------------
         //--------------------------------------------------------------------------------- editing polylines
@@ -278,11 +282,19 @@ namespace TopoGiraffe
         public void Polyline_Modify(Polyline polyline , Point p , Point p2)
             {
 
+            
+                mainCanvas.Children.Remove(polyline);
 
-            EditPolyline = polyline;
+               EditPolyline = polyline;
                        
             Polyline Interpoly = new Polyline();
-                 int i = 0;
+            Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+            Interpoly.StrokeThickness = 2;
+            Interpoly.Points.Clear();
+            Interpoly.FillRule = FillRule.EvenOdd;
+            mainCanvas.Children.Add(Interpoly);
+
+            int i = 0;
                     foreach(Point point in EditPolyline.Points)
                     {
                         if (point == p)
@@ -296,13 +308,9 @@ namespace TopoGiraffe
                         }
                      i++;
                     }
-            mainCanvas.Children.Remove(EditPolyline);
 
-            Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-            Interpoly.StrokeThickness = 5;
-            Interpoly.FillRule = FillRule.EvenOdd;
-            mainCanvas.Children.Add(Interpoly);
-            EditPolyline = Interpoly;
+                       EditPolyline = Interpoly;
+            cpt++;
                   
             }
         
