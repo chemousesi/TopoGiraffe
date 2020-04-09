@@ -16,5 +16,9 @@ namespace TopoGiraffe
             this.cercle = cercle;
             this.p = p;
         }
+        public ArtPoint()
+        {
+          
+        }
     }
 }
