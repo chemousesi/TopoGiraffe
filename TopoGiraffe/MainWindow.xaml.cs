@@ -184,6 +184,7 @@ namespace TopoGiraffe
     }
 
 */
+        int cptdebug = 0;
         FrameworkElement elDraggingEllipse;
         Point ptMouseStart, ptElementStart;
 
@@ -204,17 +205,16 @@ namespace TopoGiraffe
         //    }
         //
         Polyline polytest = new Polyline();
-        ArtPoint elDraggingEllip = new ArtPoint();
+       
         int cpt2 = 0;
         public void Cercle_Mousemove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-           
+            ArtPoint elDraggingEllip = new ArtPoint();
             if (((Ellipse)elDraggingEllipse) == null) return;
 
             if (e.LeftButton == MouseButtonState.Pressed)
             {   
-                mainCanvas.Children.Remove(Interpoly);
-                //elDraggingEllipse = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
+               
                 Point ptMouse = e.GetPosition(this.mainCanvas);
                 //if (ptMouse.X > 0 && ptMouse.X < mainCanvas.Width && ptMouse.Y > 0 && ptMouse.Y < mainCanvas.Height)
                 //{
@@ -236,14 +236,58 @@ namespace TopoGiraffe
                             if (a.cercle.Equals(elDraggingEllipse))
                             {
                                 elDraggingEllip.cercle = a.cercle;
-                                elDraggingEllip.p = a.p;
+                                elDraggingEllip.P = a.P;
                             }
                         }
-               
-                       
-                        Polyline_Modify( elDraggingEllip.p, ptMouse);
-                    
-                        cpt2++;
+
+                    //Polyline_Modify();
+
+                    mainCanvas.Children.Remove(EditPolyline);
+
+                    Interpoly = new Polyline();
+                    Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+                    Interpoly.StrokeThickness = 2;
+                    Interpoly.Points.Clear();
+                    Interpoly.FillRule = FillRule.EvenOdd;
+                    //courbeActuelle = Interpoly;
+
+                    //   mainCanvas.Children.Remove(EditPolyline);
+
+
+                    int i = 0;
+                    PointsArticulation.Remove(elDraggingEllip);
+
+                    foreach (Point point in EditPolyline.Points)
+                    {
+                        if (point == elDraggingEllip.P)
+                        {
+                            Interpoly.Points.Add(ptMouse);
+                            elDraggingEllip = new ArtPoint((Ellipse)elDraggingEllipse , ptMouse);
+             
+                            PointsArticulation.Add(elDraggingEllip);
+                        }
+                        else
+                        {
+                            Interpoly.Points.Add(EditPolyline.Points[i]);
+
+                        }
+                        i++;
+                    }
+
+                    mainCanvas.Children.Remove(courbeActuelle);
+                    mainCanvas.Children.Add(Interpoly);
+                    EditPolyline = Interpoly;
+
+
+
+
+
+
+
+                    cpt++;
+
+
+                    cpt2++;
 
 
                     }
@@ -251,27 +295,42 @@ namespace TopoGiraffe
 
             }
         }
-        void Ellipse_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        void Ellipse_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (((Ellipse)elDraggingEllipse) == null) return;
 
             //if (((Ellipse)elDraggingEllipse) == null) return;
             //((Ellipse)elDraggingEllipse).Cursor = Cursors.Arrow; //change the cursor
             ((Ellipse)elDraggingEllipse).ReleaseMouseCapture();
+           // EditPolyline.Points.Clear();
+            int i1 = 0;
+         
+            cptdebug++;
+
             ((Ellipse)elDraggingEllipse).Cursor = Cursors.Arrow; 
+
         }
+        
         void Ellipse_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
 
 
-           // EditPolyline = courbeActuelle;
           
+
             elDraggingEllipse = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
             if (elDraggingEllipse == null) return;
-            if (elDraggingEllipse != null && elDraggingEllipse is System.Windows.Shapes.Ellipse)
+            if (elDraggingEllipse != null && elDraggingEllipse is Ellipse)
             {
 
                 ((Ellipse)elDraggingEllipse).Cursor = Cursors.ScrollAll;
+                VisualTreeHelper.HitTest(mainCanvas, new HitTestFilterCallback(MyHitTestFilter),
+                  new HitTestResultCallback(MyHitTestResult),
+                   new PointHitTestParameters(e.GetPosition(this)));
+                if (hitResultsList.Count > 0)
+                {
+                    EditPolyline = (Polyline)hitResultsList[0];
+                }
+                mainCanvas.Children.Remove(courbeActuelle);
 
                 Mouse.Capture((elDraggingEllipse));
             }
@@ -281,55 +340,60 @@ namespace TopoGiraffe
 
         Polyline Interpoly;
         Polyline EditPolyline;
+        Point p2;
+        
         int cpt = 0;
 
         // -------------------------------------------------------------------------------
         //--------------------------------------------------------------------------------- editing polylines
 
-        public void Polyline_Modify( Point p , Point p2)
-            {
-            
-                EditPolyline = courbeActuelle;
-            
-                
+        //public void Polyline_Modify()
+        //    {
 
-            Interpoly = new Polyline();
-            Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-            Interpoly.StrokeThickness = 2;
-            Interpoly.Points.Clear();
-            Interpoly.FillRule = FillRule.EvenOdd;
+        //    // EditPolyline = courbeActuelle;
 
+        //    mainCanvas.Children.Remove(EditPolyline);
 
-         //   mainCanvas.Children.Remove(EditPolyline);
+        //    Interpoly = new Polyline();
+        //    Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+        //    Interpoly.StrokeThickness = 2;
+        //    Interpoly.Points.Clear();
+        //    Interpoly.FillRule = FillRule.EvenOdd;
+        //    //courbeActuelle = Interpoly;
 
-
-            int i = 0;
-                    foreach(Point point in EditPolyline.Points)
-                    {
-                        if (point == p)
-                        {
-                         Interpoly.Points.Add(p2);
-                         elDraggingEllip.p = p2;
-
-                    }
-                    else
-                        {
-                        Interpoly.Points.Add(EditPolyline.Points[i]);
-
-                        }
-                     i++;
-                    }
-            mainCanvas.Children.Add(Interpoly);
-            mainCanvas.Children.Remove(courbeActuelle);
-            //courbeActuelle = Interpoly; 
-            //mainCanvas.Children.Remove(Interpoly);
+        // //   mainCanvas.Children.Remove(EditPolyline);
 
 
+        //    int i = 0;
+        //            foreach(Point point in EditPolyline.Points)
+        //            {
+        //                if (point == elDraggingEllip.P)
+        //                {
+        //                     Interpoly.Points.Add(Mouse.GetPosition(mainCanvas));
+        //                     elDraggingEllip.P = p2;
+
+        //            }
+        //            else
+        //                {
+        //                Interpoly.Points.Add(EditPolyline.Points[i]);
+
+        //                }
+        //             i++;
+        //            }
+           
+
+        //    mainCanvas.Children.Add(Interpoly);
+        //    EditPolyline = Interpoly;
+           
+          
+         
 
 
-            cpt++;
+
+
+        //    cpt++;
                   
-            }
+        //    }
         
             
         private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
@@ -551,23 +615,12 @@ namespace TopoGiraffe
 
                 // ajout des points d'articulation----------------------------------------------------------------------
                 //creation d'un Hit test
-                Point pt = e.GetPosition((UIElement)sender);
-                hitResultsList.Clear();
+                
 
                 // verifier si on veut relier la courbe ou pas pour creer un point d'articulation
 
-                VisualTreeHelper.HitTest(mainCanvas, new HitTestFilterCallback(MyHitTestFilter), new HitTestResultCallback(MyHitTestResult),
-                    new PointHitTestParameters(pt));
-                bool el = false;
-                foreach (Object o in hitResultsList)
-                {
-                    if (o.GetType() == typeof(Ellipse))
-                    {
-                        el = true;
-                    }
-                }
-                if (el == false)
-                {
+               
+              
                     courbeActuelle.Points.Add(lastPoint);
                     Ellipse circle = new Ellipse();
                     ArtPoint artPoint = new ArtPoint(circle, lastPoint);
@@ -581,12 +634,7 @@ namespace TopoGiraffe
                     Canvas.SetTop(circle, lastPoint.Y - (circle.Height / 2));
                     PointsArticulation.Add(artPoint);
                     mainCanvas.Children.Add(circle);
-                    el = false;
-                }
-                else
-                {
-                    courbeActuelle.Points.Add(courbeActuelle.Points[0]);
-                }
+        
 
             }
             else if (addLineClicked == true)
@@ -799,7 +847,7 @@ namespace TopoGiraffe
         public HitTestFilterBehavior MyHitTestFilter(DependencyObject o)
         {
             // Test for the object value you want to filter.
-            if (o.GetType() == typeof(Canvas) /*|| o.GetType() == typeof(Polyline)*/)
+            if (o.GetType() == typeof(Canvas) || o.GetType() == typeof(Ellipse))
             {
                 // Visual object and descendants are NOT part of hit test results enumeration.
                 return HitTestFilterBehavior.ContinueSkipSelf;
@@ -816,6 +864,7 @@ namespace TopoGiraffe
             navClicked = true;
             addLineClicked = false;
             btn2Clicked = false;
+            EditPolyline = courbeActuelle;
         }
 
        
