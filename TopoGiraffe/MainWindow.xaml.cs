@@ -304,6 +304,15 @@ namespace TopoGiraffe
             ((Ellipse)elDraggingEllipse).ReleaseMouseCapture();
            // EditPolyline.Points.Clear();
             int i1 = 0;
+            if (navClicked)
+            {
+                foreach(ArtPoint el in PointsArticulation)
+                {
+                    mainCanvas.Children.Remove(el.cercle);
+                    mainCanvas.Children.Add(el.cercle);
+
+                }
+            }
          
             cptdebug++;
 
@@ -326,10 +335,10 @@ namespace TopoGiraffe
                 VisualTreeHelper.HitTest(mainCanvas, new HitTestFilterCallback(MyHitTestFilter),
                   new HitTestResultCallback(MyHitTestResult),
                    new PointHitTestParameters(e.GetPosition(this)));
-                if (hitResultsList.Count > 0)
-                {
-                    EditPolyline = (Polyline)hitResultsList[0];
-                }
+                //if (hitResultsList.Count > 0)
+                //{
+                //    EditPolyline = (Polyline)hitResultsList[0];
+                //}
                 mainCanvas.Children.Remove(courbeActuelle);
 
                 Mouse.Capture((elDraggingEllipse));
@@ -847,7 +856,7 @@ namespace TopoGiraffe
         public HitTestFilterBehavior MyHitTestFilter(DependencyObject o)
         {
             // Test for the object value you want to filter.
-            if (o.GetType() == typeof(Canvas) || o.GetType() == typeof(Ellipse))
+            if (o.GetType() == typeof(Canvas)/* || o.GetType() == typeof(Ellipse)*/)
             {
                 // Visual object and descendants are NOT part of hit test results enumeration.
                 return HitTestFilterBehavior.ContinueSkipSelf;
