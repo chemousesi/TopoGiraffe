@@ -4,13 +4,17 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\img\deleteAll.png" />
+    <None Remove="assets\img\deletePrevious.png" />
     <None Remove="assets\img\draw.png" />
     <None Remove="assets\img\gear.png" />
     <None Remove="assets\img\import.png" />
     <None Remove="assets\img\ink.png" />
+    <None Remove="assets\img\line.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\visibility.png" />
@@ -26,6 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\img\deleteAll.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\img\deletePrevious.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="assets\img\ink.png" />
   </ItemGroup>
 
@@ -33,10 +43,17 @@
     <Resource Include="assets\img\draw.png" />
     <Resource Include="assets\img\gear.png" />
     <Resource Include="assets\img\import.png" />
+    <Content Include="assets\img\line.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="assets\img\report.png" />
     <Resource Include="assets\img\tour.png" />
     <Resource Include="assets\img\visibility.png" />
     <Resource Include="assets\img\zoom-in.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
