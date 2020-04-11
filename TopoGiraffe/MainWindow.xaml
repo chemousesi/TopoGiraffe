@@ -96,13 +96,13 @@
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
-                        <Canvas.ContextMenu>
-                            <ContextMenu>
+                        <!--<Canvas.ContextMenu>
+                            --><!--<ContextMenu>
                                 <MenuItem Header="Importer une image" Click="import_Click"/>
                                 <MenuItem Header="Changer la visibilité" Click="display_Click" />
 
-                            </ContextMenu>
-                        </Canvas.ContextMenu>
+                            </ContextMenu>--><!--
+                        </Canvas.ContextMenu>-->
 
 
 
