@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Text;
 using System.Windows.Shapes;
 
 namespace TopoGiraffe
@@ -13,14 +11,14 @@ namespace TopoGiraffe
 
         public Point P { get => p; set => p = value; }
 
-        public ArtPoint(Ellipse cercle , Point p)
+        public ArtPoint(Ellipse cercle, Point p)
         {
             this.cercle = cercle;
             this.P = p;
         }
         public ArtPoint()
         {
-          
+
         }
         public override bool Equals(Object obj)
         {

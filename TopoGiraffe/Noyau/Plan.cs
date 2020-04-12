@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Shapes;
 
 namespace TopoGiraffe.Noyau
 {
     class Plan
     // cette classe va contenir toutes nos courbes, nos point et les données dessinées
-    
+
     {
         private int equidistance;
         private double minAltitude;
@@ -29,26 +27,26 @@ namespace TopoGiraffe.Noyau
 
         public int Equidistance
         {
-            get { return equidistance; }
-            set { equidistance = value;  }
+            get => equidistance;
+            set => equidistance = value;
         }
 
         public double MinAltitude
         {
-            get { return minAltitude;  }
-            set { minAltitude = value;  }
+            get => minAltitude;
+            set => minAltitude = value;
         }
 
         public double MaxAltitude
         {
-            get { return maxAltitude; }
-            set { maxAltitude = value; }
+            get => maxAltitude;
+            set => maxAltitude = value;
         }
 
         public double Echelle
         {
-            get { return echelle; }
-            set { echelle = value; }
+            get => echelle;
+            set => echelle = value;
         }
 
         public void AjouterCourbe(Polygon courbe)

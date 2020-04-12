@@ -1,9 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -29,8 +27,8 @@ namespace TopoGiraffe
         //PointCollection myPointCollection2 = new PointCollection();
 
         Polyline courbeActuelle;
-        
-         List<Ellipse> cercles = new List<Ellipse>();
+
+        List<Ellipse> cercles = new List<Ellipse>();
 
         PolyLineSegment polylinesegment = new PolyLineSegment();
         bool btn2Clicked = false; bool addLineClicked = false; bool navClicked = false;
@@ -54,7 +52,7 @@ namespace TopoGiraffe
 
 
 
-                     
+
         public MainWindow()
         {
             InitializeComponent();
@@ -65,16 +63,17 @@ namespace TopoGiraffe
 
             // this here is for the colors
             var values = typeof(Brushes).GetProperties().
-                Select(p => new {Name =  p.Name, Brush = p.GetValue(null) as Brush }).
+                Select(p => new { Name = p.Name, Brush = p.GetValue(null) as Brush }).
                 ToArray();
             var brushNames = values.Select(v => v.Name);
 
-         
+
 
             List<RectangleName> rectangleNames = new List<RectangleName>();
 
-            foreach(string brushName in brushNames) { 
-         
+            foreach (string brushName in brushNames)
+            {
+
                 RectangleName rn = new RectangleName { Rect = new Rectangle { Fill = new BrushConverter().ConvertFromString(brushName) as Brush }, Name = brushName };
                 rectangleNames.Add(rn);
             }
@@ -83,8 +82,8 @@ namespace TopoGiraffe
             colorComboBox.SelectedIndex = 7;
             // colors end here
 
-              
-          
+
+
 
 
         }
@@ -105,8 +104,8 @@ namespace TopoGiraffe
             }
 
         }
-              
-          
+
+
 
 
         private void activerDessinCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -118,8 +117,8 @@ namespace TopoGiraffe
 
             }
             else
-            { 
-                courbeActuelle = (Polyline)polylines[polylines.Count - 1];
+            {
+                courbeActuelle = polylines[polylines.Count - 1];
             }
         }
 
@@ -184,172 +183,7 @@ namespace TopoGiraffe
     }
 
 */
-        int cptdebug = 0; int index2 = 0;
-        FrameworkElement elDraggingEllipse;
-        Point ptMouseStart, ptElementStart;
-
        
-
-
-        Polyline polytest = new Polyline();
-       
-
-        public void Cercle_Mousemove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            ArtPoint elDraggingEllip = new ArtPoint();
-            if (((Ellipse)elDraggingEllipse) == null) return;
-            
-            if (e.LeftButton == MouseButtonState.Pressed && navClicked == true)
-            {   
-               
-                Point ptMouse = e.GetPosition(this.mainCanvas);
-                //if (ptMouse.X > 0 && ptMouse.X < mainCanvas.Width && ptMouse.Y > 0 && ptMouse.Y < mainCanvas.Height)
-                //{
-                Move = true;
-                    if (Move == true)
-                    {
-
-                        if (elDraggingEllipse == null)
-                            elDraggingEllipse = ((Ellipse)elDraggingEllipse);
-                        //change the position of the ellipse that represent the control point
-                        Canvas.SetLeft(elDraggingEllipse, ptMouse.X - 10 / 2);
-                        Canvas.SetTop(elDraggingEllipse, ptMouse.Y - 10 / 2);
-
-                       
-                        Ellipse ellipse;
-                    int cpt3 = 0; 
-                    foreach(List<ArtPoint> ae in PointsGlobal)
-                    {
-                                        
-                        foreach (ArtPoint a in ae)
-                        {
-                            if (a.cercle.Equals(elDraggingEllipse))
-                            {
-                                elDraggingEllip.cercle = a.cercle;
-                                elDraggingEllip.P = a.P;
-
-                                index2 = cpt3;
-                            }
-                        }
-                        
-                        cpt3++;
-                    }
-                    EditPolyline = polylines[index2];
-                    //Polyline_Modify();
-
-
-                    Interpoly = new Polyline();
-                    Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    Interpoly.StrokeThickness = 2;
-                    Interpoly.Points.Clear();
-                    Interpoly.FillRule = FillRule.EvenOdd;
-                    //courbeActuelle = Interpoly;
-
-                    //   mainCanvas.Children.Remove(EditPolyline);
-
-
-                    int i = 0;
-                    PointsGlobal[index2].Remove(elDraggingEllip);
-
-                    foreach (Point point in EditPolyline.Points)
-                    {
-                        if (point == elDraggingEllip.P)
-                        {
-                            Interpoly.Points.Add(ptMouse);
-                            elDraggingEllip = new ArtPoint((Ellipse)elDraggingEllipse , ptMouse);
-
-                            PointsGlobal[index2].Add(elDraggingEllip);
-                        }
-                        else
-                        {
-                            if (finalCtrlPoint == true && i == EditPolyline.Points.Count - 1)
-                            {
-                                Interpoly.Points.Add(Interpoly.Points[0]);
-                            }
-                            else
-                            {
-                                Interpoly.Points.Add(EditPolyline.Points[i]);
-                            }
-                        }
-                        i++;
-                 }
-
-
-                    //mainCanvas.Children.Remove(courbeActuelle);
-                    mainCanvas.Children.Add(Interpoly);
-                    mainCanvas.Children.Remove(EditPolyline);
-
-                    EditPolyline = Interpoly;
-                    polylines[index2] = Interpoly;
-
-
-                    
-
-
-
-
-                    }
-                //}
-
-            }
-        }
-        void Ellipse_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (((Ellipse)elDraggingEllipse) == null) return;
-
-            //if (((Ellipse)elDraggingEllipse) == null) return;
-            //((Ellipse)elDraggingEllipse).Cursor = Cursors.Arrow; //change the cursor
-            ((Ellipse)elDraggingEllipse).ReleaseMouseCapture();
-           // EditPolyline.Points.Clear();
-            int i1 = 0;
-            if (navClicked)
-            {
-                foreach(ArtPoint el in PointsGlobal[index2])
-                {
-                    mainCanvas.Children.Remove(el.cercle);
-                    mainCanvas.Children.Add(el.cercle);
-
-                }
-            }
-         
-            cptdebug++;
-            Ellipse elli = (Ellipse)elDraggingEllipse;
-            elli.Stroke = Brushes.Purple;
-
-            ((Ellipse)elDraggingEllipse).Cursor = Cursors.Arrow; 
-
-        }
-        
-        void Ellipse_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
-
-            elDraggingEllipse = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
-            if (elDraggingEllipse == null) return;
-            if (elDraggingEllipse != null && elDraggingEllipse is Ellipse)
-            {
-
-                ((Ellipse)elDraggingEllipse).Cursor = Cursors.ScrollAll;
-
-                Mouse.Capture((elDraggingEllipse));
-            }if (btn2Clicked == true) // clicking on an ellipse while drawing
-            {
-                finalCtrlPoint = true;
-                btn2Clicked = false;
-            }
-            Ellipse elli =(Ellipse) elDraggingEllipse;
-            elli.Stroke = Brushes.LightSkyBlue;
-
-
-        }
-
-
-        Polyline Interpoly;
-        Polyline EditPolyline;
-        bool finalCtrlPoint = false;
-        List<ArtPoint> currentCurveCtrlPts;
-        Point mousePos;
-
 
 
 
@@ -358,7 +192,7 @@ namespace TopoGiraffe
         {
             double x = Mouse.GetPosition(mainCanvas).X;
             double y = Mouse.GetPosition(mainCanvas).Y;
-         
+
 
             if (btn2Clicked == true && (courbeActuelle.Points.Count > 0))
             {
@@ -366,7 +200,7 @@ namespace TopoGiraffe
 
 
                 Line newLine = new Line();
-               
+
 
 
                 newLine.Stroke = System.Windows.Media.Brushes.Black;
@@ -377,15 +211,16 @@ namespace TopoGiraffe
                 newLine.Y2 = y;
                 //newLine.HorizontalAlignment = HorizontalAlignment.Left;
                 //newLine.VerticalAlignment = VerticalAlignment.Center;
-                newLine.StrokeThickness = 3; 
+                newLine.StrokeThickness = 3;
                 mainCanvas.Children.Add(newLine);
                 //Thread.Sleep(10);
-                
+
 
                 mainCanvas.Children.Remove(newLine);
                 MouseMoveOnDraw(sender, e);
 
-            }if(addLineClicked == true)
+            }
+            if (addLineClicked == true)
             {
                 MouseMoveOnAddLine(sender, e);
             }
@@ -393,12 +228,12 @@ namespace TopoGiraffe
             {
 
 
-              
+
 
 
 
             }
-          
+
 
         }
 
@@ -406,34 +241,10 @@ namespace TopoGiraffe
         private void MouseMoveOnDraw(object sender, MouseEventArgs e)
         {
 
-            if (finalCtrlPoint == false) { 
+            if (finalCtrlPoint == false)
+            {
 
                 if (currentCurveCtrlPts.Count != 0) //to handle real-time drawing
-                {
-                    if (courbeActuelle.Points.Last().Equals(mousePos))
-                    {
-                        courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
-                    }
-                    if (polylines.Contains(temporaryFigure))
-                    {
-                        polylines.Remove(temporaryFigure);
-                    }
-                    mousePos = new Point(e.GetPosition(this.mainCanvas).X, e.GetPosition(this.mainCanvas).Y);
-                    temporaryFigure =  courbeActuelle  ;
-                    courbeActuelle.Points.Add(mousePos);
-                }
-            }
-           
-          
-                polylines.Add(courbeActuelle);
-            
-        }
-        private void MouseMoveOnAddLine(object sender, MouseEventArgs e)
-        {
-
-           
-
-                if (courbeActuelle.Points.Count != 0) //to handle real-time drawing
                 {
                     if (courbeActuelle.Points.Last().Equals(mousePos))
                     {
@@ -447,7 +258,32 @@ namespace TopoGiraffe
                     temporaryFigure = courbeActuelle;
                     courbeActuelle.Points.Add(mousePos);
                 }
-           
+            }
+
+
+                  polylines.Add(courbeActuelle);
+            
+        }
+        private void MouseMoveOnAddLine(object sender, MouseEventArgs e)
+        {
+
+
+
+            if (courbeActuelle.Points.Count != 0) //to handle real-time drawing
+            {
+                if (courbeActuelle.Points.Last().Equals(mousePos))
+                {
+                    courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+                }
+                if (polylines.Contains(temporaryFigure))
+                {
+                    polylines.Remove(temporaryFigure);
+                }
+                mousePos = new Point(e.GetPosition(this.mainCanvas).X, e.GetPosition(this.mainCanvas).Y);
+                temporaryFigure = courbeActuelle;
+                courbeActuelle.Points.Add(mousePos);
+            }
+
 
 
             polylines.Add(courbeActuelle);
@@ -461,7 +297,7 @@ namespace TopoGiraffe
             btn2Clicked = true;
             Polyline myPolyline = new Polyline();
             polylines.Add(myPolyline);
-            activerDessinCheckBox.IsChecked = true;navClicked = false;
+            activerDessinCheckBox.IsChecked = true; navClicked = false;
 
             // styling
 
@@ -476,7 +312,7 @@ namespace TopoGiraffe
             // (courbeActuelle).MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Polyline_MouseDown);
             mainCanvas.Children.Add(courbeActuelle);
             PointsGlobal.Add(new List<ArtPoint>());
-            currentCurveCtrlPts = PointsGlobal[PointsGlobal.Count -1];
+            currentCurveCtrlPts = PointsGlobal[PointsGlobal.Count - 1];
             indexPoints++;
             finalCtrlPoint = false;
 
@@ -510,7 +346,7 @@ namespace TopoGiraffe
         }
 
         private void maxTextBox_GotFocus(object sender, RoutedEventArgs e)
-        { 
+        {
             maxTextBox.Text = "";
         }
 
@@ -528,7 +364,7 @@ namespace TopoGiraffe
 
         private void deleteAllButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (mainCanvas.Children.Count == 0)
             {
                 MessageBox.Show("no polygone to delete");
@@ -552,15 +388,16 @@ namespace TopoGiraffe
             if (mainCanvas.Children.Count == 0)
             {
                 MessageBox.Show("no polygone to delete");
-            }else
+            }
+            else
             {
                 if (courbeActuelle.Points.Count > 0)
                 {
                     courbeActuelle.Points.Remove(courbeActuelle.Points[courbeActuelle.Points.Count - 1]);
-                    foreach(Ellipse cercle in cercles)
+                    foreach (Ellipse cercle in cercles)
                     {
                         mainCanvas.Children.Remove(cercle);
-                       
+
                     }
                     cercles.Clear();
                     IntersectionPoints.Clear();
@@ -568,7 +405,7 @@ namespace TopoGiraffe
                 else
                 {
                     polylines.Remove(polylines[polylines.Count - 1]);
-                    
+
                     if (polylines.Count > 0)
                     {
                         courbeActuelle = polylines[polylines.Count - 1];
@@ -590,8 +427,8 @@ namespace TopoGiraffe
 
         // image visibilty with the display button
         private void display_Click(object sender, RoutedEventArgs e)
-        { 
-           if (imgPhoto.Visibility == Visibility.Visible)
+        {
+            if (imgPhoto.Visibility == Visibility.Visible)
             {
                 imgPhoto.Visibility = Visibility.Hidden;
             }
@@ -621,7 +458,7 @@ namespace TopoGiraffe
 
         bool Move = false;
         int indexPoints = -1;
-       
+
 
         private void mainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -671,7 +508,7 @@ namespace TopoGiraffe
 
                 }
 
-        
+
 
             }
             else if (addLineClicked == true)
@@ -708,106 +545,109 @@ namespace TopoGiraffe
                     addLineClicked = false;
                 }
 
-            } else if (navClicked == true)
-            {
-               
             }
-            
+            else if (navClicked == true)
+            {
+
+            }
+
         }
-        List<object> Skew =  new List<object>();
+        List<object> Skew = new List<object>();
 
 
-           List<IntersectionDetail> IntersectionPoints  = new List<IntersectionDetail>();
+        List<IntersectionDetail> IntersectionPoints = new List<IntersectionDetail>();
 
-            // code d'intersection -------------------------------------------------------------------------------------------------------------------------------
-            //----------------------------------------------------------------------------------------------------------------------------------------------------
+        // code d'intersection -------------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-            Line line = new Line();
-            public void FindIntersection( Polyline p , Line line)
+        Line line = new Line();
+        public void FindIntersection(Polyline p, Line line)
+        {
+            Line myLine = new Line();
+            IntersectionDetail inter;
+
+            for (int i = 0; i < p.Points.Count - 1; i++)
+            {
+                myLine.X1 = p.Points[i].X; myLine.Y1 = p.Points[i].Y;
+                myLine.X2 = p.Points[i + 1].X; myLine.Y2 = p.Points[i + 1].Y;
+                inter = intersectLines(myLine, line);
+                if (inter.intersect == true)
                 {
-                    Line myLine = new Line();
-                    IntersectionDetail inter;
-
-                    for (int i = 0; i < p.Points.Count - 1; i++)
-                    {
-                        myLine.X1 = p.Points[i].X;      myLine.Y1 = p.Points[i].Y;
-                        myLine.X2 = p.Points[i + 1].X;  myLine.Y2 = p.Points[i + 1].Y;
-                        inter = intersectLines(myLine, line);
-                        if ( inter.intersect == true )
-                        {
-                            IntersectionPoints.Add(inter);
-                        }
-
-
-                     }
-
-
-                }
-                   // intersection d'un segment avec une ligne 
-                public IntersectionDetail intersectLines(Line line1 , Line line2)
-                {
-                    Equation equation1;
-                    Equation equation2;
-                    Boolean intersect = new Boolean();
-
-                    Point interscetionPoint = new Point();
-                    Point a1 = new Point(line1.X1, line1.Y1);
-                    Point b1 = new Point(line1.X2, line1.Y2);
-                    Point a2 = new Point(line2.X1, line2.Y1);
-                    Point b2 = new Point(line2.X2, line2.Y2);
-
-                    equation1 = GetSegmentEquation(a1, b1);
-                    equation2 = GetSegmentEquation(a2, b2);
-
-                    if (equation1.a == equation2.a)
-                    {
-                    intersect = false;
-                    } else {
-                
-                    interscetionPoint.X = -(equation1.b - equation2.b) / (equation1.a - equation2.a);
-                    interscetionPoint.Y = (equation2.a * interscetionPoint.X) + equation2.b;
-
-                        if ( (Math.Max(line1.X1, line1.X2) >= interscetionPoint.X) && ( interscetionPoint.X >=  Math.Min(line1.X1, line1.X2)) 
-                        && (Math.Max(line1.Y1, line1.Y2) >= interscetionPoint.Y) && (interscetionPoint.Y >= Math.Min(line1.Y1, line1.Y2))
-                        && (Math.Max(line2.X1, line2.X2) >= interscetionPoint.X) && (interscetionPoint.X >= Math.Min(line2.X1, line2.X2))
-                        && (Math.Max(line2.Y1, line2.Y2) >= interscetionPoint.Y) && (interscetionPoint.Y >= Math.Min(line2.Y1, line2.Y2)))
-                        {
-                             intersect = true;
-                        }
-
-                    }
-
-                 return new IntersectionDetail(interscetionPoint, intersect);
-
-                } 
-
-
-                public Equation GetSegmentEquation(Point a , Point b)
-                {
-                    Equation equation = new Equation();
-
-                equation.a = (a.Y - b.Y) / (a.X - b.X);
-                equation.b = -(equation.a)*(a.X) + a.Y;
-
-                    return equation;
+                    IntersectionPoints.Add(inter);
                 }
 
-                private void add_line_Click(object sender, RoutedEventArgs e)
-                {
-                    poly = new Polyline();
-                    addLineClicked = true;
-                    btn2Clicked = false;
-                    LinePointscpt = 0;
-                    poly.Stroke = Brushes.Indigo;
-                    poly.StrokeThickness = 5;
-                    poly.FillRule = FillRule.EvenOdd;
-                    polylines.Add(poly);
-                    courbeActuelle = poly;
-                    mainCanvas.Children.Add(poly);
 
+            }
+
+
+        }
+        // intersection d'un segment avec une ligne 
+        public IntersectionDetail intersectLines(Line line1, Line line2)
+        {
+            Equation equation1;
+            Equation equation2;
+            Boolean intersect = new Boolean();
+
+            Point interscetionPoint = new Point();
+            Point a1 = new Point(line1.X1, line1.Y1);
+            Point b1 = new Point(line1.X2, line1.Y2);
+            Point a2 = new Point(line2.X1, line2.Y1);
+            Point b2 = new Point(line2.X2, line2.Y2);
+
+            equation1 = GetSegmentEquation(a1, b1);
+            equation2 = GetSegmentEquation(a2, b2);
+
+            if (equation1.a == equation2.a)
+            {
+                intersect = false;
+            }
+            else
+            {
+
+                interscetionPoint.X = -(equation1.b - equation2.b) / (equation1.a - equation2.a);
+                interscetionPoint.Y = (equation2.a * interscetionPoint.X) + equation2.b;
+
+                if ((Math.Max(line1.X1, line1.X2) >= interscetionPoint.X) && (interscetionPoint.X >= Math.Min(line1.X1, line1.X2))
+                && (Math.Max(line1.Y1, line1.Y2) >= interscetionPoint.Y) && (interscetionPoint.Y >= Math.Min(line1.Y1, line1.Y2))
+                && (Math.Max(line2.X1, line2.X2) >= interscetionPoint.X) && (interscetionPoint.X >= Math.Min(line2.X1, line2.X2))
+                && (Math.Max(line2.Y1, line2.Y2) >= interscetionPoint.Y) && (interscetionPoint.Y >= Math.Min(line2.Y1, line2.Y2)))
+                {
+                    intersect = true;
                 }
-   
+
+            }
+
+            return new IntersectionDetail(interscetionPoint, intersect);
+
+        }
+
+
+        public Equation GetSegmentEquation(Point a, Point b)
+        {
+            Equation equation = new Equation();
+
+            equation.a = (a.Y - b.Y) / (a.X - b.X);
+            equation.b = -(equation.a) * (a.X) + a.Y;
+
+            return equation;
+        }
+
+        private void add_line_Click(object sender, RoutedEventArgs e)
+        {
+            poly = new Polyline();
+            addLineClicked = true;
+            btn2Clicked = false;
+            LinePointscpt = 0;
+            poly.Stroke = Brushes.Indigo;
+            poly.StrokeThickness = 5;
+            poly.FillRule = FillRule.EvenOdd;
+            polylines.Add(poly);
+            courbeActuelle = poly;
+            mainCanvas.Children.Add(poly);
+
+        }
+
 
         private List<object> hitResultsList = new List<object>();
 
@@ -816,21 +656,190 @@ namespace TopoGiraffe
         private void mainCanvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             btn2Clicked = false;
-            courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);          
+            courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
             if (polylines.Contains(courbeActuelle) == false)
             {
                 polylines.Add(courbeActuelle);
             }
         }
 
-        
+
         private void nav_Click(object sender, RoutedEventArgs e)
         {
             navClicked = true;
             addLineClicked = false;
             btn2Clicked = false;
-           // EditPolyline = courbeActuelle;
+            // EditPolyline = courbeActuelle;
         }
+
+        int cptdebug = 0; int index2 = 0;
+        FrameworkElement elDraggingEllipse;
+        Point ptMouseStart, ptElementStart;
+
+        //------------------------------------------------------------------------------------------------------------------------------------------------
+        // code to handle Modifying Control Points --------------------------------------------------------------------------------------------------------
+
+
+        Polyline polytest = new Polyline();
+
+
+        public void Cercle_Mousemove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ArtPoint elDraggingEllip = new ArtPoint();
+            if (((Ellipse)elDraggingEllipse) == null) return;
+
+            if (e.LeftButton == MouseButtonState.Pressed && navClicked == true)
+            {
+
+                Point ptMouse = e.GetPosition(this.mainCanvas);
+                //if (ptMouse.X > 0 && ptMouse.X < mainCanvas.Width && ptMouse.Y > 0 && ptMouse.Y < mainCanvas.Height)
+                //{
+                Move = true;
+                if (Move == true)
+                {
+
+                    if (elDraggingEllipse == null)
+                        elDraggingEllipse = ((Ellipse)elDraggingEllipse);
+                    //change the position of the ellipse that represent the control point
+                    Canvas.SetLeft(elDraggingEllipse, ptMouse.X - 10 / 2);
+                    Canvas.SetTop(elDraggingEllipse, ptMouse.Y - 10 / 2);
+
+
+                    Ellipse ellipse;
+                    int cpt3 = 0;
+                    foreach (List<ArtPoint> ae in PointsGlobal)
+                    {
+
+                        foreach (ArtPoint a in ae)
+                        {
+                            if (a.cercle.Equals(elDraggingEllipse))
+                            {
+                                elDraggingEllip.cercle = a.cercle;
+                                elDraggingEllip.P = a.P;
+
+                                index2 = cpt3;
+                            }
+                        }
+
+                        cpt3++;
+                    }
+                    EditPolyline = polylines[index2];
+                    //Polyline_Modify();
+
+
+                    Interpoly = new Polyline();
+                    Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+                    Interpoly.StrokeThickness = 2;
+                    Interpoly.Points.Clear();
+                    Interpoly.FillRule = FillRule.EvenOdd;
+                    //courbeActuelle = Interpoly;
+
+                    //   mainCanvas.Children.Remove(EditPolyline);
+
+
+                    int i = 0;
+                    PointsGlobal[index2].Remove(elDraggingEllip);
+
+                    foreach (Point point in EditPolyline.Points)
+                    {
+                        if (point == elDraggingEllip.P)
+                        {
+                            Interpoly.Points.Add(ptMouse);
+                            elDraggingEllip = new ArtPoint((Ellipse)elDraggingEllipse, ptMouse);
+
+                            PointsGlobal[index2].Add(elDraggingEllip);
+                        }
+                        else
+                        {
+                            if (finalCtrlPoint == true && i == EditPolyline.Points.Count - 1)
+                            {
+                                Interpoly.Points.Add(Interpoly.Points[0]);
+                            }
+                            else
+                            {
+                                Interpoly.Points.Add(EditPolyline.Points[i]);
+                            }
+                        }
+                        i++;
+                    }
+
+
+                    //mainCanvas.Children.Remove(courbeActuelle);
+                    mainCanvas.Children.Add(Interpoly);
+                    mainCanvas.Children.Remove(EditPolyline);
+
+                    EditPolyline = Interpoly;
+                    polylines[index2] = Interpoly;
+
+
+
+
+
+
+
+                }
+                //}
+
+            }
+        }
+        void Ellipse_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (((Ellipse)elDraggingEllipse) == null) return;
+
+            //if (((Ellipse)elDraggingEllipse) == null) return;
+            //((Ellipse)elDraggingEllipse).Cursor = Cursors.Arrow; //change the cursor
+            ((Ellipse)elDraggingEllipse).ReleaseMouseCapture();
+            // EditPolyline.Points.Clear();
+            int i1 = 0;
+            if (navClicked)
+            {
+                foreach (ArtPoint el in PointsGlobal[index2])
+                {
+                    mainCanvas.Children.Remove(el.cercle);
+                    mainCanvas.Children.Add(el.cercle);
+
+                }
+            }
+
+            cptdebug++;
+            Ellipse elli = (Ellipse)elDraggingEllipse;
+            elli.Fill = Brushes.Purple;
+
+            ((Ellipse)elDraggingEllipse).Cursor = Cursors.Arrow;
+
+        }
+
+        void Ellipse_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+
+            elDraggingEllipse = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
+            if (elDraggingEllipse == null) return;
+            if (elDraggingEllipse != null && elDraggingEllipse is Ellipse)
+            {
+
+                ((Ellipse)elDraggingEllipse).Cursor = Cursors.ScrollAll;
+
+                Mouse.Capture((elDraggingEllipse));
+            }
+            if (btn2Clicked == true) // clicking on an ellipse while drawing
+            {
+                finalCtrlPoint = true;
+                btn2Clicked = false;
+            }
+            Ellipse elli = (Ellipse)elDraggingEllipse;
+            elli.Fill = Brushes.Orange;
+
+
+        }
+
+
+        Polyline Interpoly;
+        Polyline EditPolyline;
+        bool finalCtrlPoint = false;
+        List<ArtPoint> currentCurveCtrlPts;
+        Point mousePos;
+
 
         //------------------------------------------------------------------------------------------------------------------------------------------------
         // code to handle dragging of the poyline --------------------------------------------------------------------------------------------------------
