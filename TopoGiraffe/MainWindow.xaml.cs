@@ -339,6 +339,7 @@ namespace TopoGiraffe
             }if (btn2Clicked == true) // clicking on an ellipse while drawing
             {
                 finalCtrlPoint = true;
+                btn2Clicked = false;
             }
 
 
@@ -421,10 +422,10 @@ namespace TopoGiraffe
                     courbeActuelle.Points.Add(mousePos);
                 }
             }
-            else 
-            {
+           
+          
                 polylines.Add(courbeActuelle);
-            }
+            
         }
 
 
