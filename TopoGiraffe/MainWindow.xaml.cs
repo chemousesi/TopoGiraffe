@@ -188,22 +188,9 @@ namespace TopoGiraffe
         FrameworkElement elDraggingEllipse;
         Point ptMouseStart, ptElementStart;
 
-        // for a live preview of the line
-        //public void Polyline_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    Thickness margin = new Thickness(0, 0, 0, 0);
-        //    ptMouseStart = e.GetPosition(this);
-        //    elDragging = (this).InputHitTest(ptMouseStart) as FrameworkElement;
-        //    if (elDragging == null) return;
-        //    if (elDragging != null && elDragging is Polyline)
-        //    {
-        //        courbeActuelle = (Polyline)elDragging;
-        //        //  courbeActuelle.StrokeThickness = 10;
-        //        margin = courbeActuelle.Margin;
-        //        margin.Left = courbeActuelle.Margin.Left + 100;
-        //        courbeActuelle.Margin = margin;
-        //    }
-        //
+       
+
+
         Polyline polytest = new Polyline();
        
 
@@ -275,11 +262,18 @@ namespace TopoGiraffe
                         }
                         else
                         {
-                            Interpoly.Points.Add(EditPolyline.Points[i]);
-
+                            if (finalCtrlPoint == true && i == EditPolyline.Points.Count - 1)
+                            {
+                                Interpoly.Points.Add(Interpoly.Points[0]);
+                            }
+                            else
+                            {
+                                Interpoly.Points.Add(EditPolyline.Points[i]);
+                            }
                         }
                         i++;
-                    }
+                 }
+
 
                     //mainCanvas.Children.Remove(courbeActuelle);
                     mainCanvas.Children.Add(Interpoly);
@@ -319,6 +313,8 @@ namespace TopoGiraffe
             }
          
             cptdebug++;
+            Ellipse elli = (Ellipse)elDraggingEllipse;
+            elli.Stroke = Brushes.Purple;
 
             ((Ellipse)elDraggingEllipse).Cursor = Cursors.Arrow; 
 
@@ -341,6 +337,8 @@ namespace TopoGiraffe
                 finalCtrlPoint = true;
                 btn2Clicked = false;
             }
+            Ellipse elli =(Ellipse) elDraggingEllipse;
+            elli.Stroke = Brushes.LightSkyBlue;
 
 
         }
@@ -387,14 +385,17 @@ namespace TopoGiraffe
                 mainCanvas.Children.Remove(newLine);
                 MouseMoveOnDraw(sender, e);
 
+            }if(addLineClicked == true)
+            {
+                MouseMoveOnAddLine(sender, e);
             }
             if (navClicked == true)
             {
 
-               
+
+              
 
 
-               
 
             }
           
@@ -427,7 +428,31 @@ namespace TopoGiraffe
                 polylines.Add(courbeActuelle);
             
         }
+        private void MouseMoveOnAddLine(object sender, MouseEventArgs e)
+        {
 
+           
+
+                if (courbeActuelle.Points.Count != 0) //to handle real-time drawing
+                {
+                    if (courbeActuelle.Points.Last().Equals(mousePos))
+                    {
+                        courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+                    }
+                    if (polylines.Contains(temporaryFigure))
+                    {
+                        polylines.Remove(temporaryFigure);
+                    }
+                    mousePos = new Point(e.GetPosition(this.mainCanvas).X, e.GetPosition(this.mainCanvas).Y);
+                    temporaryFigure = courbeActuelle;
+                    courbeActuelle.Points.Add(mousePos);
+                }
+           
+
+
+            polylines.Add(courbeActuelle);
+
+        }
 
 
 
@@ -443,12 +468,15 @@ namespace TopoGiraffe
             myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
             myPolyline.StrokeThickness = 2;
             myPolyline.FillRule = FillRule.EvenOdd;
+            myPolyline.MouseMove += new System.Windows.Input.MouseEventHandler(Path_MouseMove);
+            myPolyline.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonUp);
+            myPolyline.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonDown);
 
             courbeActuelle = myPolyline;
             // (courbeActuelle).MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Polyline_MouseDown);
             mainCanvas.Children.Add(courbeActuelle);
             PointsGlobal.Add(new List<ArtPoint>());
-            currentCurveCtrlPts = PointsGlobal[index2];
+            currentCurveCtrlPts = PointsGlobal[PointsGlobal.Count -1];
             indexPoints++;
             finalCtrlPoint = false;
 
@@ -779,8 +807,7 @@ namespace TopoGiraffe
                     mainCanvas.Children.Add(poly);
 
                 }
-        //code using C# propreties ------------------------------------------------------------
-        //PolyLineSegment polylinesegment = new PolyLineSegment();
+   
 
         private List<object> hitResultsList = new List<object>();
 
@@ -796,30 +823,6 @@ namespace TopoGiraffe
             }
         }
 
-        // fonction Callback qui determine le comportement du Hittest
-        public HitTestResultBehavior MyHitTestResult(HitTestResult result)
-        {
-            // Add the hit test result to the list that will be processed after the enumeration.
-            //ajout du resultat à la liste 
-            hitResultsList.Add(result.VisualHit);
-
-            // Set the behavior to return visuals at all z-order levels.
-            return HitTestResultBehavior.Continue;
-        }
-        public HitTestFilterBehavior MyHitTestFilter(DependencyObject o)
-        {
-            // Test for the object value you want to filter.
-            if (o.GetType() == typeof(Canvas)/* || o.GetType() == typeof(Ellipse)*/)
-            {
-                // Visual object and descendants are NOT part of hit test results enumeration.
-                return HitTestFilterBehavior.ContinueSkipSelf;
-            }
-            else
-            {
-                // Visual object is part of hit test results enumeration.
-                return HitTestFilterBehavior.Continue;
-            }
-        }
         
         private void nav_Click(object sender, RoutedEventArgs e)
         {
@@ -829,7 +832,140 @@ namespace TopoGiraffe
            // EditPolyline = courbeActuelle;
         }
 
-       
+        //------------------------------------------------------------------------------------------------------------------------------------------------
+        // code to handle dragging of the poyline --------------------------------------------------------------------------------------------------------
+        bool isDragging, mvCtrl = true;
+        FrameworkElement elDragging, selectedPath;
+        double minX, minY, maxX, maxY;
+        int indexdrag = 0;
+        List<ArtPoint> DragPoints;
+        Thickness margin;
+
+        void Path_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (navClicked == true)
+            {
+                mvCtrl = true;
+                ptMouseStart = e.GetPosition(this);
+                elDragging = (this).InputHitTest(ptMouseStart) as FrameworkElement;
+                if (elDragging == null) return;
+                if (elDragging != null && elDragging is Polyline)
+                {
+                    ptElementStart = new Point(elDragging.Margin.Left, elDragging.Margin.Top);
+                    margin = new Thickness(elDragging.Margin.Left, elDragging.Margin.Top, 0, 0);
+                    elDragging.Cursor = Cursors.ScrollAll;
+                    Mouse.Capture((elDragging));
+                    isDragging = true;
+                    //maxX = MaxPtCtrlX((Polyline)elDragging) - ptMouseStart.X;
+                    //maxY = MaxPtCtrlY((Polyline)elDragging) - ptMouseStart.Y;
+                    //minX = -MinPtCtrlX((Polyline)elDragging) + ptMouseStart.X;
+                    //minY = -MinPtCtrlY((Polyline)elDragging) + ptMouseStart.Y;
+                }
+                foreach (Polyline polyline in polylines)
+                {
+                    if (elDragging == polyline)
+                    {
+                        DragPoints = PointsGlobal[polylines.IndexOf(polyline)];
+                    }
+                }
+            }
+            else return;
+        }
+        bool test = false;
+        void Path_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+            Point pnt = e.GetPosition(this);
+            if (elDragging == null) return;
+
+            if (isDragging)
+            {
+                if (!mvCtrl)
+                {
+                    elDragging.Margin = margin;
+
+                    foreach (ArtPoint ell in DragPoints)
+                    {
+                        ell.cercle.Margin = margin;
+                    }
+
+                }
+
+
+                //foreach(Polyline polyline in polylines){
+
+                //    if (polyline.Equals(elDragging))
+                //    {
+
+                //        for (int i = 0; i < polyline.Points.Count; i++)
+                //        {
+                //            polyline.Points[i] = new Point(polyline.Points[i].X + margin.Left - ptElementStart.X, polyline.Points[i].Y + margin.Top - ptElementStart.Y);
+                //        }
+                //        //for (int i = 0; i < r.Item3.Count; i++)
+                //        //{
+                //        //    r.Item3[i] = new Point(r.Item3[i].X + margin.Left - ptElementStart.X, r.Item3[i].Y + margin.Top - ptElementStart.Y);
+                //        //}
+                //        break;
+
+
+
+                //    }
+
+                //}
+
+            }
+            isDragging = false;
+            (elDragging).Cursor = Cursors.Arrow;
+            (elDragging).ReleaseMouseCapture();
+            elDragging = null;
+            test = true;
+        }
+
+        void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {//path dragging
+            if ((elDragging) == null) return;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point ptMouse = e.GetPosition(this);
+                if (isDragging)
+                {
+
+                    if (elDragging == null)
+                        elDragging = (elDragging);
+                    double left = ptElementStart.X + ptMouse.X - ptMouseStart.X;
+                    double top = ptElementStart.Y + ptMouse.Y - ptMouseStart.Y;
+
+                    foreach (ArtPoint ell in DragPoints)
+                    {
+
+                        ell.cercle.Margin = new Thickness(left, top, 0, 0);// modify the margin to move the curve
+
+                    }
+
+                    elDragging.Margin = new Thickness(left, top, 0, 0);// modify the margin to move the curve
+                    if (mvCtrl)
+                    {
+                        margin = elDragging.Margin;
+                    }
+                    //if (!(ptMouse.X + maxX <= 920 && ptMouse.X - minX >= 5 && ptMouse.Y - minY >= 5 && ptMouse.Y + maxY <= 525))
+                    //{
+                    //    //in order to the curve stay in the canvas
+                    //    if (ptMouse.X + maxX > 920 && mvCtrl)
+                    //        margin.Left = margin.Left - ptMouse.X - maxX + 920;
+                    //    if (ptMouse.X - minX < 5 && mvCtrl)
+                    //        margin.Left = margin.Left + 5 - ptMouse.X + minX;
+                    //    if (ptMouse.Y + maxY > 525 && mvCtrl)
+                    //        margin.Top = margin.Top + 525 - ptMouse.Y - maxY;
+                    //    if (ptMouse.Y - minY < 5 && mvCtrl)
+                    //        margin.Top = margin.Top + 5 - ptMouse.Y + minY;
+                    //    mvCtrl = false;
+                    //}
+
+                }
+            }
+        }
+
+
         //private void mainCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         //{
         //    finish = true;
