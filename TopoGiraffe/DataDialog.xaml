@@ -1,0 +1,53 @@
+﻿<Window x:Class="TopoGiraffe.DataDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TopoGiraffe"
+        mc:Ignorable="d"
+        Title="DataDialog" Height="400" Width="350" WindowStartupLocation="CenterOwner" >
+
+    <Grid Background="#C5C5C5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="0,0,0,66" Grid.RowSpan="2">
+            <StackPanel   HorizontalAlignment="Center" Margin="10,30" >
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
+                    <Label Content="EQUIDISTANCE : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
+                    <TextBox x:Name="EquidistanceTextBox"  Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150"  HorizontalContentAlignment="Center" VerticalAlignment="Center"  />
+                   
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
+                    <Label Content="MAX : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
+                    <TextBox x:Name="MaxTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right"  />
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
+                    <Label Content="MIN : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
+                    <TextBox x:Name="MinTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" />
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
+                    <Label Content="ECHELLE : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
+                    <TextBox x:Name="EchelleTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" />
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" 
+                    VerticalAlignment="Center"  
+                    HorizontalAlignment="Right" 
+                    Margin="20,5">
+                <Button Content="Créer" Width="60" Height="30" 
+                    Margin="4" IsDefault="True"  
+                    Click="OnOKClicked"/>
+                <Button Content="Annuler" Width="60" Height="30" 
+                    Margin="4" IsCancel="True"  
+                    Click="OnCancelClicked"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+
+</Window>

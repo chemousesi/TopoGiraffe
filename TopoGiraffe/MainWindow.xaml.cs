@@ -8,7 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using TopoGiraffe.Noyau;
 
 namespace TopoGiraffe
 {
@@ -35,19 +35,10 @@ namespace TopoGiraffe
         bool finish = false;
         Polyline poly = new Polyline();
         int LinePointscpt = 0;
+        Boolean firstPoint = true;
 
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
-
-
-
-
-        class RectangleName
-        {
-            public Rectangle Rect { get; set; }
-            public string Name { get; set; }
-        }
-
-
+        int nbCourbes = 0;
 
 
 
@@ -61,7 +52,10 @@ namespace TopoGiraffe
 
 
 
+
+
             // this here is for the colors
+
             var values = typeof(Brushes).GetProperties().
                 Select(p => new { Name = p.Name, Brush = p.GetValue(null) as Brush }).
                 ToArray();
@@ -82,12 +76,13 @@ namespace TopoGiraffe
             colorComboBox.SelectedIndex = 7;
             // colors end here
 
+            styleCourbeCmb.SelectedIndex = 0;
 
 
 
+          
 
         }
-
 
 
         private void import_Click(object sender, RoutedEventArgs e)
@@ -102,6 +97,11 @@ namespace TopoGiraffe
                 imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
 
             }
+
+
+            imgPhoto.Opacity = .5;
+            OpenInitialDialogBox();
+
 
         }
 
@@ -185,8 +185,13 @@ namespace TopoGiraffe
 */
        
 
+        private void border_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
 
 
+        // for a live preview of the line 
 
         private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
         {
@@ -302,8 +307,9 @@ namespace TopoGiraffe
             // styling
 
             myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-            myPolyline.StrokeThickness = 2;
-            myPolyline.FillRule = FillRule.EvenOdd;
+            //myPolyline.StrokeThickness = 2;
+            //myPolyline.FillRule = FillRule.EvenOdd;
+            StyleCmbToRealStyle(myPolyline, styleCourbeCmb.SelectedIndex);
             myPolyline.MouseMove += new System.Windows.Input.MouseEventHandler(Path_MouseMove);
             myPolyline.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonUp);
             myPolyline.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonDown);
@@ -315,6 +321,12 @@ namespace TopoGiraffe
             currentCurveCtrlPts = PointsGlobal[PointsGlobal.Count - 1];
             indexPoints++;
             finalCtrlPoint = false;
+
+
+
+            
+
+
 
 
 
@@ -331,11 +343,7 @@ namespace TopoGiraffe
             }
         }
 
-        //// getters and setters
-        //public Ellipse CerclePremierPoint
-        //{
-        //    get { return cerclePremierPoint; }
-        //}
+        
 
 
         // to eliminate placeholders
@@ -345,22 +353,7 @@ namespace TopoGiraffe
             altitudeTextBox.Text = "";
         }
 
-        private void maxTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            maxTextBox.Text = "";
-        }
-
-        private void minTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            minTextBox.Text = "";
-        }
-
-        private void longueurTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            longueurTextBox.Text = "";
-        }
-
-
+      
 
         private void deleteAllButton_Click(object sender, RoutedEventArgs e)
         {
@@ -451,10 +444,7 @@ namespace TopoGiraffe
             this.Close();
         }
 
-        private void border_KeyDown(object sender, KeyEventArgs e)
-        {
 
-        }
 
         bool Move = false;
         int indexPoints = -1;
@@ -468,6 +458,7 @@ namespace TopoGiraffe
 
             if (btn2Clicked == true)
             {
+                firstPoint = true;
                 Point lastPoint = new Point(x, y);
 
 
@@ -554,6 +545,7 @@ namespace TopoGiraffe
         }
         List<object> Skew = new List<object>();
 
+         
 
         List<IntersectionDetail> IntersectionPoints = new List<IntersectionDetail>();
 
@@ -649,6 +641,76 @@ namespace TopoGiraffe
         }
 
 
+
+
+
+        public void StyleCmbToRealStyle(Polyline pol, int index)
+        {
+            switch (index)
+            {
+                case 0: //courbe simple
+                    pol.StrokeThickness = 2;
+                    pol.StrokeDashArray = null;
+
+                    break;
+                case 1:// courbe intermediaire
+                    pol.StrokeThickness = 2;
+                    pol.StrokeDashArray.Add(1);
+                    pol.StrokeDashArray.Add(3);
+                    pol.StrokeDashArray.Add(1);
+                    break;
+                case 2:// courbe maitresse
+                    pol.StrokeThickness = 3.5;
+                    pol.StrokeDashArray = null;
+
+                    break;
+                default:
+                    break;
+
+            }
+
+        }
+
+
+
+
+        private void mainCanvas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back)
+            {
+                MessageBox.Show("back key pressed");
+            }
+        }
+
+
+
+
+
+
+
+
+        public int NbCourbes
+        {
+            get { return nbCourbes; }
+            set { nbCourbes = value; }
+        }
+
+
+
+
+
+        public void OpenInitialDialogBox()
+        {
+            DataDialog dataDialog = new DataDialog();
+            
+            dataDialog.ShowDialog();
+            
+        }
+
+
+        
+
+
         private List<object> hitResultsList = new List<object>();
 
 
@@ -729,9 +791,11 @@ namespace TopoGiraffe
 
                     Interpoly = new Polyline();
                     Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    Interpoly.StrokeThickness = 2;
+                    StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
+
+                    //Interpoly.StrokeThickness = 2;
                     Interpoly.Points.Clear();
-                    Interpoly.FillRule = FillRule.EvenOdd;
+                    //Interpoly.FillRule = FillRule.EvenOdd;
                     //courbeActuelle = Interpoly;
 
                     //   mainCanvas.Children.Remove(EditPolyline);
@@ -979,5 +1043,15 @@ namespace TopoGiraffe
         //{
         //    finish = true;
         //}
+
+
+
+        
     }
+    class RectangleName
+    {
+        public Rectangle Rect { get; set; }
+        public string Name { get; set; }
+    }
+
 }
