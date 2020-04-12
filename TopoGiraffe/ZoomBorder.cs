@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,7 +12,7 @@ namespace TopoGiraffe
         private Point origin;
         private Point start;
 
-        
+
 
         private TranslateTransform GetTranslateTransform(UIElement element)
         {
@@ -31,7 +28,7 @@ namespace TopoGiraffe
 
         public override UIElement Child
         {
-            get { return base.Child; }
+            get => base.Child;
             set
             {
                 if (value != null && value != this.Child)
@@ -43,7 +40,7 @@ namespace TopoGiraffe
         public void Initialize(UIElement element)
         {
             this.child = element;
-            if (child != null) 
+            if (child != null)
             {
                 TransformGroup group = new TransformGroup();
                 ScaleTransform st = new ScaleTransform();
@@ -52,18 +49,18 @@ namespace TopoGiraffe
                 group.Children.Add(tt);
                 child.RenderTransform = group;
                 child.RenderTransformOrigin = new Point(0.0, 0.0);
-                
-                
+
+
                 MouseWheel += child_MouseWheel;
 
 
-                
+
                 // debut du drag
-                
+
                 this.MouseRightButtonDown += child_MouseLeftButtonDown;
                 this.MouseRightButtonUp += child_MouseLeftButtonUp;
                 this.MouseMove += child_MouseMove;
-               
+
 
 
                 this.PreviewMouseRightButtonDown += new MouseButtonEventHandler(
