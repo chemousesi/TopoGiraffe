@@ -90,21 +90,12 @@
                     </TransformGroup>
                 </utils:ZoomBorder.RenderTransform>
                 <Grid>
-                    <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1" Stretch="Fill" />
+                    <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1"  />
 
-                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" >
+                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
-                        <!--<Canvas.ContextMenu>
-                            --><!--<ContextMenu>
-                                <MenuItem Header="Importer une image" Click="import_Click"/>
-                                <MenuItem Header="Changer la visibilité" Click="display_Click" />
-
-                            </ContextMenu>--><!--
-                        </Canvas.ContextMenu>-->
-
-
 
                     </Canvas>
                 </Grid>
@@ -122,14 +113,13 @@
                     <RowDefinition Height="11*"/>
                     <RowDefinition Height="189*"/>
                 </Grid.RowDefinitions>
+                <TextBlock Text="Propriétés"/>
                 <StackPanel VerticalAlignment="Top" Height="388" Margin="0,25,0,0" Grid.Row="1" >
                     <TextBox x:Name="altitudeTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" GotFocus="altitudeTextBox_GotFocus" Text="Altitude"  Opacity="1" UndoLimit="98" SelectionOpacity="1" LostFocus="altitudeTextBox_LostFocus" ></TextBox>
-                    <TextBox x:Name="maxTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Max" GotFocus="maxTextBox_GotFocus"></TextBox>
-                    <TextBox x:Name="minTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Min" GotFocus="minTextBox_GotFocus"/>
-                    <TextBox x:Name="longueurTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7,32.8,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Longueur" GotFocus="longueurTextBox_GotFocus"/>
 
 
-                    <TextBlock Text="Colors (creating a new model)" Margin="33,7,32.8,.5"></TextBlock>
+                    <TextBlock Text="Couleurs :" Margin="33,7,32.8,.5"></TextBlock>
+                    
                     <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -143,13 +133,21 @@
 
 
                     </ComboBox>
+                   
+                    <TextBlock Text="Type de courbe" Margin="33,7,32.8,.5"></TextBlock>
+
+                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
+                        <ComboBoxItem >Courbe simple</ComboBoxItem>
+                        <ComboBoxItem >Courbe intermediare</ComboBoxItem>
+                        <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
+                    </ComboBox>
 
                 </StackPanel>
 
                 <ToolBar HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="44" Margin="0,476,0,0" Grid.Row="1"  Width="337">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="Nombre de courbe: "/>
-                        <TextBlock x:Name="nbrCourbes" Text="{Binding polylines.Count}"/>
+                        <TextBlock Name="nbrCourbes" Text="{Binding NbCourbes, Mode=TwoWay }"/>
                     </StackPanel>
 
 
@@ -187,9 +185,9 @@
             </Grid>
             <Grid Grid.Column="0" Background="#C5C5C5" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-0.2,0" >
-                    <Button  Name="btn1" Width="60" Height="80"  Background="{x:Null}" BorderBrush="Transparent"
-                        BorderThickness="0" Margin="0,0,0,20" >
-                        <Image Source="/assets/img/zoom-in.png" Height="30" Width="30"  ></Image>
+                    <Button  Name="nav" Width="60" Height="80"  Background="{x:Null}" BorderBrush="Transparent"
+                        BorderThickness="0" Margin="0,0,0,20" Click="nav_Click" >
+                        <Image Source="/assets/img/navigation.png" Height="30" Width="30"  ></Image>
                     </Button>
 
                     <Button x:Name="dessinerButton" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
@@ -209,6 +207,10 @@
                     <Button x:Name="deletePreviousButton" Width="60" Height="80"  Background="#C5C5C5" BorderBrush="Transparent"
                                 BorderThickness="0" Click="deletePreviousButton_Click"   >
                         <Image Source="/assets/img/deletePrevious.png" Height="35" Width="44"  />
+                    </Button>
+                    <Button  Name="btn1" Width="60" Height="80"  Background="{x:Null}" BorderBrush="Transparent"
+                        BorderThickness="0" Margin="0,0,0,20" >
+                        <Image Source="/assets/img/zoom-in.png" Height="30" Width="30"  ></Image>
                     </Button>
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
 

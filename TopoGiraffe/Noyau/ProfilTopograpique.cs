@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TopoGiraffe.Noyau
+﻿namespace TopoGiraffe.Noyau
 {
     class ProfilTopograpique
     {
@@ -12,7 +8,7 @@ namespace TopoGiraffe.Noyau
         private double maxValeur;
         private double echelle;
         // courbes 
-        
+
 
 
 

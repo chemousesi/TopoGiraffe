@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Shapes;
+﻿using System.Windows.Shapes;
 
 namespace TopoGiraffe.Noyau
 {
@@ -12,7 +9,7 @@ namespace TopoGiraffe.Noyau
         private string couleur;
         private string styleDessin;// pour faire la difference avec les courbes maitresses et les courbes intermediares
 
-        
+
         public CourbeNiveau(Polyline courbe, double altitude, string couleur)
         {
             this.courbe = courbe;
@@ -22,27 +19,27 @@ namespace TopoGiraffe.Noyau
 
         public Polyline Courbe
         {
-            get { return courbe;  }
-            set { courbe = value; }
+            get => courbe;
+            set => courbe = value;
         }
-        
+
         public double Altitude
         {
-            get { return altitude; }
-            set { altitude = value;  }
+            get => altitude;
+            set => altitude = value;
         }
-        
+
 
         public string Couleur
         {
-            get { return couleur; }
-            set { couleur = value;  }
+            get => couleur;
+            set => couleur = value;
         }
 
         public string StyleDessin
         {
-            get { return styleDessin; }
-            set { styleDessin = value; }
+            get => styleDessin;
+            set => styleDessin = value;
         }
 
     }
