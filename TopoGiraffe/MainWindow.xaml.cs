@@ -43,7 +43,8 @@ namespace TopoGiraffe
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
         int nbCourbes = 0;
 
-
+        Plan plan;
+        Line scaleLine;
 
 
 
@@ -466,11 +467,11 @@ namespace TopoGiraffe
             double y = Mouse.GetPosition(mainCanvas).Y;
             bool inter = false;
 
-
-            if (btn2Clicked == true)
-            {
-                firstPoint = true;
-                Point lastPoint = new Point(x, y);
+          
+                if (btn2Clicked == true)
+                {
+                    firstPoint = true;
+                    Point lastPoint = new Point(x, y);
 
                 // ajout des points d'articulation----------------------------------------------------------------------
             
@@ -532,7 +533,7 @@ namespace TopoGiraffe
                         dragbool = true;
                         //PointsGlobal[indexPoints].Add(artPoint);
 
-                    }
+                }
 
 
 
@@ -757,17 +758,6 @@ namespace TopoGiraffe
 
 
 
-
-        public void OpenInitialDialogBox()
-        {
-            DataDialog dataDialog = new DataDialog();
-            
-            dataDialog.ShowDialog();
-            
-        }
-
-
-        
 
 
         private List<object> hitResultsList = new List<object>();
@@ -1023,6 +1013,9 @@ namespace TopoGiraffe
 
             }
         }
+
+        
+
         bool test = false;
         void Path_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -1130,6 +1123,41 @@ namespace TopoGiraffe
         //{
         //    this.NavigationService.Navigate(new MenuPage(im, canvas));
         //}
+
+        public void OpenInitialDialogBox()
+        {
+            DataDialog dataDialog = new DataDialog();
+
+            dataDialog.ShowDialog();
+            if (dataDialog.DialogResult == true)
+            {
+                MessageBox.Show("just done ");
+
+                plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), new Echelle(Convert.ToInt32(dataDialog.EchelleTextBox.Text)));
+
+
+            }
+
+        }
+
+        private void scaleButton_Click(object sender, RoutedEventArgs e)
+        {
+            Echelle testScale = new Echelle(10, 100);
+            
+            double result = testScale.FindDistanceOnField(20);
+
+            MessageBox.Show(result.ToString());
+
+
+        }
+
+
+
+
+        Boolean scaleDrown = false;
+        int scaleLinePointsCount = 0;
+        
+
 
 
 

@@ -36,14 +36,19 @@ namespace TopoGiraffe
             get { return MinTextBox.Text; }
             set { MinTextBox.Text = value; }
         }
-        public string Echelle
-        {
-            get { return EchelleTextBox.Text; }
-            set { EchelleTextBox.Text = value; }
-        }
+
+
+        //public string Echelle
+        //{
+        //    get { return EchelleTextBox.Text; }
+        //    set { EchelleTextBox.Text = value; }
+        //}
+
+        
         private void OnOKClicked(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+
         }
 
         private void OnCancelClicked(object sender, RoutedEventArgs e)
