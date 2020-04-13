@@ -40,7 +40,8 @@ namespace TopoGiraffe
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
         int nbCourbes = 0;
 
-
+        Plan plan;
+        Line scaleLine;
 
 
 
@@ -455,94 +456,103 @@ namespace TopoGiraffe
             double x = Mouse.GetPosition(mainCanvas).X;
             double y = Mouse.GetPosition(mainCanvas).Y;
 
-
-            if (btn2Clicked == true)
-            {
-                firstPoint = true;
-                Point lastPoint = new Point(x, y);
-
-
-
-
-                // ajout des points d'articulation----------------------------------------------------------------------
-                //creation d'un Hit test
-
-
-                // verifier si on veut relier la courbe ou pas pour creer un point d'articulation
-
-
-
-                if (finalCtrlPoint == false)
+            //if (scaleDrown)
+            //{
+                if (btn2Clicked == true)
                 {
-                    courbeActuelle.Points.Add(lastPoint);
-                    Ellipse circle = new Ellipse();
-                    ArtPoint artPoint = new ArtPoint(circle, lastPoint);
-
-
-                    PointsGlobal[indexPoints].Add(artPoint);
-
-                    circle.Width = 15;
-                    circle.Height = 15;
-                    circle.Fill = Brushes.Purple;
-                    (circle).MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
-                    (circle).MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
-                    (circle).MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
-                    Canvas.SetLeft(circle, lastPoint.X - (circle.Width / 2));
-                    Canvas.SetTop(circle, lastPoint.Y - (circle.Height / 2));
-
-                    mainCanvas.Children.Add(circle);
-                }
-                else
-                {
-                    courbeActuelle.Points.Add(courbeActuelle.Points[0]);
-                    //PointsGlobal[indexPoints].Add(artPoint);
-
-                }
+                    firstPoint = true;
+                    Point lastPoint = new Point(x, y);
 
 
 
-            }
-            else if (addLineClicked == true)
-            {
-                LinePointscpt++;
-                poly.Points.Add(new Point(x, y));
-                // calcul des points d'intersection
-                if (LinePointscpt == 2)
-                {
 
-                    line.X1 = poly.Points[0].X;
-                    line.Y1 = poly.Points[0].Y;
-                    line.X2 = poly.Points[1].X;
-                    line.Y2 = poly.Points[1].Y;
+                    // ajout des points d'articulation----------------------------------------------------------------------
+                    //creation d'un Hit test
 
-                    foreach (Polyline polyline in polylines)
+
+                    // verifier si on veut relier la courbe ou pas pour creer un point d'articulation
+
+
+
+                    if (finalCtrlPoint == false)
                     {
-                        FindIntersection(polyline, line);
+                        courbeActuelle.Points.Add(lastPoint);
+                        Ellipse circle = new Ellipse();
+                        ArtPoint artPoint = new ArtPoint(circle, lastPoint);
+
+
+                        PointsGlobal[indexPoints].Add(artPoint);
+
+                        circle.Width = 15;
+                        circle.Height = 15;
+                        circle.Fill = Brushes.Purple;
+                        (circle).MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
+                        (circle).MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
+                        (circle).MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
+                        Canvas.SetLeft(circle, lastPoint.X - (circle.Width / 2));
+                        Canvas.SetTop(circle, lastPoint.Y - (circle.Height / 2));
+
+                        mainCanvas.Children.Add(circle);
+                    }
+                    else
+                    {
+                        courbeActuelle.Points.Add(courbeActuelle.Points[0]);
+                        //PointsGlobal[indexPoints].Add(artPoint);
+
                     }
 
-                    // dessin des cercles representant les points d'intersection
-                    foreach (IntersectionDetail inters in IntersectionPoints)
+
+
+                }
+                else if (addLineClicked == true)
+                {
+                    LinePointscpt++;
+                    poly.Points.Add(new Point(x, y));
+                    // calcul des points d'intersection
+                    if (LinePointscpt == 2)
                     {
-                        Ellipse cercle = new Ellipse();
-                        cercle.Width = 15;
-                        cercle.Height = 15;
-                        cercle.Fill = System.Windows.Media.Brushes.Red;
-                        Canvas.SetLeft(cercle, inters.point.X - (cercle.Width / 2));
-                        Canvas.SetTop(cercle, inters.point.Y - (cercle.Height / 2));
-                        cercles.Add(cercle);
-                        mainCanvas.Children.Add(cercle);
+
+                        line.X1 = poly.Points[0].X;
+                        line.Y1 = poly.Points[0].Y;
+                        line.X2 = poly.Points[1].X;
+                        line.Y2 = poly.Points[1].Y;
+
+                        foreach (Polyline polyline in polylines)
+                        {
+                            FindIntersection(polyline, line);
+                        }
+
+                        // dessin des cercles representant les points d'intersection
+                        foreach (IntersectionDetail inters in IntersectionPoints)
+                        {
+                            Ellipse cercle = new Ellipse();
+                            cercle.Width = 15;
+                            cercle.Height = 15;
+                            cercle.Fill = System.Windows.Media.Brushes.Red;
+                            Canvas.SetLeft(cercle, inters.point.X - (cercle.Width / 2));
+                            Canvas.SetTop(cercle, inters.point.Y - (cercle.Height / 2));
+                            cercles.Add(cercle);
+                            mainCanvas.Children.Add(cercle);
+                        }
+
+                        addLineClicked = false;
                     }
 
-                    addLineClicked = false;
+                }
+                else if (navClicked == true)
+                {
+
                 }
 
-            }
-            else if (navClicked == true)
-            {
+            //}
+            //else // if the scale is not drown 
+            //{
+                
 
-            }
+            //}
 
         }
+            
         List<object> Skew = new List<object>();
 
          
@@ -698,17 +708,6 @@ namespace TopoGiraffe
 
 
 
-
-        public void OpenInitialDialogBox()
-        {
-            DataDialog dataDialog = new DataDialog();
-            
-            dataDialog.ShowDialog();
-            
-        }
-
-
-        
 
 
         private List<object> hitResultsList = new List<object>();
@@ -944,6 +943,9 @@ namespace TopoGiraffe
             }
             else return;
         }
+
+        
+
         bool test = false;
         void Path_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -1045,8 +1047,64 @@ namespace TopoGiraffe
         //}
 
 
+        public void OpenInitialDialogBox()
+        {
+            DataDialog dataDialog = new DataDialog();
 
-        
+            dataDialog.ShowDialog();
+            if (dataDialog.DialogResult == true)
+            {
+                MessageBox.Show("just done ");
+
+                plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), new Echelle(Convert.ToInt32(dataDialog.EchelleTextBox.Text)));
+
+
+            }
+
+        }
+
+        private void scaleButton_Click(object sender, RoutedEventArgs e)
+        {
+            Echelle testScale = new Echelle(10, 100);
+            
+            double result = testScale.FindDistanceOnField(20);
+
+            MessageBox.Show(result.ToString());
+
+
+        }
+
+
+
+
+        Boolean scaleDrown = false;
+        int scaleLinePointsCount = 0;
+        //public void drawScale()
+        //{
+        //    if(scaleLinePointsCount == 0)
+        //        // making the line and inserting the first line
+        //    {
+        //        scaleLine = new Line();
+        //        scaleLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+        //        scaleLine.StrokeThickness = 2;
+
+        //        scaleLine.X1 = Mouse.GetPosition(mainCanvas).X;
+        //        scaleLine.Y1 = Mouse.GetPosition(mainCanvas).Y;
+
+        //        mainCanvas.Children.Add(scaleLine);
+        //        scaleLinePointsCount++;
+        //    }
+        //    else
+        //    // second point 
+        //    {
+                
+        //    }
+        //}
+
+
+
+
+
     }
     class RectangleName
     {
