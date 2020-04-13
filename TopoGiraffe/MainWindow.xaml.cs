@@ -456,8 +456,7 @@ namespace TopoGiraffe
             double x = Mouse.GetPosition(mainCanvas).X;
             double y = Mouse.GetPosition(mainCanvas).Y;
 
-            //if (scaleDrown)
-            //{
+          
                 if (btn2Clicked == true)
                 {
                     firstPoint = true;
@@ -544,12 +543,7 @@ namespace TopoGiraffe
 
                 }
 
-            //}
-            //else // if the scale is not drown 
-            //{
-                
-
-            //}
+         
 
         }
             
@@ -1079,28 +1073,7 @@ namespace TopoGiraffe
 
         Boolean scaleDrown = false;
         int scaleLinePointsCount = 0;
-        //public void drawScale()
-        //{
-        //    if(scaleLinePointsCount == 0)
-        //        // making the line and inserting the first line
-        //    {
-        //        scaleLine = new Line();
-        //        scaleLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
-        //        scaleLine.StrokeThickness = 2;
-
-        //        scaleLine.X1 = Mouse.GetPosition(mainCanvas).X;
-        //        scaleLine.Y1 = Mouse.GetPosition(mainCanvas).Y;
-
-        //        mainCanvas.Children.Add(scaleLine);
-        //        scaleLinePointsCount++;
-        //    }
-        //    else
-        //    // second point 
-        //    {
-                
-        //    }
-        //}
-
+        
 
 
 
