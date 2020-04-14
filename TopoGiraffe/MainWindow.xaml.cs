@@ -17,7 +17,7 @@ namespace TopoGiraffe
     /// </summary>
     public partial class MainWindow : Window
     {
-
+      
 
 
         // declaring variables
@@ -614,7 +614,25 @@ namespace TopoGiraffe
 
         }
 
+        //Calcule des distances
+        List<double> distancesListe = new List<double>();
 
+        public void distances()
+        {
+           
+            for (int i=0; i<= IntersectionPoints.Count; i++)
+            {
+                double x1 = IntersectionPoints[i].point.X;
+                double x2 = IntersectionPoints[i + 1].point.X;
+                double y1 = IntersectionPoints[i].point.Y;
+                double y2 = IntersectionPoints[i + 1].point.Y;
+                double distance = Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2);
+                distancesListe.Add(distance);
+
+            }
+        }
+       
+        
         public Equation GetSegmentEquation(Point a, Point b)
         {
             Equation equation = new Equation();
@@ -911,6 +929,13 @@ namespace TopoGiraffe
         FrameworkElement elDragging, selectedPath;
         double minX, minY, maxX, maxY;
         int indexdrag = 0;
+
+        private void btn13_Click(object sender, RoutedEventArgs e)
+        {
+            ProfileTopographique profile = new ProfileTopographique();
+            profile.Show();
+        }
+
         List<ArtPoint> DragPoints;
         Thickness margin;
 

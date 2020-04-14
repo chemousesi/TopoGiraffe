@@ -63,7 +63,7 @@
                     <Image Source="/assets/img/tour.png" Width="30" Height="30"/>
                 </Button>
                 <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" >
+        BorderThickness="0"  Margin="40,0,0,0" Click="btn13_Click" >
                     <Image Source="/assets/img/report.png" Width="30" Height="30"/>
                 </Button>
                 <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
