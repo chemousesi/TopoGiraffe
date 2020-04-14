@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="0,0,0,66" Grid.RowSpan="2">
-            <StackPanel   HorizontalAlignment="Center" Margin="10,30" >
+            <StackPanel   HorizontalAlignment="Center" Margin="0,30,0,0" >
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
                     <Label Content="EQUIDISTANCE : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
                     <TextBox x:Name="EquidistanceTextBox"  Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  />

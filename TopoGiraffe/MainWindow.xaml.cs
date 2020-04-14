@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+﻿    using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +45,9 @@ namespace TopoGiraffe
 
         Plan plan;
         Line scaleLine;
+        Boolean drawingScale = false;
+        Echelle mainScale;
+
 
 
 
@@ -513,9 +516,11 @@ namespace TopoGiraffe
                             circle.Width = 15;
                             circle.Height = 15;
                             circle.Fill = Brushes.Purple;
+
                             (circle).MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
                             (circle).MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
                             (circle).MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
+                            
                             Canvas.SetLeft(circle, lastPoint.X - (circle.Width / 2));
                             Canvas.SetTop(circle, lastPoint.Y - (circle.Height / 2));
 
@@ -526,6 +531,7 @@ namespace TopoGiraffe
 
                     }
                     else
+                    // when click on the last (first) point 
                     {
                         courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
                         courbeActuelle.Points.Add(courbeActuelle.Points[0]);
@@ -542,6 +548,9 @@ namespace TopoGiraffe
             {
                 LinePointscpt++;
                 poly.Points.Add(new Point(x, y));
+
+
+
                 // calcul des points d'intersection
                 if (LinePointscpt == 2)
                 {
@@ -568,15 +577,35 @@ namespace TopoGiraffe
                         cercles.Add(cercle);
                         mainCanvas.Children.Add(cercle);
                     }
+                    
+                    if (scaleLinePointsCount == 2)
+                    {
+                        MessageBox.Show(" Distance :" + Math.Round(mainScale.FindDistanceOnField(Outils.DistanceBtwTwoPoints(poly.Points[0], poly.Points[1])), 2) + " mètres");
+
+                    }
 
                     addLineClicked = false;
                 }
 
             }
-            else if (navClicked == true)
+            else if (drawingScale == true)
+                
             {
 
+                scaleLinePointsCount++;
+                scalePolyline.Points.Add(new Point(x, y));
+
+                if (scaleLinePointsCount == 2)
+                {
+                    mainScale.scaleDistanceOnCanvas = Outils.DistanceBtwTwoPoints(scalePolyline.Points[0], scalePolyline.Points[1]);
+                    
+                    string message = "Echelle sur plan "+ Math.Round(mainScale.scaleDistanceOnCanvas, 3) + "------>"+ mainScale.scaleDistanceOnField+" mètres";
+                    MessageBox.Show(message);
+                    drawingScale = false;
+                }
+
             }
+                
 
         }
         List<object> Skew = new List<object>();
@@ -1127,35 +1156,62 @@ namespace TopoGiraffe
         public void OpenInitialDialogBox()
         {
             DataDialog dataDialog = new DataDialog();
-
+            //dataDialog.Owner = this;
             dataDialog.ShowDialog();
+
+
+
             if (dataDialog.DialogResult == true)
             {
-                MessageBox.Show("just done ");
 
-                plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), new Echelle(Convert.ToInt32(dataDialog.EchelleTextBox.Text)));
+                mainScale = new Echelle(Convert.ToInt32(dataDialog.EchelleTextBox.Text));
+                plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
 
 
             }
 
         }
 
+
+        Polyline scalePolyline;
+
+        int scaleLinePointsCount = 0;
         private void scaleButton_Click(object sender, RoutedEventArgs e)
         {
-            Echelle testScale = new Echelle(10, 100);
+            //Echelle testScale = new Echelle(10, 100);
             
-            double result = testScale.FindDistanceOnField(20);
+            
+            drawingScale = true;
+            btn2Clicked = false;
+            addLineClicked = false;
+            navClicked = false;
 
-            MessageBox.Show(result.ToString());
+            // making the polyline
+            scalePolyline = new Polyline();
+
+            scalePolyline.Stroke = Brushes.Indigo;
+            scalePolyline.StrokeThickness = 3;
+            scalePolyline.FillRule = FillRule.EvenOdd;
+
+            mainCanvas.Children.Add(scalePolyline);
+
+
+
+
+
+
+
+
+
+
+
+            //double result = testScale.FindDistanceOnField(20);
+
+            //MessageBox.Show(result.ToString());
 
 
         }
 
-
-
-
-        Boolean scaleDrown = false;
-        int scaleLinePointsCount = 0;
         
 
 

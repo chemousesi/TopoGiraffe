@@ -25,15 +25,12 @@ namespace TopoGiraffe
     public partial class Window1 : Window
     {
        
-
         //colors related 
         class RectangleName
         {
             public Rectangle Rect { get; set; }
             public string Name { get; set; }
         }
-
-
 
 
         //Contructor
