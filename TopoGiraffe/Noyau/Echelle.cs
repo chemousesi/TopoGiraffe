@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Shapes;
 
 namespace TopoGiraffe.Noyau
@@ -18,17 +14,17 @@ namespace TopoGiraffe.Noyau
 
         }
 
-        public Echelle(double aDistanceOnCanvas, double aDistanceOnField )
+        public Echelle(double aDistanceOnCanvas, double aDistanceOnField)
         {
             scaleDistanceOnCanvas = aDistanceOnCanvas;
             scaleDistanceOnField = aDistanceOnField;
-           
+
         }
 
 
 
         public double FindDistanceOnField(Line line)
-            // real distance should be in meters
+        // real distance should be in meters
         {
             Point pointA = new Point(line.X1, line.Y1);
             Point pointB = new Point(line.X2, line.Y2);
@@ -46,7 +42,7 @@ namespace TopoGiraffe.Noyau
         public double FindDistanceOnField(double aDistanceOnCanvas)
         // takes a distance from the canvas (distance btw two points) and returns distance in meters
         {
-            return (aDistanceOnCanvas * scaleDistanceOnField )/ scaleDistanceOnCanvas;
+            return (aDistanceOnCanvas * scaleDistanceOnField) / scaleDistanceOnCanvas;
         }
 
 
