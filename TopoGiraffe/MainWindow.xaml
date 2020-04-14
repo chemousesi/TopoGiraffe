@@ -152,6 +152,8 @@
 
 
                 </ToolBar>
+                <Label x:Name="AltitudeLabel" Content=" --" HorizontalAlignment="Left" Margin="137,299,0,0" Grid.Row="1" VerticalAlignment="Top" Width="107" FontFamily="HelveticaNeue" FontSize="20" Foreground="#FFE21111"/>
+                <Label Content="Altitude : " HorizontalAlignment="Left" Margin="23,298,0,0" Grid.Row="1" VerticalAlignment="Top" Width="117" FontFamily="Gotham Medium" FontSize="22" FontStyle="Normal" />
             </Grid>
 
 
