@@ -39,6 +39,7 @@ namespace TopoGiraffe
         Polyline poly = new Polyline();
         int LinePointscpt = 0;
         Boolean firstPoint = true;
+        List<int> Altitudes = new List<int>();
 
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
         int nbCourbes = 0;
@@ -335,8 +336,9 @@ namespace TopoGiraffe
             finalCtrlPoint = false;
 
 
+            OpenCourbeinfo();
 
-            
+
 
 
 
@@ -1037,6 +1039,9 @@ namespace TopoGiraffe
                             DragPoints = PointsGlobal[polylines.IndexOf(polyline)];
                         }
                     }
+                    int i = polylines.IndexOf((Polyline) selectedPolyline);
+                    AltitudeLabel.Visibility = Visibility.Visible;
+                    AltitudeLabel.Content = Altitudes[i];
                 }
                 else return;
 
@@ -1138,6 +1143,7 @@ namespace TopoGiraffe
                 }
             }
         }
+        int indexAltitude = 0;
 
 
         //private void mainCanvas_MouseUp(object sender, MouseButtonEventArgs e)
@@ -1169,6 +1175,27 @@ namespace TopoGiraffe
 
 
             }
+
+        }
+
+       
+
+        public void OpenCourbeinfo()
+        {
+            Window1 Window1 = new Window1();
+
+            Window1.ShowDialog();
+            if (Window1.DialogResult == true)
+            {
+               
+
+                Altitudes.Add(Convert.ToInt32(Window1.Altitude.Text));
+               // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
+                indexAltitude++;
+
+            }
+
+
 
         }
 
