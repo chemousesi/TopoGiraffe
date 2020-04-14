@@ -10,12 +10,12 @@ namespace TopoGiraffe.Noyau
         private int equidistance;
         private double minAltitude;
         private double maxAltitude;
-        private double echelle;
+        private Echelle echelle;
         private List<Polygon> courbes;// je vais remplacer polygon par courbeNiveau
 
 
 
-        public Plan(int aEquidistance, double aMinAltitude, double aMaxAltitude, double aEchelle)
+        public Plan(int aEquidistance, double aMinAltitude, double aMaxAltitude, Echelle aEchelle)
         {
             equidistance = aEquidistance;
             minAltitude = aMinAltitude;
@@ -43,11 +43,7 @@ namespace TopoGiraffe.Noyau
             set => maxAltitude = value;
         }
 
-        public double Echelle
-        {
-            get => echelle;
-            set => echelle = value;
-        }
+        
 
         public void AjouterCourbe(Polygon courbe)
         {
