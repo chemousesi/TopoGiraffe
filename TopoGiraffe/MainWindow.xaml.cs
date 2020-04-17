@@ -42,7 +42,7 @@ namespace TopoGiraffe
         List<int> Altitudes = new List<int>();
 
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
-        int nbCourbes = 0;
+        int NbCourbes = 0;
 
         Plan plan;
         Line scaleLine;
@@ -337,6 +337,8 @@ namespace TopoGiraffe
 
 
             OpenCourbeinfo();
+            NbCourbes++;
+      
 
 
 
@@ -523,8 +525,16 @@ namespace TopoGiraffe
                             Ellipse circle = new Ellipse();
                             ArtPoint artPoint = new ArtPoint(circle, lastPoint);
                             PointsGlobal[indexPoints].Add(artPoint);
-                             DrawCtrlPoints(courbeActuelle);
-                            mainCanvas.Children.Add(circle);
+                        circle.Width = 15;
+                        circle.Height = 15;
+                        circle.Fill = Brushes.Purple;
+                        circle.MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
+                        circle.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
+                        circle.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
+
+                        Canvas.SetLeft(circle,lastPoint.X - (circle.Width / 2));
+                        Canvas.SetTop(circle, lastPoint.Y - (circle.Height / 2));
+                        mainCanvas.Children.Add(circle);
 
                           
                         }
@@ -778,17 +788,7 @@ namespace TopoGiraffe
 
 
 
-
-        public int NbCourbes
-        {
-            get { return nbCourbes; }
-            set { nbCourbes = value; }
-        }
-
-
-
-
-
+                          
 
         private List<object> hitResultsList = new List<object>();
 
@@ -1147,15 +1147,7 @@ namespace TopoGiraffe
             foreach(ArtPoint Ctrl in PointsGlobal[index])
             {
 
-                Ctrl.cercle.Width = 15;
-                Ctrl.cercle.Height = 15;
-                Ctrl.cercle.Fill = Brushes.Purple;
-                Ctrl.cercle.MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
-                Ctrl.cercle.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
-                Ctrl.cercle.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
-
-                Canvas.SetLeft(Ctrl.cercle,Ctrl.P.X - (Ctrl.cercle.Width / 2));
-                Canvas.SetTop(Ctrl.cercle, Ctrl.P.Y - (Ctrl.cercle.Height / 2));
+              
 
 
             }
@@ -1235,7 +1227,7 @@ namespace TopoGiraffe
 
 
         }
-
+        
 
         Polyline scalePolyline;
 
@@ -1276,7 +1268,36 @@ namespace TopoGiraffe
 
         }
 
-        
+        private void altitudeSliderValueChange(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {//change altitude
+            changeSelectedCurveAltitude((float)AltSlider.Value);
+        }
+
+        private void changeSelectedCurveAltitude(float altit)
+        {//the real change
+            if (courbeActuelle == null)
+            {
+                return;
+            }
+
+             int index = polylines.IndexOf(courbeActuelle);
+            Altitudes[index] = Convert.ToInt32(altit);
+            (courbeActuelle).Stroke = new SolidColorBrush(altitudeToColor(altit));
+             
+        }
+
+        public static Color altitudeToColor(float altit)
+        {//implemeting the predefined altitude levels
+            if (altit <= 0) return Colors.Black;
+            if (altit < 50) return Colors.Cyan;
+            if (altit < 100) return Colors.Blue;
+            if (altit < 150) return Colors.Green;
+            if (altit < 200) return Colors.Yellow;
+            if (altit < 250) return Colors.Orange;
+            return Colors.Red;
+        }
+
+
 
 
 

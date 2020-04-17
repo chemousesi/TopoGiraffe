@@ -136,13 +136,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="Propriétés"/>
                 <StackPanel VerticalAlignment="Top" Height="388" Margin="0,25,0,0" Grid.Row="1" >
-                    <!--<TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}
-" DockPanel.Dock="Right" VerticalAlignment="Bottom" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80"
-                             VerticalContentAlignment="Center" HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" ></TextBox>-->
-
-                    <!--<Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "200" Value="0" Name="AltSlider" DockPanel.Dock="Bottom" VerticalAlignment="Center" Width="150" Style="{StaticResource Horizontal_Slider}" ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5"></Slider>-->
                     <TextBlock Text="Couleurs :" Margin="33,7,32.8,.5"></TextBlock>
-
                     <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -165,12 +159,21 @@
                         <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
                     </ComboBox>
 
+                    <Label Margin="10 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude
+                    </Label>
+                    <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Bottom" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ></TextBox>
+
+                    <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "200" Value="0" Name="AltSlider" VerticalAlignment="Center" Width="150"  ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5"></Slider>
+                   
+
                 </StackPanel>
 
-                <ToolBar HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="44" Margin="0,476,0,0" Grid.Row="1"  Width="337">
+                <ToolBar HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="44" Margin="0,476,0,0" Grid.Row="1"  Width="337" RenderTransformOrigin="0.494,0.618">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                       
                         <TextBlock Text="Nombre de courbe: "/>
-                        <TextBlock Name="nbrCourbes" Text="{Binding NbCourbes, Mode=TwoWay }"/>
+                        <TextBox x:Name="nbrCourbes" Text="{Binding NbCourbes, Mode=TwoWay , XPath=Value , UpdateSourceTrigger=PropertyChanged}"/>
+
                     </StackPanel>
 
 
