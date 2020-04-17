@@ -362,10 +362,10 @@ namespace TopoGiraffe
 
         // to eliminate placeholders
 
-        private void altitudeTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            altitudeTextBox.Text = "";
-        }
+        //private void altitudeTextBox_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    altitudeTextBox.Text = "";
+        //}
 
       
 
@@ -380,11 +380,11 @@ namespace TopoGiraffe
             {
                 polylines.Clear();
                 mainCanvas.Children.Clear();
-                foreach (Ellipse cercle in cercles)
+                foreach (List<ArtPoint> ae in PointsGlobal)
                 {
-                    mainCanvas.Children.Remove(cercle);
-
+                    ae.Clear();
                 }
+                PointsGlobal.Clear();
                 cercles.Clear();
                 IntersectionPoints.Clear();
             }
@@ -401,9 +401,19 @@ namespace TopoGiraffe
                 if (courbeActuelle.Points.Count > 0)
                 {
                     courbeActuelle.Points.Remove(courbeActuelle.Points[courbeActuelle.Points.Count - 1]);
-                    foreach (Ellipse cercle in cercles)
+                    int index = polylines.IndexOf(courbeActuelle);
+                    List<ArtPoint> list = PointsGlobal[index];
+                   
+                    if (courbeActuelle.Points[0] == courbeActuelle.Points[courbeActuelle.Points.Count - 1] && list.Count > 2)
                     {
-                        mainCanvas.Children.Remove(cercle);
+                       
+                        mainCanvas.Children.Remove(list[0].cercle);
+                        list.Remove(list[0]);
+                    }
+                    else
+                    {
+                        mainCanvas.Children.Remove(list[list.Count - 1].cercle);
+                        list.Remove(list[list.Count - 1]);
 
                     }
                     cercles.Clear();
@@ -445,13 +455,13 @@ namespace TopoGiraffe
             }
         }
 
-        private void altitudeTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (altitudeTextBox.Text == "")
-            {
-                altitudeTextBox.Text = "Altitude";
-            }
-        }
+        //private void altitudeTextBox_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (altitudeTextBox.Text == "")
+        //    {
+        //        altitudeTextBox.Text = "Altitude";
+        //    }
+        //}
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -501,34 +511,22 @@ namespace TopoGiraffe
 
                             if (inter == true)
                             {
-                               
-                                new MssgBox("       Erreur de Dessin de la Courbe !\n veuillez dessiner votre segment à nouveau ").ShowDialog();
 
-                            }
+                            new MssgBox("       Erreur de Dessin de la Courbe !\n veuillez dessiner votre segment à nouveau ").ShowDialog();
 
                         }
+
+                    }
                         if (inter == false)
                         {
                             courbeActuelle.Points.Add(lastPoint);
                             Ellipse circle = new Ellipse();
                             ArtPoint artPoint = new ArtPoint(circle, lastPoint);
-
-
-
-                            circle.Width = 15;
-                            circle.Height = 15;
-                            circle.Fill = Brushes.Purple;
-
-                            (circle).MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
-                            (circle).MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
-                            (circle).MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
-                            
-                            Canvas.SetLeft(circle, lastPoint.X - (circle.Width / 2));
-                            Canvas.SetTop(circle, lastPoint.Y - (circle.Height / 2));
-
+                            PointsGlobal[indexPoints].Add(artPoint);
+                             DrawCtrlPoints(courbeActuelle);
                             mainCanvas.Children.Add(circle);
 
-                            PointsGlobal[indexPoints].Add(artPoint);
+                          
                         }
 
                     }
@@ -607,6 +605,7 @@ namespace TopoGiraffe
                 }
 
             }
+          
                 
 
         }
@@ -1114,13 +1113,7 @@ namespace TopoGiraffe
                     double left = ptElementStart.X + ptMouse.X - ptMouseStart.X;
                     double top = ptElementStart.Y + ptMouse.Y - ptMouseStart.Y;
 
-                    foreach (ArtPoint ell in DragPoints)
-                    {
-
-                        ell.cercle.Margin = new Thickness(left, top, 0, 0);// modify the margin to move the curve
-
-                    }
-
+                      
                     elDragging.Margin = new Thickness(left, top, 0, 0);// modify the margin to move the curve
                     if (mvCtrl)
                     {
@@ -1143,6 +1136,50 @@ namespace TopoGiraffe
                 }
             }
         }
+        
+
+        public void DrawCtrlPoints(Polyline polyline)
+        {
+            if (polyline == null) return;
+
+            int index = polylines.IndexOf(polyline);
+
+            foreach(ArtPoint Ctrl in PointsGlobal[index])
+            {
+
+                Ctrl.cercle.Width = 15;
+                Ctrl.cercle.Height = 15;
+                Ctrl.cercle.Fill = Brushes.Purple;
+                Ctrl.cercle.MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
+                Ctrl.cercle.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
+                Ctrl.cercle.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
+
+                Canvas.SetLeft(Ctrl.cercle,Ctrl.P.X - (Ctrl.cercle.Width / 2));
+                Canvas.SetTop(Ctrl.cercle, Ctrl.P.Y - (Ctrl.cercle.Height / 2));
+
+
+            }
+
+        }
+        public void RemoveCtrlPoints(Polyline polyline)
+        {
+            if (polyline == null) return;
+
+            int index = polylines.IndexOf(polyline);
+
+            foreach (ArtPoint Ctrl in PointsGlobal[index])
+            {
+
+                mainCanvas.Children.Remove(Ctrl.cercle);
+
+
+            }
+
+
+
+
+        }
+
         int indexAltitude = 0;
 
 

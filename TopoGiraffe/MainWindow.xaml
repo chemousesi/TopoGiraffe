@@ -6,6 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TopoGiraffe"
         xmlns:utils="clr-namespace:TopoGiraffe"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" >
@@ -15,10 +17,24 @@
 
     <Window.Resources>
         <Color x:Key="ToolsBar">#353635D6</Color>
+        <Style TargetType="FrameworkElement" x:Key="FadeAfterTenSeconds">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
-    <Window.Background>
+    <!--<Window.Background>
         <SolidColorBrush Opacity="0.8" Color="White"/>
-    </Window.Background>
+    </Window.Background>-->
 
 
 
@@ -52,7 +68,8 @@
 
 
 
-        <Grid Grid.Row="1" Background="#053047" Opacity=".84" >
+        <Grid Grid.Row="1"  Background="#C62828" Opacity=".84" >
+          
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                 <Button  x:Name="btn11" Width="90" Height="84" Background="#0000" BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" >
@@ -92,10 +109,14 @@
                 <Grid>
                     <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1"  />
 
-                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" >
+                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,1" >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
+                        <TextBlock Text="Welcome Message" 
+                   Style="{StaticResource FadeAfterTenSeconds}" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" />
 
                     </Canvas>
                 </Grid>
@@ -108,16 +129,18 @@
 
 
 
-            <Grid Grid.Column="2" Background="#C5C5C5">
+            <Grid Grid.Column="2" Background="#F5F5F5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="11*"/>
                     <RowDefinition Height="189*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Propriétés"/>
                 <StackPanel VerticalAlignment="Top" Height="388" Margin="0,25,0,0" Grid.Row="1" >
-                    <TextBox x:Name="altitudeTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" GotFocus="altitudeTextBox_GotFocus" Text="Altitude"  Opacity="1" UndoLimit="98" SelectionOpacity="1" LostFocus="altitudeTextBox_LostFocus" ></TextBox>
+                    <!--<TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}
+" DockPanel.Dock="Right" VerticalAlignment="Bottom" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80"
+                             VerticalContentAlignment="Center" HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" ></TextBox>-->
 
-
+                    <!--<Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "200" Value="0" Name="AltSlider" DockPanel.Dock="Bottom" VerticalAlignment="Center" Width="150" Style="{StaticResource Horizontal_Slider}" ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5"></Slider>-->
                     <TextBlock Text="Couleurs :" Margin="33,7,32.8,.5"></TextBlock>
 
                     <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
@@ -185,34 +208,35 @@
                 </Grid>
 
             </Grid>
-            <Grid Grid.Column="0" Background="#C5C5C5" Margin="0,0,25,0" >
+            <Grid Grid.Column="0" Background="#F5F5F5" Margin="0,0,25,0" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-1,0" >
-                    <Button  Name="nav" Width="38" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
-                        BorderThickness="0" Margin="0,0,0,20" Click="nav_Click" >
-                        <Image Source="/assets/img/navigation.png" Height="30" Width="30"  ></Image>
+
+                    <Button  x:Name="nav" Style="{StaticResource MaterialDesignRaisedDarkButton}"  Width="90" Height="60"  Background="{x:Null}" BorderBrush="Transparent"
+                        BorderThickness="0" Click="nav_Click"  >
+                        <Image Source="/assets/img/navigation.png" Height="30" Width="30"  />
                     </Button>
 
-                    <Button x:Name="dessinerButton" Width="44" Height="59"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="dessinerButton" Width="90" Height="60"  Background="#C5C5C5" BorderBrush="Transparent"
                            BorderThickness="0" Click="dessinerButton_Click"  >
                         <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
                     </Button>
-                    <Button x:Name="add_line" Width="76" Height="62"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="add_line" Width="90" Height="62"  Background="#C5C5C5" BorderBrush="Transparent"
                           BorderThickness="0" HorizontalAlignment="Center"  Margin="0,0,0,0"  IsDefault="True" Click="add_line_Click">
-                        <Image Source="/assets/img/line.png" Height="59" Width="61"  />
+                        <Image Source="/assets/img/line.png" Height="40" Width="50"  />
                     </Button>
 
 
-                    <Button x:Name="deleteAllButton" Width="45" Height="60"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="deleteAllButton" Width="90" Height="60"  Background="#C5C5C5" BorderBrush="Transparent"
                          BorderThickness="0" Click="deleteAllButton_Click" >
                         <Image Source="/assets/img/deleteAll.png" Height="36" Width="36"  />
                     </Button>
-                    <Button x:Name="deletePreviousButton" Width="47" Height="63"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="deletePreviousButton" Width="90" Height="63"  Background="#C5C5C5" BorderBrush="Transparent"
                                 BorderThickness="0" Click="deletePreviousButton_Click"   >
                         <Image Source="/assets/img/deletePrevious.png" Height="27" Width="34"  />
                     </Button>
-                    <Button  Name="btn1" Width="37" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
+                    <Button  x:Name="btn1" Width="60" Height="60"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Margin="0,0,0,20" >
-                        <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  ></Image>
+                        <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  />
                     </Button>
                     <Button  x:Name="scaleButton" Width="36" Height="48"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Click="scaleButton_Click" >
