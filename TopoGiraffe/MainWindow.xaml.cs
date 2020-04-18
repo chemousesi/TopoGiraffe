@@ -9,6 +9,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TopoGiraffe.Noyau;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TopoGiraffe
 {
@@ -17,9 +20,7 @@ namespace TopoGiraffe
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
-
+       
         // declaring variables
 
         List<Polyline> polylines = new List<Polyline>();
@@ -40,16 +41,59 @@ namespace TopoGiraffe
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
         int nbCourbes = 0;
 
+        //serialization
 
+        public void Serializee(List<IntersectionDetail> intersectionPoints)
+        {
+            Stream s = File.Open("test.dat", FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(s, intersectionPoints);
+            s.Close();
+        }
+
+        public List<IntersectionDetail> DeSerialize()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a ";
+            op.FileName = "Document"; // Default file name
+            op.DefaultExt = ".dat"; // Default file extension
+            op.Filter = "Text documents (.dat)|*.dat"; // Filter files by extension
+            if (op.ShowDialog() == true)
+            {
+                string fiName = op.FileName;
+
+            }
+                Stream s = File.Open(path: op.FileName, FileMode.Open);
+                BinaryFormatter bf = new BinaryFormatter();
+                List<IntersectionDetail> intersectionPoints = (List<IntersectionDetail>)bf.Deserialize(s);
+                s.Close();
+            
+
+            return intersectionPoints;
+        }
 
 
 
         public MainWindow()
         {
+
+           
+
+
+
+
             InitializeComponent();
             this.Title = "TopoGiraffe";
 
 
+
+
+            //Point pt = new Point(2, 3);
+            //IntersectionDetail intd = new IntersectionDetail(pt, true);
+            //this.Serializee(intd);
+
+            
+            
 
 
 
@@ -566,11 +610,13 @@ namespace TopoGiraffe
                 inter = intersectLines(myLine, line);
                 if (inter.intersect == true)
                 {
+                                  
                     IntersectionPoints.Add(inter);
                 }
 
 
             }
+            this.Serializee(IntersectionPoints);
 
 
         }
@@ -609,7 +655,7 @@ namespace TopoGiraffe
                 }
 
             }
-
+            
             return new IntersectionDetail(interscetionPoint, intersect);
 
         }
@@ -860,6 +906,7 @@ namespace TopoGiraffe
                 foreach (ArtPoint el in PointsGlobal[index2])
                 {
                     mainCanvas.Children.Remove(el.cercle);
+
                     mainCanvas.Children.Add(el.cercle);
 
                 }
@@ -911,6 +958,64 @@ namespace TopoGiraffe
         FrameworkElement elDragging, selectedPath;
         double minX, minY, maxX, maxY;
         int indexdrag = 0;
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            
+
+
+            List<IntersectionDetail> ints = new List<IntersectionDetail>();
+           // MessageBox.Show(IntersectionPoints.Count().ToString());
+       
+                ints = this.DeSerialize();
+               // MessageBox.Show(ints.Count().ToString());
+
+            this.Serializee(ints);
+
+            for (int i = 0; i < ints.Count; i++)
+            {
+                Polyline line = new Polyline();
+                line.FillRule = FillRule.EvenOdd;
+                List<Point> listofpo = new List<Point>();
+                // MessageBox.Show(ints[i].point.X.ToString());
+                Ellipse circle = new Ellipse();
+                circle.Width = 15;
+                circle.Height = 15;
+                circle.Fill = Brushes.YellowGreen;
+                Canvas.SetLeft(circle, ints[i].point.X - (circle.Width / 2));
+                Canvas.SetTop(circle, ints[i].point.Y - (circle.Height / 2));
+                Point ps = new Point(ints[i].point.X, ints[i].point.Y);
+
+                line.Points.Append(ps);
+                
+                mainCanvas.Children.Add(circle);
+
+
+            }
+            
+            line.StrokeThickness = 4;
+            line.Stroke = Brushes.Black;
+            line.Visibility = System.Windows.Visibility.Visible;
+            mainCanvas.Children.Remove(poly);
+
+            mainCanvas.Children.Add(line);
+
+
+
+
+
+
+        }
+        public static string fil;
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+           
+
+
+            
+        }
+
         List<ArtPoint> DragPoints;
         Thickness margin;
 
@@ -1053,5 +1158,9 @@ namespace TopoGiraffe
         public Rectangle Rect { get; set; }
         public string Name { get; set; }
     }
+
+
+
+    
 
 }

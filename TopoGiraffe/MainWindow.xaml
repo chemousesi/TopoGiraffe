@@ -11,7 +11,7 @@
         Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" >
 
 
- 
+
 
     <Window.Resources>
         <Color x:Key="ToolsBar">#353635D6</Color>
@@ -52,7 +52,13 @@
 
 
 
-        <Grid Grid.Row="1" Background="#053047" Opacity=".84" >
+        <Grid Grid.Row="1" Opacity=".84" Width="1501" >
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox" SpreadMethod="Pad">
+                    <GradientStop Color="#FFC8238E" Offset="0.147"/>
+                    <GradientStop Color="#FF1D3BBC" Offset="0.853"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                 <Button  x:Name="btn11" Width="90" Height="84" Background="#0000" BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" >
@@ -108,7 +114,7 @@
 
 
 
-            <Grid Grid.Column="2" Background="#C5C5C5">
+            <Grid Grid.Column="2" Background="#C5C5C5" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="11*"/>
                     <RowDefinition Height="189*"/>
@@ -119,7 +125,7 @@
 
 
                     <TextBlock Text="Couleurs :" Margin="33,7,32.8,.5"></TextBlock>
-                    
+
                     <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -133,7 +139,7 @@
 
 
                     </ComboBox>
-                   
+
                     <TextBlock Text="Type de courbe" Margin="33,7,32.8,.5"></TextBlock>
 
                     <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
@@ -152,6 +158,9 @@
 
 
                 </ToolBar>
+                <Button Content="import" HorizontalAlignment="Left" Margin="36,258,0,0" Grid.Row="1" VerticalAlignment="Top" Height="59" Width="77" Click="Button_Click" />
+                <Button Content="Button" HorizontalAlignment="Left" Margin="79,357,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_1"/>
+                <!-- Export button -->
             </Grid>
 
 
