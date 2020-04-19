@@ -274,13 +274,6 @@ namespace TopoGiraffe
                     courbeActuelle.Points.Add(mousePos);
 
                 }
-<<<<<<< HEAD
-
-                polylines.Add(courbeActuelle);
-
-            }
-
-=======
            
                     polylines.Add(courbeActuelle);
                 
@@ -288,7 +281,6 @@ namespace TopoGiraffe
                
             
            
->>>>>>> f04ad0e486fa36df1fd98a18fd9571142b77a19d
 
         }
         private void MouseMoveOnAddLine(object sender, MouseEventArgs e)
