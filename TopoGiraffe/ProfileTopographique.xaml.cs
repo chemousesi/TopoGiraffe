@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TopoGiraffe.Noyau;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -25,26 +26,40 @@ namespace TopoGiraffe
     {
         List<IntersectionDetail> IntersectionPoints;
         List<double> distancesListe;
+        Echelle mainScale;
         
-        public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList)
+        public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList, Echelle mainScale)
         {
             this.IntersectionPoints = aIntersectionPoints;
             this.distancesListe = adistancesList;
+            this.mainScale = mainScale;
 
             InitializeComponent();
             int compteur;
 
-            MyValues = new ChartValues<ObservableValue>
+            MyValues = new ChartValues<ObservableValue>();
+
+
+         foreach (IntersectionDetail IntersectionPoint in IntersectionPoints)
             {
-                new ObservableValue(this.IntersectionPoints[1].point.Y),
-                new ObservableValue(this.IntersectionPoints[2].point.Y),
-                new ObservableValue(this.IntersectionPoints[3].point.Y),
-                new ObservableValue(this.IntersectionPoints[4].point.Y),
-                new ObservableValue(this.IntersectionPoints[2].point.Y),
-                new ObservableValue(this.IntersectionPoints[1].point.Y),
 
 
-            };
+                MyValues.Add(new ObservableValue(IntersectionPoint.altitude));
+                    
+                
+            }
+                /*new ObservableValue(this.IntersectionPoints[0].altitude),
+                new ObservableValue(this.IntersectionPoints[1].altitude),
+                new ObservableValue(this.IntersectionPoints[2].altitude),
+                 new ObservableValue(this.IntersectionPoints[3].altitude),
+                  new ObservableValue(this.IntersectionPoints[4].altitude),
+                   new ObservableValue(this.IntersectionPoints[5].altitude),*/
+
+
+
+
+
+            
 
             for (compteur = 0; compteur < 1; compteur++)
             {

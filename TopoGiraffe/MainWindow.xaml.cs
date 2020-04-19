@@ -89,7 +89,7 @@ namespace TopoGiraffe
 
 
 
-
+            
 
         }
 
@@ -642,7 +642,9 @@ namespace TopoGiraffe
                 myLine.X1 = p.Points[i].X; myLine.Y1 = p.Points[i].Y;
                 myLine.X2 = p.Points[i + 1].X; myLine.Y2 = p.Points[i + 1].Y;
                 inter = intersectLines(myLine, line);
-                
+                int index = polylines.IndexOf(p);
+                inter.altitude = Altitudes[index];
+
                 if (inter.intersect == true)
                 {
                     IntersectionPoints.Add(inter);
@@ -651,7 +653,7 @@ namespace TopoGiraffe
 
             }
 
-
+            distances();
         }
         public bool FindIntersection1(Polyline p, Line line)
         {
@@ -664,8 +666,7 @@ namespace TopoGiraffe
                 myLine.X1 = p.Points[i].X; myLine.Y1 = p.Points[i].Y;
                 myLine.X2 = p.Points[i + 1].X; myLine.Y2 = p.Points[i + 1].Y;
                 inter = intersectLines(myLine, line);
-                int index = polylines.IndexOf(p);
-                inter.altitude = Altitudes[index];
+                
                 if (inter.intersect == true && ((Math.Max(myLine.X1, myLine.X2) > inter.point.X) && (inter.point.X > Math.Min(myLine.X1, myLine.X2))
                 && (Math.Max(myLine.Y1, myLine.Y2) > inter.point.Y) && (inter.point.Y > Math.Min(myLine.Y1, myLine.Y2))
                 && (Math.Max(line.X1, line.X2) > inter.point.X) && (inter.point.X > Math.Min(line.X1, line.X2))
@@ -725,18 +726,22 @@ namespace TopoGiraffe
         public void distances()
         {
            
-            for (int i=0; i<= IntersectionPoints.Count; i++)
+            foreach (IntersectionDetail intersectionDetail in IntersectionPoints)
             {
-                double x1 = IntersectionPoints[i].point.X;
-                double x2 = IntersectionPoints[i + 1].point.X;
-                double y1 = IntersectionPoints[i].point.Y;
-                double y2 = IntersectionPoints[i + 1].point.Y;
+                double x1 = line.X1;//IntersectionPoints[1].point.X;
+                double x2 = intersectionDetail.point.X;
+                double y1 = line.Y1;//IntersectionPoints[1].point.Y;
+                double y2 = intersectionDetail.point.Y;
                 double distance = Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2);
-                distancesListe.Add(distance);
-
+                //distancesListe.Add(distance);
+                intersectionDetail.distance = distance;
             }
+            //IntersectionPoints.Sort();
+            IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
+
         }
-       
+
+        
         
         public Equation GetSegmentEquation(Point a, Point b)
         {
@@ -1039,7 +1044,7 @@ namespace TopoGiraffe
 
         private void btn13_Click(object sender, RoutedEventArgs e)
         {
-            ProfileTopographique profile = new ProfileTopographique(IntersectionPoints,distancesListe);
+            ProfileTopographique profile = new ProfileTopographique(IntersectionPoints,distancesListe,mainScale);
             profile.Show();
             if (profile.DialogResult == true)
             {
@@ -1237,6 +1242,7 @@ namespace TopoGiraffe
         //{
         //    this.NavigationService.Navigate(new MenuPage(im, canvas));
         //}
+       
 
         public void OpenInitialDialogBox()
         {
