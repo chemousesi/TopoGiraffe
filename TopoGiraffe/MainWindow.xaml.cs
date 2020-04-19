@@ -43,15 +43,15 @@ namespace TopoGiraffe
 
         //serialization
 
-        public void Serializee(List<IntersectionDetail> intersectionPoints)
+       public void Serializee(SerializedItem objet)
         {
             Stream s = File.Open("test.dat", FileMode.Create);
             BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(s, intersectionPoints);
+            bf.Serialize(s, objet);
             s.Close();
         }
 
-        public List<IntersectionDetail> DeSerialize()
+        public SerializedItem DeSerialize()
         {
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a ";
@@ -65,11 +65,11 @@ namespace TopoGiraffe
             }
                 Stream s = File.Open(path: op.FileName, FileMode.Open);
                 BinaryFormatter bf = new BinaryFormatter();
-                List<IntersectionDetail> intersectionPoints = (List<IntersectionDetail>)bf.Deserialize(s);
+                SerializedItem objet = (SerializedItem)bf.Deserialize(s);
                 s.Close();
             
 
-            return intersectionPoints;
+            return objet;
         }
 
 
@@ -616,7 +616,12 @@ namespace TopoGiraffe
 
 
             }
-            this.Serializee(IntersectionPoints);
+            //deleted for improvement
+            List<Polyline> curve = polylines;
+            Line segmentIntr = line;
+            List<List<ArtPoint>> listOfPoints = PointsGlobal;
+            SerializedItem itm = new SerializedItem(listOfPoints, segmentIntr, curve);
+            this.Serializee(itm);
 
 
         }
@@ -962,51 +967,61 @@ namespace TopoGiraffe
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            
+
+            List<Polyline> curve = polylines;
+            Line segmentIntr = line;
+            List<List<ArtPoint>> listOfPoints = new List<List<ArtPoint>>();
 
 
-            List<IntersectionDetail> ints = new List<IntersectionDetail>();
-           // MessageBox.Show(IntersectionPoints.Count().ToString());
-       
-                ints = this.DeSerialize();
-               // MessageBox.Show(ints.Count().ToString());
 
-            this.Serializee(ints);
+            SerializedItem itm2 = new SerializedItem(listOfPoints, segmentIntr, curve);
+            // MessageBox.Show(IntersectionPoints.Count().ToString());
 
-            for (int i = 0; i < ints.Count; i++)
+            itm2 = this.DeSerialize();
+            // MessageBox.Show(ints.Count().ToString());
+
+           // this.Serializee(itm2);
+
+
+            Polyline li = new Polyline();
+            li.FillRule = FillRule.EvenOdd;
+            List<Point> listofpo = new List<Point>();
+            // MessageBox.Show(ints[i].point.X.ToString());
+            Ellipse circle = new Ellipse();
+            circle.Width = 15;
+            circle.Height = 15;
+            circle.Fill = Brushes.YellowGreen;
+            for (int i = 0; i < itm2.listOfPoints.Count();i++)
             {
-                Polyline line = new Polyline();
-                line.FillRule = FillRule.EvenOdd;
-                List<Point> listofpo = new List<Point>();
-                // MessageBox.Show(ints[i].point.X.ToString());
-                Ellipse circle = new Ellipse();
-                circle.Width = 15;
-                circle.Height = 15;
-                circle.Fill = Brushes.YellowGreen;
-                Canvas.SetLeft(circle, ints[i].point.X - (circle.Width / 2));
-                Canvas.SetTop(circle, ints[i].point.Y - (circle.Height / 2));
-                Point ps = new Point(ints[i].point.X, ints[i].point.Y);
-
-                line.Points.Append(ps);
-                
-                mainCanvas.Children.Add(circle);
-
-
+                MessageBox.Show(itm2.listOfPoints.Count().ToString());
+                for (int j = 0; j < itm2.listOfPoints[i].Count(); j++)
+                {
+                    Canvas.SetLeft(circle, itm2.listOfPoints[i][j].P.X - (circle.Width / 2));
+                    Canvas.SetTop(circle, itm2.listOfPoints[i][j].P.Y - (circle.Height / 2));
+                    Point ps = new Point(itm2.listOfPoints[i][j].P.X, itm2.listOfPoints[i][j].P.Y);
+                    mainCanvas.Children.Add(circle);
+                }
             }
-            
-            line.StrokeThickness = 4;
-            line.Stroke = Brushes.Black;
-            line.Visibility = System.Windows.Visibility.Visible;
-            mainCanvas.Children.Remove(poly);
-
-            mainCanvas.Children.Add(line);
 
 
-
-
+            //mainCanvas.Children.Add(circle);
 
 
         }
+
+        //li.StrokeThickness = 4;
+        //    li.Stroke = Brushes.Black;
+        //    li.Visibility = System.Windows.Visibility.Visible;
+        //    mainCanvas.Children.Remove(poly);
+
+        //    mainCanvas.Children.Add(line);
+
+
+
+
+
+
+        //}
         public static string fil;
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
