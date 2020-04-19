@@ -12,17 +12,15 @@ namespace TopoGiraffe
     public class SerializedItem : ISerializable
     {
         //a modifier l'encapsulation
-        public List<List<ArtPoint>> listOfPoints = new List<List<ArtPoint>>();
-        public Line segmentIntr = new Line();
-        public List<Polyline> courbe = new List<Polyline>();
+        public List<List<IntersectionDetail>> listOfPoints = new List<List<IntersectionDetail>>();
+       
 
         
 
-        public SerializedItem( List<List<ArtPoint>> listOfPoints , Line segmentIntr , List <Polyline> courbe)
+        public SerializedItem( List<List<IntersectionDetail>> listOfPoints)
         {
             this.listOfPoints = listOfPoints;
-            this.segmentIntr = segmentIntr;
-            this.courbe = courbe;
+           
 
         }
 
@@ -30,13 +28,12 @@ namespace TopoGiraffe
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("listOfPoints", listOfPoints);
-           // info.AddValue("segmentIntr", segmentIntr);
-           // info.AddValue("courbe", courbe);
+           
         }
 
         protected SerializedItem(SerializationInfo serializationInfo, StreamingContext streamingContext)
         {
-            listOfPoints = (List<List<ArtPoint>>)serializationInfo.GetValue("listOfPoints", typeof(List<List<ArtPoint>>));
+            listOfPoints = (List<List<IntersectionDetail>>)serializationInfo.GetValue("listOfPoints", typeof(List<List<IntersectionDetail>>));
            // segmentIntr = (Line)serializationInfo.GetValue("segmentIntr", typeof(Line));
            // courbe = (List<Polyline>)serializationInfo.GetValue("courbe", typeof(List<Polyline>));
 

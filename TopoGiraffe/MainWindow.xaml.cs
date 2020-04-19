@@ -20,7 +20,10 @@ namespace TopoGiraffe
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+        //Liste de courbes representer en liste e liste de points (intersections detail)
+        List<List<IntersectionDetail>> curves = new List<List<IntersectionDetail>>();
+
+
         // declaring variables
 
         List<Polyline> polylines = new List<Polyline>();
@@ -43,7 +46,7 @@ namespace TopoGiraffe
 
         //serialization
 
-       public void Serializee(SerializedItem objet)
+       public void Serializee(List<List <SerializedItem>> objet)
         {
             Stream s = File.Open("test.dat", FileMode.Create);
             BinaryFormatter bf = new BinaryFormatter();
@@ -51,7 +54,7 @@ namespace TopoGiraffe
             s.Close();
         }
 
-        public SerializedItem DeSerialize()
+        public List<List<SerializedItem>> DeSerialize()
         {
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a ";
@@ -65,7 +68,7 @@ namespace TopoGiraffe
             }
                 Stream s = File.Open(path: op.FileName, FileMode.Open);
                 BinaryFormatter bf = new BinaryFormatter();
-                SerializedItem objet = (SerializedItem)bf.Deserialize(s);
+                List<List<SerializedItem>> objet = (List<List<SerializedItem>>)bf.Deserialize(s);
                 s.Close();
             
 
@@ -620,7 +623,7 @@ namespace TopoGiraffe
             List<Polyline> curve = polylines;
             Line segmentIntr = line;
             List<List<ArtPoint>> listOfPoints = PointsGlobal;
-            SerializedItem itm = new SerializedItem(listOfPoints, segmentIntr, curve);
+            SerializedItem itm = new SerializedItem(listOfPoints);
             this.Serializee(itm);
 
 
@@ -942,6 +945,10 @@ namespace TopoGiraffe
             {
                 finalCtrlPoint = true;
                 btn2Clicked = false;
+                //curve is a list of points
+                List<IntersectionDetail> curve = new List<IntersectionDetail>();
+                for(int k=0;k<courbeActuelle.Points.Count();k++) { curve[k].point = courbeActuelle.Points[k]; curve[k].intersect = false; }
+                curves.Add(curve);
             }
             Ellipse elli = (Ellipse)elDraggingEllipse;
             elli.Fill = Brushes.Orange;
@@ -970,11 +977,11 @@ namespace TopoGiraffe
 
             List<Polyline> curve = polylines;
             Line segmentIntr = line;
-            List<List<ArtPoint>> listOfPoints = new List<List<ArtPoint>>();
+            List<List<IntersectionDetail>> listOfPoints = new List<List<IntersectionDetail>>();
 
 
 
-            SerializedItem itm2 = new SerializedItem(listOfPoints, segmentIntr, curve);
+            SerializedItem itm2 = new SerializedItem(listOfPoints);
             // MessageBox.Show(IntersectionPoints.Count().ToString());
 
             itm2 = this.DeSerialize();
