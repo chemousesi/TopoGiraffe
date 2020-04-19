@@ -3,10 +3,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:xctk="http://schemas/xceed.com/wpf/xaml/toolkit"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TopoGiraffe"
         xmlns:utils="clr-namespace:TopoGiraffe"
-
+        xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" >
 
@@ -136,11 +137,13 @@
 
                     <TextBlock Text="Type de courbe" Margin="33,7,32.8,.5"></TextBlock>
 
-                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
+                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" >
                         <ComboBoxItem >Courbe simple</ComboBoxItem>
                         <ComboBoxItem >Courbe intermediare</ComboBoxItem>
                         <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
                     </ComboBox>
+                    <TextBlock Text="Color Picker" Margin="33,7,32.8,.5"></TextBlock>
+                    <xctk1:ColorPicker Name="cp"  Margin="33,7,32.8,.5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" ></xctk1:ColorPicker>
 
                 </StackPanel>
 

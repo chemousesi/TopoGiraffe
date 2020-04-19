@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace TopoGiraffe
@@ -24,7 +16,7 @@ namespace TopoGiraffe
 
     public partial class Window1 : Window
     {
-       
+
         //colors related 
         class RectangleName
         {
@@ -38,12 +30,13 @@ namespace TopoGiraffe
         {
             InitializeComponent();
 
-           // this here is for the colors
+            // this here is for the colors
 
-           var values = typeof(Brushes).GetProperties().
-               Select(p => new { Name = p.Name, Brush = p.GetValue(null) as Brush }).
-               ToArray();
+            var values = typeof(Brushes).GetProperties().
+                Select(p => new { Name = p.Name, Brush = p.GetValue(null) as Brush }).
+                ToArray();
             var brushNames = values.Select(v => v.Name);
+            
 
 
 
@@ -58,18 +51,18 @@ namespace TopoGiraffe
 
             colorComboBox.ItemsSource = rectangleNames;
             colorComboBox.SelectedIndex = 7;
-          //  colors end here
+            //  colors end here
 
-            
+            styleCourbeCmbInDialogBox.SelectedIndex = 0;
 
 
         }
-        
+
 
         //buttons behaviour
         void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             DialogResult = true;
         }
 
@@ -99,12 +92,17 @@ namespace TopoGiraffe
         }
 
         //binding  type combobox
-        string typ ;
-        private void Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            typ = Type.SelectedValue.ToString();
-            
-        }
+
+
+
+        // string typ ;
+
+        //private void Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    typ = Type.SelectedValue.ToString();
+        //    MessageBox.Show(typ);
+
+        //}
 
         //binding Altitude
         string alti;
@@ -114,14 +112,14 @@ namespace TopoGiraffe
         }
         //number textbox control
 
-        
+
 
 
 
 
     }
 
-    
+
 
 
 
