@@ -39,7 +39,7 @@ namespace TopoGiraffe.Noyau
 
         //overriding the previous method
 
-        public double FindDistanceOnField(double aDistanceOnCanvas)
+        public double FindDistanceOnField(double aDistanceOnCanvas)//pixels
         // takes a distance from the canvas (distance btw two points) and returns distance in meters
         {
             return (aDistanceOnCanvas * scaleDistanceOnField) / scaleDistanceOnCanvas;

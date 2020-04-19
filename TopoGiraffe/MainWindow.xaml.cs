@@ -348,7 +348,7 @@ namespace TopoGiraffe
 
 
 
-
+            
 
 
 
@@ -1110,6 +1110,37 @@ namespace TopoGiraffe
             test = true;
         }
 
+        SolidColorBrush chosenBrush;
+        long colorVal;
+            private void cp_SelectedColorChanged_1(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+            {
+                if (cp.SelectedColor.HasValue)
+                {
+                    Color C = cp.SelectedColor.Value;
+                    byte Red = C.R;
+                    byte Green = C.G;
+                    byte Blue = C.B;
+                    colorVal = Convert.ToInt64(Blue * (Math.Pow(256, 0)) + Green * (Math.Pow(256, 1)) + Red * (Math.Pow(256, 2)));
+                    chosenBrush = new SolidColorBrush(Color.FromRgb(Red, Green, Blue));
+                    // update courbe actulle 
+                    if (courbeActuelle != null)
+                {
+                    courbeActuelle.Stroke = chosenBrush;
+                }
+                else
+                {
+                    MessageBox.Show("Créer votre courbe d'abord");
+                }
+
+            }
+
+            }
+
+
+
+
+        
+
         void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {//path dragging
             if ((elDragging) == null) return;
@@ -1233,10 +1264,6 @@ namespace TopoGiraffe
         }
 
 
-
-
-
-
         Polyline scalePolyline;
 
         int scaleLinePointsCount = 0;
@@ -1267,18 +1294,11 @@ namespace TopoGiraffe
 
         }
 
-
-
-
-
-
     }
     class RectangleName
     {
         public Rectangle Rect { get; set; }
         public string Name { get; set; }
     }
-
-
 
 }

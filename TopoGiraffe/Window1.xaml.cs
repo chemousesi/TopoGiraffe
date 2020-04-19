@@ -36,6 +36,7 @@ namespace TopoGiraffe
                 Select(p => new { Name = p.Name, Brush = p.GetValue(null) as Brush }).
                 ToArray();
             var brushNames = values.Select(v => v.Name);
+            
 
 
 
