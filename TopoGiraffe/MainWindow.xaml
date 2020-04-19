@@ -17,20 +17,7 @@
 
     <Window.Resources>
         <Color x:Key="ToolsBar">#353635D6</Color>
-        <Style TargetType="FrameworkElement" x:Key="FadeAfterTenSeconds">
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1"/>
-                                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="0" />
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>
+
     </Window.Resources>
     <!--<Window.Background>
         <SolidColorBrush Opacity="0.8" Color="White"/>
@@ -69,7 +56,7 @@
 
 
         <Grid Grid.Row="1"  Background="#C62828" Opacity=".84" >
-          
+
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                 <Button  x:Name="btn11" Width="90" Height="84" Background="#0000" BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" >
@@ -113,10 +100,6 @@
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
-                        <TextBlock Text="Welcome Message" 
-                   Style="{StaticResource FadeAfterTenSeconds}" 
-                   VerticalAlignment="Center" 
-                   HorizontalAlignment="Center" />
 
                     </Canvas>
                 </Grid>
@@ -131,13 +114,14 @@
 
             <Grid Grid.Column="2" Background="#F5F5F5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="11*"/>
-                    <RowDefinition Height="189*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="150" />
                 </Grid.RowDefinitions>
-                <TextBlock Text="Propriétés"/>
-                <StackPanel VerticalAlignment="Top" Height="388" Margin="0,25,0,0" Grid.Row="1" >
+                <StackPanel VerticalAlignment="Top" Height="190" Margin="0,25,0,0" Grid.Row="1" >
                     <TextBlock Text="Couleurs :" Margin="33,7,32.8,.5"></TextBlock>
-                    <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
+                    <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,33" Height="26" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -151,7 +135,7 @@
 
                     </ComboBox>
 
-                    <TextBlock Text="Type de courbe" Margin="33,7,32.8,.5"></TextBlock>
+                    <TextBlock Text="Type de courbe" Margin="33,36,32.8,0.5"></TextBlock>
 
                     <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
                         <ComboBoxItem >Courbe simple</ComboBoxItem>
@@ -159,27 +143,22 @@
                         <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
                     </ComboBox>
 
-                    <Label Margin="10 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude
-                    </Label>
-                    <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Bottom" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ></TextBox>
-
-                    <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "200" Value="0" Name="AltSlider" VerticalAlignment="Center" Width="150"  ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5"></Slider>
-                   
 
                 </StackPanel>
+                <DockPanel Grid.Row="3">
+                    <DockPanel DockPanel.Dock="Top" Height="80">
+                        <Label Margin="10 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude</Label>
+                        <WrapPanel Width="334" VerticalAlignment="Center" >
+                            <Button x:Name="ZoomIn" Content="+" HorizontalAlignment="Left"  Width="45" Height="40" Margin="67,0,42,0"   FontSize="22"  Opacity="0.5" Click="ZoomIn_Click"/>
+                            <Button x:Name="ZoomOut" Content="-" Width="45" Height="40" Margin="17,0,15,0"  HorizontalAlignment="Center" FontSize="22" Opacity="0.48" Click="ZoomOut_Click"/>
+                            <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" ></TextBox>
 
-                <ToolBar HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="44" Margin="0,476,0,0" Grid.Row="1"  Width="337" RenderTransformOrigin="0.494,0.618">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                       
-                        <TextBlock Text="Nombre de courbe: "/>
-                        <TextBox x:Name="nbrCourbes" Text="{Binding NbCourbes, Mode=TwoWay , XPath=Value , UpdateSourceTrigger=PropertyChanged}"/>
+                        </WrapPanel>
 
-                    </StackPanel>
+                    </DockPanel>
+                    <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider" Width="150"  ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" d:IsHidden="True"/>
+                </DockPanel>
 
-
-                </ToolBar>
-                <Label x:Name="AltitudeLabel" Content=" --" HorizontalAlignment="Left" Margin="137,299,0,0" Grid.Row="1" VerticalAlignment="Top" Width="107" FontFamily="HelveticaNeue" FontSize="20" Foreground="#FFE21111"/>
-                <Label Content="Altitude : " HorizontalAlignment="Left" Margin="23,298,0,0" Grid.Row="1" VerticalAlignment="Top" Width="117" FontFamily="Gotham Medium" FontSize="22" FontStyle="Normal" />
             </Grid>
 
 

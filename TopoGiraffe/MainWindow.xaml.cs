@@ -1039,8 +1039,7 @@ namespace TopoGiraffe
                         }
                     }
                     int i = polylines.IndexOf((Polyline) selectedPolyline);
-                    AltitudeLabel.Visibility = Visibility.Visible;
-                    AltitudeLabel.Content = Altitudes[i];
+                   
                 }
                 else return;
 
@@ -1207,7 +1206,6 @@ namespace TopoGiraffe
 
         }
 
-       
 
         public void OpenCourbeinfo()
         {
@@ -1231,6 +1229,7 @@ namespace TopoGiraffe
 
         Polyline scalePolyline;
 
+     
         int scaleLinePointsCount = 0;
         private void scaleButton_Click(object sender, RoutedEventArgs e)
         {
@@ -1273,6 +1272,30 @@ namespace TopoGiraffe
             changeSelectedCurveAltitude((float)AltSlider.Value);
         }
 
+        private void ZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            if (courbeActuelle == null)
+            {
+                return;
+            }
+            AltSlider.Value += 50;
+            changeSelectedCurveAltitude((float)AltSlider.Value);
+            AltSlider.Minimum = 0;
+            //Color color = Color.AliceBlue;
+            //Console.Write(color.);
+        }
+        private void ZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (courbeActuelle == null)
+            {
+                return;
+            }
+            AltSlider.Value -= 50;
+            changeSelectedCurveAltitude((float)AltSlider.Value);
+        }
+
+
         private void changeSelectedCurveAltitude(float altit)
         {//the real change
             if (courbeActuelle == null)
@@ -1285,8 +1308,26 @@ namespace TopoGiraffe
             (courbeActuelle).Stroke = new SolidColorBrush(altitudeToColor(altit));
              
         }
+        private void keyDownOnAltitude(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                try
+                {
+                    float altit = int.Parse(AltitudeBox.Text);
+                    changeSelectedCurveAltitude(altit);
+                }
+                catch (System.FormatException)
+                {
+                    (new MssgBox("Enter a numeric value to the altitude !")).ShowDialog();
+                }
+                catch (System.NullReferenceException)
+                {
+                }
+            }
+        }
 
-        public static Color altitudeToColor(float altit)
+            public static Color altitudeToColor(float altit)
         {//implemeting the predefined altitude levels
             if (altit <= 0) return Colors.Black;
             if (altit < 50) return Colors.Cyan;
