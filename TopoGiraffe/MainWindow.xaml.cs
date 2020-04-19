@@ -746,27 +746,31 @@ namespace TopoGiraffe
 
         public Polyline StyleCmbToRealStyle(Polyline pol, int index)
         {
-            switch (index)
+            if (pol != null)
             {
-                case 0: //courbe simple
-                    pol.StrokeThickness = 2;
-                    pol.StrokeDashArray = null;
+                switch (index)
+                {
+                    case 0: //courbe simple
+                        pol.StrokeThickness = 2;
+                        pol.StrokeDashArray = null;
 
-                    break;
-                case 1:// courbe intermediaire
-                    pol.StrokeThickness = 2;
-                    pol.StrokeDashArray.Add(1);
-                    pol.StrokeDashArray.Add(3);
-                    pol.StrokeDashArray.Add(1);
-                    break;
-                case 2:// courbe maitresse
-                    pol.StrokeThickness = 3.5;
-                    pol.StrokeDashArray = null;
+                        break;
+                    case 1:// courbe intermediaire
+                        pol.StrokeThickness = 2;
+                        pol.StrokeDashArray.Add(1);
+                        pol.StrokeDashArray.Add(3);
+                        pol.StrokeDashArray.Add(1);
+                        break;
+                    case 2:// courbe maitresse
+                        pol.StrokeThickness = 3.5;
+                        pol.StrokeDashArray = null;
 
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
 
+                }
+                
             }
             return pol;
 
@@ -1136,10 +1140,10 @@ namespace TopoGiraffe
 
             }
 
-
-
-
-        
+        private void styleCourbeCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            courbeActuelle = StyleCmbToRealStyle(courbeActuelle, styleCourbeCmb.SelectedIndex);
+        }
 
         void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {//path dragging

@@ -137,7 +137,7 @@
 
                     <TextBlock Text="Type de courbe" Margin="33,7,32.8,.5"></TextBlock>
 
-                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
+                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" >
                         <ComboBoxItem >Courbe simple</ComboBoxItem>
                         <ComboBoxItem >Courbe intermediare</ComboBoxItem>
                         <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
