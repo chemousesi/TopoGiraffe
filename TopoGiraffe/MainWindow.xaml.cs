@@ -933,10 +933,11 @@ namespace TopoGiraffe
 
                 Mouse.Capture((elDraggingEllipse));
             }
-            if (btn2Clicked == true) // clicking on an ellipse while drawing
+            if (btn2Clicked == true) // clicking on an ellipse while drawing // here should be serializing of a curves polylibe
             {
                 finalCtrlPoint = true;
                 btn2Clicked = false;
+                
             }
             Ellipse elli = (Ellipse)elDraggingEllipse;
             elli.Fill = Brushes.Orange;
@@ -966,17 +967,21 @@ namespace TopoGiraffe
 
 
             List<IntersectionDetail> ints = new List<IntersectionDetail>();
-           // MessageBox.Show(IntersectionPoints.Count().ToString());
+           // List<List<IntersectionDetail>> curves = new List<List<IntersectionDetail>>();
+
+           
        
                 ints = this.DeSerialize();
-               // MessageBox.Show(ints.Count().ToString());
-
+            // MessageBox.Show(ints.Count().ToString());
+            Polyline pline = new Polyline();
+            //pline.FillRule = FillRule.EvenOdd;
+            //pline.SnapsToDevicePixels = true;
+            //pline.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             this.Serializee(ints);
 
             for (int i = 0; i < ints.Count; i++)
             {
-                Polyline line = new Polyline();
-                line.FillRule = FillRule.EvenOdd;
+                
                 List<Point> listofpo = new List<Point>();
                 // MessageBox.Show(ints[i].point.X.ToString());
                 Ellipse circle = new Ellipse();
@@ -987,19 +992,19 @@ namespace TopoGiraffe
                 Canvas.SetTop(circle, ints[i].point.Y - (circle.Height / 2));
                 Point ps = new Point(ints[i].point.X, ints[i].point.Y);
 
-                line.Points.Append(ps);
+                pline.Points.Add(ps);
                 
                 mainCanvas.Children.Add(circle);
 
 
             }
             
-            line.StrokeThickness = 4;
-            line.Stroke = Brushes.Black;
-            line.Visibility = System.Windows.Visibility.Visible;
+            pline.StrokeThickness = 4;
+            pline.Stroke = Brushes.Black;
+            pline.Visibility = System.Windows.Visibility.Visible;
             mainCanvas.Children.Remove(poly);
 
-            mainCanvas.Children.Add(line);
+            mainCanvas.Children.Add(pline);
 
 
 
