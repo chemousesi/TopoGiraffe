@@ -986,18 +986,19 @@ namespace TopoGiraffe
             itm2 = this.DeSerialize();
             // MessageBox.Show(ints.Count().ToString());
 
-           // this.Serializee(itm2);
-
+            // this.Serializee(itm2);
 
             
+
             // MessageBox.Show(ints[i].point.X.ToString());
 
             for (int i = 0; i < itm2.Count();i++)
             {
+                Polyline li = new Polyline();
                 //MessageBox.Show("why bzf" + itm2.Count().ToString());
                 for (int j = 0; j < itm2[i].Count(); j++)
                 {
-                    Polyline li = new Polyline();
+                   
                     li.FillRule = FillRule.EvenOdd;
                     li.StrokeThickness = 4;
                     li.Stroke = Brushes.Black;
@@ -1011,9 +1012,14 @@ namespace TopoGiraffe
                     Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
                     mainCanvas.Children.Add(circle);
                     li.Points.Add(ps);
-                    mainCanvas.Children.Add(li);
+                    
                 }
-                mainCanvas.Children.Remove(poly);
+                li.FillRule = FillRule.EvenOdd;
+                
+                li.StrokeThickness = 4;
+                li.Stroke = Brushes.Black;
+                li.Visibility = System.Windows.Visibility.Visible;
+                mainCanvas.Children.Add(li);
             }
 
 
