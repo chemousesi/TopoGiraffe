@@ -273,10 +273,12 @@ namespace TopoGiraffe
                     courbeActuelle.Points.Add(mousePos);
 
                 }
-               
+           
                     polylines.Add(courbeActuelle);
                 
             }
+               
+            
            
 
         }
@@ -302,7 +304,7 @@ namespace TopoGiraffe
 
 
 
-            polylines.Add(courbeActuelle);
+           // polylines.Add(courbeActuelle);
 
         }
 
@@ -631,6 +633,7 @@ namespace TopoGiraffe
                 myLine.X1 = p.Points[i].X; myLine.Y1 = p.Points[i].Y;
                 myLine.X2 = p.Points[i + 1].X; myLine.Y2 = p.Points[i + 1].Y;
                 inter = intersectLines(myLine, line);
+                
                 if (inter.intersect == true)
                 {
                     IntersectionPoints.Add(inter);
