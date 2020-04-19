@@ -652,6 +652,8 @@ namespace TopoGiraffe
                 myLine.X1 = p.Points[i].X; myLine.Y1 = p.Points[i].Y;
                 myLine.X2 = p.Points[i + 1].X; myLine.Y2 = p.Points[i + 1].Y;
                 inter = intersectLines(myLine, line);
+                int index = polylines.IndexOf(p);
+                inter.altitude = Altitudes[index];
                 if (inter.intersect == true && ((Math.Max(myLine.X1, myLine.X2) > inter.point.X) && (inter.point.X > Math.Min(myLine.X1, myLine.X2))
                 && (Math.Max(myLine.Y1, myLine.Y2) > inter.point.Y) && (inter.point.Y > Math.Min(myLine.Y1, myLine.Y2))
                 && (Math.Max(line.X1, line.X2) > inter.point.X) && (inter.point.X > Math.Min(line.X1, line.X2))
@@ -1020,8 +1022,12 @@ namespace TopoGiraffe
 
         private void btn13_Click(object sender, RoutedEventArgs e)
         {
-            ProfileTopographique profile = new ProfileTopographique();
+            ProfileTopographique profile = new ProfileTopographique(IntersectionPoints,distancesListe);
             profile.Show();
+            if (profile.DialogResult == true)
+            {
+
+            }
         }
 
         List<ArtPoint> DragPoints;

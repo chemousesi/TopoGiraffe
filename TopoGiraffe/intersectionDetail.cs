@@ -8,8 +8,15 @@ namespace TopoGiraffe
     {
         public Point point;
         public Boolean intersect;
+        public int altitude;
 
-        public IntersectionDetail(Point point, Boolean intersect)
+        public IntersectionDetail(Point point, Boolean intersect, int altitude)
+        {
+            this.point = point;
+            this.intersect = intersect;
+            this.altitude = altitude;
+        }
+        public IntersectionDetail (Point point, Boolean intersect)
         {
             this.point = point;
             this.intersect = intersect;

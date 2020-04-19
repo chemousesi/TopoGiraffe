@@ -23,20 +23,25 @@ namespace TopoGiraffe
     /// </summary>
     public partial class ProfileTopographique : Window
     {
+        List<IntersectionDetail> IntersectionPoints;
+        List<double> distancesListe;
         
-        public ProfileTopographique()
+        public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList)
         {
+            this.IntersectionPoints = aIntersectionPoints;
+            this.distancesListe = adistancesList;
+
             InitializeComponent();
             int compteur;
 
             MyValues = new ChartValues<ObservableValue>
             {
-                new ObservableValue(20),
-                new ObservableValue(80),
-                new ObservableValue(200),
-                new ObservableValue(10),
-                new ObservableValue(100),
-                new ObservableValue(60),
+                new ObservableValue(this.IntersectionPoints[1].point.Y),
+                new ObservableValue(this.IntersectionPoints[2].point.Y),
+                new ObservableValue(this.IntersectionPoints[3].point.Y),
+                new ObservableValue(this.IntersectionPoints[4].point.Y),
+                new ObservableValue(this.IntersectionPoints[2].point.Y),
+                new ObservableValue(this.IntersectionPoints[1].point.Y),
 
 
             };
