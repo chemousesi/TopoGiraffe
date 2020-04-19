@@ -975,7 +975,7 @@ namespace TopoGiraffe
 
 
             List<Polyline> curve = polylines;
-            Line segmentIntr = line;
+            
             List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
 
 
@@ -989,16 +989,19 @@ namespace TopoGiraffe
            // this.Serializee(itm2);
 
 
-            Polyline li = new Polyline();
-            li.FillRule = FillRule.EvenOdd;
             
             // MessageBox.Show(ints[i].point.X.ToString());
-            
+
             for (int i = 0; i < itm2.Count();i++)
             {
                 //MessageBox.Show("why bzf" + itm2.Count().ToString());
                 for (int j = 0; j < itm2[i].Count(); j++)
                 {
+                    Polyline li = new Polyline();
+                    li.FillRule = FillRule.EvenOdd;
+                    li.StrokeThickness = 4;
+                    li.Stroke = Brushes.Black;
+                    li.Visibility = System.Windows.Visibility.Visible;
                     Ellipse circle = new Ellipse();
                     circle.Width = 15;
                     circle.Height = 15;
@@ -1007,7 +1010,10 @@ namespace TopoGiraffe
                     Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
                     Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
                     mainCanvas.Children.Add(circle);
+                    li.Points.Add(ps);
+                    mainCanvas.Children.Add(li);
                 }
+                mainCanvas.Children.Remove(poly);
             }
 
 
