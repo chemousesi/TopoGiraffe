@@ -567,6 +567,9 @@ namespace TopoGiraffe
                         FindIntersection(polyline, line);
                     }
 
+                    curves.Add(IntersectionPoints);
+                    this.Serializee(curves);
+
                     // dessin des cercles representant les points d'intersection
                     foreach (IntersectionDetail inters in IntersectionPoints)
                     {
@@ -620,10 +623,10 @@ namespace TopoGiraffe
 
             }
             //deleted for improvement
-            curves.Add(IntersectionPoints);
+            //curves.Add(IntersectionPoints);
             
            
-            this.Serializee(curves);
+            //this.Serializee(curves);
 
 
         }
@@ -981,21 +984,14 @@ namespace TopoGiraffe
 
 
             
-            // MessageBox.Show(IntersectionPoints.Count().ToString());
-
-            itm2 = this.DeSerialize();
-            // MessageBox.Show(ints.Count().ToString());
-
-            // this.Serializee(itm2);
-
             
-
-            // MessageBox.Show(ints[i].point.X.ToString());
+            itm2 = this.DeSerialize();
+            
 
             for (int i = 0; i < itm2.Count();i++)
             {
                 Polyline li = new Polyline();
-                //MessageBox.Show("why bzf" + itm2.Count().ToString());
+                
                 for (int j = 0; j < itm2[i].Count(); j++)
                 {
                    
@@ -1006,7 +1002,28 @@ namespace TopoGiraffe
                     Ellipse circle = new Ellipse();
                     circle.Width = 15;
                     circle.Height = 15;
-                    circle.Fill = Brushes.YellowGreen;
+                    if (i == itm2.Count() - 1)
+                    {
+                        
+                        circle.Fill = Brushes.Red;
+                        
+                    }
+                    else
+                    {
+
+
+                        circle.Fill = Brushes.YellowGreen;
+                    }
+                    
+              
+                    if(j == itm2[i].Count()-1) 
+                    {
+                        circle.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+
+                    }
                     Canvas.SetLeft(circle, itm2[i][j].point.X - (circle.Width / 2));
                     Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
                     Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
@@ -1015,10 +1032,20 @@ namespace TopoGiraffe
                     
                 }
                 li.FillRule = FillRule.EvenOdd;
-                
-                li.StrokeThickness = 4;
-                li.Stroke = Brushes.Black;
                 li.Visibility = System.Windows.Visibility.Visible;
+
+                if (i == (itm2.Count()-1))
+                {
+                    li.Stroke = Brushes.Purple;
+                    li.StrokeThickness = 7;
+                }
+                else 
+                { 
+
+                    li.Stroke = Brushes.Black;
+                    li.StrokeThickness = 2;
+                }
+
                 mainCanvas.Children.Add(li);
             }
 
