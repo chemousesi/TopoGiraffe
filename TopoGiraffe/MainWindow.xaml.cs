@@ -46,7 +46,7 @@ namespace TopoGiraffe
 
         //serialization
 
-       public void Serializee(List<List <SerializedItem>> objet)
+       public void Serializee(List<List <IntersectionDetail>> objet)
         {
             Stream s = File.Open("test.dat", FileMode.Create);
             BinaryFormatter bf = new BinaryFormatter();
@@ -54,7 +54,7 @@ namespace TopoGiraffe
             s.Close();
         }
 
-        public List<List<SerializedItem>> DeSerialize()
+        public List<List<IntersectionDetail>> DeSerialize()
         {
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a ";
@@ -68,7 +68,7 @@ namespace TopoGiraffe
             }
                 Stream s = File.Open(path: op.FileName, FileMode.Open);
                 BinaryFormatter bf = new BinaryFormatter();
-                List<List<SerializedItem>> objet = (List<List<SerializedItem>>)bf.Deserialize(s);
+                List<List<IntersectionDetail>> objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
                 s.Close();
             
 
@@ -620,11 +620,10 @@ namespace TopoGiraffe
 
             }
             //deleted for improvement
-            List<Polyline> curve = polylines;
-            Line segmentIntr = line;
-            List<List<ArtPoint>> listOfPoints = PointsGlobal;
-            SerializedItem itm = new SerializedItem(listOfPoints);
-            this.Serializee(itm);
+            curves.Add(IntersectionPoints);
+            
+           
+            this.Serializee(curves);
 
 
         }
@@ -947,7 +946,7 @@ namespace TopoGiraffe
                 btn2Clicked = false;
                 //curve is a list of points
                 List<IntersectionDetail> curve = new List<IntersectionDetail>();
-                for(int k=0;k<courbeActuelle.Points.Count();k++) { curve[k].point = courbeActuelle.Points[k]; curve[k].intersect = false; }
+                for(int k=0;k<courbeActuelle.Points.Count();k++) { curve.Add(new IntersectionDetail(courbeActuelle.Points[k], false)); }
                 curves.Add(curve);
             }
             Ellipse elli = (Ellipse)elDraggingEllipse;
@@ -977,11 +976,11 @@ namespace TopoGiraffe
 
             List<Polyline> curve = polylines;
             Line segmentIntr = line;
-            List<List<IntersectionDetail>> listOfPoints = new List<List<IntersectionDetail>>();
+            List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
 
 
 
-            SerializedItem itm2 = new SerializedItem(listOfPoints);
+            
             // MessageBox.Show(IntersectionPoints.Count().ToString());
 
             itm2 = this.DeSerialize();
@@ -992,20 +991,21 @@ namespace TopoGiraffe
 
             Polyline li = new Polyline();
             li.FillRule = FillRule.EvenOdd;
-            List<Point> listofpo = new List<Point>();
+            
             // MessageBox.Show(ints[i].point.X.ToString());
-            Ellipse circle = new Ellipse();
-            circle.Width = 15;
-            circle.Height = 15;
-            circle.Fill = Brushes.YellowGreen;
-            for (int i = 0; i < itm2.listOfPoints.Count();i++)
+            
+            for (int i = 0; i < itm2.Count();i++)
             {
-                MessageBox.Show(itm2.listOfPoints.Count().ToString());
-                for (int j = 0; j < itm2.listOfPoints[i].Count(); j++)
+                //MessageBox.Show("why bzf" + itm2.Count().ToString());
+                for (int j = 0; j < itm2[i].Count(); j++)
                 {
-                    Canvas.SetLeft(circle, itm2.listOfPoints[i][j].P.X - (circle.Width / 2));
-                    Canvas.SetTop(circle, itm2.listOfPoints[i][j].P.Y - (circle.Height / 2));
-                    Point ps = new Point(itm2.listOfPoints[i][j].P.X, itm2.listOfPoints[i][j].P.Y);
+                    Ellipse circle = new Ellipse();
+                    circle.Width = 15;
+                    circle.Height = 15;
+                    circle.Fill = Brushes.YellowGreen;
+                    Canvas.SetLeft(circle, itm2[i][j].point.X - (circle.Width / 2));
+                    Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
+                    Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
                     mainCanvas.Children.Add(circle);
                 }
             }
