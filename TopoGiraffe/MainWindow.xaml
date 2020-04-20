@@ -8,6 +8,9 @@
         xmlns:local="clr-namespace:TopoGiraffe"
         xmlns:utils="clr-namespace:TopoGiraffe"
         xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" >
 
@@ -15,11 +18,18 @@
 
 
     <Window.Resources>
-        <Color x:Key="ToolsBar">#353635D6</Color>
+        <!--<Color x:Key="ToolsBar">#353635D6</Color>-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
     </Window.Resources>
-    <Window.Background>
+    <!--<Window.Background>
         <SolidColorBrush Opacity="0.8" Color="White"/>
-    </Window.Background>
+    </Window.Background>-->
 
 
 
@@ -33,8 +43,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="84"/>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="75"/>
+            <RowDefinition />
             <RowDefinition Height="20" />
 
         </Grid.RowDefinitions>
@@ -48,14 +58,14 @@
                     <Separator />
                     <MenuItem Header="_Exit" Click="MenuItem_Click" />
                 </MenuItem>
-                
+
                 <MenuItem Header="Plan"></MenuItem>
 
                 <MenuItem Header="Affichage"></MenuItem>
 
                 <MenuItem Header="Aide"></MenuItem>
-                
-                
+
+
             </Menu>
             <TextBox AcceptsReturn="True" />
         </DockPanel>
@@ -63,7 +73,8 @@
 
 
 
-        <Grid Grid.Row="1" Background="#053047" Opacity=".84" >
+        <Grid Grid.Row="1"  Background="#FF023788" Opacity=".84" >
+
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                 <Button  x:Name="btn11" Width="90" Height="84" Background="#0000" BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" >
@@ -103,7 +114,7 @@
                 <Grid>
                     <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1"  />
 
-                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" >
+                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,-21" RenderTransformOrigin="0.498,0.517" >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
@@ -119,13 +130,14 @@
 
 
 
-            <Grid Grid.Column="2" Background="#C5C5C5">
+            <Grid Grid.Column="2" Background="#EEEEEE">
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="177*"/>
 
                 </Grid.RowDefinitions>
 
-                <TabControl Background="#C5C5C5" SelectionChanged="TabControl_SelectionChanged" Margin="0,0,0,64" RenderTransformOrigin="0.5,0.5">
+                <TabControl Background="#EEEEEE" SelectionChanged="TabControl_SelectionChanged" Margin="0,0,0,-16" RenderTransformOrigin="0.5,0.5">
                     <TabControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -134,44 +146,57 @@
                             <TranslateTransform X="-0.597"/>
                         </TransformGroup>
                     </TabControl.RenderTransform>
-                    <TabItem Header="Courbe" Background="#C5C5C5">
+                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548">
+                        <Grid Height="550">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0*"/>
+                                <RowDefinition Height="197*"/>
+                                <RowDefinition Height="156*"/>
 
-                        <StackPanel VerticalAlignment="Top" Height="536" >
-                            <TextBox x:Name="altitudeTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" GotFocus="altitudeTextBox_GotFocus" Text="Altitude"  Opacity="1" UndoLimit="98" SelectionOpacity="1" LostFocus="altitudeTextBox_LostFocus" ></TextBox>
+                                <RowDefinition Height="197*"/>
+                            </Grid.RowDefinitions>
 
-
-                            <TextBlock Text="Couleurs :" Margin="33,7,32.8,.5"></TextBlock>
-
-                            <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Rectangle Fill="{Binding Rect.Fill}" Height="20" Width="20"/>
-                                            <TextBlock Text="{Binding Name}"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-
-                                </ComboBox.ItemTemplate>
+                            <StackPanel  VerticalAlignment="Top" Height="388" Margin="0,25,0,0" Grid.Row="1" Grid.RowSpan="3" >
 
 
-                            </ComboBox>
+                                <TextBlock Text="Type de courbe" Margin="33,-1,32.8,4"></TextBlock>
 
-                            <TextBlock Text="Type de courbe" Margin="33,7,32.8,.5"></TextBlock>
-
-                            <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" >
-                                <ComboBoxItem >Courbe simple</ComboBoxItem>
-                                <ComboBoxItem >Courbe intermediare</ComboBoxItem>
-                                <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
-                            </ComboBox>
-                            <TextBlock Text="Color Picker" Margin="33,7,32.8,.5"></TextBlock>
-                            <xctk1:ColorPicker Name="cp"  Margin="33,7,32.8,.5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" ></xctk1:ColorPicker>
+                                <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,35" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" >
+                                    <ComboBoxItem >Courbe simple</ComboBoxItem>
+                                    <ComboBoxItem >Courbe intermediare</ComboBoxItem>
+                                    <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
+                                </ComboBox>
+                                <TextBlock Text="Color Picker" Margin="33,7,32.8,.5"></TextBlock>
+                                <xctk1:ColorPicker Name="cp"  Margin="33,7,32.8,.5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" ></xctk1:ColorPicker>
 
 
-                        </StackPanel>
+                            </StackPanel>
+                            <DockPanel Grid.Row="3" VerticalAlignment="Center" Height="195">
+
+                                <DockPanel DockPanel.Dock="Top" Height="80">
+                                    <Label Margin="10 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939" >Thickness</Label>
+                                    <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" VerticalAlignment="Bottom" Height="25" Width="80" HorizontalAlignment="Right" Margin="10 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                                </DockPanel>
+                                <Slider IsSnapToTickEnabled="True"  ValueChanged="ThickSlider_ValueChanged" Minimum = "1" Maximum = "15" Value="5" Name="ThickSlider"  ToolTip="largeur" VerticalAlignment="Center" Width="148" Margin="0,0,40,37" Height="25" Foreground="#FF311B92" />
 
 
+                            </DockPanel>
+                            <DockPanel Grid.Row="2" VerticalAlignment="Center" Height="163" >
+                                <DockPanel DockPanel.Dock="Top" Height="163">
+                                    <Label Margin="10 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude</Label>
+                                    <WrapPanel Width="334" DockPanel.Dock="Top" Height="47" >
+                                        <Button x:Name="ZoomIn" Content="+" HorizontalAlignment="Left" Background="#90CAF9" Width="45" Height="40" Margin="67,0,42,0"   FontSize="22"  Opacity="0.6" Click="ZoomIn_Click" FontWeight="Bold" FontStyle="Normal"/>
+                                        <Button x:Name="ZoomOut" Content="-" Width="45" Height="40" Margin="17,0,15,0"  HorizontalAlignment="Center" Background="#90CAF9"  FontSize="22" Opacity="0.57" Click="ZoomOut_Click" FontWeight="Bold"/>
+                                        <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  DockPanel.Dock="Right" VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" ></TextBox>
+
+                                    </WrapPanel>
+                                    <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="148"  ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="25" Margin="0,0,40,20" Foreground="#FF311B92"/>
+
+                                </DockPanel>
+                            </DockPanel>
 
 
+                        </Grid>
                     </TabItem>
                     <TabItem Header="Plan" Background="#C5C5C5" />
 
@@ -214,7 +239,7 @@
                 </Grid>
 
             </Grid>
-            <Grid Grid.Column="0" Background="#C5C5C5" Margin="0,0,25,0" >
+            <Grid Grid.Column="0" Background="#EEEEEE" Margin="0,0,25,0" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-1,0" >
 
                     <Button  Name="nav" Width="38" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
@@ -222,27 +247,27 @@
                         <Image Source="/assets/img/navigation.png" Height="30" Width="30"  ></Image>
                     </Button>
 
-                    <Button x:Name="dessinerButton" Width="44" Height="59"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="dessinerButton" Width="90" Height="60"   BorderBrush="Transparent"
                            BorderThickness="0" Click="dessinerButton_Click"  >
                         <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
                     </Button>
-                    <Button x:Name="add_line" Width="76" Height="62"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="add_line" Width="90" Height="62"   BorderBrush="Transparent"
                           BorderThickness="0" HorizontalAlignment="Center"  Margin="0,0,0,0"  IsDefault="True" Click="add_line_Click">
-                        <Image Source="/assets/img/line.png" Height="59" Width="61"  />
+                        <Image Source="/assets/img/line.png" Height="40" Width="50"  />
                     </Button>
 
 
-                    <Button x:Name="deleteAllButton" Width="45" Height="60"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="deleteAllButton" Width="90" Height="60"   BorderBrush="Transparent"
                          BorderThickness="0" Click="deleteAllButton_Click" >
                         <Image Source="/assets/img/deleteAll.png" Height="36" Width="36"  />
                     </Button>
-                    <Button x:Name="deletePreviousButton" Width="47" Height="63"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="deletePreviousButton" Width="90" Height="63"   BorderBrush="Transparent"
                                 BorderThickness="0" Click="deletePreviousButton_Click"   >
                         <Image Source="/assets/img/deletePrevious.png" Height="27" Width="34"  />
                     </Button>
-                    <Button  Name="btn1" Width="37" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
+                    <Button  x:Name="btn1" Width="60" Height="60"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Margin="0,0,0,20" >
-                        <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  ></Image>
+                        <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  />
                     </Button>
                     <Button  x:Name="scaleButton" Width="36" Height="48"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Click="scaleButton_Click" >
@@ -259,8 +284,8 @@
 
         </Grid>
         <StatusBar Name="sbar" 
-           VerticalAlignment="Bottom" Background="Beige" 
-                   Grid.Row="3">
+           VerticalAlignment="Center" Background="Beige" 
+                   Grid.Row="3" Height="20">
 
             <StatusBarItem>
                 <TextBlock>Topogiraffe</TextBlock>
