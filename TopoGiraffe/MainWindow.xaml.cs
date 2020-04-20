@@ -1046,10 +1046,11 @@ namespace TopoGiraffe
         {
             ProfileTopographique profile = new ProfileTopographique(IntersectionPoints,distancesListe,mainScale);
             profile.Show();
-            if (profile.DialogResult == true)
+           
+          /*  if (profile.DialogResult == true)
             {
 
-            }
+            }*/
         }
 
         List<ArtPoint> DragPoints;

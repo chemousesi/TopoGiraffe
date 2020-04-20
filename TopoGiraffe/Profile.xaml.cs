@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,10 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-
 
 namespace TopoGiraffe
 {
@@ -21,8 +16,8 @@ namespace TopoGiraffe
 
     using OxyPlot;
     using OxyPlot.Wpf;
-
-    public class MainViewModel
+    
+    public partial class MainViewModel 
     {
         public MainViewModel()
         {
@@ -47,9 +42,9 @@ namespace TopoGiraffe
             if (point1 == 1)
             {
                 Points = new List<DataPoint>
-            {
-                new DataPoint(x, y),
-            };
+                {
+                    new DataPoint(x, y),
+                };
                 point1 = 2;
             }
 
@@ -59,7 +54,13 @@ namespace TopoGiraffe
             for (cpt = 0; cpt < 10; cpt++)//Instead of 10 put the number of intersections -2;
             {
 
-                Points.Add(new DataPoint(x + 1, y + 1));
+                Points.Add(new DataPoint(300, 120));
+                Points.Add(new DataPoint(100, 450));
+                Points.Add(new DataPoint(500, 200));
+                Points.Add(new DataPoint(600, 200));
+                Points.Add(new DataPoint(300, 150));
+                Points.Add(new DataPoint(300, 220));
+                Points.Add(new DataPoint(300, 200));
 
             }
 
@@ -78,48 +79,3 @@ namespace TopoGiraffe
         public object Plot { get; }
     }
 }
-
-
-
-
-/*using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.Windows;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TopoGiraffe.Noyau;
-
-namespace TopoGiraffe
-{
-    using System.Collections.Generic;
-
-    using OxyPlot;
-    using OxyPlot.Wpf;
-    /// <summary>
-    /// Logique d'interaction pour ProfilTopographique.xaml
-    /// </summary>
-    public partial class ProfilTopographique : Window
-    {
-
-        List<IntersectionDetail> IntersectionPoints;
-        List<double> distancesListe;
-        Echelle mainScale;
-        public ProfilTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList, Echelle mainScale)
-        {
-            this.IntersectionPoints = aIntersectionPoints;
-            this.distancesListe = adistancesList;
-            this.mainScale = mainScale;
-            InitializeComponent();
-
-        }
-    }
-}*/
