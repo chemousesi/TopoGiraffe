@@ -44,36 +44,7 @@ namespace TopoGiraffe
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
         int nbCourbes = 0;
 
-        //serialization
-
-       public void Serializee(List<List <IntersectionDetail>> objet)
-        {
-            Stream s = File.Open("test.dat", FileMode.Create);
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(s, objet);
-            s.Close();
-        }
-
-        public List<List<IntersectionDetail>> DeSerialize()
-        {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a ";
-            op.FileName = "Document"; // Default file name
-            op.DefaultExt = ".dat"; // Default file extension
-            op.Filter = "Text documents (.dat)|*.dat"; // Filter files by extension
-            if (op.ShowDialog() == true)
-            {
-                string fiName = op.FileName;
-
-            }
-                Stream s = File.Open(path: op.FileName, FileMode.Open);
-                BinaryFormatter bf = new BinaryFormatter();
-                List<List<IntersectionDetail>> objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
-                s.Close();
-            
-
-            return objet;
-        }
+      
 
 
 
@@ -973,87 +944,7 @@ namespace TopoGiraffe
         double minX, minY, maxX, maxY;
         int indexdrag = 0;
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-
-            List<Polyline> curve = polylines;
-            
-            List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
-
-
-
-            
-            
-            itm2 = this.DeSerialize();
-            
-
-            for (int i = 0; i < itm2.Count();i++)
-            {
-                Polyline li = new Polyline();
-                
-                for (int j = 0; j < itm2[i].Count(); j++)
-                {
-                   
-                    li.FillRule = FillRule.EvenOdd;
-                    li.StrokeThickness = 4;
-                    li.Stroke = Brushes.Black;
-                    li.Visibility = System.Windows.Visibility.Visible;
-                    Ellipse circle = new Ellipse();
-                    circle.Width = 15;
-                    circle.Height = 15;
-                    if (i == itm2.Count() - 1)
-                    {
-                        
-                        circle.Fill = Brushes.Red;
-                        
-                    }
-                    else
-                    {
-
-
-                        circle.Fill = Brushes.YellowGreen;
-                    }
-                    
-              
-                    if(j == itm2[i].Count()-1) 
-                    {
-                        circle.Visibility = Visibility.Hidden;
-                    }
-                    else
-                    {
-
-                    }
-                    Canvas.SetLeft(circle, itm2[i][j].point.X - (circle.Width / 2));
-                    Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
-                    Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
-                    mainCanvas.Children.Add(circle);
-                    li.Points.Add(ps);
-                    
-                }
-                li.FillRule = FillRule.EvenOdd;
-                li.Visibility = System.Windows.Visibility.Visible;
-
-                if (i == (itm2.Count()-1))
-                {
-                    li.Stroke = Brushes.Purple;
-                    li.StrokeThickness = 7;
-                }
-                else 
-                { 
-
-                    li.Stroke = Brushes.Black;
-                    li.StrokeThickness = 2;
-                }
-
-                mainCanvas.Children.Add(li);
-            }
-
-
-            //mainCanvas.Children.Add(circle);
-
-
-        }
+       
 
         //li.StrokeThickness = 4;
         //    li.Stroke = Brushes.Black;
@@ -1204,15 +1095,122 @@ namespace TopoGiraffe
             }
         }
 
-
-        //private void mainCanvas_MouseUp(object sender, MouseButtonEventArgs e)
-        //{
-        //    finish = true;
-        //}
+        //Click d'importation
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
 
 
+            List<Polyline> curve = polylines;
 
-        
+            List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
+
+
+
+
+
+
+
+
+            itm2 = this.DeSerialize();
+
+
+            for (int i = 0; i < itm2.Count(); i++)
+            {
+                Polyline li = new Polyline();
+
+                for (int j = 0; j < itm2[i].Count(); j++)
+                {
+
+                    li.FillRule = FillRule.EvenOdd;
+                    li.StrokeThickness = 4;
+                    li.Stroke = Brushes.Black;
+                    li.Visibility = System.Windows.Visibility.Visible;
+                    Ellipse circle = new Ellipse();
+                    circle.Width = 15;
+                    circle.Height = 15;
+                    if (i == itm2.Count() - 1)
+                    {
+
+                        circle.Fill = Brushes.Red;
+
+                    }
+                    else
+                    {
+
+
+                        circle.Fill = Brushes.YellowGreen;
+                    }
+
+
+
+                    Canvas.SetLeft(circle, itm2[i][j].point.X - (circle.Width / 2));
+                    Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
+                    Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
+                    mainCanvas.Children.Add(circle);
+                    li.Points.Add(ps);
+
+                }
+                li.FillRule = FillRule.EvenOdd;
+                li.Visibility = System.Windows.Visibility.Visible;
+
+                if (i == (itm2.Count() - 1))
+                {
+
+                    li.Stroke = Brushes.Purple;
+                    li.StrokeThickness = 7;
+
+
+                }
+                else
+                {
+
+                    li.Stroke = Brushes.Black;
+                    li.StrokeThickness = 2;
+                }
+
+                mainCanvas.Children.Add(li);
+            }
+
+
+            //mainCanvas.Children.Add(circle);
+
+
+        }
+
+        //serialization
+
+        public void Serializee(List<List<IntersectionDetail>> objet)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+
+            Stream s = File.Open("test.dat", FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(s, objet);
+            s.Close();
+        }
+
+        public List<List<IntersectionDetail>> DeSerialize()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a ";
+            op.FileName = "Document"; // Default file name
+            op.DefaultExt = ".dat"; // Default file extension
+            op.Filter = "Text documents (.dat)|*.dat"; // Filter files by extension
+            if (op.ShowDialog() == true)
+            {
+                string fiName = op.FileName;
+
+            }
+            Stream s = File.Open(path: op.FileName, FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            List<List<IntersectionDetail>> objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
+            s.Close();
+
+
+            return objet;
+        }
+
+
     }
     class RectangleName
     {
