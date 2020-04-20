@@ -16,7 +16,13 @@
 
 
     <Window.Resources>
-        <Color x:Key="ToolsBar">#353635D6</Color>
+        <!--<Color x:Key="ToolsBar">#353635D6</Color>-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
     </Window.Resources>
     <!--<Window.Background>
@@ -55,7 +61,7 @@
 
 
 
-        <Grid Grid.Row="1"  Background="#C62828" Opacity=".84" >
+        <Grid Grid.Row="1"  Background="#FF023788" Opacity=".84" >
 
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                 <Button  x:Name="btn11" Width="90" Height="84" Background="#0000" BorderBrush="Transparent"
@@ -96,7 +102,7 @@
                 <Grid>
                     <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1"  />
 
-                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,1" >
+                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,1" RenderTransformOrigin="0.498,0.517" >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
@@ -112,14 +118,14 @@
 
 
 
-            <Grid Grid.Column="2" Background="#F5F5F5">
+            <Grid Grid.Column="2" Background="#EEEEEE">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="150" />
+                    <RowDefinition/>
+                    <RowDefinition Height="154"/>
+                    <RowDefinition Height="208.04" />
                 </Grid.RowDefinitions>
-                <StackPanel VerticalAlignment="Top" Height="190" Margin="0,25,0,0" Grid.Row="1" >
+                <StackPanel VerticalAlignment="Center" Height="190" Grid.Row="1" >
                     <TextBlock Text="Couleurs :" Margin="33,7,32.8,.5"></TextBlock>
                     <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,33" Height="26" >
                         <ComboBox.ItemTemplate>
@@ -137,7 +143,7 @@
 
                     <TextBlock Text="Type de courbe" Margin="33,36,32.8,0.5"></TextBlock>
 
-                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
+                    <ComboBox x:Name="styleCourbeCmb"  Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
                         <ComboBoxItem >Courbe simple</ComboBoxItem>
                         <ComboBoxItem >Courbe intermediare</ComboBoxItem>
                         <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
@@ -145,18 +151,28 @@
 
 
                 </StackPanel>
-                <DockPanel Grid.Row="3">
+                <DockPanel Grid.Row="2">
+
                     <DockPanel DockPanel.Dock="Top" Height="80">
+                        <Label Margin="10 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939" >Thickness</Label>
+                        <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" VerticalAlignment="Bottom" Height="25" Width="80" HorizontalAlignment="Right" Margin="10 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                    </DockPanel>
+                    <Slider IsSnapToTickEnabled="True"  ValueChanged="ThickSlider_ValueChanged" Minimum = "1" Maximum = "15" Value="5" Name="ThickSlider"  ToolTip="largeur" VerticalAlignment="Center" Width="148" Margin="0,0,40,-6" Height="25" Foreground="#FF311B92" />
+
+
+                </DockPanel>
+                <DockPanel Grid.Row="3" Margin="0,3,0,0">
+                    <DockPanel DockPanel.Dock="Top" Height="163">
                         <Label Margin="10 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude</Label>
-                        <WrapPanel Width="334" VerticalAlignment="Center" >
-                            <Button x:Name="ZoomIn" Content="+" HorizontalAlignment="Left"  Width="45" Height="40" Margin="67,0,42,0"   FontSize="22"  Opacity="0.5" Click="ZoomIn_Click"/>
-                            <Button x:Name="ZoomOut" Content="-" Width="45" Height="40" Margin="17,0,15,0"  HorizontalAlignment="Center" FontSize="22" Opacity="0.48" Click="ZoomOut_Click"/>
-                            <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" ></TextBox>
+                        <WrapPanel Width="334" DockPanel.Dock="Top" Height="47" >
+                            <Button x:Name="ZoomIn" Content="+" HorizontalAlignment="Left" Background="#90CAF9" Width="45" Height="40" Margin="67,0,42,0"   FontSize="22"  Opacity="0.6" Click="ZoomIn_Click" FontWeight="Bold" FontStyle="Normal"/>
+                            <Button x:Name="ZoomOut" Content="-" Width="45" Height="40" Margin="17,0,15,0"  HorizontalAlignment="Center" Background="#90CAF9"  FontSize="22" Opacity="0.57" Click="ZoomOut_Click" FontWeight="Bold"/>
+                            <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  DockPanel.Dock="Right" VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" ></TextBox>
 
                         </WrapPanel>
+                        <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="148"  ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="25" Margin="0,0,40,41" Foreground="#FF311B92"/>
 
                     </DockPanel>
-                    <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider" Width="150"  ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" d:IsHidden="True"/>
                 </DockPanel>
 
             </Grid>
@@ -190,7 +206,7 @@
                 </Grid>
 
             </Grid>
-            <Grid Grid.Column="0" Background="#F5F5F5" Margin="0,0,25,0" >
+            <Grid Grid.Column="0" Background="#EEEEEE" Margin="0,0,25,0" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-1,0" >
 
                     <Button  x:Name="nav" Style="{StaticResource MaterialDesignRaisedDarkButton}"  Width="90" Height="60"  Background="{x:Null}" BorderBrush="Transparent"
@@ -198,21 +214,21 @@
                         <Image Source="/assets/img/navigation.png" Height="30" Width="30"  />
                     </Button>
 
-                    <Button x:Name="dessinerButton" Width="90" Height="60"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="dessinerButton" Width="90" Height="60"   BorderBrush="Transparent"
                            BorderThickness="0" Click="dessinerButton_Click"  >
                         <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
                     </Button>
-                    <Button x:Name="add_line" Width="90" Height="62"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="add_line" Width="90" Height="62"   BorderBrush="Transparent"
                           BorderThickness="0" HorizontalAlignment="Center"  Margin="0,0,0,0"  IsDefault="True" Click="add_line_Click">
                         <Image Source="/assets/img/line.png" Height="40" Width="50"  />
                     </Button>
 
 
-                    <Button x:Name="deleteAllButton" Width="90" Height="60"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="deleteAllButton" Width="90" Height="60"   BorderBrush="Transparent"
                          BorderThickness="0" Click="deleteAllButton_Click" >
                         <Image Source="/assets/img/deleteAll.png" Height="36" Width="36"  />
                     </Button>
-                    <Button x:Name="deletePreviousButton" Width="90" Height="63"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="deletePreviousButton" Width="90" Height="63"   BorderBrush="Transparent"
                                 BorderThickness="0" Click="deletePreviousButton_Click"   >
                         <Image Source="/assets/img/deletePrevious.png" Height="27" Width="34"  />
                     </Button>
