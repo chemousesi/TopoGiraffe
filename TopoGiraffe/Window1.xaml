@@ -18,16 +18,16 @@
     WindowStartupLocation="CenterOwner"  >
 
 
-   
-    
+
+
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="33*"/>
+            <RowDefinition Height="67*"/>
 
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="31*"/>
-            <RowDefinition Height="45*"/>
+            <RowDefinition Height="63*"/>
+            <RowDefinition Height="62*"/>
+            <RowDefinition Height="92*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="77*"/>
@@ -35,22 +35,22 @@
         </Grid.ColumnDefinitions>
 
 
-        
-        <Label Grid.Column="0" Grid.Row="0">Altitude:</Label>
-        <TextBox x:Name="Altitude" PreviewTextInput="NumberValidationTextBox" Grid.Row="0" Grid.Column="1" Margin="33,10,26,22" FontWeight="Bold"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >
+
+        <Label Content="Altitude (metre) :"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="19,0,0,0" Width="100" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="Altitude" PreviewTextInput="NumberValidationTextBox" Grid.Row="0" Grid.Column="1" Margin="38,21,33,17" FontWeight="Bold"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RenderTransformOrigin="0.506,0.45" >
 
 
 
         </TextBox>
-        
-        
 
 
 
 
 
-        <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,60,334,0" Grid.RowSpan="2">Couleur:</Label>
-        <ComboBox Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged" Grid.Column="1" Grid.Row="2" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26"  >
+
+
+        <Label Content="Couleur :" Grid.Column="0" Grid.Row="2" Margin="58,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Width="57" />
+        <ComboBox Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged" Grid.Column="1" Grid.Row="2" Text="Choisissez une couleur" Margin="38,18,33,19"  >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -64,14 +64,18 @@
 
         </ComboBox>
         <!-- Accept or Cancel -->
-        <Button Content="OK" Grid.Column="1"  Padding="5,5,5,5" HorizontalAlignment="Left" IsDefault="True" Grid.Row="3" Margin="172,10,0,46" Width="99" Click="OkButton_Click" />
-        <Button Content="Cancel"  Padding="5,5,5,5" HorizontalAlignment="Left" IsCancel="True" Grid.Row="3" Margin="33,10,0,46" Width="97" Grid.Column="1" Click="CancelButton_Click" />
 
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,67,334,57" Grid.RowSpan="3">Type:</Label>
-        <ComboBox x:Name="Type" SelectedValuePath="Content" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="1"  Grid.Row="1" Margin="33,7,32.8,7" Height="26">
-            <ComboBoxItem Content = "Courbe Maitresse"/>
-            <ComboBoxItem Content = "max"/>
-            <ComboBoxItem Content = "min"/>
+
+        <Button Content="OK" Grid.Column="1"  Padding="5,5,5,5" HorizontalAlignment="Left" IsDefault="True" Grid.Row="3" Margin="203,41,0,15" Width="98" Click="OkButton_Click" />
+        <Button Content="Cancel"  Padding="5,5,5,5" HorizontalAlignment="Left" IsCancel="True" Grid.Row="3" Margin="109,41,0,15" Width="81" Grid.Column="1" Click="CancelButton_Click" />
+
+        <Label Content="Type de courbe :" Grid.Row="1" Margin="19,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Width="114" Grid.ColumnSpan="2"/>
+
+
+        <ComboBox x:Name="styleCourbeCmbInDialogBox" SelectedValuePath="Content" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="1"  Grid.Row="1" Margin="38,21,33,13">
+            <ComboBoxItem >Courbe simple</ComboBoxItem>
+            <ComboBoxItem >Courbe intermediare</ComboBoxItem>
+            <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
         </ComboBox>
     </Grid >
 </Window>

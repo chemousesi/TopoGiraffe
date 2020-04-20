@@ -43,7 +43,7 @@ namespace TopoGiraffe.Noyau
             set => maxAltitude = value;
         }
 
-        
+
 
         public void AjouterCourbe(Polygon courbe)
         {

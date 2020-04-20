@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace TopoGiraffe
 {
@@ -38,13 +28,21 @@ namespace TopoGiraffe
         }
 
 
-        //public string Echelle
-        //{
-        //    get { return EchelleTextBox.Text; }
-        //    set { EchelleTextBox.Text = value; }
-        //}
+        public string EchelleOnCanvas
+        {
+            get { return EchelleTextBoxOnCanvas.Text; }
+            set { EchelleTextBoxOnCanvas.Text = value; }
+        }
 
-        
+        public string EchelleOnField
+        {
+            get { return EchelleTextBoxOnField.Text; }
+            set { EchelleTextBoxOnField.Text = value; }
+        }
+
+
+
+
         private void OnOKClicked(object sender, RoutedEventArgs e)
         {
             DialogResult = true;

@@ -9,6 +9,8 @@
 *.dll.config
 *.cache
 *.suo
+# Visual Studio 2015/2017 cache/options directory
+.vs/
 # Include dlls if they’re in the NuGet packages directory
 !/packages/*/lib/*.dll
 !/packages/*/lib/*/*.dll
@@ -73,3 +75,4 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+*.ide-wal
