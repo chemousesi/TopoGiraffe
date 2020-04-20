@@ -48,6 +48,14 @@
                     <Separator />
                     <MenuItem Header="_Exit" Click="MenuItem_Click" />
                 </MenuItem>
+                
+                <MenuItem Header="Plan"></MenuItem>
+
+                <MenuItem Header="Affichage"></MenuItem>
+
+                <MenuItem Header="Aide"></MenuItem>
+                
+                
             </Menu>
             <TextBox AcceptsReturn="True" />
         </DockPanel>

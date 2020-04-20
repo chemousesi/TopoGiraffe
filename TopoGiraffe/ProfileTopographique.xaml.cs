@@ -3,19 +3,8 @@ using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using TopoGiraffe.Noyau;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TopoGiraffe
 {
@@ -27,7 +16,7 @@ namespace TopoGiraffe
         List<IntersectionDetail> IntersectionPoints;
         List<double> distancesListe;
         Echelle mainScale;
-        
+
         public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList, Echelle mainScale)
         {
             this.IntersectionPoints = aIntersectionPoints;
@@ -36,15 +25,14 @@ namespace TopoGiraffe
 
             InitializeComponent();
             int compteur;
-            Echelle scale = new Echelle(10, 1000);
+            //Echelle scale = new Echelle(130, 1000);
             MyValues = new ChartValues<ObservablePoint>();
-                //{
-                //        new ObservablePoint(100, 500),
-                //      //  new ObservablePoint(1500, 800)
-                //};
+           
+
+
             foreach (IntersectionDetail IntersectionPoint in IntersectionPoints)
             {
-                MyValues.Add(new ObservablePoint(scale.FindDistanceOnField(IntersectionPoint.distance), IntersectionPoint.altitude));
+                MyValues.Add(new ObservablePoint(mainScale.FindDistanceOnField(IntersectionPoint.distance), IntersectionPoint.altitude));
             }
             SeriesCollection = new SeriesCollection
                 {
