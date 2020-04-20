@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TopoGiraffe.Noyau;
+
 
 namespace TopoGiraffe
 {
@@ -18,15 +20,19 @@ namespace TopoGiraffe
     /// </summary>
     public partial class SauvgardePage : Page
     {
+        
         public SauvgardePage()
         {
+            
             InitializeComponent();
+    
         }
 
         public void goback_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow pg = new MainWindow();
-            this.Content = pg;
+            
+             MainWindow pg = new MainWindow();
+              this.Content = pg;
         }
     }
 }

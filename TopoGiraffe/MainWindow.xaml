@@ -49,8 +49,8 @@
         </Grid.RowDefinitions>
 
             <Grid>
-                <Frame Content="Frame" x:Name="_mainFrame"/>
-                <Button x:Name="fichier" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
+                <Frame x:Name="_mainFrame"/>
+                <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
                     
                 </Button>
             </Grid>
@@ -88,7 +88,7 @@
                     <Image Source="/assets/img/report.png" Width="30" Height="30"/>
                 </Button>
                 <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Settings_MouseEnter" MouseLeave="Settings_MouseLeave" >
+        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A"  >
                     <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
                 </Button> 
             </StackPanel>
@@ -225,11 +225,11 @@
                     <Grid Grid.Column="1">
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" >
                             <Button  x:Name="display" Width="90" Height="84"  BorderBrush="Transparent"
-                                BorderThickness="0" Click="display_Click" MouseEnter="display_MouseEnter" MouseLeave="display_MouseLeave" >
+                                BorderThickness="0" Click="display_Click"  >
                                 <Image Source="/assets/img/visibility.png" Width="30" Height="30" />
                             </Button>
                             <Button  x:Name="import" Width="85" Height="84"  BorderBrush="Transparent"
-                                BorderThickness="0" Click="import_Click" MouseEnter="import_MouseEnter" MouseLeave="import_MouseLeave" >
+                                BorderThickness="0" Click="import_Click"  >
                                 <Image Source="/assets/img/import.png" Width="30" Height="30" />
                             </Button>
 
