@@ -35,6 +35,8 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="84"/>
             <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+
         </Grid.RowDefinitions>
 
         <DockPanel Grid.Row="0">
@@ -111,52 +113,68 @@
 
             <Grid Grid.Column="2" Background="#C5C5C5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="11*"/>
-                    <RowDefinition Height="189*"/>
+                    <RowDefinition Height="177*"/>
+
                 </Grid.RowDefinitions>
-                <TextBlock Text="Propriétés"/>
-                <StackPanel VerticalAlignment="Top" Height="388" Margin="0,25,0,0" Grid.Row="1" >
-                    <TextBox x:Name="altitudeTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" GotFocus="altitudeTextBox_GotFocus" Text="Altitude"  Opacity="1" UndoLimit="98" SelectionOpacity="1" LostFocus="altitudeTextBox_LostFocus" ></TextBox>
+
+                <TabControl Background="#C5C5C5" SelectionChanged="TabControl_SelectionChanged" Margin="0,0,0,64" RenderTransformOrigin="0.5,0.5">
+                    <TabControl.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-0.158"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-0.597"/>
+                        </TransformGroup>
+                    </TabControl.RenderTransform>
+                    <TabItem Header="Courbe" Background="#C5C5C5">
+
+                        <StackPanel VerticalAlignment="Top" Height="536" >
+                            <TextBox x:Name="altitudeTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17" Margin="33,7" Foreground="#515251" Height="54.12" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" GotFocus="altitudeTextBox_GotFocus" Text="Altitude"  Opacity="1" UndoLimit="98" SelectionOpacity="1" LostFocus="altitudeTextBox_LostFocus" ></TextBox>
 
 
-                    <TextBlock Text="Couleurs :" Margin="33,7,32.8,.5"></TextBlock>
+                            <TextBlock Text="Couleurs :" Margin="33,7,32.8,.5"></TextBlock>
 
-                    <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Rect.Fill}" Height="20" Width="20"/>
-                                    <TextBlock Text="{Binding Name}"/>
-                                </StackPanel>
-                            </DataTemplate>
+                            <ComboBox x:Name="colorComboBox" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle Fill="{Binding Rect.Fill}" Height="20" Width="20"/>
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
 
-                        </ComboBox.ItemTemplate>
-
-
-                    </ComboBox>
-
-                    <TextBlock Text="Type de courbe" Margin="33,7,32.8,.5"></TextBlock>
-
-                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" >
-                        <ComboBoxItem >Courbe simple</ComboBoxItem>
-                        <ComboBoxItem >Courbe intermediare</ComboBoxItem>
-                        <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
-                    </ComboBox>
-                    <TextBlock Text="Color Picker" Margin="33,7,32.8,.5"></TextBlock>
-                    <xctk1:ColorPicker Name="cp"  Margin="33,7,32.8,.5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" ></xctk1:ColorPicker>
-
-                </StackPanel>
-
-                <ToolBar HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="44" Margin="0,476,0,0" Grid.Row="1"  Width="337">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Nombre de courbe: "/>
-                        <TextBlock Name="nbrCourbes" Text="{Binding NbCourbes, Mode=TwoWay }"/>
-                    </StackPanel>
+                                </ComboBox.ItemTemplate>
 
 
-                </ToolBar>
-                <Label x:Name="AltitudeLabel" Content=" --" HorizontalAlignment="Left" Margin="137,299,0,0" Grid.Row="1" VerticalAlignment="Top" Width="107" FontFamily="HelveticaNeue" FontSize="20" Foreground="#FFE21111"/>
-                <Label Content="Altitude : " HorizontalAlignment="Left" Margin="23,298,0,0" Grid.Row="1" VerticalAlignment="Top" Width="117" FontFamily="Gotham Medium" FontSize="22" FontStyle="Normal" />
+                            </ComboBox>
+
+                            <TextBlock Text="Type de courbe" Margin="33,7,32.8,.5"></TextBlock>
+
+                            <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,7" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" >
+                                <ComboBoxItem >Courbe simple</ComboBoxItem>
+                                <ComboBoxItem >Courbe intermediare</ComboBoxItem>
+                                <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
+                            </ComboBox>
+                            <TextBlock Text="Color Picker" Margin="33,7,32.8,.5"></TextBlock>
+                            <xctk1:ColorPicker Name="cp"  Margin="33,7,32.8,.5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" ></xctk1:ColorPicker>
+
+
+                        </StackPanel>
+
+
+
+
+                    </TabItem>
+                    <TabItem Header="Plan" Background="#C5C5C5" />
+
+                </TabControl>
+
+
+
+
+
+
+
             </Grid>
 
 
@@ -190,6 +208,7 @@
             </Grid>
             <Grid Grid.Column="0" Background="#C5C5C5" Margin="0,0,25,0" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-1,0" >
+
                     <Button  Name="nav" Width="38" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Margin="0,0,0,20" Click="nav_Click" >
                         <Image Source="/assets/img/navigation.png" Height="30" Width="30"  ></Image>
@@ -231,7 +250,23 @@
 
 
         </Grid>
+        <StatusBar Name="sbar" 
+           VerticalAlignment="Bottom" Background="Beige" 
+                   Grid.Row="3">
 
+            <StatusBarItem>
+                <TextBlock>Topogiraffe</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+
+            </StatusBarItem>
+
+        </StatusBar>
 
     </Grid>
+
 </Window>

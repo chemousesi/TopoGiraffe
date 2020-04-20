@@ -315,7 +315,7 @@ namespace TopoGiraffe
         {
             btn2Clicked = true;
             dragbool = false;
-
+            Cursor = Cursors.Cross;
             Polyline myPolyline = DrawNewCurve();
             polylines.Add(myPolyline);
 
@@ -362,10 +362,7 @@ namespace TopoGiraffe
 
         private void mainCanvas_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (activerDessinCheckBox.IsChecked == true)
-            {
-                mainCanvas.Cursor = Cursors.Cross;
-            }
+           
         }
 
 
@@ -815,7 +812,19 @@ namespace TopoGiraffe
         private void mainCanvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             btn2Clicked = false;
-            courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+            
+            
+            //if (courbeActuelle != null)
+            //{
+            //    courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("vous n'avez pas de courbe");
+            //}
+            
+
+
             if (polylines.Contains(courbeActuelle) == false)
             {
                 polylines.Add(courbeActuelle);
@@ -830,6 +839,7 @@ namespace TopoGiraffe
 
         private void nav_Click(object sender, RoutedEventArgs e)
         {
+            Cursor = Cursors.Arrow;
             navClicked = true;
             addLineClicked = false;
             btn2Clicked = false;
@@ -1057,8 +1067,9 @@ namespace TopoGiraffe
                         }
                     }
                     int i = polylines.IndexOf((Polyline)selectedPolyline);
-                    AltitudeLabel.Visibility = Visibility.Visible;
-                    AltitudeLabel.Content = Altitudes[i];
+                    //AltitudeLabel.Visibility = Visibility.Visible;
+                    //AltitudeLabel.Content = Altitudes[i];
+                    altitudeTextBox.Text = Altitudes[i].ToString();
                 }
                 else return;
 
@@ -1146,6 +1157,11 @@ namespace TopoGiraffe
         private void styleCourbeCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             courbeActuelle = StyleCmbToRealStyle(courbeActuelle, styleCourbeCmb.SelectedIndex);
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -1261,10 +1277,6 @@ namespace TopoGiraffe
                 {
                     MessageBox.Show("Erreur! \n votre altitude n'est pas un entier");
                 }
-
-               
-
-
 
             }
             return newPolyline;
