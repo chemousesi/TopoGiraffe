@@ -149,14 +149,14 @@
                     <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548">
                         <Grid Height="550">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="0*"/>
-                                <RowDefinition Height="197*"/>
-                                <RowDefinition Height="156*"/>
+                                <RowDefinition  Height="0*" />
+                                <RowDefinition Height="80*"/>
+                                <RowDefinition Height="87*"/>
 
-                                <RowDefinition Height="197*"/>
+                                <RowDefinition Height="108*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel  VerticalAlignment="Top" Height="388" Margin="0,25,0,0" Grid.Row="1" Grid.RowSpan="3" >
+                            <StackPanel  VerticalAlignment="Top" Height="410" Margin="0,-20,0,0" Grid.Row="1" Grid.RowSpan="3" >
 
 
                                 <TextBlock Text="Type de courbe" Margin="33,-1,32.8,4"></TextBlock>
@@ -171,7 +171,7 @@
 
 
                             </StackPanel>
-                            <DockPanel Grid.Row="3" VerticalAlignment="Center" Height="195">
+                            <DockPanel Grid.Row="3" VerticalAlignment="Center" Height="195" Margin="0,-44,0,0">
 
                                 <DockPanel DockPanel.Dock="Top" Height="80">
                                     <Label Margin="10 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939" >Thickness</Label>
@@ -242,7 +242,7 @@
             <Grid Grid.Column="0" Background="#EEEEEE" Margin="0,0,25,0" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-1,0" >
 
-                    <Button  Name="nav" Width="38" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
+                    <Button  Name="nav" Width="68" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Margin="0,0,0,20" Click="nav_Click" >
                         <Image Source="/assets/img/navigation.png" Height="30" Width="30"  ></Image>
                     </Button>
