@@ -10,6 +10,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TopoGiraffe.Noyau;
 using TopoSurf.MessageBoxStyle;
+using System.Windows.Controls.Primitives;
+
 //using TopoGiraffe.MessageBoxStyle;
 
 
@@ -1100,6 +1102,108 @@ namespace TopoGiraffe
             test = true;
         }
 
+        /* ------------------------------------------------------------------------------- POPUP DEBUT ---------------------------------------------------- */
+        private void Settings_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = btn14;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Settings";
+        }
+
+        private void Settings_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void import_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = import;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Importer une carte";
+        }
+
+        private void import_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void display_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = display;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Afficher le dessin";
+        }
+
+        private void display_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+
+        private void GenererProfil_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = GenererProfil;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Générer le profil";
+        }
+
+        private void GenererProfil_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void add_line_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = add_line;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Tracer un segment";
+        }
+
+        private void add_line_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void dessinerButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = dessinerButton;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Tracer une courbe";
+        }
+
+        private void dessinerButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void deleteAllButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = deleteAllButton;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Supprimer tout";
+        }
+
+        private void deleteAllButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        /* ----------------------------------------------------------------------------- POPUP FIN ------------------------------------------ */
+
         void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {//path dragging
             if ((elDragging) == null) return;
@@ -1240,7 +1344,12 @@ namespace TopoGiraffe
         }
 
         
-
+        public void ShowSauvgardeWindow_Click(object sender, RoutedEventArgs e)
+        {
+             SauvgardePage pg = new SauvgardePage();
+            this.Content = pg; 
+           /* _mainFrame.Content = new SauvgardePage(); */
+        }
 
 
 
@@ -1251,6 +1360,6 @@ namespace TopoGiraffe
         public string Name { get; set; }
     }
    
-
+   
 
 }

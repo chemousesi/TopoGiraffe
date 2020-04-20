@@ -27,7 +27,7 @@
 
     <Grid>
 
-
+        <Grid>  
 
 
         <Grid.RowDefinitions>
@@ -36,19 +36,26 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Fichier">
-                    <MenuItem Header="_Nouveau" Click="import_Click"/>
-                    <MenuItem Header="_Ouvrir" />
-                    <MenuItem Header="_Sauvegarder" />
-                    <Separator />
-                    <MenuItem Header="_Exit" Click="MenuItem_Click" />
-                </MenuItem>
-            </Menu>
+            <Grid>
+                <Frame Content="Frame" x:Name="_mainFrame"/>
+                <Button x:Name="fichier" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
+                    
+                </Button>
+            </Grid>
+            <!--
+            <DockPanel Grid.Row="0">
+                <Menu DockPanel.Dock="Top">
+                    <MenuItem Header="_Fichier">
+                        <MenuItem Header="_Nouveau" Click="import_Click"/>
+                        <MenuItem Header="_Ouvrir" />
+                        <MenuItem Header="_Sauvegarder" />
+                        <Separator />
+                        <MenuItem Header="_Exit" Click="MenuItem_Click" />
+                    </MenuItem>
+                </Menu>
             <TextBox AcceptsReturn="True" />
-        </DockPanel>
-
+            </DockPanel>
+        -->
 
 
 
@@ -62,12 +69,12 @@
         BorderThickness="0"  Margin="40,0,0,0" >
                     <Image Source="/assets/img/tour.png" Width="30" Height="30"/>
                 </Button>
-                <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" >
+                    <Button  x:Name="GenererProfil" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" MouseEnter="GenererProfil_MouseEnter" MouseLeave="GenererProfil_MouseLeave" >
                     <Image Source="/assets/img/report.png" Width="30" Height="30"/>
                 </Button>
                 <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" >
+        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Settings_MouseEnter" MouseLeave="Settings_MouseLeave" >
                     <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
                 </Button>
             </StackPanel>
@@ -90,9 +97,13 @@
                     </TransformGroup>
                 </utils:ZoomBorder.RenderTransform>
                 <Grid>
-                    <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1"  />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="52*"/>
+                        <RowDefinition Height="521*"/>
+                    </Grid.RowDefinitions>
+                    <Image Margin="12,12,10,10" Name="imgPhoto" Grid.RowSpan="2"  />
 
-                    <Canvas x:Name="mainCanvas" Grid.Row="1" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" >
+                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Grid.RowSpan="2" >
                         <Canvas.Background>
                             <SolidColorBrush Color="Azure" Opacity=".1"  />
                         </Canvas.Background>
@@ -172,11 +183,11 @@
                     <Grid Grid.Column="1">
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" >
                             <Button  x:Name="display" Width="90" Height="84"  BorderBrush="Transparent"
-                                BorderThickness="0" Click="display_Click" >
+                                BorderThickness="0" Click="display_Click" MouseEnter="display_MouseEnter" MouseLeave="display_MouseLeave" >
                                 <Image Source="/assets/img/visibility.png" Width="30" Height="30" />
                             </Button>
                             <Button  x:Name="import" Width="85" Height="84"  BorderBrush="Transparent"
-                                BorderThickness="0" Click="import_Click" >
+                                BorderThickness="0" Click="import_Click" MouseEnter="import_MouseEnter" MouseLeave="import_MouseLeave" >
                                 <Image Source="/assets/img/import.png" Width="30" Height="30" />
                             </Button>
 
@@ -187,34 +198,34 @@
             </Grid>
             <Grid Grid.Column="0" Background="#C5C5C5" Margin="0,0,25,0" >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-1,0" >
-                    <Button  Name="nav" Width="38" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
+                    <Button  Name="nav"  Height="50"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Margin="0,0,0,20" Click="nav_Click" >
                         <Image Source="/assets/img/navigation.png" Height="30" Width="30"  ></Image>
                     </Button>
 
-                    <Button x:Name="dessinerButton" Width="44" Height="59"  Background="#C5C5C5" BorderBrush="Transparent"
-                           BorderThickness="0" Click="dessinerButton_Click"  >
+                    <Button x:Name="dessinerButton"  Height="50"  Background="#C5C5C5" BorderBrush="Transparent"
+                           BorderThickness="0" Click="dessinerButton_Click" MouseEnter="dessinerButton_MouseEnter" MouseLeave="dessinerButton_MouseLeave"  >
                         <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
                     </Button>
-                    <Button x:Name="add_line" Width="76" Height="62"  Background="#C5C5C5" BorderBrush="Transparent"
-                          BorderThickness="0" HorizontalAlignment="Center"  Margin="0,0,0,0"  IsDefault="True" Click="add_line_Click">
+                    <Button x:Name="add_line" Width="76" Height="50"  Background="#C5C5C5" BorderBrush="Transparent"
+                          BorderThickness="0" HorizontalAlignment="Center"  Margin="0,0,0,0"  IsDefault="True" Click="add_line_Click" MouseEnter="add_line_MouseEnter" MouseLeave="add_line_MouseLeave">
                         <Image Source="/assets/img/line.png" Height="59" Width="61"  />
                     </Button>
 
 
-                    <Button x:Name="deleteAllButton" Width="45" Height="60"  Background="#C5C5C5" BorderBrush="Transparent"
-                         BorderThickness="0" Click="deleteAllButton_Click" >
+                    <Button x:Name="deleteAllButton"  Height="50"  Background="#C5C5C5" BorderBrush="Transparent"
+                         BorderThickness="0" Click="deleteAllButton_Click" MouseEnter="deleteAllButton_MouseEnter" MouseLeave="deleteAllButton_MouseLeave" >
                         <Image Source="/assets/img/deleteAll.png" Height="36" Width="36"  />
                     </Button>
-                    <Button x:Name="deletePreviousButton" Width="47" Height="63"  Background="#C5C5C5" BorderBrush="Transparent"
+                    <Button x:Name="deletePreviousButton"  Height="50"  Background="#C5C5C5" BorderBrush="Transparent"
                                 BorderThickness="0" Click="deletePreviousButton_Click"   >
                         <Image Source="/assets/img/deletePrevious.png" Height="27" Width="34"  />
                     </Button>
-                    <Button  Name="btn1" Width="37" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
+                    <Button  Name="btn1"  Height="50"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Margin="0,0,0,20" >
                         <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  ></Image>
                     </Button>
-                    <Button  x:Name="scaleButton" Width="36" Height="48"  Background="{x:Null}" BorderBrush="Transparent"
+                    <Button  x:Name="scaleButton" Width="36" Height="50"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Click="scaleButton_Click" >
                         <Image Source="/assets/img/scale2.png" Height="35" Width="35"  />
                     </Button>
@@ -228,7 +239,16 @@
 
 
         </Grid>
+            
+            <Popup x:Name="popup_uc"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="10">
+                <Grid>
+                    <local:PopupUserControl x:Name="Header" Foreground="#E0FFFF"/>
+                </Grid>
+            </Popup>
 
-
+        </Grid>
     </Grid>
 </Window>
