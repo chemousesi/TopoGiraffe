@@ -1497,8 +1497,8 @@ namespace TopoGiraffe
             Color color = (Color)ColorConverter.ConvertFromString("#FFDFD991");
 
             if (altit  <  0) return Colors.Black;
-            if (altit <= AltitudeMin + range) return (Color)ColorConverter.ConvertFromString("#6600CC");
-            if (altit <= AltitudeMin +  2 *range) return (Color)ColorConverter.ConvertFromString("#0000CC");
+            if (altit <= AltitudeMin + range)    return (Color)ColorConverter.ConvertFromString("#6600CC");
+            if (altit <= AltitudeMin +  2 *range)return (Color)ColorConverter.ConvertFromString("#0000CC");
             if (altit <= AltitudeMin + 3 *range) return (Color)ColorConverter.ConvertFromString("#0066CC");
             if (altit <= AltitudeMin + 4 *range) return (Color)ColorConverter.ConvertFromString("#00CCCC");
             if (altit <= AltitudeMin + 5 *range) return (Color)ColorConverter.ConvertFromString("#00CC66");
