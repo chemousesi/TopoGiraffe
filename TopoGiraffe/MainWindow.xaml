@@ -48,13 +48,13 @@
 
         </Grid.RowDefinitions>
 
-            <Grid>
-                <Frame x:Name="_mainFrame"/>
-                <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
-                    
-                </Button>
-            </Grid>
-            <!--
+        <Grid>
+            <Frame x:Name="_mainFrame"/>
+            <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
+
+            </Button>
+        </Grid>
+        <!--
             <DockPanel Grid.Row="0">
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="_Fichier">
@@ -90,7 +90,7 @@
                 <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A"  >
                     <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
-                </Button> 
+                </Button>
             </StackPanel>
         </Grid>
         <Grid  Grid.Row="2">
@@ -115,7 +115,7 @@
 
                     <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,-21" RenderTransformOrigin="0.498,0.517" >
                         <Canvas.Background>
-                            <SolidColorBrush Color="Azure" Opacity=".1"  />
+                            <SolidColorBrush Color="#FFFFF3F0" Opacity=".1"  />
                         </Canvas.Background>
 
                     </Canvas>
@@ -268,15 +268,17 @@
                         BorderThickness="0" Margin="0,0,0,20" >
                         <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  />
                     </Button>
-                    <Button  x:Name="scaleButton" Width="36" Height="50"  Background="{x:Null}" BorderBrush="Transparent"
+                    <Button  x:Name="scaleButton" Width="83" Height="50"  Background="{x:Null}" BorderBrush="#FFF41111"
                         BorderThickness="0" Click="scaleButton_Click" >
-                        <Image Source="/assets/img/scale2.png" Height="35" Width="35"  />
+
                     </Button>
+                    <Button Content="Import" Width="50" FontSize="6" Foreground="Black" BorderBrush="#000" Background="Red" Click="Button_Click" />
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
 
 
 
                 </StackPanel>
+                <Button Content="pente" BorderBrush="Black" Background="Red" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" Click="pente_Click" Foreground="#DD120202"/>
 
             </Grid>
 

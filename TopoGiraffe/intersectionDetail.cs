@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using System.Windows;
-
 
 namespace TopoGiraffe
 {
-    public class IntersectionDetail
+    [Serializable()]
+    public class IntersectionDetail : ISerializable
     {
         public Point point;
         public Boolean intersect;
@@ -22,6 +23,21 @@ namespace TopoGiraffe
         {
             this.point = point;
             this.intersect = intersect;
+        }
+
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("point", point);
+            info.AddValue("intersect", intersect);
+
+        }
+
+        protected IntersectionDetail(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        {
+            point = (Point)serializationInfo.GetValue("point", typeof(Point));
+            intersect = (bool)serializationInfo.GetValue("intersect", typeof(bool));
+
         }
 
         public int CompareTo(Object obj)

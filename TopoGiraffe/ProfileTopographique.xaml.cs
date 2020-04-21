@@ -27,7 +27,7 @@ namespace TopoGiraffe
             int compteur;
             //Echelle scale = new Echelle(130, 1000);
             MyValues = new ChartValues<ObservablePoint>();
-           
+
 
 
             foreach (IntersectionDetail IntersectionPoint in IntersectionPoints)
