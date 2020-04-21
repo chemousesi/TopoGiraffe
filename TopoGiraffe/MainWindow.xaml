@@ -40,7 +40,6 @@
 
 
 
-
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="75"/>
@@ -49,26 +48,26 @@
 
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Fichier">
-                    <MenuItem Header="_Nouveau" Click="import_Click"/>
-                    <MenuItem Header="_Ouvrir" />
-                    <MenuItem Header="_Sauvegarder" />
-                    <Separator />
-                    <MenuItem Header="_Exit" Click="MenuItem_Click" />
-                </MenuItem>
-
-                <MenuItem Header="Plan"></MenuItem>
-
-                <MenuItem Header="Affichage"></MenuItem>
-
-                <MenuItem Header="Aide"></MenuItem>
-
-
-            </Menu>
+            <Grid>
+                <Frame x:Name="_mainFrame"/>
+                <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
+                    
+                </Button>
+            </Grid>
+            <!--
+            <DockPanel Grid.Row="0">
+                <Menu DockPanel.Dock="Top">
+                    <MenuItem Header="_Fichier">
+                        <MenuItem Header="_Nouveau" Click="import_Click"/>
+                        <MenuItem Header="_Ouvrir" />
+                        <MenuItem Header="_Sauvegarder" />
+                        <Separator />
+                        <MenuItem Header="_Exit" Click="MenuItem_Click" />
+                    </MenuItem>
+                </Menu>
             <TextBox AcceptsReturn="True" />
-        </DockPanel>
+            </DockPanel>
+        -->
 
 
 
@@ -89,9 +88,9 @@
                     <Image Source="/assets/img/report.png" Width="30" Height="30"/>
                 </Button>
                 <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" >
+        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A"  >
                     <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
-                </Button>
+                </Button> 
             </StackPanel>
         </Grid>
         <Grid  Grid.Row="2">
@@ -226,11 +225,11 @@
                     <Grid Grid.Column="1">
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" >
                             <Button  x:Name="display" Width="90" Height="84"  BorderBrush="Transparent"
-                                BorderThickness="0" Click="display_Click" >
+                                BorderThickness="0" Click="display_Click"  >
                                 <Image Source="/assets/img/visibility.png" Width="30" Height="30" />
                             </Button>
                             <Button  x:Name="import" Width="85" Height="84"  BorderBrush="Transparent"
-                                BorderThickness="0" Click="import_Click" >
+                                BorderThickness="0" Click="import_Click"  >
                                 <Image Source="/assets/img/import.png" Width="30" Height="30" />
                             </Button>
 
@@ -269,7 +268,7 @@
                         BorderThickness="0" Margin="0,0,0,20" >
                         <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  />
                     </Button>
-                    <Button  x:Name="scaleButton" Width="36" Height="48"  Background="{x:Null}" BorderBrush="Transparent"
+                    <Button  x:Name="scaleButton" Width="36" Height="50"  Background="{x:Null}" BorderBrush="Transparent"
                         BorderThickness="0" Click="scaleButton_Click" >
                         <Image Source="/assets/img/scale2.png" Height="35" Width="35"  />
                     </Button>
