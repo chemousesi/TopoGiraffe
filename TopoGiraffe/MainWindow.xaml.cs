@@ -319,6 +319,7 @@ namespace TopoGiraffe
             dragbool = false;
             Cursor = Cursors.Cross;
             Polyline myPolyline = DrawNewCurve();
+
             polylines.Add(myPolyline);
 
             activerDessinCheckBox.IsChecked = true; navClicked = false;
@@ -327,6 +328,9 @@ namespace TopoGiraffe
 
 
             courbeActuelle = myPolyline;
+           courbeActuelle.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
+
+
             //myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
             //myPolyline = StyleCmbToRealStyle(myPolyline, Window1.SelectedIndex);
 
@@ -334,7 +338,7 @@ namespace TopoGiraffe
             //myPolyline.StrokeThickness = 2;
             //myPolyline.FillRule = FillRule.EvenOdd;
             //StyleCmbToRealStyle(myPolyline, styleCourbeCmb.SelectedIndex);
-            
+
             myPolyline.MouseMove += new System.Windows.Input.MouseEventHandler(Path_MouseMove);
             myPolyline.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonUp);
             myPolyline.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonDown);
@@ -577,14 +581,27 @@ namespace TopoGiraffe
                         cercles.Add(cercle);
                         mainCanvas.Children.Add(cercle);
                     }
+                   
+                    IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
+                    int AltitudeFinale = IntersectionPoints[IntersectionPoints.Count - 1].altitude;
+                    int AltitudeIni = IntersectionPoints[0].altitude;
+
+
+
 
                     if (scaleLinePointsCount == 2)
                     {
                         MessageBox.Show(" Distance :" + Math.Round(mainScale.FindDistanceOnField(Outils.DistanceBtwTwoPoints(poly.Points[0], poly.Points[1])), 2) + " mètres");
 
                     }
+                    
 
                     addLineClicked = false;
+                    double distance1 = Outils.DistanceBtwTwoPoints(new Point(line.X1, line.Y1), new Point(line.X2, line.Y2));// this can be optimized by using line.x, line.y
+                    IntersectionPoints.Add(new IntersectionDetail(new Point(line.X2, line.Y2), AltitudeFinale, distance1));
+                    IntersectionPoints.Add(new IntersectionDetail(new Point(line.X1, line.Y1), AltitudeIni, 0));
+                    IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
+
                 }
 
             }
@@ -642,6 +659,7 @@ namespace TopoGiraffe
             }
 
             distances();
+          
         }
         public bool FindIntersection1(Polyline p, Line line)
         {
@@ -1329,7 +1347,7 @@ namespace TopoGiraffe
 
         }
 
-
+        String AltitudeString;
 
         public Polyline DrawNewCurve()
         // this function generates a dialog box , create , style a polyline from that dialog box entries
@@ -1353,16 +1371,17 @@ namespace TopoGiraffe
               
                 if (courbeActuelle != null)
                 {
-                    AltitudeBox.Text = window1.Altitude.Text;
+                        AltitudeString = window1.Altitude.Text;
                 }
                     // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
                     newPolyline = new Polyline();
 
                     //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
                     //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    newPolyline.Stroke = System.Windows.Media.Brushes.Black;
+                    //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
                     newPolyline.StrokeThickness = 2;
                     newPolyline.FillRule = FillRule.EvenOdd;
+
 
 
                     newPolyline = StyleCmbToRealStyle(newPolyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 

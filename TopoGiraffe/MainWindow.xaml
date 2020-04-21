@@ -229,7 +229,7 @@
                                 BorderThickness="0" Click="display_Click" >
                                 <Image Source="/assets/img/visibility.png" Width="30" Height="30" />
                             </Button>
-                            <Button  x:Name="import" Width="85" Height="84"  BorderBrush="Transparent"
+                            <Button  x:Name="import" Width="85" Height="84" ToolTip="import"  BorderBrush="Transparent"
                                 BorderThickness="0" Click="import_Click" >
                                 <Image Source="/assets/img/import.png" Width="30" Height="30" />
                             </Button>
