@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TopoGiraffe"
         mc:Ignorable="d"
-        Title="DataDialog" Height="400" Width="350" WindowStartupLocation="CenterOwner" >
+        Title="DataDialog" Height="490" Width="501" WindowStartupLocation="CenterScreen" >
 
     <Grid Background="#C5C5C5">
         <Grid.RowDefinitions>
@@ -13,7 +13,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="0,0,0,66" Grid.RowSpan="2">
-            <StackPanel   HorizontalAlignment="Center" Margin="0,30,0,0" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="0*"/>
+            </Grid.RowDefinitions>
+            <StackPanel   HorizontalAlignment="Center" Margin="0,30,0,0" Width="264" >
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
                     <Label Content="EQUIDISTANCE : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
                     <TextBox x:Name="EquidistanceTextBox"  Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  />
@@ -29,13 +33,17 @@
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
                     <Label Content="ECHELLE : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="EchelleTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" />
+                    <TextBox x:Name="EchelleTextBoxOnCanvas" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="28" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
                 </StackPanel>
-                <Label Content="* Donner la valeur de l'echelle en (m)" FontSize="9" Width="163" />
+                <Label Content="* Donner la valeur de l'echelle en pixels sur le plan" FontSize="7" Width="171"  HorizontalAlignment="Right"/>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="7,7">
+                    <TextBox x:Name="EchelleTextBoxOnField" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="28" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                </StackPanel>
+                <Label Content="* Donner la valeur de l'echelle en (m)" FontSize="7" Width="157" HorizontalAlignment="Right" />
             </StackPanel>
 
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0,51,0,0">
             <StackPanel Orientation="Horizontal" 
                     VerticalAlignment="Center"  
                     HorizontalAlignment="Right" 

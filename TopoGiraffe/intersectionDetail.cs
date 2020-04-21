@@ -18,7 +18,7 @@ namespace TopoGiraffe
             this.altitude = altitude;
             this.distance = adistances;
         }
-        public IntersectionDetail (Point point, Boolean intersect)
+        public IntersectionDetail(Point point, Boolean intersect)
         {
             this.point = point;
             this.intersect = intersect;
@@ -37,7 +37,7 @@ namespace TopoGiraffe
                 return this.distance.CompareTo(inter.distance);
             }
         }
-      
+
 
     }
 }

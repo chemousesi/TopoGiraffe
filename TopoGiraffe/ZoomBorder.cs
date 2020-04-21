@@ -56,10 +56,15 @@ namespace TopoGiraffe
 
 
                 // debut du drag
+                if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+                {
+                    this.MouseRightButtonDown += child_MouseLeftButtonDown;
+                    this.MouseRightButtonUp += child_MouseLeftButtonUp;
+                    this.MouseMove += child_MouseMove;
 
-                this.MouseRightButtonDown += child_MouseLeftButtonDown;
-                this.MouseRightButtonUp += child_MouseLeftButtonUp;
-                this.MouseMove += child_MouseMove;
+
+
+                }
 
 
 

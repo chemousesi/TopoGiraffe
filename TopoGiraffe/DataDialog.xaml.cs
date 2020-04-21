@@ -28,11 +28,19 @@ namespace TopoGiraffe
         }
 
 
-        //public string Echelle
-        //{
-        //    get { return EchelleTextBox.Text; }
-        //    set { EchelleTextBox.Text = value; }
-        //}
+        public string EchelleOnCanvas
+        {
+            get { return EchelleTextBoxOnCanvas.Text; }
+            set { EchelleTextBoxOnCanvas.Text = value; }
+        }
+
+        public string EchelleOnField
+        {
+            get { return EchelleTextBoxOnField.Text; }
+            set { EchelleTextBoxOnField.Text = value; }
+        }
+
+
 
 
         private void OnOKClicked(object sender, RoutedEventArgs e)

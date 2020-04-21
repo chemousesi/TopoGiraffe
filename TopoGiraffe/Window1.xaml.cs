@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿  
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -36,7 +37,7 @@ namespace TopoGiraffe
                 Select(p => new { Name = p.Name, Brush = p.GetValue(null) as Brush }).
                 ToArray();
             var brushNames = values.Select(v => v.Name);
-            
+
 
 
 
@@ -124,3 +125,5 @@ namespace TopoGiraffe
 
 
 }
+
+

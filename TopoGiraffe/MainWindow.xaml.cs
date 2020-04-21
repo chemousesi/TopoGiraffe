@@ -21,7 +21,7 @@ namespace TopoGiraffe
     /// </summary>
     public partial class MainWindow : Window
     {
-      
+
 
 
         // declaring variables
@@ -43,7 +43,7 @@ namespace TopoGiraffe
         List<int> Altitudes = new List<int>();
 
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
-        int nbCourbes = 0;
+        int NbCourbes = 0;
 
         Plan plan;
         Line scaleLine;
@@ -81,15 +81,17 @@ namespace TopoGiraffe
                 rectangleNames.Add(rn);
             }
 
-            colorComboBox.ItemsSource = rectangleNames;
-            colorComboBox.SelectedIndex = 7;
+
+
+            //colorComboBox.ItemsSource = rectangleNames;
+            //colorComboBox.SelectedIndex = 7;
             // colors end here
 
             styleCourbeCmb.SelectedIndex = 0;
 
 
 
-            
+
 
         }
 
@@ -274,13 +276,13 @@ namespace TopoGiraffe
                     courbeActuelle.Points.Add(mousePos);
 
                 }
-           
-                    polylines.Add(courbeActuelle);
-                
+
+                polylines.Add(courbeActuelle);
+
             }
-               
-            
-           
+
+
+
 
         }
         private void MouseMoveOnAddLine(object sender, MouseEventArgs e)
@@ -305,7 +307,7 @@ namespace TopoGiraffe
 
 
 
-           // polylines.Add(courbeActuelle);
+            // polylines.Add(courbeActuelle);
 
         }
 
@@ -315,7 +317,7 @@ namespace TopoGiraffe
         {
             btn2Clicked = true;
             dragbool = false;
-
+            Cursor = Cursors.Cross;
             Polyline myPolyline = DrawNewCurve();
             polylines.Add(myPolyline);
 
@@ -330,7 +332,7 @@ namespace TopoGiraffe
 
 
             //myPolyline.StrokeThickness = 2;
-            myPolyline.FillRule = FillRule.EvenOdd;
+            //myPolyline.FillRule = FillRule.EvenOdd;
             //StyleCmbToRealStyle(myPolyline, styleCourbeCmb.SelectedIndex);
 
             myPolyline.MouseMove += new System.Windows.Input.MouseEventHandler(Path_MouseMove);
@@ -350,7 +352,8 @@ namespace TopoGiraffe
 
 
 
-            
+
+
 
 
 
@@ -362,10 +365,7 @@ namespace TopoGiraffe
 
         private void mainCanvas_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (activerDessinCheckBox.IsChecked == true)
-            {
-                mainCanvas.Cursor = Cursors.Cross;
-            }
+
         }
 
 
@@ -373,10 +373,7 @@ namespace TopoGiraffe
 
         // to eliminate placeholders
 
-        private void altitudeTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            altitudeTextBox.Text = "";
-        }
+
 
 
 
@@ -391,11 +388,11 @@ namespace TopoGiraffe
             {
                 polylines.Clear();
                 mainCanvas.Children.Clear();
-                foreach (Ellipse cercle in cercles)
+                foreach (List<ArtPoint> ae in PointsGlobal)
                 {
-                    mainCanvas.Children.Remove(cercle);
-
+                    ae.Clear();
                 }
+                PointsGlobal.Clear();
                 cercles.Clear();
                 IntersectionPoints.Clear();
             }
@@ -456,13 +453,6 @@ namespace TopoGiraffe
             }
         }
 
-        private void altitudeTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (altitudeTextBox.Text == "")
-            {
-                altitudeTextBox.Text = "Altitude";
-            }
-        }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -523,21 +513,18 @@ namespace TopoGiraffe
                         courbeActuelle.Points.Add(lastPoint);
                         Ellipse circle = new Ellipse();
                         ArtPoint artPoint = new ArtPoint(circle, lastPoint);
-
-
-
-                        circle.Width = 15;
-                        circle.Height = 15;
+                        PointsGlobal[indexPoints].Add(artPoint);
+                        circle.Width = 10;
+                        circle.Height = 10;
                         circle.Fill = Brushes.Purple;
-
-                        (circle).MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
-                        (circle).MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
-                        (circle).MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
+                        circle.MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
+                        circle.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
+                        circle.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
 
                         Canvas.SetLeft(circle, lastPoint.X - (circle.Width / 2));
                         Canvas.SetTop(circle, lastPoint.Y - (circle.Height / 2));
-
                         mainCanvas.Children.Add(circle);
+
 
                         PointsGlobal[indexPoints].Add(artPoint);
                     }
@@ -614,6 +601,7 @@ namespace TopoGiraffe
 
                     string message = "Echelle sur plan " + Math.Round(mainScale.scaleDistanceOnCanvas, 3) + "------>" + mainScale.scaleDistanceOnField + " mètres";
                     MessageBox.Show(message);
+                    mainCanvas.Children.Remove(scalePolyline);
                     drawingScale = false;
                 }
 
@@ -666,7 +654,7 @@ namespace TopoGiraffe
                 myLine.X1 = p.Points[i].X; myLine.Y1 = p.Points[i].Y;
                 myLine.X2 = p.Points[i + 1].X; myLine.Y2 = p.Points[i + 1].Y;
                 inter = intersectLines(myLine, line);
-                
+
                 if (inter.intersect == true && ((Math.Max(myLine.X1, myLine.X2) > inter.point.X) && (inter.point.X > Math.Min(myLine.X1, myLine.X2))
                 && (Math.Max(myLine.Y1, myLine.Y2) > inter.point.Y) && (inter.point.Y > Math.Min(myLine.Y1, myLine.Y2))
                 && (Math.Max(line.X1, line.X2) > inter.point.X) && (inter.point.X > Math.Min(line.X1, line.X2))
@@ -725,14 +713,15 @@ namespace TopoGiraffe
 
         public void distances()
         {
-           
+
             foreach (IntersectionDetail intersectionDetail in IntersectionPoints)
             {
                 double x1 = line.X1;//IntersectionPoints[1].point.X;
-                double x2 = intersectionDetail.point.X;
                 double y1 = line.Y1;//IntersectionPoints[1].point.Y;
-                double y2 = intersectionDetail.point.Y;
-                double distance = Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2);
+
+                double distance = Outils.DistanceBtwTwoPoints(new Point(x1, y1), intersectionDetail.point);// this can be optimized by using line.x, line.y
+
+
                 //distancesListe.Add(distance);
                 intersectionDetail.distance = distance;
             }
@@ -741,8 +730,8 @@ namespace TopoGiraffe
 
         }
 
-        
-        
+
+
         public Equation GetSegmentEquation(Point a, Point b)
         {
             Equation equation = new Equation();
@@ -798,7 +787,7 @@ namespace TopoGiraffe
                         break;
 
                 }
-                
+
             }
             return pol;
 
@@ -822,17 +811,6 @@ namespace TopoGiraffe
 
 
 
-        public int NbCourbes
-        {
-            get { return nbCourbes; }
-            set { nbCourbes = value; }
-        }
-
-
-
-
-
-
         private List<object> hitResultsList = new List<object>();
 
 
@@ -840,7 +818,19 @@ namespace TopoGiraffe
         private void mainCanvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             btn2Clicked = false;
-            courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+
+
+            if (courbeActuelle != null)
+            {
+                courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+            }
+            else
+            {
+                MessageBox.Show("vous n'avez pas de courbe");
+            }
+
+
+
             if (polylines.Contains(courbeActuelle) == false)
             {
                 polylines.Add(courbeActuelle);
@@ -855,6 +845,7 @@ namespace TopoGiraffe
 
         private void nav_Click(object sender, RoutedEventArgs e)
         {
+            Cursor = Cursors.Arrow;
             navClicked = true;
             addLineClicked = false;
             btn2Clicked = false;
@@ -918,8 +909,8 @@ namespace TopoGiraffe
 
 
                     Interpoly = new Polyline();
-                    Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
+                    //Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+                    //StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
 
                     //Interpoly.StrokeThickness = 2;
                     Interpoly.Points.Clear();
@@ -1044,13 +1035,24 @@ namespace TopoGiraffe
 
         private void btn13_Click(object sender, RoutedEventArgs e)
         {
-            ProfileTopographique profile = new ProfileTopographique(IntersectionPoints,distancesListe,mainScale);
-            profile.Show();
-           
-          /*  if (profile.DialogResult == true)
-            {
 
-            }*/
+            if (mainScale != null)
+            {
+                ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale);
+                profile.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Echelle non connue !");
+            }
+
+
+
+            /*  if (profile.DialogResult == true)
+              {
+
+              }*/
         }
 
         List<ArtPoint> DragPoints;
@@ -1094,8 +1096,7 @@ namespace TopoGiraffe
                         }
                     }
                     int i = polylines.IndexOf((Polyline)selectedPolyline);
-                    AltitudeLabel.Visibility = Visibility.Visible;
-                    AltitudeLabel.Content = Altitudes[i];
+
                 }
                 else return;
 
@@ -1156,18 +1157,18 @@ namespace TopoGiraffe
 
         SolidColorBrush chosenBrush;
         long colorVal;
-            private void cp_SelectedColorChanged_1(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        private void cp_SelectedColorChanged_1(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (cp.SelectedColor.HasValue)
             {
-                if (cp.SelectedColor.HasValue)
-                {
-                    Color C = cp.SelectedColor.Value;
-                    byte Red = C.R;
-                    byte Green = C.G;
-                    byte Blue = C.B;
-                    colorVal = Convert.ToInt64(Blue * (Math.Pow(256, 0)) + Green * (Math.Pow(256, 1)) + Red * (Math.Pow(256, 2)));
-                    chosenBrush = new SolidColorBrush(Color.FromRgb(Red, Green, Blue));
-                    // update courbe actulle 
-                    if (courbeActuelle != null)
+                Color C = cp.SelectedColor.Value;
+                byte Red = C.R;
+                byte Green = C.G;
+                byte Blue = C.B;
+                colorVal = Convert.ToInt64(Blue * (Math.Pow(256, 0)) + Green * (Math.Pow(256, 1)) + Red * (Math.Pow(256, 2)));
+                chosenBrush = new SolidColorBrush(Color.FromRgb(Red, Green, Blue));
+                // update courbe actulle 
+                if (courbeActuelle != null)
                 {
                     courbeActuelle.Stroke = chosenBrush;
                 }
@@ -1178,11 +1179,16 @@ namespace TopoGiraffe
 
             }
 
-            }
+        }
 
         private void styleCourbeCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             courbeActuelle = StyleCmbToRealStyle(courbeActuelle, styleCourbeCmb.SelectedIndex);
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -1228,8 +1234,46 @@ namespace TopoGiraffe
                 }
             }
         }
-        int indexAltitude = 0;
 
+
+        public void DrawCtrlPoints(Polyline polyline)
+        {
+            if (polyline == null) return;
+
+            int index = polylines.IndexOf(polyline);
+
+            foreach (ArtPoint Ctrl in PointsGlobal[index])
+            {
+
+
+
+
+            }
+
+        }
+        public void RemoveCtrlPoints(Polyline polyline)
+        {
+            if (polyline == null) return;
+
+            int index = polylines.IndexOf(polyline);
+
+            foreach (ArtPoint Ctrl in PointsGlobal[index])
+            {
+
+                mainCanvas.Children.Remove(Ctrl.cercle);
+
+
+            }
+
+
+
+
+        }
+
+        int indexAltitude = 0;
+        int Equidistance;
+        static float AltitudeMin;
+        static float AltitudeMax;
 
         //private void mainCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         //{
@@ -1243,7 +1287,7 @@ namespace TopoGiraffe
         //{
         //    this.NavigationService.Navigate(new MenuPage(im, canvas));
         //}
-       
+
 
         public void OpenInitialDialogBox()
         {
@@ -1256,8 +1300,29 @@ namespace TopoGiraffe
             if (dataDialog.DialogResult == true)
             {
 
-                mainScale = new Echelle(Convert.ToInt32(dataDialog.EchelleTextBox.Text));
-                plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
+
+                AltSlider.Minimum = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+                if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
+                {
+                    mainScale = new Echelle(result1, result2);
+                    plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Erreur !\n Entrée non valide, le plan n'est pas créé");
+                }
+
+
+
+
+
+
 
 
             }
@@ -1279,17 +1344,26 @@ namespace TopoGiraffe
             {
                 // taking the altitude from the dialog box
 
-                if(int.TryParse(window1.Altitude.Text, out int result))
+                if (int.TryParse(window1.Altitude.Text, out int result))
                 {
                     Altitudes.Add(result);
                     indexAltitude++;
 
 
-                    // instanciating a new polyline 
+
+                    if (courbeActuelle != null)
+                    {
+                        AltitudeBox.Text = window1.Altitude.Text;
+                    }
+                    // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
                     newPolyline = new Polyline();
 
-                    colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
-                    newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+                    //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
+                    //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+                    newPolyline.Stroke = System.Windows.Media.Brushes.Black;
+                    newPolyline.StrokeThickness = 2;
+                    newPolyline.FillRule = FillRule.EvenOdd;
+
 
                     newPolyline = StyleCmbToRealStyle(newPolyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
 
@@ -1300,16 +1374,13 @@ namespace TopoGiraffe
                     MessageBox.Show("Erreur! \n votre altitude n'est pas un entier");
                 }
 
-               
-
-
-
             }
             return newPolyline;
         }
 
 
         Polyline scalePolyline;
+
 
         int scaleLinePointsCount = 0;
         private void scaleButton_Click(object sender, RoutedEventArgs e)
@@ -1338,6 +1409,110 @@ namespace TopoGiraffe
 
 
         }
+
+        private void altitudeSliderValueChange(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {//change altitude
+            changeSelectedCurveAltitude((float)AltSlider.Value);
+        }
+
+        private void ZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            if (courbeActuelle == null)
+            {
+                return;
+            }
+            AltSlider.Value += Equidistance;
+            changeSelectedCurveAltitude((float)AltSlider.Value);
+
+            //Color color = Color.AliceBlue;
+            //Console.Write(color.);
+        }
+        private void ZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (courbeActuelle == null)
+            {
+                return;
+            }
+            AltSlider.Value -= Equidistance;
+            changeSelectedCurveAltitude((float)AltSlider.Value);
+        }
+
+
+        private void changeSelectedCurveAltitude(float altit)
+        {//the real change
+            if (courbeActuelle == null)
+            {
+                return;
+            }
+
+            int index = polylines.IndexOf(courbeActuelle);
+            Altitudes[index] = Convert.ToInt32(altit);
+            (courbeActuelle).Stroke = new SolidColorBrush(AltitudeToColor(altit));
+
+        }
+        private void keyDownOnAltitude(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                try
+                {
+                    float altit = int.Parse(AltitudeBox.Text);
+                    changeSelectedCurveAltitude(altit);
+                }
+                catch (System.FormatException)
+                {
+                    (new MssgBox("Enter a numeric value to the altitude !")).ShowDialog();
+                }
+                catch (System.NullReferenceException)
+                {
+                }
+            }
+        }
+
+        public static Color AltitudeToColor(float altit)
+        {//implemeting the predefined altitude levels
+
+            float range = (AltitudeMax - AltitudeMin) / 10;
+            range = Convert.ToInt32(range);
+            Color color = (Color)ColorConverter.ConvertFromString("#FFDFD991");
+
+            if (altit < 0) return Colors.Black;
+            if (altit <= AltitudeMin + range) return (Color)ColorConverter.ConvertFromString("#6600CC");
+            if (altit <= AltitudeMin + 2 * range) return (Color)ColorConverter.ConvertFromString("#0000CC");
+            if (altit <= AltitudeMin + 3 * range) return (Color)ColorConverter.ConvertFromString("#0066CC");
+            if (altit <= AltitudeMin + 4 * range) return (Color)ColorConverter.ConvertFromString("#00CCCC");
+            if (altit <= AltitudeMin + 5 * range) return (Color)ColorConverter.ConvertFromString("#00CC66");
+            if (altit <= AltitudeMin + 6 * range) return (Color)ColorConverter.ConvertFromString("#00CC00");
+            if (altit <= AltitudeMin + 7 * range) return (Color)ColorConverter.ConvertFromString("#66CC00");
+            if (altit <= AltitudeMin + 8 * range) return (Color)ColorConverter.ConvertFromString("#FFFF00");
+            if (altit <= AltitudeMin + 9 * range) return (Color)ColorConverter.ConvertFromString("#FF8000");
+            if (altit <= AltitudeMin + 10 * range) return (Color)ColorConverter.ConvertFromString("#FF0000");
+            return Colors.Black;
+
+
+
+
+        }
+        private void ThickSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {//change thickness
+            if (courbeActuelle != null)
+            {
+                (courbeActuelle).StrokeThickness = ThickSlider.Value;
+                ThickText.Text = ThickSlider.Value.ToString();
+            }
+        }
+
+
+        public void ShowSauvgardeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            SauvgardePage pg = new SauvgardePage();
+           
+            this.Content = pg; 
+            /* _mainFrame.Content = new SauvgardePage(); */
+        }
+
+
 
     }
     class RectangleName
