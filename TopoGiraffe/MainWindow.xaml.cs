@@ -340,6 +340,7 @@ namespace TopoGiraffe
             dragbool = false;
             Cursor = Cursors.Cross;
             Polyline myPolyline = DrawNewCurve();
+
             polylines.Add(myPolyline);
 
             activerDessinCheckBox.IsChecked = true; navClicked = false;
@@ -348,6 +349,9 @@ namespace TopoGiraffe
 
 
             courbeActuelle = myPolyline;
+           courbeActuelle.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
+
+
             //myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
             //myPolyline = StyleCmbToRealStyle(myPolyline, Window1.SelectedIndex);
 
@@ -601,14 +605,27 @@ namespace TopoGiraffe
                         cercles.Add(cercle);
                         mainCanvas.Children.Add(cercle);
                     }
+                   
+                    IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
+                    int AltitudeFinale = IntersectionPoints[IntersectionPoints.Count - 1].altitude;
+                    int AltitudeIni = IntersectionPoints[0].altitude;
+
+
+
 
                     if (scaleLinePointsCount == 2)
                     {
                         MessageBox.Show(" Distance :" + Math.Round(mainScale.FindDistanceOnField(Outils.DistanceBtwTwoPoints(poly.Points[0], poly.Points[1])), 2) + " mètres");
 
                     }
+                    
 
                     addLineClicked = false;
+                    double distance1 = Outils.DistanceBtwTwoPoints(new Point(line.X1, line.Y1), new Point(line.X2, line.Y2));// this can be optimized by using line.x, line.y
+                    IntersectionPoints.Add(new IntersectionDetail(new Point(line.X2, line.Y2), AltitudeFinale, distance1));
+                    IntersectionPoints.Add(new IntersectionDetail(new Point(line.X1, line.Y1), AltitudeIni, 0));
+                    IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
+
                 }
 
             }
@@ -672,6 +689,7 @@ namespace TopoGiraffe
             //this.Serializee(curves);
 
             distances();
+          
         }
         public bool FindIntersection1(Polyline p, Line line)
         {
@@ -939,10 +957,11 @@ namespace TopoGiraffe
 
 
                     Interpoly = new Polyline();
-                    //Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    //StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
+                    Interpoly.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
 
-                    //Interpoly.StrokeThickness = 2;
+                    StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
+
+                    Interpoly.StrokeThickness = ThickSlider.Value;
                     Interpoly.Points.Clear();
                     //Interpoly.FillRule = FillRule.EvenOdd;
                     //courbeActuelle = Interpoly;
@@ -1372,7 +1391,7 @@ namespace TopoGiraffe
 
         }
 
-
+        String AltitudeString;
 
         public Polyline DrawNewCurve()
         // this function generates a dialog box , create , style a polyline from that dialog box entries
@@ -1393,19 +1412,19 @@ namespace TopoGiraffe
                     indexAltitude++;
 
 
-
-                    if (courbeActuelle != null)
-                    {
-                        AltitudeBox.Text = window1.Altitude.Text;
-                    }
+              
+              
+                        AltitudeString = window1.Altitude.Text;
+                
                     // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
                     newPolyline = new Polyline();
 
                     //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
                     //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    newPolyline.Stroke = System.Windows.Media.Brushes.Black;
+                    //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
                     newPolyline.StrokeThickness = 2;
                     newPolyline.FillRule = FillRule.EvenOdd;
+
 
 
                     newPolyline = StyleCmbToRealStyle(newPolyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
@@ -1520,17 +1539,17 @@ namespace TopoGiraffe
             range = Convert.ToInt32(range);
             Color color = (Color)ColorConverter.ConvertFromString("#FFDFD991");
 
-            if (altit < 0) return Colors.Black;
-            if (altit <= AltitudeMin + range) return (Color)ColorConverter.ConvertFromString("#6600CC");
-            if (altit <= AltitudeMin + 2 * range) return (Color)ColorConverter.ConvertFromString("#0000CC");
-            if (altit <= AltitudeMin + 3 * range) return (Color)ColorConverter.ConvertFromString("#0066CC");
-            if (altit <= AltitudeMin + 4 * range) return (Color)ColorConverter.ConvertFromString("#00CCCC");
-            if (altit <= AltitudeMin + 5 * range) return (Color)ColorConverter.ConvertFromString("#00CC66");
-            if (altit <= AltitudeMin + 6 * range) return (Color)ColorConverter.ConvertFromString("#00CC00");
-            if (altit <= AltitudeMin + 7 * range) return (Color)ColorConverter.ConvertFromString("#66CC00");
-            if (altit <= AltitudeMin + 8 * range) return (Color)ColorConverter.ConvertFromString("#FFFF00");
-            if (altit <= AltitudeMin + 9 * range) return (Color)ColorConverter.ConvertFromString("#FF8000");
-            if (altit <= AltitudeMin + 10 * range) return (Color)ColorConverter.ConvertFromString("#FF0000");
+            if (altit  <  0) return Colors.Black;
+            if (altit <= AltitudeMin + range)    return (Color)ColorConverter.ConvertFromString("#6600CC");
+            if (altit <= AltitudeMin +  2 *range)return (Color)ColorConverter.ConvertFromString("#0000CC");
+            if (altit <= AltitudeMin + 3 *range) return (Color)ColorConverter.ConvertFromString("#0066CC");
+            if (altit <= AltitudeMin + 4 *range) return (Color)ColorConverter.ConvertFromString("#00CCCC");
+            if (altit <= AltitudeMin + 5 *range) return (Color)ColorConverter.ConvertFromString("#00CC66");
+            if (altit <= AltitudeMin + 6 *range) return (Color)ColorConverter.ConvertFromString("#00CC00");
+            if (altit <= AltitudeMin + 7 *range) return (Color)ColorConverter.ConvertFromString("#66CC00");
+            if (altit <= AltitudeMin + 8 *range) return (Color)ColorConverter.ConvertFromString("#FFFF00");
+            if (altit <= AltitudeMin + 9 *range) return (Color)ColorConverter.ConvertFromString("#FF8000");
+            if (altit <= AltitudeMin + 10 *range)return (Color)ColorConverter.ConvertFromString("#FF0000");
             return Colors.Black;
 
 

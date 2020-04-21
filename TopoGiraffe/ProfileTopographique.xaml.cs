@@ -44,7 +44,7 @@ namespace TopoGiraffe
                     Values = MyValues,//les valeurs
                  //   PointGeometrySize = 4,
                     AreaLimit = 0,
-                    LineSmoothness = 0.2,
+                    LineSmoothness = 0.4,
                     //DataLabels = true,
                 }
             };
