@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TopoGiraffe"
         mc:Ignorable="d"
-        Title="DataDialog" Height="490" Width="501" WindowStartupLocation="CenterScreen" >
+        Title="DataDialog" Height="490" Width="501" WindowStartupLocation="CenterScreen" Cursor="Hand" >
 
     <Grid Background="#C5C5C5">
         <Grid.RowDefinitions>
