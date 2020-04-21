@@ -927,10 +927,11 @@ namespace TopoGiraffe
 
 
                     Interpoly = new Polyline();
-                    //Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    //StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
+                    Interpoly.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
 
-                    //Interpoly.StrokeThickness = 2;
+                    StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
+
+                    Interpoly.StrokeThickness = ThickSlider.Value;
                     Interpoly.Points.Clear();
                     //Interpoly.FillRule = FillRule.EvenOdd;
                     //courbeActuelle = Interpoly;
@@ -1369,10 +1370,9 @@ namespace TopoGiraffe
 
 
               
-                if (courbeActuelle != null)
-                {
+              
                         AltitudeString = window1.Altitude.Text;
-                }
+                
                     // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
                     newPolyline = new Polyline();
 
