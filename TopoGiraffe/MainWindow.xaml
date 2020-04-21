@@ -272,13 +272,13 @@
                         BorderThickness="0" Click="scaleButton_Click" >
 
                     </Button>
-                    <Button Content="Import" Width="50" FontSize="6" Foreground="Black" BorderBrush="#000" Background="Red" Click="Button_Click" />
+                    <Button Content="Import" Width="50" FontSize="6" Foreground="Black" BorderBrush="#000" Background="#FF3173BA" Click="Button_Click" />
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
 
 
 
                 </StackPanel>
-                <Button Content="pente" BorderBrush="Black" Background="Red" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" Click="pente_Click" Foreground="#DD120202"/>
+                <Button Content="pente" BorderBrush="Black" Background="#FF3173BA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" Click="pente_Click" Foreground="#DD120202"/>
 
             </Grid>
 
