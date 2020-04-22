@@ -27,7 +27,7 @@ namespace TopoGiraffe
         List<IntersectionDetail> IntersectionPoints;
         List<double> distancesListe;
         Echelle mainScale;
-       
+        
         
         public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList, Echelle mainScale)
         {
