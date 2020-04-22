@@ -1709,7 +1709,7 @@ namespace TopoGiraffe
                 l.X2 = points[i].point.X; l.Y2 = points[i].point.Y;
                 sum += ((points[i + 1].altitude - points[i].altitude) * 100 / sc.FindDistanceOnField(l));
             }
-            return (sum/* / points.Count()-1*/);
+            return (sum / (points.Count() - 1));
         }
     }
     class RectangleName

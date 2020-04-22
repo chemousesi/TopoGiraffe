@@ -145,7 +145,7 @@
                             <TranslateTransform X="-0.597"/>
                         </TransformGroup>
                     </TabControl.RenderTransform>
-                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548">
+                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548" Margin="-2,-2,-83,0">
                         <Grid Height="550">
                             <Grid.RowDefinitions>
                                 <RowDefinition  Height="0*" />
@@ -197,7 +197,7 @@
 
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Plan" Background="#C5C5C5" />
+                    <TabItem Header="Plan" Background="#C5C5C5" Margin="72,-2,-165,0" />
 
                 </TabControl>
 
