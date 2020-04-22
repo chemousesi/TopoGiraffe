@@ -14,7 +14,7 @@
          TextOptions.TextRenderingMode="Auto"
          Background="{DynamicResource MaterialDesignPaper}"
          FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Profile Topographique" Height="450" Width="800">
+        Title="Profile Topographique" Height="450" Width="800" Cursor="Hand">
     <Grid>
         
         <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" >

@@ -678,6 +678,8 @@ namespace TopoGiraffe
                 {
 
                     IntersectionPoints.Add(inter);
+                    PenteIntersectionPoints.Add(inter);
+
                 }
 
 
@@ -1601,8 +1603,8 @@ namespace TopoGiraffe
                     li.Stroke = Brushes.Black;
                     li.Visibility = System.Windows.Visibility.Visible;
                     Ellipse circle = new Ellipse();
-                    circle.Width = 15;
-                    circle.Height = 15;
+                    circle.Width = 10;
+                    circle.Height = 10;
                     if (i == itm2.Count() - 1)
                     {
 
@@ -1613,7 +1615,7 @@ namespace TopoGiraffe
                     {
 
 
-                        circle.Fill = Brushes.YellowGreen;
+                        circle.Fill = Brushes.Purple;
                     }
 
 
@@ -1684,13 +1686,14 @@ namespace TopoGiraffe
 
             return objet;
         }
+        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
 
         private void pente_Click(object sender, RoutedEventArgs e)
         {
             Echelle echel = new Echelle(200, 200);
 
-            double pente = CalcPente(IntersectionPoints, echel);
-            MessageBox.Show(pente.ToString());
+            double pente = CalcPente(PenteIntersectionPoints,mainScale);
+            MessageBox.Show(" la pente est de   :" + pente.ToString()+ " % ");
         }
 
         public double CalcPente(List<IntersectionDetail> points, Echelle sc)
@@ -1698,15 +1701,15 @@ namespace TopoGiraffe
             double sum = 0;
             
             Line l = new Line();
-            MessageBox.Show(points.Count().ToString());
+            //MessageBox.Show(points.Count().ToString());
             for (int i = 0; i < points.Count()-1; i++)
             {
                 
                 l.X1 = points[i+1].point.X; l.Y1 = points[i+1].point.Y;
                 l.X2 = points[i].point.X; l.Y2 = points[i].point.Y;
-                sum += ((points[i + 1].altitude - points[i].altitude) / sc.FindDistanceOnField(l));
+                sum += ((points[i + 1].altitude - points[i].altitude) * 100 / sc.FindDistanceOnField(l));
             }
-            return (sum / points.Count()-1);
+            return (sum / (points.Count() - 1));
         }
     }
     class RectangleName
