@@ -26,6 +26,7 @@
     <None Remove="assets\img\save.png" />
     <None Remove="assets\img\scale.png" />
     <None Remove="assets\img\scale2.png" />
+    <None Remove="assets\img\splashScreen.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\visibility.png" />
     <None Remove="assets\img\zoom-in.png" />
@@ -95,6 +96,13 @@
   <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="1.2.3" />
     <PackageReference Include="MaterialDesignThemes" Version="3.1.0" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="assets\img\splashScreen.png" />
+
+
 
   </ItemGroup>
 

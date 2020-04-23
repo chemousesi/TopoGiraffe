@@ -349,7 +349,7 @@ namespace TopoGiraffe
 
 
             courbeActuelle = myPolyline;
-           courbeActuelle.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
+            courbeActuelle.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
 
 
             //myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
@@ -605,7 +605,7 @@ namespace TopoGiraffe
                         cercles.Add(cercle);
                         mainCanvas.Children.Add(cercle);
                     }
-                   
+
                     IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
                     int AltitudeFinale = IntersectionPoints[IntersectionPoints.Count - 1].altitude;
                     int AltitudeIni = IntersectionPoints[0].altitude;
@@ -618,7 +618,7 @@ namespace TopoGiraffe
                         MessageBox.Show(" Distance :" + Math.Round(mainScale.FindDistanceOnField(Outils.DistanceBtwTwoPoints(poly.Points[0], poly.Points[1])), 2) + " mètres");
 
                     }
-                    
+
 
                     addLineClicked = false;
                     double distance1 = Outils.DistanceBtwTwoPoints(new Point(line.X1, line.Y1), new Point(line.X2, line.Y2));// this can be optimized by using line.x, line.y
@@ -691,7 +691,7 @@ namespace TopoGiraffe
             //this.Serializee(curves);
 
             distances();
-          
+
         }
         public bool FindIntersection1(Polyline p, Line line)
         {
@@ -1297,8 +1297,8 @@ namespace TopoGiraffe
             }
         }
 
-        
-       
+
+
 
         public void DrawCtrlPoints(Polyline polyline)
         {
@@ -1414,10 +1414,10 @@ namespace TopoGiraffe
                     indexAltitude++;
 
 
-              
-              
-                        AltitudeString = window1.Altitude.Text;
-                
+
+
+                    AltitudeString = window1.Altitude.Text;
+
                     // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
                     newPolyline = new Polyline();
 
@@ -1541,17 +1541,17 @@ namespace TopoGiraffe
             range = Convert.ToInt32(range);
             Color color = (Color)ColorConverter.ConvertFromString("#FFDFD991");
 
-            if (altit  <  0) return Colors.Black;
-            if (altit <= AltitudeMin + range)    return (Color)ColorConverter.ConvertFromString("#6600CC");
-            if (altit <= AltitudeMin +  2 *range)return (Color)ColorConverter.ConvertFromString("#0000CC");
-            if (altit <= AltitudeMin + 3 *range) return (Color)ColorConverter.ConvertFromString("#0066CC");
-            if (altit <= AltitudeMin + 4 *range) return (Color)ColorConverter.ConvertFromString("#00CCCC");
-            if (altit <= AltitudeMin + 5 *range) return (Color)ColorConverter.ConvertFromString("#00CC66");
-            if (altit <= AltitudeMin + 6 *range) return (Color)ColorConverter.ConvertFromString("#00CC00");
-            if (altit <= AltitudeMin + 7 *range) return (Color)ColorConverter.ConvertFromString("#66CC00");
-            if (altit <= AltitudeMin + 8 *range) return (Color)ColorConverter.ConvertFromString("#FFFF00");
-            if (altit <= AltitudeMin + 9 *range) return (Color)ColorConverter.ConvertFromString("#FF8000");
-            if (altit <= AltitudeMin + 10 *range)return (Color)ColorConverter.ConvertFromString("#FF0000");
+            if (altit < 0) return Colors.Black;
+            if (altit <= AltitudeMin + range) return (Color)ColorConverter.ConvertFromString("#6600CC");
+            if (altit <= AltitudeMin + 2 * range) return (Color)ColorConverter.ConvertFromString("#0000CC");
+            if (altit <= AltitudeMin + 3 * range) return (Color)ColorConverter.ConvertFromString("#0066CC");
+            if (altit <= AltitudeMin + 4 * range) return (Color)ColorConverter.ConvertFromString("#00CCCC");
+            if (altit <= AltitudeMin + 5 * range) return (Color)ColorConverter.ConvertFromString("#00CC66");
+            if (altit <= AltitudeMin + 6 * range) return (Color)ColorConverter.ConvertFromString("#00CC00");
+            if (altit <= AltitudeMin + 7 * range) return (Color)ColorConverter.ConvertFromString("#66CC00");
+            if (altit <= AltitudeMin + 8 * range) return (Color)ColorConverter.ConvertFromString("#FFFF00");
+            if (altit <= AltitudeMin + 9 * range) return (Color)ColorConverter.ConvertFromString("#FF8000");
+            if (altit <= AltitudeMin + 10 * range) return (Color)ColorConverter.ConvertFromString("#FF0000");
             return Colors.Black;
 
 
@@ -1571,14 +1571,14 @@ namespace TopoGiraffe
         public void ShowSauvgardeWindow_Click(object sender, RoutedEventArgs e)
         {
             SauvgardePage pg = new SauvgardePage();
-           
-            this.Content = pg; 
+
+            this.Content = pg;
             /* _mainFrame.Content = new SauvgardePage(); */
         }
 
 
         public void Button_Click(object sender, RoutedEventArgs e)
-        { 
+        {
 
             List<Polyline> curve = polylines;
 
@@ -1692,20 +1692,20 @@ namespace TopoGiraffe
         {
             Echelle echel = new Echelle(200, 200);
 
-            double pente = CalcPente(PenteIntersectionPoints,mainScale);
-            MessageBox.Show(" la pente est de   :" + pente.ToString()+ " % ");
+            double pente = CalcPente(PenteIntersectionPoints, mainScale);
+            MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
         }
 
         public double CalcPente(List<IntersectionDetail> points, Echelle sc)
         {
             double sum = 0;
-            
+
             Line l = new Line();
             //MessageBox.Show(points.Count().ToString());
-            for (int i = 0; i < points.Count()-1; i++)
+            for (int i = 0; i < points.Count() - 1; i++)
             {
-                
-                l.X1 = points[i+1].point.X; l.Y1 = points[i+1].point.Y;
+
+                l.X1 = points[i + 1].point.X; l.Y1 = points[i + 1].point.Y;
                 l.X2 = points[i].point.X; l.Y2 = points[i].point.Y;
                 sum += ((points[i + 1].altitude - points[i].altitude) * 100 / sc.FindDistanceOnField(l));
             }
