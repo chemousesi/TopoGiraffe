@@ -4,7 +4,7 @@ using System.Windows.Shapes;
 
 namespace TopoGiraffe
 {
-    class ArtPoint
+    public class ArtPoint
     {
         public Ellipse cercle;
         private Point p;

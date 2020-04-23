@@ -12,7 +12,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" >
+        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" Cursor="Hand" >
 
 
 
@@ -48,13 +48,23 @@
 
         </Grid.RowDefinitions>
 
-            <Grid>
+
+            <!--<Grid>
                 <Frame x:Name="_mainFrame"/>
                 <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
                     
                 </Button>
-            </Grid>
-            <!--
+            </Grid>-->
+            
+
+        <Grid>
+            <Frame x:Name="_mainFrame"/>
+            <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
+
+            </Button>
+        </Grid>
+        <!--
+
             <DockPanel Grid.Row="0">
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="_Fichier">
@@ -115,7 +125,7 @@
 
                     <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,-21" RenderTransformOrigin="0.498,0.517" >
                         <Canvas.Background>
-                            <SolidColorBrush Color="Azure" Opacity=".1"  />
+                            <SolidColorBrush Color="#FFFFF3F0" Opacity=".1"  />
                         </Canvas.Background>
 
                     </Canvas>
@@ -145,7 +155,11 @@
                             <TranslateTransform X="-0.597"/>
                         </TransformGroup>
                     </TabControl.RenderTransform>
-                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548">
+
+                   
+
+                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548" Margin="-2,-2,-83,0">
+
                         <Grid Height="550">
                             <Grid.RowDefinitions>
                                 <RowDefinition  Height="0*" />
@@ -197,7 +211,9 @@
 
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Plan" Background="#C5C5C5" />
+
+                    <TabItem Header="Plan" Background="#C5C5C5" Margin="72,-2,-165,0" />
+
 
                 </TabControl>
 
@@ -268,15 +284,19 @@
                         BorderThickness="0" Margin="0,0,0,20" >
                         <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  />
                     </Button>
-                    <Button  x:Name="scaleButton" Width="36" Height="50"  Background="{x:Null}" BorderBrush="Transparent"
+
+                    <Button  x:Name="scaleButton" Width="83" Height="50"  Background="{x:Null}" BorderBrush="#FFF41111"
+
                         BorderThickness="0" Click="scaleButton_Click" >
-                        <Image Source="/assets/img/scale2.png" Height="35" Width="35"  />
+
                     </Button>
+                    <Button Content="Import" Width="79" FontSize="18" Foreground="Black" BorderBrush="#000" Background="#FF558CC8" Click="Button_Click" Height="33" Cursor="Hand" />
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
 
 
 
                 </StackPanel>
+                <Button Content="pente" BorderBrush="Black" Background="#FF649FDF" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" Click="pente_Click" Foreground="#DD120202" FontSize="18"/>
 
             </Grid>
 
@@ -300,5 +320,6 @@
         </StatusBar>
 
     </Grid>
+
 
 </Window>

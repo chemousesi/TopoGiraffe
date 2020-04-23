@@ -1,7 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,6 +17,7 @@ using TopoSurf.MessageBoxStyle;
 //using TopoGiraffe.MessageBoxStyle;
 
 
+
 namespace TopoGiraffe
 {
     /// <summary>
@@ -21,7 +25,8 @@ namespace TopoGiraffe
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        //Liste de courbes representer en liste e liste de points (intersections detail)
+        List<List<IntersectionDetail>> curves = new List<List<IntersectionDetail>>();
 
 
         // declaring variables
@@ -45,18 +50,34 @@ namespace TopoGiraffe
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
         int NbCourbes = 0;
 
+
+
+
+
         Plan plan;
         Line scaleLine;
         Boolean drawingScale = false;
         Echelle mainScale;
 
 
-
-
         public MainWindow()
         {
+
+
+
+
+
+
             InitializeComponent();
             this.Title = "TopoGiraffe";
+
+
+
+
+            //Point pt = new Point(2, 3);
+            //IntersectionDetail intd = new IntersectionDetail(pt, true);
+            //this.Serializee(intd);
+
 
 
 
@@ -319,6 +340,7 @@ namespace TopoGiraffe
             dragbool = false;
             Cursor = Cursors.Cross;
             Polyline myPolyline = DrawNewCurve();
+
             polylines.Add(myPolyline);
 
             activerDessinCheckBox.IsChecked = true; navClicked = false;
@@ -327,6 +349,9 @@ namespace TopoGiraffe
 
 
             courbeActuelle = myPolyline;
+            courbeActuelle.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
+
+
             //myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
             //myPolyline = StyleCmbToRealStyle(myPolyline, Window1.SelectedIndex);
 
@@ -565,6 +590,9 @@ namespace TopoGiraffe
                         FindIntersection(polyline, line);
                     }
 
+                    curves.Add(IntersectionPoints);
+                    this.Serializee(curves);
+
                     // dessin des cercles representant les points d'intersection
                     foreach (IntersectionDetail inters in IntersectionPoints)
                     {
@@ -578,13 +606,26 @@ namespace TopoGiraffe
                         mainCanvas.Children.Add(cercle);
                     }
 
+                    IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
+                    int AltitudeFinale = IntersectionPoints[IntersectionPoints.Count - 1].altitude;
+                    int AltitudeIni = IntersectionPoints[0].altitude;
+
+
+
+
                     if (scaleLinePointsCount == 2)
                     {
                         MessageBox.Show(" Distance :" + Math.Round(mainScale.FindDistanceOnField(Outils.DistanceBtwTwoPoints(poly.Points[0], poly.Points[1])), 2) + " mètres");
 
                     }
 
+
                     addLineClicked = false;
+                    double distance1 = Outils.DistanceBtwTwoPoints(new Point(line.X1, line.Y1), new Point(line.X2, line.Y2));// this can be optimized by using line.x, line.y
+                    IntersectionPoints.Add(new IntersectionDetail(new Point(line.X2, line.Y2), AltitudeFinale, distance1));
+                    IntersectionPoints.Add(new IntersectionDetail(new Point(line.X1, line.Y1), AltitudeIni, 0));
+                    IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
+
                 }
 
             }
@@ -635,13 +676,22 @@ namespace TopoGiraffe
 
                 if (inter.intersect == true)
                 {
+
                     IntersectionPoints.Add(inter);
+                    PenteIntersectionPoints.Add(inter);
+
                 }
 
 
             }
+            //deleted for improvement
+            //curves.Add(IntersectionPoints);
+
+
+            //this.Serializee(curves);
 
             distances();
+
         }
         public bool FindIntersection1(Polyline p, Line line)
         {
@@ -909,10 +959,11 @@ namespace TopoGiraffe
 
 
                     Interpoly = new Polyline();
-                    //Interpoly.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    //StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
+                    Interpoly.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
 
-                    //Interpoly.StrokeThickness = 2;
+                    StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
+
+                    Interpoly.StrokeThickness = ThickSlider.Value;
                     Interpoly.Points.Clear();
                     //Interpoly.FillRule = FillRule.EvenOdd;
                     //courbeActuelle = Interpoly;
@@ -981,6 +1032,7 @@ namespace TopoGiraffe
                 foreach (ArtPoint el in PointsGlobal[index2])
                 {
                     mainCanvas.Children.Remove(el.cercle);
+
                     mainCanvas.Children.Add(el.cercle);
 
                 }
@@ -1011,6 +1063,14 @@ namespace TopoGiraffe
             {
                 finalCtrlPoint = true;
 
+                btn2Clicked = false;
+                //curve is a list of points
+                List<IntersectionDetail> curve = new List<IntersectionDetail>();
+                for (int k = 0; k < courbeActuelle.Points.Count(); k++) { curve.Add(new IntersectionDetail(courbeActuelle.Points[k], false)); }
+                curves.Add(curve);
+
+
+
             }
             Ellipse elli = (Ellipse)elDraggingEllipse;
             elli.Fill = Brushes.Orange;
@@ -1033,6 +1093,7 @@ namespace TopoGiraffe
         double minX, minY, maxX, maxY;
         int indexdrag = 0;
 
+
         private void btn13_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1053,6 +1114,7 @@ namespace TopoGiraffe
               {
 
               }*/
+
         }
 
         List<ArtPoint> DragPoints;
@@ -1236,6 +1298,8 @@ namespace TopoGiraffe
         }
 
 
+
+
         public void DrawCtrlPoints(Polyline polyline)
         {
             if (polyline == null) return;
@@ -1329,7 +1393,7 @@ namespace TopoGiraffe
 
         }
 
-
+        String AltitudeString;
 
         public Polyline DrawNewCurve()
         // this function generates a dialog box , create , style a polyline from that dialog box entries
@@ -1351,18 +1415,18 @@ namespace TopoGiraffe
 
 
 
-                    if (courbeActuelle != null)
-                    {
-                        AltitudeBox.Text = window1.Altitude.Text;
-                    }
+
+                    AltitudeString = window1.Altitude.Text;
+
                     // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
                     newPolyline = new Polyline();
 
                     //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
                     //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    newPolyline.Stroke = System.Windows.Media.Brushes.Black;
+                    //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
                     newPolyline.StrokeThickness = 2;
                     newPolyline.FillRule = FillRule.EvenOdd;
+
 
 
                     newPolyline = StyleCmbToRealStyle(newPolyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
@@ -1507,18 +1571,155 @@ namespace TopoGiraffe
         public void ShowSauvgardeWindow_Click(object sender, RoutedEventArgs e)
         {
             SauvgardePage pg = new SauvgardePage();
-           
-            this.Content = pg; 
+
+            this.Content = pg;
             /* _mainFrame.Content = new SauvgardePage(); */
         }
 
 
+        public void Button_Click(object sender, RoutedEventArgs e)
+        {
 
+            List<Polyline> curve = polylines;
+
+            List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
+
+
+
+
+
+            itm2 = this.DeSerialize();
+
+
+            for (int i = 0; i < itm2.Count(); i++)
+            {
+                Polyline li = new Polyline();
+
+                for (int j = 0; j < itm2[i].Count(); j++)
+                {
+
+                    li.FillRule = FillRule.EvenOdd;
+                    li.StrokeThickness = 4;
+                    li.Stroke = Brushes.Black;
+                    li.Visibility = System.Windows.Visibility.Visible;
+                    Ellipse circle = new Ellipse();
+                    circle.Width = 10;
+                    circle.Height = 10;
+                    if (i == itm2.Count() - 1)
+                    {
+
+                        circle.Fill = Brushes.Red;
+
+                    }
+                    else
+                    {
+
+
+                        circle.Fill = Brushes.Purple;
+                    }
+
+
+
+                    Canvas.SetLeft(circle, itm2[i][j].point.X - (circle.Width / 2));
+                    Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
+                    Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
+                    mainCanvas.Children.Add(circle);
+                    li.Points.Add(ps);
+
+                }
+                li.FillRule = FillRule.EvenOdd;
+                li.Visibility = System.Windows.Visibility.Visible;
+
+                if (i == (itm2.Count() - 1))
+                {
+
+                    li.Stroke = Brushes.Purple;
+                    li.StrokeThickness = 7;
+
+
+                }
+                else
+                {
+
+                    li.Stroke = Brushes.Black;
+                    li.StrokeThickness = 2;
+                }
+
+                mainCanvas.Children.Add(li);
+            }
+
+
+            //mainCanvas.Children.Add(circle);
+
+
+        }
+
+        //serialization
+
+        public void Serializee(List<List<IntersectionDetail>> objet)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+
+            Stream s = File.Open("test.dat", FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(s, objet);
+            s.Close();
+        }
+
+        public List<List<IntersectionDetail>> DeSerialize()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a ";
+            op.FileName = "Document"; // Default file name
+            op.DefaultExt = ".dat"; // Default file extension
+            op.Filter = "Text documents (.dat)|*.dat"; // Filter files by extension
+            if (op.ShowDialog() == true)
+            {
+                string fiName = op.FileName;
+
+            }
+            Stream s = File.Open(path: op.FileName, FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            List<List<IntersectionDetail>> objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
+            s.Close();
+
+
+            return objet;
+        }
+        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
+
+        private void pente_Click(object sender, RoutedEventArgs e)
+        {
+            Echelle echel = new Echelle(200, 200);
+
+            double pente = CalcPente(PenteIntersectionPoints, mainScale);
+            MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
+        }
+
+        public double CalcPente(List<IntersectionDetail> points, Echelle sc)
+        {
+            double sum = 0;
+
+            Line l = new Line();
+            //MessageBox.Show(points.Count().ToString());
+            for (int i = 0; i < points.Count() - 1; i++)
+            {
+
+                l.X1 = points[i + 1].point.X; l.Y1 = points[i + 1].point.Y;
+                l.X2 = points[i].point.X; l.Y2 = points[i].point.Y;
+                sum += ((points[i + 1].altitude - points[i].altitude) * 100 / sc.FindDistanceOnField(l));
+            }
+            return (sum / (points.Count() - 1));
+        }
     }
     class RectangleName
     {
         public Rectangle Rect { get; set; }
         public string Name { get; set; }
     }
+
+
+
+
 
 }
