@@ -48,6 +48,15 @@
 
         </Grid.RowDefinitions>
 
+
+            <!--<Grid>
+                <Frame x:Name="_mainFrame"/>
+                <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
+                    
+                </Button>
+            </Grid>-->
+            
+
         <Grid>
             <Frame x:Name="_mainFrame"/>
             <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
@@ -55,6 +64,7 @@
             </Button>
         </Grid>
         <!--
+
             <DockPanel Grid.Row="0">
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="_Fichier">
@@ -90,7 +100,7 @@
                 <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A"  >
                     <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
-                </Button>
+                </Button> 
             </StackPanel>
         </Grid>
         <Grid  Grid.Row="2">
@@ -150,7 +160,11 @@
                             <TranslateTransform X="-0.597"/>
                         </TransformGroup>
                     </TabControl.RenderTransform>
+
+                   
+
                     <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548" Margin="-2,-2,-83,0">
+
                         <Grid Height="550">
                             <Grid.RowDefinitions>
                                 <RowDefinition  Height="0*" />
@@ -202,7 +216,9 @@
 
                         </Grid>
                     </TabItem>
+
                     <TabItem Header="Plan" Background="#C5C5C5" Margin="72,-2,-165,0" />
+
 
                 </TabControl>
 
@@ -273,7 +289,9 @@
                         BorderThickness="0" Margin="0,0,0,20" >
                         <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  />
                     </Button>
+
                     <Button  x:Name="scaleButton" Width="83" Height="50"  Background="{x:Null}" BorderBrush="#FFF41111"
+
                         BorderThickness="0" Click="scaleButton_Click" >
 
                     </Button>
@@ -306,5 +324,6 @@
         </StatusBar>
 
     </Grid>
+
 
 </Window>

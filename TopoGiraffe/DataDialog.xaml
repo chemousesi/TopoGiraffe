@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TopoGiraffe"
         mc:Ignorable="d"
+
+       
+
         Title="DataDialog" Height="490" Width="501" WindowStartupLocation="CenterScreen" Cursor="Hand" >
+
 
     <Grid Background="#C5C5C5">
         <Grid.RowDefinitions>
@@ -32,12 +36,19 @@
                     <TextBox x:Name="MinTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" />
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
+
+                    
+
                     <Label Content="ECHELLE  (px): " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
+
                     <TextBox x:Name="EchelleTextBoxOnCanvas" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="28" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
                 </StackPanel>
                 <Label Content="* Donner la valeur de l'echelle en pixels sur le plan" FontSize="7" Width="171"  HorizontalAlignment="Right"/>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="7,7">
+
+
                     <Label Content="(m)" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="108"   HorizontalContentAlignment="Center" />
+
 
                     <TextBox x:Name="EchelleTextBoxOnField" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="28" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
                 </StackPanel>
