@@ -59,7 +59,7 @@ namespace TopoGiraffe
         Boolean drawingScale = false;
         Echelle mainScale;
 
-       
+
         public MainWindow()
         {
 
@@ -1110,7 +1110,7 @@ namespace TopoGiraffe
             if (mainScale != null)
             {
                 String penteText = " la pente est de   :" + pente.ToString() + " % ";
-                ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale,penteText);
+                ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale, penteText);
                 profile.Show();
 
             }
@@ -1658,7 +1658,7 @@ namespace TopoGiraffe
                     li.StrokeThickness = 2;
                 }
 
-              
+
 
             }
 
@@ -1700,7 +1700,7 @@ namespace TopoGiraffe
 
             return objet;
         }
-        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>(); 
+        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
         double pente;
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
@@ -1709,7 +1709,7 @@ namespace TopoGiraffe
             pente = CalcPente(PenteIntersectionPoints, mainScale);
             MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
         }
-     
+
 
         public double CalcPente(List<IntersectionDetail> points, Echelle sc)
         {
