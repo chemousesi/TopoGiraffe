@@ -16,10 +16,19 @@
          FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Profile Topographique" Height="450" Width="800" Cursor="Hand">
     <Grid>
-        
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" >
-            
-        </lvc:CartesianChart>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Name="MyPente">
+            <TextBox x:Name="penteTextBox" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-62,0,0" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" RenderTransformOrigin="0.536,-1.041" Height="25"></TextBox>
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" Loaded="CartesianChart_Loaded" >
+
+            </lvc:CartesianChart>
+        </Grid>
+
     </Grid>
 </Window>

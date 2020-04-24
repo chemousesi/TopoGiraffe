@@ -26,7 +26,7 @@
     <None Remove="assets\img\save.png" />
     <None Remove="assets\img\scale.png" />
     <None Remove="assets\img\scale2.png" />
-    <None Remove="assets\img\splashScreen.png" />
+    <None Remove="assets\img\SplashScreen2.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\visibility.png" />
     <None Remove="assets\img\zoom-in.png" />
@@ -100,10 +100,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SplashScreen Include="assets\img\splashScreen.png" />
-
-
-
+    <SplashScreen Include="assets\img\SplashScreen2.png" />
   </ItemGroup>
 
 </Project>
