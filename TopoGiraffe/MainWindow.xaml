@@ -180,11 +180,11 @@
                                 <TextBlock Text="Type de courbe" Margin="33,-1,32.8,4"></TextBlock>
 
                                 <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,35" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" >
-                                    <ComboBoxItem >Courbe simple</ComboBoxItem>
-                                    <ComboBoxItem >Courbe intermediare</ComboBoxItem>
-                                    <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
+                                    <ComboBoxItem>Courbe simple</ComboBoxItem>
+                                    <ComboBoxItem>Courbe intermediare</ComboBoxItem>
+                                    <ComboBoxItem>Courbe Maitresse</ComboBoxItem>
                                 </ComboBox>
-                                <TextBlock Text="Color Picker" Margin="33,7,32.8,.5"></TextBlock>
+                                <TextBlock Text="Color Picker"  Margin="33,7,32.8,.5"></TextBlock>
                                 <xctk1:ColorPicker Name="cp"  Margin="33,7,32.8,.5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" ></xctk1:ColorPicker>
 
 
@@ -290,7 +290,7 @@
                         <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  />
                     </Button>
 
-                    <Button  x:Name="scaleButton" Width="83" Height="50"  Background="{x:Null}" BorderBrush="#FFF41111"
+                    <Button  x:Name="scaleButton" Width="83" Height="60"  Background="{x:Null}" BorderBrush="#FFF41111"
 
                         BorderThickness="0" Click="scaleButton_Click" >
 

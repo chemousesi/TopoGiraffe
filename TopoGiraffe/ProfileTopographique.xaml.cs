@@ -24,6 +24,7 @@ namespace TopoGiraffe
             this.mainScale = mainScale;
 
             InitializeComponent();
+
             int compteur;
             //Echelle scale = new Echelle(130, 1000);
             MyValues = new ChartValues<ObservablePoint>();

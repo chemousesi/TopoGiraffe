@@ -8,51 +8,57 @@
 
        
 
-        Title="DataDialog" Height="490" Width="501" WindowStartupLocation="CenterScreen" Cursor="Hand" >
+        Title="DataDialog" Height="463" Width="454" WindowStartupLocation="CenterScreen" Cursor="Hand" >
 
 
-    <Grid Background="#C5C5C5">
+
+    <Grid Background="White" Height="434" Cursor="Hand">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="0,0,0,66" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="149*"/>
+                <ColumnDefinition Width="18*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="0*"/>
             </Grid.RowDefinitions>
-            <StackPanel   HorizontalAlignment="Center" Margin="0,30,0,0" Width="264" >
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
+            <StackPanel   HorizontalAlignment="Left"  Margin="25,20,0,10" Width="451" Background="{DynamicResource MaterialDesignBackground}" Panel.ZIndex="1" Grid.ColumnSpan="2" >
+                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
                     <Label Content="EQUIDISTANCE (m) : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="108"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="EquidistanceTextBox"  Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  />
+                    <TextBox x:Name="EquidistanceTextBox"  Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#FFA04646" Height="30" Width="150"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#890D389C" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="35,0,0,0"/>
+
 
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
+                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
                     <Label Content="MAX (m) : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="MaxTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right"  />
+                    <TextBox x:Name="MaxTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="42,0,0,0" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
+                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
                     <Label Content="MIN  ( m): " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="MinTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="45" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" />
+                    <TextBox x:Name="MinTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="42,0,0,0" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="7,7">
+                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
 
-                    
+
 
                     <Label Content="ECHELLE  (px): " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
 
-                    <TextBox x:Name="EchelleTextBoxOnCanvas" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="28" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                    <TextBox x:Name="EchelleTextBoxOnCanvas" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="43,0,0,0" />
                 </StackPanel>
-                <Label Content="* Donner la valeur de l'echelle en pixels sur le plan" FontSize="7" Width="171"  HorizontalAlignment="Right"/>
-                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="7,7">
+                <Label Content="* Donner la valeur de l'echelle en pixels sur le plan" FontSize="7" Width="171"  HorizontalAlignment="Stretch"/>
+                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
 
 
                     <Label Content="(m)" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="108"   HorizontalContentAlignment="Center" />
 
 
-                    <TextBox x:Name="EchelleTextBoxOnField" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="28" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                    <TextBox x:Name="EchelleTextBoxOnField" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="35,0,0,0"/>
                 </StackPanel>
-                <Label Content="* Donner la valeur de l'echelle en (m)" FontSize="7" Width="157" HorizontalAlignment="Right" />
+                <Label Content="* Donner la valeur de l'echelle en (m)" FontSize="7" Width="157" HorizontalAlignment="Center" />
             </StackPanel>
 
         </Grid>

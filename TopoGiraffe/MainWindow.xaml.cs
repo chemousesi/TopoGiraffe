@@ -27,6 +27,8 @@ namespace TopoGiraffe
     {
         //Liste de courbes representer en liste e liste de points (intersections detail)
         List<List<IntersectionDetail>> curves = new List<List<IntersectionDetail>>();
+        public static int v;
+
 
 
         // declaring variables
@@ -346,11 +348,10 @@ namespace TopoGiraffe
             activerDessinCheckBox.IsChecked = true; navClicked = false;
 
             // styling
-
-
             courbeActuelle = myPolyline;
             courbeActuelle.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
-
+            ThickText.Text = courbeActuelle.StrokeThickness.ToString();
+         
 
             //myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
             //myPolyline = StyleCmbToRealStyle(myPolyline, Window1.SelectedIndex);
@@ -1266,7 +1267,6 @@ namespace TopoGiraffe
         void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {//path dragging
             if ((elDragging) == null) return;
-            if (e.LeftButton == MouseButtonState.Pressed)
             {
                 Point ptMouse = e.GetPosition(this);
                 if (isDragging)
@@ -1427,6 +1427,7 @@ namespace TopoGiraffe
 
 
                     AltitudeString = window1.Altitude.Text;
+                    AltitudeBox.Text = window1.Altitude.Text;
 
                     // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
                     newPolyline = new Polyline();
