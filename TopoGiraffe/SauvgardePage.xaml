@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TopoGiraffe"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SauvgardePage">
@@ -348,7 +350,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" Background="#053047" >
+            <Grid Grid.Column="0" Background="#FF023788" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
@@ -420,7 +422,7 @@
                     </Button>
                 </Grid>        
             </Grid>
-            <Grid Grid.Column="1" Background="#C5C5C5">
+            <Grid Grid.Column="1" Background="#FFFCFAFA">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="*"/>

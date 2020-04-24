@@ -1,5 +1,6 @@
-﻿using System.Windows.Controls;
-
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace TopoGiraffe
 {
@@ -12,5 +13,6 @@ namespace TopoGiraffe
         {
             InitializeComponent();
         }
+       
     }
 }
