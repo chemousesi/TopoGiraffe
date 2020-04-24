@@ -27,8 +27,6 @@ namespace TopoGiraffe
     {
         //Liste de courbes representer en liste e liste de points (intersections detail)
         List<List<IntersectionDetail>> curves = new List<List<IntersectionDetail>>();
-        public static int v;
-
 
 
         // declaring variables
@@ -61,7 +59,7 @@ namespace TopoGiraffe
         Boolean drawingScale = false;
         Echelle mainScale;
 
-       
+
         public MainWindow()
         {
 
@@ -348,10 +346,11 @@ namespace TopoGiraffe
             activerDessinCheckBox.IsChecked = true; navClicked = false;
 
             // styling
+
+
             courbeActuelle = myPolyline;
             courbeActuelle.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
-            ThickText.Text = courbeActuelle.StrokeThickness.ToString();
-         
+
 
             //myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
             //myPolyline = StyleCmbToRealStyle(myPolyline, Window1.SelectedIndex);
@@ -1111,7 +1110,7 @@ namespace TopoGiraffe
             if (mainScale != null)
             {
                 String penteText = " la pente est de   :" + pente.ToString() + " % ";
-                ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale,penteText);
+                ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale, penteText);
                 profile.Show();
 
             }
@@ -1268,6 +1267,7 @@ namespace TopoGiraffe
         void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {//path dragging
             if ((elDragging) == null) return;
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
                 Point ptMouse = e.GetPosition(this);
                 if (isDragging)
@@ -1428,7 +1428,6 @@ namespace TopoGiraffe
 
 
                     AltitudeString = window1.Altitude.Text;
-                    AltitudeBox.Text = window1.Altitude.Text;
 
                     // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
                     newPolyline = new Polyline();
@@ -1659,7 +1658,7 @@ namespace TopoGiraffe
                     li.StrokeThickness = 2;
                 }
 
-              
+
 
             }
 
@@ -1701,7 +1700,7 @@ namespace TopoGiraffe
 
             return objet;
         }
-        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>(); 
+        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
         double pente;
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
@@ -1710,7 +1709,7 @@ namespace TopoGiraffe
             pente = CalcPente(PenteIntersectionPoints, mainScale);
             MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
         }
-     
+
 
         public double CalcPente(List<IntersectionDetail> points, Echelle sc)
         {
