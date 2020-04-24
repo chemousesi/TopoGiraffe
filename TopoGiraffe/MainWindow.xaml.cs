@@ -867,28 +867,38 @@ namespace TopoGiraffe
 
         private void mainCanvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            btn2Clicked = false;
 
 
-            if (courbeActuelle != null)
-            {
-                courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
-            }
+            if (btn2Clicked == false) return;
             else
             {
-                MessageBox.Show("vous n'avez pas de courbe");
-            }
+                btn2Clicked = false;
+
+
+                if (courbeActuelle != null)
+                {
+                    courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+                }
+                else
+                {
+                    MessageBox.Show("vous n'avez pas de courbe");
+                }
 
 
 
-            if (polylines.Contains(courbeActuelle) == false)
-            {
-                polylines.Add(courbeActuelle);
-            }
-            if (polylines.Count != 0)
-            {
-                int indexp = polylines.IndexOf(courbeActuelle);
+                if (polylines.Contains(courbeActuelle) == false)
+                {
+                    polylines.Add(courbeActuelle);
+                }
+                if (polylines.Count != 0)
+                {
+                    int indexp = polylines.IndexOf(courbeActuelle);
 
+                }
+                //curve is a list of points
+                List<IntersectionDetail> curve = new List<IntersectionDetail>();
+                for (int k = 0; k < courbeActuelle.Points.Count(); k++) { curve.Add(new IntersectionDetail(courbeActuelle.Points[k], false)); }
+                curves.Add(curve);
             }
         }
 
@@ -1595,6 +1605,8 @@ namespace TopoGiraffe
             for (int i = 0; i < itm2.Count(); i++)
             {
                 Polyline li = new Polyline();
+                mainCanvas.Children.Add(li);
+
 
                 for (int j = 0; j < itm2[i].Count(); j++)
                 {
@@ -1624,8 +1636,8 @@ namespace TopoGiraffe
                     Canvas.SetLeft(circle, itm2[i][j].point.X - (circle.Width / 2));
                     Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
                     Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
-                    mainCanvas.Children.Add(circle);
                     li.Points.Add(ps);
+                    mainCanvas.Children.Add(circle);
 
                 }
                 li.FillRule = FillRule.EvenOdd;
@@ -1646,7 +1658,8 @@ namespace TopoGiraffe
                     li.StrokeThickness = 2;
                 }
 
-                mainCanvas.Children.Add(li);
+              
+
             }
 
 
@@ -1687,15 +1700,16 @@ namespace TopoGiraffe
 
             return objet;
         }
-        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
+        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>(); 
         double pente;
-        private void pente_Click(object sender, RoutedEventArgs e)
+        private void Pente_Click(object sender, RoutedEventArgs e)
         {
             Echelle echel = new Echelle(200, 200);
 
             pente = CalcPente(PenteIntersectionPoints, mainScale);
             MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
         }
+     
 
         public double CalcPente(List<IntersectionDetail> points, Echelle sc)
         {
