@@ -12,7 +12,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" >
+        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" Cursor="Hand" >
 
 
 
@@ -48,6 +48,15 @@
 
         </Grid.RowDefinitions>
 
+
+            <!--<Grid>
+                <Frame x:Name="_mainFrame"/>
+                <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
+                    
+                </Button>
+            </Grid>-->
+            
+
         <Grid>
             <Frame x:Name="_mainFrame"/>
             <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
@@ -55,6 +64,7 @@
             </Button>
         </Grid>
         <!--
+
             <DockPanel Grid.Row="0">
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="_Fichier">
@@ -79,9 +89,9 @@
         BorderThickness="0"  Margin="40,0,0,0" MouseEnter="Pen_MouseEnter" MouseLeave="Pen_MouseLeave" >
                     <Image Source="/assets/img/draw.png" Width="30" Height="30" />
                 </Button>
-                <Button  x:Name="btn12" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" >
-                    <Image Source="/assets/img/tour.png" Width="30" Height="30"/>
+                <Button  x:Name="Pente" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" >
+                    <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
                 </Button>
                 <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Click="btn13_Click" MouseEnter="Profil_MouseEnter" MouseLeave="Profil_MouseLeave" >
@@ -90,7 +100,7 @@
                 <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"  >
                     <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
-                </Button>
+                </Button> 
             </StackPanel>
         </Grid>
         <Grid  Grid.Row="2">
@@ -111,9 +121,14 @@
                     </TransformGroup>
                 </utils:ZoomBorder.RenderTransform>
                 <Grid>
-                    <Image Margin="12,12,10,9.8" Name="imgPhoto" Grid.Column="1"  />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="567*"/>
+                        <ColumnDefinition Width="51*"/>
+                        <ColumnDefinition Width="427*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Margin="12,12,10,10" Name="imgPhoto" Grid.ColumnSpan="3"  />
 
-                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,-21" RenderTransformOrigin="0.498,0.517" >
+                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,-21" RenderTransformOrigin="0.498,0.517" Grid.ColumnSpan="3" >
                         <Canvas.Background>
                             <SolidColorBrush Color="#FFFFF3F0" Opacity=".1"  />
                         </Canvas.Background>
@@ -145,7 +160,11 @@
                             <TranslateTransform X="-0.597"/>
                         </TransformGroup>
                     </TabControl.RenderTransform>
-                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548">
+
+                   
+
+                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548" Margin="-2,-2,-83,0">
+
                         <Grid Height="550">
                             <Grid.RowDefinitions>
                                 <RowDefinition  Height="0*" />
@@ -160,6 +179,7 @@
 
                                 <TextBlock Text="Type de courbe" Margin="33,-1,32.8,4"></TextBlock>
 
+
                                 <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,35" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" MouseEnter="TypeCourbe_MouseEnter" MouseLeave="TypeCourbe_MouseLeave" >
                                     <ComboBoxItem >Courbe simple</ComboBoxItem>
                                     <ComboBoxItem >Courbe intermediare</ComboBoxItem>
@@ -167,6 +187,7 @@
                                 </ComboBox>
                                 <TextBlock Text="Color Picker" Margin="33,7,32.8,.5"></TextBlock>
                                 <xctk1:ColorPicker Name="cp"  Margin="33,7,32.8,.5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" MouseEnter="ColorPicker_MouseEnter" MouseLeave="ColorPicker_MouseLeave" ></xctk1:ColorPicker>
+
 
 
                             </StackPanel>
@@ -197,7 +218,9 @@
 
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Plan" Background="#C5C5C5" />
+
+                    <TabItem Header="Plan" Background="#C5C5C5" Margin="72,-2,-165,0" />
+
 
                 </TabControl>
 
@@ -268,17 +291,18 @@
                         BorderThickness="0" Margin="0,0,0,20" MouseEnter="Zoom_MouseEnter" MouseLeave="Zoom_MouseLeave" >
                         <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  />
                     </Button>
-                    <Button  x:Name="scaleButton" Width="83" Height="50"  Background="{x:Null}" BorderBrush="#FFF41111"
+
+                    <Button  x:Name="scaleButton" Width="83" Height="60"  Background="{x:Null}" BorderBrush="#FFF41111"
+
                         BorderThickness="0" Click="scaleButton_Click" >
 
                     </Button>
-                    <Button Content="Import" Width="50" FontSize="6" Foreground="Black" BorderBrush="#000" Background="#FF3173BA" Click="Button_Click" />
+                    <Button Content="Import" Width="79" FontSize="18" Foreground="Black" BorderBrush="#000" Background="#FF558CC8" Click="Button_Click" Height="33" Cursor="Hand" />
                     <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
 
 
 
                 </StackPanel>
-                <Button Content="pente" BorderBrush="Black" Background="#FF3173BA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" Click="pente_Click" Foreground="#DD120202"/>
 
             </Grid>
 
@@ -310,5 +334,6 @@
         </Popup>
 
     </Grid>
+
 
 </Window>
