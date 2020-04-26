@@ -89,8 +89,8 @@
         BorderThickness="0"  Margin="40,0,0,0" MouseEnter="Pen_MouseEnter" MouseLeave="Pen_MouseLeave" >
                     <Image Source="/assets/img/draw.png" Width="30" Height="30" />
                 </Button>
-                <Button  x:Name="Pente" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" >
+                <Button  x:Name="Pente" Width="90" Height="84"  Background="{x:Null}"  ToolTip="Calculer la pente" BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" Cursor="Hand" >
                     <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
                 </Button>
                 <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
@@ -205,7 +205,7 @@
                                 <DockPanel DockPanel.Dock="Top" Height="163">
                                     <Label Margin="10 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude</Label>
                                     <WrapPanel Width="334" DockPanel.Dock="Top" Height="47" >
-                                        <Button x:Name="ZoomIn" Content="+" HorizontalAlignment="Left" Background="#90CAF9" Width="45" Height="40" Margin="67,0,42,0"   FontSize="22"  Opacity="0.6" Click="ZoomIn_Click" FontWeight="Bold" FontStyle="Normal"/>
+                                        <Button x:Name="ZoomIn" Content="+" HorizontalAlignment="Left" Background="#90CAF9" Width="45" Height="40" Margin="67,0,42,0"   FontSize="22"  Opacity="0.6" ToolTip="augmenter l'altitude" Click="ZoomIn_Click"  FontWeight="Bold" FontStyle="Normal"/>
                                         <Button x:Name="ZoomOut" Content="-" Width="45" Height="40" Margin="17,0,15,0"  HorizontalAlignment="Center" Background="#90CAF9"  FontSize="22" Opacity="0.57" Click="ZoomOut_Click" FontWeight="Bold"/>
                                         <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  DockPanel.Dock="Right" VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" ></TextBox>
 
