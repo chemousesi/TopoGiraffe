@@ -382,6 +382,7 @@ namespace TopoGiraffe
             }
             else
             {
+
                 if (courbeActuelle.Points.Count > 0)
                 {
                     courbeActuelle.Points.Remove(courbeActuelle.Points[courbeActuelle.Points.Count - 1]);
