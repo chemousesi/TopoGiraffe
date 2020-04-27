@@ -4,11 +4,11 @@
     using System.Collections.Generic;
 
     public partial class MainViewModel
-    {
+    {  
         public MainViewModel()
         {
-
-
+            
+            
             this.Title = "Profil Topographique";
             int cpt = 0;// Pour parcourir la list des intersections
             int point1 = 1; //Pour cree la liste

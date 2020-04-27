@@ -1,19 +1,18 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TopoGiraffe.Noyau;
 using TopoSurf.MessageBoxStyle;
-using System.Windows.Controls.Primitives;
 
 
 //using TopoGiraffe.MessageBoxStyle;
@@ -43,21 +42,29 @@ namespace TopoGiraffe
 
         PolyLineSegment polylinesegment = new PolyLineSegment();
         bool btn2Clicked = false; bool addLineClicked = false; bool navClicked = false;
+#pragma warning disable CS0414 // Le champ 'MainWindow.finish' est assigné, mais sa valeur n'est jamais utilisée
         bool finish = false;
+#pragma warning restore CS0414 // Le champ 'MainWindow.finish' est assigné, mais sa valeur n'est jamais utilisée
         Polyline poly = new Polyline();
         int LinePointscpt = 0;
+#pragma warning disable CS0414 // Le champ 'MainWindow.firstPoint' est assigné, mais sa valeur n'est jamais utilisée
         Boolean firstPoint = true;
+#pragma warning restore CS0414 // Le champ 'MainWindow.firstPoint' est assigné, mais sa valeur n'est jamais utilisée
         List<int> Altitudes = new List<int>();
 
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
+#pragma warning disable CS0414 // Le champ 'MainWindow.NbCourbes' est assigné, mais sa valeur n'est jamais utilisée
         int NbCourbes = 0;
+#pragma warning restore CS0414 // Le champ 'MainWindow.NbCourbes' est assigné, mais sa valeur n'est jamais utilisée
 
 
 
 
 
         Plan plan;
+#pragma warning disable CS0169 // Le champ 'MainWindow.scaleLine' n'est jamais utilisé
         Line scaleLine;
+#pragma warning restore CS0169 // Le champ 'MainWindow.scaleLine' n'est jamais utilisé
         Boolean drawingScale = false;
         Echelle mainScale;
 
@@ -157,66 +164,8 @@ namespace TopoGiraffe
         }
 
 
-        /*      cette fonction va colorer le dernier point de la courbe quand on souhaite la fermer
-         *   
+        
 
-    private void mainCanvas_MouseMove(object sender, MouseEventArgs e)
-    {
-        int x = Convert.ToInt32(Mouse.GetPosition(mainCanvas).X);
-        int y = Convert.ToInt32(Mouse.GetPosition(mainCanvas).Y);
-        Boolean cercleDuPremierPointDessine = false;
-
-
-
-
-        if (polylines.Count != 0)
-        {
-            PointCollection points = polylines[polylines.Count - 1].Points;
-
-
-            if (points.Count > 2)
-            {
-
-                Point premierPoint = points[0];
-
-
-
-                if ((Math.Abs(premierPoint.X - x) < 20) && (Math.Abs(premierPoint.Y - y) < 20) && (cercleDuPremierPointDessine==false) )
-                {
-                    cercleDuPremierPointDessine = true;
-
-                    cerclePremierPoint.Width = 10;
-                    cerclePremierPoint.Height = 10;
-                    cerclePremierPoint.Fill = System.Windows.Media.Brushes.Red;
-
-                    Canvas.SetLeft(cerclePremierPoint, premierPoint.X - (cerclePremierPoint.Width / 2));
-                    Canvas.SetTop(cerclePremierPoint, premierPoint.Y - (cerclePremierPoint.Height / 2));
-
-                    mainCanvas.Children.Add(cerclePremierPoint);
-
-
-                }
-
-                if ((Math.Abs(premierPoint.X - x) > 20) && (Math.Abs(premierPoint.Y - y) > 20) && (cercleDuPremierPointDessine = true))
-                {
-                    if (mainCanvas.Children.Contains(cerclePremierPoint))
-                    {
-                        mainCanvas.Children.Remove(cerclePremierPoint);
-
-                    }
-
-
-
-                }  
-
-
-
-            }
-
-        }
-    }
-
-*/
 
 
         private void border_KeyDown(object sender, KeyEventArgs e)
@@ -593,6 +542,11 @@ namespace TopoGiraffe
                     }
 
                     curves.Add(IntersectionPoints);
+
+
+
+                    MessageBox.Show("la taille de curves lakhra " + curves[curves.Count()-1].Count());
+                    for(int a = 0; a < (curves[curves.Count()-1].Count()); a++) { MessageBox.Show(curves[curves.Count() - 1][a].altitude.ToString()); }
                     this.Serializee(curves);
 
                     // dessin des cercles representant les points d'intersection
@@ -686,11 +640,7 @@ namespace TopoGiraffe
 
 
             }
-            //deleted for improvement
-            //curves.Add(IntersectionPoints);
-
-
-            //this.Serializee(curves);
+            
 
             distances();
 
@@ -948,7 +898,9 @@ namespace TopoGiraffe
                     Canvas.SetTop(elDraggingEllipse, ptMouse.Y - 10 / 2);
 
 
+#pragma warning disable CS0168 // La variable 'ellipse' est déclarée, mais jamais utilisée
                     Ellipse ellipse;
+#pragma warning restore CS0168 // La variable 'ellipse' est déclarée, mais jamais utilisée
                     int cpt3 = 0;
                     foreach (List<ArtPoint> ae in PointsGlobal)
                     {
@@ -1038,7 +990,9 @@ namespace TopoGiraffe
             //((Ellipse)elDraggingEllipse).Cursor = Cursors.Arrow; //change the cursor
             ((Ellipse)elDraggingEllipse).ReleaseMouseCapture();
             // EditPolyline.Points.Clear();
+#pragma warning disable CS0219 // La variable 'i1' est assignée, mais sa valeur n'est jamais utilisée
             int i1 = 0;
+#pragma warning restore CS0219 // La variable 'i1' est assignée, mais sa valeur n'est jamais utilisée
             if (navClicked)
             {
                 foreach (ArtPoint el in PointsGlobal[index2])
@@ -1101,9 +1055,21 @@ namespace TopoGiraffe
         //------------------------------------------------------------------------------------------------------------------------------------------------
         // code to handle dragging of the poyline --------------------------------------------------------------------------------------------------------
         bool isDragging, mvCtrl = true;
+#pragma warning disable CS0169 // Le champ 'MainWindow.selectedPath' n'est jamais utilisé
         FrameworkElement elDragging, selectedPath, selectedPolyline;
+#pragma warning restore CS0169 // Le champ 'MainWindow.selectedPath' n'est jamais utilisé
+#pragma warning disable CS0169 // Le champ 'MainWindow.minX' n'est jamais utilisé
+#pragma warning disable CS0169 // Le champ 'MainWindow.minY' n'est jamais utilisé
+#pragma warning disable CS0169 // Le champ 'MainWindow.maxX' n'est jamais utilisé
+#pragma warning disable CS0169 // Le champ 'MainWindow.maxY' n'est jamais utilisé
         double minX, minY, maxX, maxY;
+#pragma warning restore CS0169 // Le champ 'MainWindow.maxY' n'est jamais utilisé
+#pragma warning restore CS0169 // Le champ 'MainWindow.maxX' n'est jamais utilisé
+#pragma warning restore CS0169 // Le champ 'MainWindow.minY' n'est jamais utilisé
+#pragma warning restore CS0169 // Le champ 'MainWindow.minX' n'est jamais utilisé
+#pragma warning disable CS0414 // Le champ 'MainWindow.indexdrag' est assigné, mais sa valeur n'est jamais utilisée
         int indexdrag = 0;
+#pragma warning restore CS0414 // Le champ 'MainWindow.indexdrag' est assigné, mais sa valeur n'est jamais utilisée
 
 
         private void btn13_Click(object sender, RoutedEventArgs e)
@@ -1123,10 +1089,7 @@ namespace TopoGiraffe
 
 
 
-            /*  if (profile.DialogResult == true)
-              {
 
-              }*/
 
         }
 
@@ -1158,10 +1121,7 @@ namespace TopoGiraffe
                         elDragging.Cursor = Cursors.ScrollAll;
                         Mouse.Capture((elDragging));
                         isDragging = true;
-                        //maxX = MaxPtCtrlX((Polyline)elDragging) - ptMouseStart.X;
-                        //maxY = MaxPtCtrlY((Polyline)elDragging) - ptMouseStart.Y;
-                        //minX = -MinPtCtrlX((Polyline)elDragging) + ptMouseStart.X;
-                        //minY = -MinPtCtrlY((Polyline)elDragging) + ptMouseStart.Y;
+
                     }
                     foreach (Polyline polyline in polylines)
                     {
@@ -1180,7 +1140,9 @@ namespace TopoGiraffe
 
 
 
+#pragma warning disable CS0414 // Le champ 'MainWindow.test' est assigné, mais sa valeur n'est jamais utilisée
         bool test = false;
+#pragma warning restore CS0414 // Le champ 'MainWindow.test' est assigné, mais sa valeur n'est jamais utilisée
         void Path_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
 
@@ -1201,26 +1163,7 @@ namespace TopoGiraffe
                 }
 
 
-                //foreach(Polyline polyline in polylines){
 
-                //    if (polyline.Equals(elDragging))
-                //    {
-
-                //        for (int i = 0; i < polyline.Points.Count; i++)
-                //        {
-                //            polyline.Points[i] = new Point(polyline.Points[i].X + margin.Left - ptElementStart.X, polyline.Points[i].Y + margin.Top - ptElementStart.Y);
-                //        }
-                //        //for (int i = 0; i < r.Item3.Count; i++)
-                //        //{
-                //        //    r.Item3[i] = new Point(r.Item3[i].X + margin.Left - ptElementStart.X, r.Item3[i].Y + margin.Top - ptElementStart.Y);
-                //        //}
-                //        break;
-
-
-
-                //    }
-
-                //}
 
             }
             isDragging = false;
@@ -1276,7 +1219,9 @@ namespace TopoGiraffe
                 {
 
                     if (elDragging == null)
+#pragma warning disable CS1717 // Assignation effectuée à la même variable ; souhaitiez-vous assigner un autre élément ?
                         elDragging = (elDragging);
+#pragma warning restore CS1717 // Assignation effectuée à la même variable ; souhaitiez-vous assigner un autre élément ?
                     double left = ptElementStart.X + ptMouse.X - ptMouseStart.X;
                     double top = ptElementStart.Y + ptMouse.Y - ptMouseStart.Y;
 
@@ -1292,19 +1237,7 @@ namespace TopoGiraffe
                     {
                         margin = elDragging.Margin;
                     }
-                    //if (!(ptMouse.X + maxX <= 920 && ptMouse.X - minX >= 5 && ptMouse.Y - minY >= 5 && ptMouse.Y + maxY <= 525))
-                    //{
-                    //    //in order to the curve stay in the canvas
-                    //    if (ptMouse.X + maxX > 920 && mvCtrl)
-                    //        margin.Left = margin.Left - ptMouse.X - maxX + 920;
-                    //    if (ptMouse.X - minX < 5 && mvCtrl)
-                    //        margin.Left = margin.Left + 5 - ptMouse.X + minX;
-                    //    if (ptMouse.Y + maxY > 525 && mvCtrl)
-                    //        margin.Top = margin.Top + 525 - ptMouse.Y - maxY;
-                    //    if (ptMouse.Y - minY < 5 && mvCtrl)
-                    //        margin.Top = margin.Top + 5 - ptMouse.Y + minY;
-                    //    mvCtrl = false;
-                    //}
+
 
                 }
             }
@@ -1352,18 +1285,7 @@ namespace TopoGiraffe
         static float AltitudeMin;
         static float AltitudeMax;
 
-        //private void mainCanvas_MouseUp(object sender, MouseButtonEventArgs e)
-        //{
-        //    finish = true;
-        //}
-        //#region Navigation
 
-
-
-        //private void Menu_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this.NavigationService.Navigate(new MenuPage(im, canvas));
-        //}
 
 
         public void OpenInitialDialogBox()
@@ -1579,7 +1501,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = btn13;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Générer le profile"; 
+            Header.PopupText.Text = "Générer le profile";
         }
 
         private void Profil_MouseLeave(object sender, MouseEventArgs e)
@@ -1770,8 +1692,8 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
 
-// --------------------------------------------------------------------------- popup fin -------------------------------------//
-// --------------------------------------------------------------------------------------------------------------------------//
+        // --------------------------------------------------------------------------- popup fin -------------------------------------//
+        // --------------------------------------------------------------------------------------------------------------------------//
 
         private void ThickSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {//change thickness
@@ -1786,8 +1708,9 @@ namespace TopoGiraffe
         public void ShowSauvgardeWindow_Click(object sender, RoutedEventArgs e)
         {
             SauvgardePage pg = new SauvgardePage();
-
+            
             this.Content = pg;
+            
             /* _mainFrame.Content = new SauvgardePage(); */
         }
 
@@ -1798,26 +1721,39 @@ namespace TopoGiraffe
             List<Polyline> curve = polylines;
 
             List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
+            List<IntersectionDetail> alts = new List<IntersectionDetail>();
 
-
-
+            
 
 
             itm2 = this.DeSerialize();
-
-
+            
+            alts = itm2[itm2.Count() - 1];
+            
+            alts = alts.GetRange(0,itm2.Count() - 1);
+            alts.Reverse();
+            int h =  0;
+           for(int v = 0;v < alts.Count();v++){ MessageBox.Show("wanted message is " + alts[v].altitude.ToString()); }
             for (int i = 0; i < itm2.Count(); i++)
             {
+                
                 Polyline li = new Polyline();
                 mainCanvas.Children.Add(li);
-
-
+               
                 for (int j = 0; j < itm2[i].Count(); j++)
                 {
 
                     li.FillRule = FillRule.EvenOdd;
                     li.StrokeThickness = 4;
-                    li.Stroke = Brushes.Black;
+                    if (i < itm2.Count() - 1)
+                    {
+                        li.Stroke = new SolidColorBrush(AltitudeToColor(alts[i].altitude));
+                    }
+                    else
+                    {
+                        li.Stroke = Brushes.Black;
+                    }
+
                     li.Visibility = System.Windows.Visibility.Visible;
                     Ellipse circle = new Ellipse();
                     circle.Width = 10;
@@ -1846,6 +1782,20 @@ namespace TopoGiraffe
                 }
                 li.FillRule = FillRule.EvenOdd;
                 li.Visibility = System.Windows.Visibility.Visible;
+                h++;
+                //if (h == alts.Count())
+                //{
+                //    li.Stroke = Brushes.Purple;
+                //}
+                //else
+                //{
+                //    li.Stroke = new SolidColorBrush(AltitudeToColor(alts[h].altitude));
+                //}
+                //h++;
+                //MessageBox.Show("point par point" + itm2[itm2.Count()-1][h].altitude.ToString());
+
+
+               
 
                 if (i == (itm2.Count() - 1))
                 {
@@ -1858,7 +1808,7 @@ namespace TopoGiraffe
                 else
                 {
 
-                    li.Stroke = Brushes.Black;
+                    
                     li.StrokeThickness = 2;
                 }
 
@@ -1867,7 +1817,7 @@ namespace TopoGiraffe
             }
 
 
-            //mainCanvas.Children.Add(circle);
+            
 
 
         }
@@ -1876,9 +1826,20 @@ namespace TopoGiraffe
 
         public void Serializee(List<List<IntersectionDetail>> objet)
         {
+            
             OpenFileDialog op = new OpenFileDialog();
 
-            Stream s = File.Open("test.dat", FileMode.Create);
+            Stream s = File.Open("autosave.topo", FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(s, objet);
+            s.Close();
+        }
+        public void Serializee(List<List<IntersectionDetail>> objet,string filename)
+        {
+
+            OpenFileDialog op = new OpenFileDialog();
+            
+            Stream s = File.Open(path:filename,  FileMode.Create);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(s, objet);
             s.Close();
@@ -1889,8 +1850,8 @@ namespace TopoGiraffe
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a ";
             op.FileName = "Document"; // Default file name
-            op.DefaultExt = ".dat"; // Default file extension
-            op.Filter = "Text documents (.dat)|*.dat"; // Filter files by extension
+            op.DefaultExt = ".topo"; // Default file extension
+            op.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
             if (op.ShowDialog() == true)
             {
                 string fiName = op.FileName;
@@ -1904,32 +1865,64 @@ namespace TopoGiraffe
 
             return objet;
         }
-        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
+
+       
         double pente;
+        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
+        
+
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
-            Echelle echel = new Echelle(200, 200);
 
+            //this.DeSerialize()[this.DeSerialize().Count()-1];
+
+            Echelle echel = new Echelle(200, 200);
+           
+            
             pente = CalcPente(PenteIntersectionPoints, mainScale);
             MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
         }
 
-
+        //methode de calcul de pente
         public double CalcPente(List<IntersectionDetail> points, Echelle sc)
         {
             double sum = 0;
 
             Line l = new Line();
-            //MessageBox.Show(points.Count().ToString());
+
             for (int i = 0; i < points.Count() - 1; i++)
             {
 
                 l.X1 = points[i + 1].point.X; l.Y1 = points[i + 1].point.Y;
                 l.X2 = points[i].point.X; l.Y2 = points[i].point.Y;
                 sum += ((points[i + 1].altitude - points[i].altitude) * 100 / sc.FindDistanceOnField(l));
+               // MessageBox.Show( "altitudes are " + points[i + 1].altitude.ToString() + " " + points[i].altitude.ToString() );
             }
             return (sum / (points.Count() - 1));
         }
+
+
+        //The export button to move to the sitable page later
+        //string fileName;
+        //public void v
+        //{
+        //    SaveFileDialog op = new SaveFileDialog();
+        //    op.Title = "Select a ";
+        //    op.FileName = "Document"; // Default file name
+        //    op.DefaultExt = ".dat"; // Default file extension
+        //   //op.Filter = "Text documents (.dat)|*.dat"; // Filter files by extension
+        //   // if (op.ShowDialog() == true)
+        //   // {
+        //    this.fileName = op.FileName;
+        //    this.Serializee(curves,this.fileName);
+        //   // }
+        //    //else {Exceptionn} 
+
+
+        //}
+
+
+       
     }
     class RectangleName
     {
