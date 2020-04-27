@@ -300,7 +300,9 @@ namespace TopoGiraffe
                     courbeActuelle.polyline.Points.Add(mousePos);
 
                 }
+               
 
+                
                 CourbesNiveau.Add(courbeActuelle);
 
             }
@@ -979,7 +981,7 @@ namespace TopoGiraffe
                     //Polyline_Modify();
 
 
-                    Interpoly = new CourbeNiveau(new Polyline());
+                    Interpoly = new CourbeNiveau(new Polyline() , courbeActuelle.altitude);
                     Interpoly.polyline.Stroke = new SolidColorBrush(AltitudeToColor(courbeActuelle.altitude));
 
                     StyleCmbToRealStyle(Interpoly.polyline, styleCourbeCmb.SelectedIndex);
@@ -1082,7 +1084,10 @@ namespace TopoGiraffe
             if (btn2Clicked == true) // clicking on an ellipse while drawing
             {
                 finalCtrlPoint = true;
-
+                courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
+                courbeActuelle.polyline.Points.Add(courbeActuelle.polyline.Points[0]);
+                btn2Clicked = false;
+                dragbool = true;
                 btn2Clicked = false;
                 //curve is a list of points
                 List<IntersectionDetail> curve = new List<IntersectionDetail>();
@@ -1103,7 +1108,6 @@ namespace TopoGiraffe
                         {
                             courbeActuelle = CourbesNiveau[cpt4];
                             ThickSlider.Value = courbeActuelle.polyline.StrokeThickness;
-                            AltSlider.Value = courbeActuelle.altitude;
                         }
                     }
 
@@ -1112,12 +1116,14 @@ namespace TopoGiraffe
             }
             Ellipse elli = (Ellipse)elDraggingEllipse;
             elli.Fill = Brushes.Orange;
+            AltSlider.Value = courbeActuelle.altitude;
+
 
 
         }
 
 
-        
+
         bool finalCtrlPoint = false;
         List<ArtPoint> currentCurveCtrlPts;
         Point mousePos;
@@ -1171,8 +1177,7 @@ namespace TopoGiraffe
                     if (courbe.polyline.Equals((Polyline)selectedPolyline))
                     {
                         courbeActuelle = courbe;
-                        AltSlider.Value = courbe.altitude;
-                        ThickSlider.Value = courbe.polyline.StrokeThickness;
+                       
                     }
 
 
@@ -1182,7 +1187,8 @@ namespace TopoGiraffe
                 {
 
 
-
+                    AltSlider.Value = courbeActuelle.altitude;
+                    ThickSlider.Value = courbeActuelle.polyline.StrokeThickness;
                     mvCtrl = true;
                     ptMouseStart = e.GetPosition(this);
                     elDragging = (this).InputHitTest(ptMouseStart) as FrameworkElement;
