@@ -21,11 +21,13 @@
     <None Remove="assets\img\line.png" />
     <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\page.png" />
+    <None Remove="assets\img\Pente.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\return.png" />
     <None Remove="assets\img\save.png" />
     <None Remove="assets\img\scale.png" />
     <None Remove="assets\img\scale2.png" />
+    <None Remove="assets\img\SplashScreen2.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\visibility.png" />
     <None Remove="assets\img\zoom-in.png" />
@@ -62,6 +64,7 @@
     </Content>
     <Resource Include="assets\img\navigation.png" />
     <Resource Include="assets\img\page.png" />
+    <Resource Include="assets\img\Pente.png" />
     <Resource Include="assets\img\report.png" />
     <Resource Include="assets\img\return.png" />
     <Resource Include="assets\img\save.png" />
@@ -96,6 +99,10 @@
     <PackageReference Include="MaterialDesignColors" Version="1.2.3" />
     <PackageReference Include="MaterialDesignThemes" Version="3.1.0" />
 
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="assets\img\SplashScreen2.png" />
   </ItemGroup>
 
 </Project>

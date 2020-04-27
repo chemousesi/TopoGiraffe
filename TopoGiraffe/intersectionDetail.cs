@@ -40,6 +40,12 @@ namespace TopoGiraffe
 
         }
 
+        public IntersectionDetail(Point point, int Altitude , double distance)
+        {
+            this.point = point;
+            this.altitude = Altitude;
+            this.distance = distance;
+        }
         public int CompareTo(Object obj)
         {
             //Check for null and compare run-time types.
