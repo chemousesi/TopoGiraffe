@@ -1571,7 +1571,207 @@ namespace TopoGiraffe
 
 
         }
-       
+        /* --------------------------------------------------------------------------- aide contextuel ------------------------------------------------*/
+        /* -------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        private void Profil_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = btn13;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Générer le profile"; 
+        }
+
+        private void Profil_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Parametres_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = btn14;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Paramètres";
+        }
+
+        private void Parametres_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void DessinDeCourbes_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = dessinerButton;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Dessin de courbes";
+        }
+
+        private void DessinDeCourbes_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void DessinDeSegment_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = add_line;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Dessin de segments ";
+        }
+
+        private void DessinDeSegment_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void SupprimerTout_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = deleteAllButton;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Supprimer tout";
+        }
+
+        private void SupprimerTout_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void SupprimerPrécedent_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = deletePreviousButton;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Supprimer précedent";
+        }
+
+        private void SupprimerPrécedent_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Import_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = import;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Importer une carte";
+        }
+
+        private void Import_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Zoom_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = btn1;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Zoom";
+        }
+
+        private void Zoom_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void display_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = display;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "afficher";
+        }
+
+        private void display_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Epaisseur_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = ThickSlider;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Modifier l'épaisseur de la courde";
+        }
+
+        private void Epaisseur_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Altitude_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = AltSlider;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Modifier l'altitude de la courde";
+        }
+
+        private void Altitude_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void ColorPicker_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = cp;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Choisir la couleur de la courde";
+        }
+
+        private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void TypeCourbe_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = styleCourbeCmb;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Choisir le type de la courde";
+        }
+
+        private void TypeCourbe_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Pen_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = btn11;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Pen";
+        }
+
+        private void Pen_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+// --------------------------------------------------------------------------- popup fin -------------------------------------//
+// --------------------------------------------------------------------------------------------------------------------------//
 
         private void ThickSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {//change thickness
