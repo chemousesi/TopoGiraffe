@@ -34,10 +34,11 @@ namespace TopoGiraffe
         // declaring variables
 
         List<Polyline> polylines = new List<Polyline>();
+        List<CourbeNiveau> CourbesNiveau = new List<CourbeNiveau>();
 
         //PointCollection myPointCollection2 = new PointCollection();
 
-        Polyline courbeActuelle;
+       CourbeNiveau courbeActuelle;
 
         List<Ellipse> cercles = new List<Ellipse>();
 
@@ -144,7 +145,7 @@ namespace TopoGiraffe
 
         private void activerDessinCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (polylines.Count == 0)
+            if (CourbesNiveau.Count == 0)
             {
                 MessageBox.Show("Il Faut avoir au moins une courbe");
                 activerDessinCheckBox.IsChecked = false;
@@ -152,7 +153,7 @@ namespace TopoGiraffe
             }
             else
             {
-                courbeActuelle = polylines[polylines.Count - 1];
+                courbeActuelle =CourbesNiveau[CourbesNiveau.Count - 1];
             }
         }
 
@@ -233,7 +234,7 @@ namespace TopoGiraffe
             double y = Mouse.GetPosition(mainCanvas).Y;
 
 
-            if (btn2Clicked == true && (courbeActuelle.Points.Count > 0))
+            if (btn2Clicked == true && (courbeActuelle.polyline.Points.Count > 0))
             {
 
 
@@ -243,8 +244,8 @@ namespace TopoGiraffe
 
 
                 newLine.Stroke = System.Windows.Media.Brushes.Black;
-                newLine.X1 = courbeActuelle.Points[courbeActuelle.Points.Count - 1].X;
-                newLine.Y1 = courbeActuelle.Points[courbeActuelle.Points.Count - 1].Y;
+                newLine.X1 = courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 1].X;
+                newLine.Y1 = courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 1].Y;
 
                 newLine.X2 = x;
                 newLine.Y2 = y;
@@ -276,7 +277,7 @@ namespace TopoGiraffe
 
         }
 
-        Polyline temporaryFigure;
+        CourbeNiveau temporaryFigure ;
         private void MouseMoveOnDraw(object sender, MouseEventArgs e)
         {
 
@@ -286,21 +287,21 @@ namespace TopoGiraffe
 
                 if (currentCurveCtrlPts.Count != 0) //to handle real-time drawing
                 {
-                    if (courbeActuelle.Points.Last().Equals(mousePos))
+                    if (courbeActuelle.polyline.Points.Last().Equals(mousePos))
                     {
-                        courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+                        courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
                     }
-                    if (polylines.Contains(temporaryFigure))
+                    if (CourbesNiveau.Contains(temporaryFigure))
                     {
-                        polylines.Remove(temporaryFigure);
+                       CourbesNiveau.Remove(temporaryFigure);
                     }
                     mousePos = new Point(e.GetPosition(this.mainCanvas).X, e.GetPosition(this.mainCanvas).Y);
                     temporaryFigure = courbeActuelle;
-                    courbeActuelle.Points.Add(mousePos);
+                    courbeActuelle.polyline.Points.Add(mousePos);
 
                 }
 
-                polylines.Add(courbeActuelle);
+                CourbesNiveau.Add(courbeActuelle);
 
             }
 
@@ -313,24 +314,24 @@ namespace TopoGiraffe
 
 
 
-            if (courbeActuelle.Points.Count != 0) //to handle real-time drawing
+            if (courbeActuelle.polyline.Points.Count != 0) //to handle real-time drawing
             {
-                if (courbeActuelle.Points.Last().Equals(mousePos))
+                if (courbeActuelle.polyline.Points.Last().Equals(mousePos))
                 {
-                    courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+                    courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
                 }
-                if (polylines.Contains(temporaryFigure))
+                if (CourbesNiveau.Contains(temporaryFigure))
                 {
-                    polylines.Remove(temporaryFigure);
+                    CourbesNiveau.Remove(temporaryFigure);
                 }
                 mousePos = new Point(e.GetPosition(this.mainCanvas).X, e.GetPosition(this.mainCanvas).Y);
                 temporaryFigure = courbeActuelle;
-                courbeActuelle.Points.Add(mousePos);
+                courbeActuelle.polyline.Points.Add(mousePos);
             }
 
 
 
-            // polylines.Add(courbeActuelle);
+           CourbesNiveau.Add(courbeActuelle);
 
         }
 
@@ -341,17 +342,20 @@ namespace TopoGiraffe
             btn2Clicked = true;
             dragbool = false;
             Cursor = Cursors.Cross;
-            Polyline myPolyline = DrawNewCurve();
+            CourbeNiveau myCurve = DrawNewCurve();
 
-            polylines.Add(myPolyline);
+           CourbesNiveau.Add(myCurve);
 
             activerDessinCheckBox.IsChecked = true; navClicked = false;
+            
 
             // styling
 
 
-            courbeActuelle = myPolyline;
-            courbeActuelle.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
+            courbeActuelle = myCurve;
+            AltSlider.Value = Convert.ToInt32(AltitudeString);
+
+            courbeActuelle.polyline.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
 
 
             //myPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
@@ -362,14 +366,14 @@ namespace TopoGiraffe
             //myPolyline.FillRule = FillRule.EvenOdd;
             //StyleCmbToRealStyle(myPolyline, styleCourbeCmb.SelectedIndex);
 
-            myPolyline.MouseMove += new System.Windows.Input.MouseEventHandler(Path_MouseMove);
-            myPolyline.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonUp);
-            myPolyline.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonDown);
+            myCurve.polyline.MouseMove += new System.Windows.Input.MouseEventHandler(Path_MouseMove);
+            myCurve.polyline.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonUp);
+            myCurve.polyline.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Path_MouseLeftButtonDown);
 
 
             // (courbeActuelle).MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Polyline_MouseDown);
 
-            mainCanvas.Children.Add(courbeActuelle);
+            mainCanvas.Children.Add(courbeActuelle.polyline);
             PointsGlobal.Add(new List<ArtPoint>());
             currentCurveCtrlPts = PointsGlobal[PointsGlobal.Count - 1];
             indexPoints++;
@@ -431,35 +435,35 @@ namespace TopoGiraffe
             {
                 MessageBox.Show("no polygone to delete");
             }
-            else
-            {
-                if (courbeActuelle.Points.Count > 0)
-                {
-                    courbeActuelle.Points.Remove(courbeActuelle.Points[courbeActuelle.Points.Count - 1]);
-                    foreach (Ellipse cercle in cercles)
-                    {
-                        mainCanvas.Children.Remove(cercle);
+            //else
+            //{
+            //    if (courbeActuelle.Points.Count > 0)
+            //    {
+            //        courbeActuelle.Points.Remove(courbeActuelle.Points[courbeActuelle.Points.Count - 1]);
+            //        foreach (Ellipse cercle in cercles)
+            //        {
+            //            mainCanvas.Children.Remove(cercle);
 
-                    }
-                    cercles.Clear();
-                    IntersectionPoints.Clear();
-                }
-                else
-                {
-                    polylines.Remove(polylines[polylines.Count - 1]);
+            //        }
+            //        cercles.Clear();
+            //        IntersectionPoints.Clear();
+            //    }
+            //    else
+            //    {
+            //        polylines.Remove(polylines[polylines.Count - 1]);
 
-                    if (polylines.Count > 0)
-                    {
-                        courbeActuelle = polylines[polylines.Count - 1];
+            //        if (polylines.Count > 0)
+            //        {
+            //            //courbeActuelle = polylines[polylines.Count - 1];
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("no polygone to delete");
-                    }
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("no polygone to delete");
+            //        }
 
-                }
-            }
+            //    }
+            //}
         }
 
 
@@ -516,15 +520,15 @@ namespace TopoGiraffe
 
 
 
-                    if (courbeActuelle.Points.Count > 2)
+                    if (courbeActuelle.polyline.Points.Count > 2)
                     {
                         Line l = new Line();
-                        l.X1 = courbeActuelle.Points[courbeActuelle.Points.Count - 2].X;
-                        l.Y1 = courbeActuelle.Points[courbeActuelle.Points.Count - 2].Y;
+                        l.X1 = courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 2].X;
+                        l.Y1 = courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 2].Y;
                         l.X2 = lastPoint.X;
                         l.Y2 = lastPoint.Y;
 
-                        inter = FindIntersection1(courbeActuelle, l);
+                        inter = FindIntersection1(courbeActuelle.polyline, l);
 
 
                         if (inter == true)
@@ -537,7 +541,7 @@ namespace TopoGiraffe
                     }
                     if (inter == false)
                     {
-                        courbeActuelle.Points.Add(lastPoint);
+                        courbeActuelle.polyline.Points.Add(lastPoint);
                         Ellipse circle = new Ellipse();
                         ArtPoint artPoint = new ArtPoint(circle, lastPoint);
                         PointsGlobal[indexPoints].Add(artPoint);
@@ -560,8 +564,8 @@ namespace TopoGiraffe
                 else
                 // when click on the last (first) point 
                 {
-                    courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
-                    courbeActuelle.Points.Add(courbeActuelle.Points[0]);
+                    courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
+                    courbeActuelle.polyline.Points.Add(courbeActuelle.polyline.Points[0]);
                     btn2Clicked = false;
                     dragbool = true;
                     //PointsGlobal[indexPoints].Add(artPoint);
@@ -587,12 +591,13 @@ namespace TopoGiraffe
                     line.X2 = poly.Points[1].X;
                     line.Y2 = poly.Points[1].Y;
 
-                    foreach (Polyline polyline in polylines)
+                    foreach (CourbeNiveau  courbe in CourbesNiveau)
                     {
-                        FindIntersection(polyline, line);
+                        FindIntersection(courbe, line);
                     }
 
                     curves.Add(IntersectionPoints);
+
                     this.Serializee(curves);
 
                     // dessin des cercles representant les points d'intersection
@@ -663,18 +668,18 @@ namespace TopoGiraffe
 
 
         Line line = new Line();
-        public void FindIntersection(Polyline p, Line line)
+        public void FindIntersection(CourbeNiveau p, Line line)
         {
             Line myLine = new Line();
             IntersectionDetail inter;
 
-            for (int i = 0; i < p.Points.Count - 1; i++)
+            for (int i = 0; i < p.polyline.Points.Count - 1; i++)
             {
-                myLine.X1 = p.Points[i].X; myLine.Y1 = p.Points[i].Y;
-                myLine.X2 = p.Points[i + 1].X; myLine.Y2 = p.Points[i + 1].Y;
+                myLine.X1 = p.polyline.Points[i].X; myLine.Y1 = p.polyline.Points[i].Y;
+                myLine.X2 = p.polyline.Points[i + 1].X; myLine.Y2 = p.polyline.Points[i + 1].Y;
                 inter = intersectLines(myLine, line);
-                int index = polylines.IndexOf(p);
-                inter.altitude = Altitudes[index];
+
+                inter.altitude = Convert.ToInt32(p.altitude);
 
                 if (inter.intersect == true)
                 {
@@ -803,8 +808,9 @@ namespace TopoGiraffe
             poly.Stroke = Brushes.Indigo;
             poly.StrokeThickness = 5;
             poly.FillRule = FillRule.EvenOdd;
-            polylines.Add(poly);
-            courbeActuelle = poly;
+            CourbeNiveau polyC = new CourbeNiveau(poly, -1);
+            CourbesNiveau.Add(polyC);
+            courbeActuelle = polyC;
             mainCanvas.Children.Add(poly);
 
         }
@@ -877,9 +883,9 @@ namespace TopoGiraffe
                 btn2Clicked = false;
 
 
-                if (courbeActuelle != null)
+                if (courbeActuelle.polyline != null)
                 {
-                    courbeActuelle.Points.RemoveAt(courbeActuelle.Points.Count - 1);
+                    courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
                 }
                 else
                 {
@@ -888,18 +894,18 @@ namespace TopoGiraffe
 
 
 
-                if (polylines.Contains(courbeActuelle) == false)
+                if (CourbesNiveau.Contains(courbeActuelle) == false)
                 {
-                    polylines.Add(courbeActuelle);
+                    CourbesNiveau.Add(courbeActuelle);
                 }
                 if (polylines.Count != 0)
                 {
-                    int indexp = polylines.IndexOf(courbeActuelle);
+                    //int indexp = polylines.IndexOf(courbeActuelle);
 
                 }
                 //curve is a list of points
                 List<IntersectionDetail> curve = new List<IntersectionDetail>();
-                for (int k = 0; k < courbeActuelle.Points.Count(); k++) { curve.Add(new IntersectionDetail(courbeActuelle.Points[k], false)); }
+                for (int k = 0; k < courbeActuelle.polyline.Points.Count(); k++) { curve.Add(new IntersectionDetail(courbeActuelle.polyline.Points[k], false)); }
                 curves.Add(curve);
             }
         }
@@ -923,7 +929,9 @@ namespace TopoGiraffe
         // code to handle Modifying Control Points --------------------------------------------------------------------------------------------------------
 
 
-        Polyline polytest = new Polyline();
+        
+        CourbeNiveau Interpoly;
+        CourbeNiveau EditPolyline;
 
         bool dragbool;
         public void Cercle_Mousemove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -966,17 +974,17 @@ namespace TopoGiraffe
 
                         cpt3++;
                     }
-                    EditPolyline = polylines[index2];
+                    EditPolyline = CourbesNiveau[index2];
+                    //courbeActuelle = CourbesNiveau[index2]; 
                     //Polyline_Modify();
 
 
-                    Interpoly = new Polyline();
-                    Interpoly.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
+                    Interpoly = new CourbeNiveau(new Polyline());
+                    Interpoly.polyline.Stroke = new SolidColorBrush(AltitudeToColor(courbeActuelle.altitude));
 
-                    StyleCmbToRealStyle(Interpoly, styleCourbeCmb.SelectedIndex);
-
-                    Interpoly.StrokeThickness = ThickSlider.Value;
-                    Interpoly.Points.Clear();
+                    StyleCmbToRealStyle(Interpoly.polyline, styleCourbeCmb.SelectedIndex);
+                    Interpoly.polyline.StrokeThickness = ThickSlider.Value;
+                    Interpoly.polyline.Points.Clear();
                     //Interpoly.FillRule = FillRule.EvenOdd;
                     //courbeActuelle = Interpoly;
 
@@ -986,25 +994,25 @@ namespace TopoGiraffe
                     int i = 0;
                     PointsGlobal[index2].Remove(elDraggingEllip);
 
-                    foreach (Point point in EditPolyline.Points)
+                    foreach (Point point in EditPolyline.polyline.Points)
                     {
                         if (point.Equals(elDraggingEllip.P))
                         {
-                            Interpoly.Points.Add(ptMouse);
+                            Interpoly.polyline.Points.Add(ptMouse);
                             elDraggingEllip = new ArtPoint((Ellipse)elDraggingEllipse, ptMouse);
 
                             PointsGlobal[index2].Add(elDraggingEllip);
                         }
                         else
                         {
-                            if (dragbool == true && i == EditPolyline.Points.Count - 1)
+                            if (dragbool == true && i == EditPolyline.polyline.Points.Count - 1)
                             {
-                                Interpoly.Points.Add(EditPolyline.Points[0]);
+                                Interpoly.polyline.Points.Add(EditPolyline.polyline.Points[0]);
 
                             }
                             else
                             {
-                                Interpoly.Points.Add(EditPolyline.Points[i]);
+                                Interpoly.polyline.Points.Add(EditPolyline.polyline.Points[i]);
                             }
                         }
                         i++;
@@ -1013,11 +1021,11 @@ namespace TopoGiraffe
 
 
                     //mainCanvas.Children.Remove(courbeActuelle);
-                    mainCanvas.Children.Add(Interpoly);
-                    mainCanvas.Children.Remove(EditPolyline);
+                    mainCanvas.Children.Add(Interpoly.polyline);
+                    mainCanvas.Children.Remove(EditPolyline.polyline);
 
                     EditPolyline = Interpoly;
-                    polylines[index2] = Interpoly;
+                    CourbesNiveau[index2] = Interpoly;
 
 
 
@@ -1078,11 +1086,29 @@ namespace TopoGiraffe
                 btn2Clicked = false;
                 //curve is a list of points
                 List<IntersectionDetail> curve = new List<IntersectionDetail>();
-                for (int k = 0; k < courbeActuelle.Points.Count(); k++) { curve.Add(new IntersectionDetail(courbeActuelle.Points[k], false)); }
+                for (int k = 0; k < courbeActuelle.polyline.Points.Count(); k++) { curve.Add(new IntersectionDetail(courbeActuelle.polyline.Points[k], false)); }
                 curves.Add(curve);
 
 
 
+            }else if ( navClicked == true)
+            {
+                int cpt4 = 0;
+                foreach (List<ArtPoint> ae in PointsGlobal)
+                {
+
+                    foreach (ArtPoint a in ae)
+                    {
+                        if (a.cercle.Equals(elDraggingEllipse))
+                        {
+                            courbeActuelle = CourbesNiveau[cpt4];
+                            ThickSlider.Value = courbeActuelle.polyline.StrokeThickness;
+                            AltSlider.Value = courbeActuelle.altitude;
+                        }
+                    }
+
+                   cpt4++;
+                }
             }
             Ellipse elli = (Ellipse)elDraggingEllipse;
             elli.Fill = Brushes.Orange;
@@ -1091,8 +1117,7 @@ namespace TopoGiraffe
         }
 
 
-        Polyline Interpoly;
-        Polyline EditPolyline;
+        
         bool finalCtrlPoint = false;
         List<ArtPoint> currentCurveCtrlPts;
         Point mousePos;
@@ -1134,13 +1159,24 @@ namespace TopoGiraffe
         Thickness margin;
 
 
-        void Path_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        void Path_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             selectedPolyline = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
             if (selectedPolyline == null) return;
             if (selectedPolyline != null && selectedPolyline is Polyline)
             {
-                courbeActuelle = (Polyline)selectedPolyline;
+                foreach (CourbeNiveau courbe in CourbesNiveau)
+                {
+                                 
+                    if (courbe.polyline.Equals((Polyline)selectedPolyline))
+                    {
+                        courbeActuelle = courbe;
+                        AltSlider.Value = courbe.altitude;
+                        ThickSlider.Value = courbe.polyline.StrokeThickness;
+                    }
+
+
+                }
 
                 if (navClicked == true)
                 {
@@ -1163,14 +1199,13 @@ namespace TopoGiraffe
                         //minX = -MinPtCtrlX((Polyline)elDragging) + ptMouseStart.X;
                         //minY = -MinPtCtrlY((Polyline)elDragging) + ptMouseStart.Y;
                     }
-                    foreach (Polyline polyline in polylines)
-                    {
-                        if (elDragging == polyline)
-                        {
-                            DragPoints = PointsGlobal[polylines.IndexOf(polyline)];
-                        }
-                    }
-                    int i = polylines.IndexOf((Polyline)selectedPolyline);
+                    //foreach (Polyline polyline in polylines)
+                    //{
+                    //    if (elDragging == polyline)
+                    //    {
+                    //        DragPoints = PointsGlobal[CourbesNiveau.IndexOf(polyline)];
+                    //    }
+                    //}
 
                 }
                 else return;
@@ -1245,7 +1280,7 @@ namespace TopoGiraffe
                 // update courbe actulle 
                 if (courbeActuelle != null)
                 {
-                    courbeActuelle.Stroke = chosenBrush;
+                    courbeActuelle.polyline.Stroke = chosenBrush;
                 }
                 else
                 {
@@ -1258,7 +1293,11 @@ namespace TopoGiraffe
 
         private void styleCourbeCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            courbeActuelle = StyleCmbToRealStyle(courbeActuelle, styleCourbeCmb.SelectedIndex);
+            if (courbeActuelle != null)
+            {
+
+                courbeActuelle.polyline = StyleCmbToRealStyle(courbeActuelle.polyline, styleCourbeCmb.SelectedIndex);
+            }
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1365,371 +1404,8 @@ namespace TopoGiraffe
         //    this.NavigationService.Navigate(new MenuPage(im, canvas));
         //}
 
-
-        public void OpenInitialDialogBox()
-        {
-            DataDialog dataDialog = new DataDialog();
-            //dataDialog.Owner = this;
-            dataDialog.ShowDialog();
-
-
-
-            if (dataDialog.DialogResult == true)
-            {
-
-
-                AltSlider.Minimum = Convert.ToInt32(dataDialog.MinTextBox.Text);
-                AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
-                AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
-                AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
-                Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
-                if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
-                {
-                    mainScale = new Echelle(result1, result2);
-                    plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
-
-
-                }
-                else
-                {
-                    MessageBox.Show("Erreur !\n Entrée non valide, le plan n'est pas créé");
-                }
-
-
-
-
-
-
-
-
-            }
-
-        }
-
-        String AltitudeString;
-
-        public Polyline DrawNewCurve()
-        // this function generates a dialog box , create , style a polyline from that dialog box entries
-        // and return a new polyline, :)
-        {
-            Window1 window1 = new Window1();
-            window1.ShowDialog();
-
-            Polyline newPolyline = null;
-
-            if (window1.DialogResult == true)
-            {
-                // taking the altitude from the dialog box
-
-                if (int.TryParse(window1.Altitude.Text, out int result))
-                {
-                    Altitudes.Add(result);
-                    indexAltitude++;
-
-
-
-
-                    AltitudeString = window1.Altitude.Text;
-
-                    // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
-                    newPolyline = new Polyline();
-
-                    //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
-                    //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
-                    newPolyline.StrokeThickness = 2;
-                    newPolyline.FillRule = FillRule.EvenOdd;
-
-
-
-                    newPolyline = StyleCmbToRealStyle(newPolyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
-
-                    return newPolyline;
-                }
-                else
-                {
-                    MessageBox.Show("Erreur! \n votre altitude n'est pas un entier");
-                }
-
-            }
-            return newPolyline;
-        }
-
-
-        Polyline scalePolyline;
-
-
-        int scaleLinePointsCount = 0;
-        private void scaleButton_Click(object sender, RoutedEventArgs e)
-        {
-            //Echelle testScale = new Echelle(10, 100);
-
-
-            drawingScale = true;
-            btn2Clicked = false;
-            addLineClicked = false;
-            navClicked = false;
-
-            // making the polyline
-            scalePolyline = new Polyline();
-
-            scalePolyline.Stroke = Brushes.Indigo;
-            scalePolyline.StrokeThickness = 3;
-            scalePolyline.FillRule = FillRule.EvenOdd;
-
-            mainCanvas.Children.Add(scalePolyline);
-
-
-            //double result = testScale.FindDistanceOnField(20);
-
-            //MessageBox.Show(result.ToString());
-
-
-        }
-
-        private void altitudeSliderValueChange(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {//change altitude
-            changeSelectedCurveAltitude((float)AltSlider.Value);
-        }
-
-        private void ZoomIn_Click(object sender, RoutedEventArgs e)
-        {
-            if (courbeActuelle == null)
-            {
-                return;
-            }
-            AltSlider.Value += Equidistance;
-            changeSelectedCurveAltitude((float)AltSlider.Value);
-
-            //Color color = Color.AliceBlue;
-            //Console.Write(color.);
-        }
-        private void ZoomOut_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (courbeActuelle == null)
-            {
-                return;
-            }
-            AltSlider.Value -= Equidistance;
-            changeSelectedCurveAltitude((float)AltSlider.Value);
-        }
-
-
-        private void changeSelectedCurveAltitude(float altit)
-        {//the real change
-            if (courbeActuelle == null)
-            {
-                return;
-            }
-
-            int index = polylines.IndexOf(courbeActuelle);
-            Altitudes[index] = Convert.ToInt32(altit);
-            (courbeActuelle).Stroke = new SolidColorBrush(AltitudeToColor(altit));
-
-        }
-        private void keyDownOnAltitude(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                try
-                {
-                    float altit = int.Parse(AltitudeBox.Text);
-                    changeSelectedCurveAltitude(altit);
-                }
-                catch (System.FormatException)
-                {
-                    (new MssgBox("Enter a numeric value to the altitude !")).ShowDialog();
-                }
-                catch (System.NullReferenceException)
-                {
-                }
-            }
-        }
-
-        public static Color AltitudeToColor(float altit)
-        {//implemeting the predefined altitude levels
-
-            float range = (AltitudeMax - AltitudeMin) / 10;
-            range = Convert.ToInt32(range);
-            Color color = (Color)ColorConverter.ConvertFromString("#FFDFD991");
-
-            if (altit < 0) return Colors.Black;
-            if (altit <= AltitudeMin + range) return (Color)ColorConverter.ConvertFromString("#6600CC");
-            if (altit <= AltitudeMin + 2 * range) return (Color)ColorConverter.ConvertFromString("#0000CC");
-            if (altit <= AltitudeMin + 3 * range) return (Color)ColorConverter.ConvertFromString("#0066CC");
-            if (altit <= AltitudeMin + 4 * range) return (Color)ColorConverter.ConvertFromString("#00CCCC");
-            if (altit <= AltitudeMin + 5 * range) return (Color)ColorConverter.ConvertFromString("#00CC66");
-            if (altit <= AltitudeMin + 6 * range) return (Color)ColorConverter.ConvertFromString("#00CC00");
-            if (altit <= AltitudeMin + 7 * range) return (Color)ColorConverter.ConvertFromString("#66CC00");
-            if (altit <= AltitudeMin + 8 * range) return (Color)ColorConverter.ConvertFromString("#FFFF00");
-            if (altit <= AltitudeMin + 9 * range) return (Color)ColorConverter.ConvertFromString("#FF8000");
-            if (altit <= AltitudeMin + 10 * range) return (Color)ColorConverter.ConvertFromString("#FF0000");
-            return Colors.Black;
-
-
-
-
-        }
-       
-
-        private void ThickSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {//change thickness
-            if (courbeActuelle != null)
-            {
-                (courbeActuelle).StrokeThickness = ThickSlider.Value;
-                ThickText.Text = ThickSlider.Value.ToString();
-            }
-        }
-
-
-        public void ShowSauvgardeWindow_Click(object sender, RoutedEventArgs e)
-        {
-            SauvgardePage pg = new SauvgardePage();
-
-            this.Content = pg;
-            /* _mainFrame.Content = new SauvgardePage(); */
-        }
-
-
-        public void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            List<Polyline> curve = polylines;
-
-            List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
-
-
-
-
-
-            itm2 = this.DeSerialize();
-
-
-            for (int i = 0; i < itm2.Count(); i++)
-            {
-                Polyline li = new Polyline();
-                mainCanvas.Children.Add(li);
-
-
-                for (int j = 0; j < itm2[i].Count(); j++)
-                {
-
-                    li.FillRule = FillRule.EvenOdd;
-                    li.StrokeThickness = 4;
-                    li.Stroke = Brushes.Black;
-                    li.Visibility = System.Windows.Visibility.Visible;
-                    Ellipse circle = new Ellipse();
-                    circle.Width = 10;
-                    circle.Height = 10;
-                    if (i == itm2.Count() - 1)
-                    {
-
-                        circle.Fill = Brushes.Red;
-
-                    }
-                    else
-                    {
-
-
-                        circle.Fill = Brushes.Purple;
-                    }
-
-
-
-                    Canvas.SetLeft(circle, itm2[i][j].point.X - (circle.Width / 2));
-                    Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
-                    Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
-                    li.Points.Add(ps);
-                    mainCanvas.Children.Add(circle);
-
-                }
-                li.FillRule = FillRule.EvenOdd;
-                li.Visibility = System.Windows.Visibility.Visible;
-
-                if (i == (itm2.Count() - 1))
-                {
-
-                    li.Stroke = Brushes.Purple;
-                    li.StrokeThickness = 7;
-
-
-                }
-                else
-                {
-
-                    li.Stroke = Brushes.Black;
-                    li.StrokeThickness = 2;
-                }
-
-
-
-            }
-
-
-            //mainCanvas.Children.Add(circle);
-
-
-        }
-
-        //serialization
-
-        public void Serializee(List<List<IntersectionDetail>> objet)
-        {
-            OpenFileDialog op = new OpenFileDialog();
-
-            Stream s = File.Open("test.dat", FileMode.Create);
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(s, objet);
-            s.Close();
-        }
-
-        public List<List<IntersectionDetail>> DeSerialize()
-        {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a ";
-            op.FileName = "Document"; // Default file name
-            op.DefaultExt = ".dat"; // Default file extension
-            op.Filter = "Text documents (.dat)|*.dat"; // Filter files by extension
-            if (op.ShowDialog() == true)
-            {
-                string fiName = op.FileName;
-
-            }
-            Stream s = File.Open(path: op.FileName, FileMode.Open);
-            BinaryFormatter bf = new BinaryFormatter();
-            List<List<IntersectionDetail>> objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
-            s.Close();
-
-
-            return objet;
-        }
-        List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
-        double pente;
-        private void Pente_Click(object sender, RoutedEventArgs e)
-        {
-            Echelle echel = new Echelle(200, 200);
-
-            pente = CalcPente(PenteIntersectionPoints, mainScale);
-            MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
-        }
-
-
-        public double CalcPente(List<IntersectionDetail> points, Echelle sc)
-        {
-            double sum = 0;
-
-            Line l = new Line();
-            //MessageBox.Show(points.Count().ToString());
-            for (int i = 0; i < points.Count() - 1; i++)
-            {
-
-                l.X1 = points[i + 1].point.X; l.Y1 = points[i + 1].point.Y;
-                l.X2 = points[i].point.X; l.Y2 = points[i].point.Y;
-                sum += ((points[i + 1].altitude - points[i].altitude) * 100 / sc.FindDistanceOnField(l));
-            }
-            return (sum / (points.Count() - 1));
-        }
+//------------------------------------------------------------------------------------------------------------------------
+   
     }
     class RectangleName
     {

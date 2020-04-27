@@ -34,6 +34,7 @@ namespace TopoGiraffe
                 AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
                 AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
                 AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                ThickSlider.Value = 2;
                 Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
                 if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
                 {
@@ -60,14 +61,14 @@ namespace TopoGiraffe
 
         String AltitudeString;
 
-        public Polyline DrawNewCurve()
+        public CourbeNiveau DrawNewCurve()
         // this function generates a dialog box , create , style a polyline from that dialog box entries
         // and return a new polyline, :)
         {
             Window1 window1 = new Window1();
             window1.ShowDialog();
 
-            Polyline newPolyline = null;
+            CourbeNiveau Courbe = null;
 
             if (window1.DialogResult == true)
             {
@@ -84,19 +85,15 @@ namespace TopoGiraffe
                     AltitudeString = window1.Altitude.Text;
 
                     // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
-                    newPolyline = new Polyline();
-
+                    Courbe = new CourbeNiveau(new Polyline(), result);
                     //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
                     //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
                     //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
-                    newPolyline.StrokeThickness = 2;
-                    newPolyline.FillRule = FillRule.EvenOdd;
+                    Courbe.polyline.StrokeThickness = 2;
+                    Courbe.polyline.FillRule = FillRule.EvenOdd;
 
+                    Courbe.polyline = StyleCmbToRealStyle(Courbe.polyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
 
-
-                    newPolyline = StyleCmbToRealStyle(newPolyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
-
-                    return newPolyline;
                 }
                 else
                 {
@@ -104,7 +101,8 @@ namespace TopoGiraffe
                 }
 
             }
-            return newPolyline;
+           
+            return Courbe;
         }
 
 
@@ -175,9 +173,9 @@ namespace TopoGiraffe
                 return;
             }
 
-            int index = polylines.IndexOf(courbeActuelle);
-            Altitudes[index] = Convert.ToInt32(altit);
-            (courbeActuelle).Stroke = new SolidColorBrush(AltitudeToColor(altit));
+
+            (courbeActuelle).polyline.Stroke = new SolidColorBrush(AltitudeToColor(altit));
+            courbeActuelle.altitude = altit;
 
         }
         private void keyDownOnAltitude(object sender, KeyEventArgs e)
@@ -229,7 +227,7 @@ namespace TopoGiraffe
         {//change thickness
             if (courbeActuelle != null)
             {
-                (courbeActuelle).StrokeThickness = ThickSlider.Value;
+                (courbeActuelle).polyline.StrokeThickness = ThickSlider.Value;
                 ThickText.Text = ThickSlider.Value.ToString();
             }
         }
