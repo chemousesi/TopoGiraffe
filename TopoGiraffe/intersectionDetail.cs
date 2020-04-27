@@ -40,7 +40,7 @@ namespace TopoGiraffe
 
         }
 
-        public IntersectionDetail(Point point, int Altitude , double distance)
+        public IntersectionDetail(Point point, int Altitude, double distance)
         {
             this.point = point;
             this.altitude = Altitude;

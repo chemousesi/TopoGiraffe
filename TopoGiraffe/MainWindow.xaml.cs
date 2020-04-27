@@ -1,19 +1,18 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TopoGiraffe.Noyau;
 using TopoSurf.MessageBoxStyle;
-using System.Windows.Controls.Primitives;
 
 
 //using TopoGiraffe.MessageBoxStyle;
@@ -648,12 +647,30 @@ namespace TopoGiraffe
                     drawingScale = false;
                 }
 
-            }
 
+            }
+            else if (drawPointsClicked == true)
+            {
+
+                drawPointsClicked = false;
+
+
+                if (pointAltitudeActuel != null)
+                {
+                    pointAltitudeActuel.point = new Point(x, y);
+                    pointAltitudeActuel.DrawShape(mainCanvas);
+                    pointsAltitude.Add(pointAltitudeActuel);
+
+                }
+
+
+
+
+            }
 
         }
         List<object> Skew = new List<object>();
-
+        List<PointAltitude> pointsAltitude = new List<PointAltitude>();
 
 
         List<IntersectionDetail> IntersectionPoints = new List<IntersectionDetail>();
@@ -1579,7 +1596,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = btn13;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Générer le profile"; 
+            Header.PopupText.Text = "Générer le profile";
         }
 
         private void Profil_MouseLeave(object sender, MouseEventArgs e)
@@ -1770,8 +1787,8 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
 
-// --------------------------------------------------------------------------- popup fin -------------------------------------//
-// --------------------------------------------------------------------------------------------------------------------------//
+        // --------------------------------------------------------------------------- popup fin -------------------------------------//
+        // --------------------------------------------------------------------------------------------------------------------------//
 
         private void ThickSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {//change thickness
@@ -1930,6 +1947,64 @@ namespace TopoGiraffe
             }
             return (sum / (points.Count() - 1));
         }
+
+
+
+
+        PointAltitude pointAltitudeActuel = null;
+
+
+        public void MakeNewPoint()
+        // this method creates a point and assigns it to PointAltitudeActuel
+        {
+            PointAltBox pointAltBox = new PointAltBox();
+            pointAltBox.ShowDialog();
+
+
+            if (pointAltBox.DialogResult == true)
+            {
+                if (int.TryParse(pointAltBox.Altitude.Text, out int result))
+
+                {
+                    pointAltitudeActuel = new PointAltitude(result, pointAltBox.typePointCmb.SelectedIndex);
+
+                }
+                else
+                {
+                    MessageBox.Show("Altitude Fausse !");
+                }
+
+            }
+
+
+        }
+
+        Boolean drawPointsClicked = false;
+
+
+
+        private void drawPoint_Clicked(object sender, RoutedEventArgs e)
+        // this method is when the trianngle button is clicked, it puts all other options to false, except the one for drawing the point
+        {
+
+
+            drawPointsClicked = true;
+            addLineClicked = false;
+            btn2Clicked = false;
+            drawingScale = false;
+
+            MakeNewPoint();
+
+
+        }
+
+
+
+
+
+
+
+
     }
     class RectangleName
     {

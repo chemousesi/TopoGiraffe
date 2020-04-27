@@ -273,6 +273,11 @@
                            BorderThickness="0" Click="dessinerButton_Click" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave"  >
                         <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
                     </Button>
+                    <Button x:Name="dessinerPoint" Width="90" Height="60"   BorderBrush="Transparent"
+                           BorderThickness="0" Click="drawPoint_Clicked" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave"  >
+                        <Image Source="/assets/img/triangle.png" Height="30" Width="30"  />
+                    </Button>
+                    
                     <Button x:Name="add_line" Width="90" Height="62"   BorderBrush="Transparent"
                           BorderThickness="0" HorizontalAlignment="Center"  Margin="0,0,0,0"  IsDefault="True" Click="add_line_Click" MouseEnter="DessinDeSegment_MouseEnter" MouseLeave="DessinDeSegment_MouseLeave">
                         <Image Source="/assets/img/line.png" Height="40" Width="50"  />

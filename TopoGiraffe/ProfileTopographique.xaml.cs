@@ -24,10 +24,10 @@ namespace TopoGiraffe
             this.distancesListe = adistancesList;
             this.mainScale = mainScale;
             this.penteText = pente;
-           
+
 
             InitializeComponent();
-            
+
             penteTextBox.Text = penteText;
             int compteur;
             //Echelle scale = new Echelle(130, 1000);
