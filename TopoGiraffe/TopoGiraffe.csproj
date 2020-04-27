@@ -21,6 +21,7 @@
     <None Remove="assets\img\line.png" />
     <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\page.png" />
+    <None Remove="assets\img\Pente.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\return.png" />
     <None Remove="assets\img\save.png" />
@@ -63,6 +64,7 @@
     </Content>
     <Resource Include="assets\img\navigation.png" />
     <Resource Include="assets\img\page.png" />
+    <Resource Include="assets\img\Pente.png" />
     <Resource Include="assets\img\report.png" />
     <Resource Include="assets\img\return.png" />
     <Resource Include="assets\img\save.png" />
