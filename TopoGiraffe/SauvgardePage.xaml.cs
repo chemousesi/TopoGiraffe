@@ -39,8 +39,7 @@ namespace TopoGiraffe
         {
 
 
-            MainWindow pg = new MainWindow();
-            this.Content = pg;
+           this.NavigationService.GoBack();
 
         }
     }
