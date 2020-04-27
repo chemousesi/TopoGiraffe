@@ -1,45 +1,71 @@
-﻿using System.Windows.Shapes;
+﻿using System;
+using System.Windows.Shapes;
 
 namespace TopoGiraffe.Noyau
 {
-    class CourbeNiveau
+    public  class CourbeNiveau
     {
-        private Polyline courbe;
-        private double altitude;
-        private string couleur;
-        private string styleDessin;// pour faire la difference avec les courbes maitresses et les courbes intermediares
+        public Polyline polyline;
+        public float altitude;
+        public string couleur;
+        public string styleDessin;// pour faire la difference avec les courbes maitresses et les courbes intermediares
 
 
-        public CourbeNiveau(Polyline courbe, double altitude, string couleur)
+        public CourbeNiveau(Polyline polyline, float altitude, string couleur)
         {
-            this.courbe = courbe;
+            this.polyline = polyline;
             this.altitude = altitude;
             this.couleur = couleur;
         }
-
-        public Polyline Courbe
+        public CourbeNiveau(Polyline polyline, float altitude)
         {
-            get => courbe;
-            set => courbe = value;
+            this.polyline = polyline;
+            this.altitude = altitude;
         }
-
-        public double Altitude
+        public CourbeNiveau(Polyline polyline)
         {
-            get => altitude;
-            set => altitude = value;
+            this.polyline = polyline;
+          
         }
-
-
-        public string Couleur
+        public CourbeNiveau()
         {
-            get => couleur;
-            set => couleur = value;
         }
+        //public Polyline polyline
+        //{
+        //    get => polyline;
+        //    set => polyline = value;
+        //}
 
-        public string StyleDessin
+        //public float Altitude
+        //{
+        //    get => altitude;
+        //    set => altitude = value;
+        //}
+
+
+        //public string Couleur
+        //{
+        //    get => couleur;
+        //    set => couleur = value;
+        //}
+
+        //public string StyleDessin
+        //{
+        //    get => styleDessin;
+        //    set => styleDessin = value;
+        //}
+        public override bool Equals(Object obj)
         {
-            get => styleDessin;
-            set => styleDessin = value;
+            //Check for null and compare run-time types.
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                CourbeNiveau cour = (CourbeNiveau)obj;
+                return (this.altitude == cour.altitude) && (this.polyline == cour.polyline);
+            }
         }
 
     }
