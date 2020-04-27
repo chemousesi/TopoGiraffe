@@ -11,7 +11,9 @@ namespace TopoGiraffe.Noyau
         private double minAltitude;
         private double maxAltitude;
         private Echelle echelle;
+#pragma warning disable CS0649 // Le champ 'Plan.courbes' n'est jamais assigné et aura toujours sa valeur par défaut null
         private List<Polygon> courbes;// je vais remplacer polygon par courbeNiveau
+#pragma warning restore CS0649 // Le champ 'Plan.courbes' n'est jamais assigné et aura toujours sa valeur par défaut null
 
 
 

@@ -1,6 +1,11 @@
 using System.Windows;
 using System.Windows.Controls;
 
+#pragma warning disable CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
+#pragma warning restore CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
+#pragma warning disable CS0105 // La directive using de 'System.Windows.Controls' est apparue précédemment dans cet espace de noms
+#pragma warning restore CS0105 // La directive using de 'System.Windows.Controls' est apparue précédemment dans cet espace de noms
+
 
 
 namespace TopoGiraffe
@@ -16,6 +21,7 @@ namespace TopoGiraffe
         {
 
             InitializeComponent();
+            
 
 
         }
@@ -27,6 +33,12 @@ namespace TopoGiraffe
             MainWindow pg = new MainWindow();
             this.Content = pg;
 
+        }
+
+        private void enregistrerSous_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow pg = new MainWindow();
+            //pg.saveFile();
         }
     }
 }
