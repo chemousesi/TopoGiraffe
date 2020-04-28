@@ -4,7 +4,9 @@ using System.Windows.Shapes;
 
 namespace TopoGiraffe
 {
+#pragma warning disable CS0659 // 'ArtPoint' se substitue à Object.Equals(object o) mais pas à Object.GetHashCode()
     public class ArtPoint
+#pragma warning restore CS0659 // 'ArtPoint' se substitue à Object.Equals(object o) mais pas à Object.GetHashCode()
     {
         public Ellipse cercle;
         private Point p;

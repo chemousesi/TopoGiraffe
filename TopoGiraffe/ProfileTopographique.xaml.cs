@@ -24,12 +24,14 @@ namespace TopoGiraffe
             this.distancesListe = adistancesList;
             this.mainScale = mainScale;
             this.penteText = pente;
-           
+
 
             InitializeComponent();
-            
+
             penteTextBox.Text = penteText;
+#pragma warning disable CS0168 // La variable 'compteur' est déclarée, mais jamais utilisée
             int compteur;
+#pragma warning restore CS0168 // La variable 'compteur' est déclarée, mais jamais utilisée
             //Echelle scale = new Echelle(130, 1000);
             MyValues = new ChartValues<ObservablePoint>();
 

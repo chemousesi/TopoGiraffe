@@ -1,18 +1,14 @@
-
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 ﻿using System.Windows.Controls;
+#pragma warning disable CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
+#pragma warning restore CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
+#pragma warning disable CS0105 // La directive using de 'System.Windows.Controls' est apparue précédemment dans cet espace de noms
+#pragma warning restore CS0105 // La directive using de 'System.Windows.Controls' est apparue précédemment dans cet espace de noms
+#pragma warning disable CS0105 // La directive using de 'System.Windows.Media' est apparue précédemment dans cet espace de noms
+#pragma warning restore CS0105 // La directive using de 'System.Windows.Media' est apparue précédemment dans cet espace de noms
+
+#pragma warning disable CS0105 // La directive using de 'System.Windows.Controls' est apparue précédemment dans cet espace de noms
+#pragma warning restore CS0105 // La directive using de 'System.Windows.Controls' est apparue précédemment dans cet espace de noms
+
 
 
 
@@ -27,5 +23,6 @@ namespace TopoGiraffe
         {
             InitializeComponent();
         }
+
     }
 }
