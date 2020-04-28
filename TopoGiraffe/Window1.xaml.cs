@@ -111,6 +111,11 @@ namespace TopoGiraffe
         {
             alti = Altitude.Text;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         //number textbox control
 
 

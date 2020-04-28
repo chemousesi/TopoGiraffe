@@ -1835,11 +1835,11 @@ namespace TopoGiraffe
 
                 if (i == (itm2.Count() - 1))
                 {
-
+                   
                     li.Stroke = Brushes.Purple;
                     li.StrokeThickness = 7;
-
-
+                   // li.Points.Add(new Point(li.Points[0].X*);
+                   
                 }
                 else
                 {

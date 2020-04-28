@@ -25,10 +25,11 @@
 
         </Grid>
         <Grid Grid.Row="2">
-            <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" Loaded="CartesianChart_Loaded" >
+            <lvc:CartesianChart Name="chart" Series="{Binding SeriesCollection}" LegendLocation="Right" >
 
             </lvc:CartesianChart>
         </Grid>
+        <Button Content="ExportToPdf" HorizontalAlignment="Left" Margin="661,0,0,0" VerticalAlignment="Center" Click="Button_Click"/>
 
     </Grid>
 </Window>
