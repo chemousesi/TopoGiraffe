@@ -1971,7 +1971,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = export;
             popup_uc.Placement = PlacementMode.Right;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Exporte";
+            Header.PopupText.Text = "Importer";
         }
 
         private void EpaisseurTextBox_MouseEnter(object sender, MouseEventArgs e)
