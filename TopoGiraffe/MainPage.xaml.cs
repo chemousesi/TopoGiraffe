@@ -1089,7 +1089,7 @@ namespace TopoGiraffe
         //------------------------------------------------------------------------------------------------------------------------------------------------
         // code to handle dragging of the poyline --------------------------------------------------------------------------------------------------------
         bool isDragging, mvCtrl = true;
-        FrameworkElement elDragging, selectedPath, selectedPolyline;
+        FrameworkElement elDragging, selectedPath, selectedPolyline, selectedTriangle;
         double minX, minY, maxX, maxY;
         int indexdrag = 0;
 
@@ -1255,9 +1255,9 @@ namespace TopoGiraffe
                 {
 
                     if (elDragging == null)
-#pragma warning disable CS1717 // Assignation effectuée à la même variable ; souhaitiez-vous assigner un autre élément ?
+
                         elDragging = (elDragging);
-#pragma warning restore CS1717 // Assignation effectuée à la même variable ; souhaitiez-vous assigner un autre élément ?
+
                     double left = ptElementStart.X + ptMouse.X - ptMouseStart.X;
                     double top = ptElementStart.Y + ptMouse.Y - ptMouseStart.Y;
 
@@ -1955,6 +1955,12 @@ namespace TopoGiraffe
 
                 {
                     pointAltitudeActuel = new PointAltitude(result, pointAltBox.typePointCmb.SelectedIndex);
+                    
+
+                    pointAltitudeActuel.triangle.MouseLeftButtonDown += new MouseButtonEventHandler(Control_MouseLeftButtonDown2);
+                    pointAltitudeActuel.triangle.MouseLeftButtonUp += new MouseButtonEventHandler(Control_MouseLeftButtonUp2);
+                    pointAltitudeActuel.triangle.MouseMove += new MouseEventHandler(Control_MouseMove2);
+
 
                 }
                 else
@@ -1985,6 +1991,134 @@ namespace TopoGiraffe
 
 
         }
+      
+
+        private void Control_MouseLeftButtonDown2(object sender, MouseButtonEventArgs e)
+        {
+            selectedTriangle = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
+            if (selectedTriangle == null) return;
+            if (selectedTriangle != null && selectedTriangle is Polygon)
+            {
+                
+                if (navClicked == true)
+                {
+
+
+                    foreach (PointAltitude pointAltitude in pointsAltitude)
+                    {
+
+                        if (pointAltitude.triangle.Equals((Polyline)selectedPolyline))
+                        {
+                            pointAltitudeActuel = pointAltitude ;
+                            mainCanvas.Children.Remove(pointAltitudeActuel.altitudeTextBlock);
+
+                        }
+
+
+                    }
+
+
+
+
+
+
+
+                    //AltSlider.Value = courbeActuelle.altitude;
+                    //ThickSlider.Value = courbeActuelle.polyline.StrokeThickness;
+                    mvCtrl = true;
+                    ptMouseStart = e.GetPosition(this);
+                    elDragging = (this).InputHitTest(ptMouseStart) as FrameworkElement;
+                    if (elDragging == null) return;
+                    if (elDragging != null && elDragging is Polygon)
+                    {
+                        ptElementStart = new Point(elDragging.Margin.Left, elDragging.Margin.Top);
+                        margin = new Thickness(elDragging.Margin.Left, elDragging.Margin.Top, 0, 0);
+                        elDragging.Cursor = Cursors.ScrollAll;
+                        Mouse.Capture((elDragging));
+                        isDragging = true;
+
+                    }
+                    
+
+                }
+                else return;
+
+            }
+        }
+
+        private void Control_MouseLeftButtonUp2(object sender, MouseButtonEventArgs e)
+        {
+            Point pnt = e.GetPosition(this);
+            if (elDragging == null) return;
+
+                   
+
+            if (isDragging)
+            {
+                if (!mvCtrl)
+                {
+                    elDragging.Margin = margin;
+
+                }
+
+            }
+            isDragging = false;
+            (elDragging).Cursor = Cursors.Arrow;
+            (elDragging).ReleaseMouseCapture();
+            elDragging = null;
+            test = true;
+        }
+
+        private void Control_MouseMove2(object sender, MouseEventArgs e)
+        {
+            if ((elDragging) == null) return;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point ptMouse = e.GetPosition(this);
+                if (isDragging)
+                {
+
+                    if (elDragging == null)
+
+                        elDragging = (elDragging);
+
+                    double left = ptElementStart.X + ptMouse.X - ptMouseStart.X;
+                    double top = ptElementStart.Y + ptMouse.Y - ptMouseStart.Y;
+
+
+                    elDragging.Margin = new Thickness(left, top, 0, 0);// modify the margin to move the curve
+                    if (mvCtrl)
+                    {
+                        margin = elDragging.Margin;
+                    }
+
+
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

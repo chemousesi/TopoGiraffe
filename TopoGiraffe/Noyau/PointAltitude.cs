@@ -11,9 +11,9 @@ namespace TopoGiraffe.Noyau
         public Point point;
         private double altitude;
         private Ellipse cercle;
-        private Polygon triangle;
+        public Polygon triangle = new Polygon();
         private TypePoint typePoint;
-        TextBlock altitudeTextBlock = new TextBlock();
+        public TextBlock altitudeTextBlock = new TextBlock();
         static int nbPoints = 0;
 
         public PointAltitude(Point aPoint, double anAltitude, int index)
@@ -72,7 +72,7 @@ namespace TopoGiraffe.Noyau
 
         public void MakeTriangleSommet(Canvas canvas)
         {
-            triangle = new Polygon();
+         
 
             triangle.Points.Add(new Point(point.X - 5, point.Y + 5));
             triangle.Points.Add(new Point(point.X + 5, point.Y + 5));
@@ -91,10 +91,7 @@ namespace TopoGiraffe.Noyau
 
             // adding text
 
-
-            Canvas.SetLeft(altitudeTextBlock, point.X - (altitudeTextBlock.Width / 2));
-            Canvas.SetTop(altitudeTextBlock, point.Y - (altitudeTextBlock.Height / 2) - 20);
-            canvas.Children.Add(altitudeTextBlock);
+            DisplayAltitudeTextBox(canvas);
 
 
 
@@ -102,7 +99,7 @@ namespace TopoGiraffe.Noyau
 
         public void MakeTriangleCote(Canvas canvas)
         {
-            triangle = new Polygon();
+            
 
 
             triangle.Points.Add(new Point(point.X - 5, point.Y + 5));
@@ -119,11 +116,8 @@ namespace TopoGiraffe.Noyau
             canvas.Children.Add(triangle);
 
             // adding altitude text
+            DisplayAltitudeTextBox(canvas);
 
-
-            Canvas.SetLeft(altitudeTextBlock, point.X - (altitudeTextBlock.Width / 2));
-            Canvas.SetTop(altitudeTextBlock, point.Y - (altitudeTextBlock.Height / 2) - 20);
-            canvas.Children.Add(altitudeTextBlock);
 
         }
 
@@ -139,6 +133,16 @@ namespace TopoGiraffe.Noyau
                 MakeTriangleSommet(canvas);
             }
         }
+
+
+        public void DisplayAltitudeTextBox(Canvas canvas)
+        {
+
+            Canvas.SetLeft(altitudeTextBlock, point.X - (altitudeTextBlock.Width / 2));
+            Canvas.SetTop(altitudeTextBlock, point.Y - (altitudeTextBlock.Height / 2) - 20);
+            canvas.Children.Add(altitudeTextBlock);
+        }
+
 
     }
 
