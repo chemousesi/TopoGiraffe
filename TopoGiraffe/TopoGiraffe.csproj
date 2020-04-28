@@ -19,25 +19,36 @@
     <None Remove="assets\img\import.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\line.png" />
+    <None Remove="assets\img\minus.png" />
     <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\page.png" />
     <None Remove="assets\img\Pente.png" />
+    <None Remove="assets\img\plusC.png" />
+    <None Remove="assets\img\plusSS.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\return.png" />
+    <None Remove="assets\img\ruler.png" />
     <None Remove="assets\img\save.png" />
     <None Remove="assets\img\scale.png" />
     <None Remove="assets\img\scale2.png" />
     <None Remove="assets\img\SplashScreen2.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\triangle.png" />
+    <None Remove="assets\img\uiBlanc.png" />
     <None Remove="assets\img\visibility.png" />
     <None Remove="assets\img\zoom-in.png" />
     <None Remove="draw.png" />
     <None Remove="gear.png" />
     <None Remove="import.png" />
     <None Remove="ink.png" />
+    <None Remove="less.png" />
+    <None Remove="plus.png" />
+    <None Remove="plusS.png" />
+    <None Remove="plusSS.png" />
     <None Remove="report.png" />
+    <None Remove="ruler.png" />
     <None Remove="tour.png" />
+    <None Remove="uiBlanc.png" />
     <None Remove="visibility.png" />
     <None Remove="zoom-in.png" />
   </ItemGroup>
@@ -63,16 +74,21 @@
     <Content Include="assets\img\line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="assets\img\minus.png" />
     <Resource Include="assets\img\navigation.png" />
     <Resource Include="assets\img\page.png" />
     <Resource Include="assets\img\Pente.png" />
+    <Resource Include="assets\img\plusC.png" />
+    <Resource Include="assets\img\plusSS.png" />
     <Resource Include="assets\img\report.png" />
     <Resource Include="assets\img\return.png" />
+    <Resource Include="assets\img\ruler.png" />
     <Resource Include="assets\img\save.png" />
     <Resource Include="assets\img\scale.png" />
     <Resource Include="assets\img\scale2.png" />
     <Resource Include="assets\img\tour.png" />
     <Resource Include="assets\img\triangle.png" />
+    <Resource Include="assets\img\uiBlanc.png" />
     <Resource Include="assets\img\visibility.png" />
     <Resource Include="assets\img\zoom-in.png" />
   </ItemGroup>
