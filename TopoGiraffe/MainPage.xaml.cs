@@ -353,7 +353,7 @@ namespace TopoGiraffe
             }
             else
             {
-                polylines.Clear();
+                CourbesNiveau.Clear();
                 mainCanvas.Children.Clear();
                 foreach (List<ArtPoint> ae in PointsGlobal)
                 {
@@ -362,6 +362,7 @@ namespace TopoGiraffe
                 PointsGlobal.Clear();
                 cercles.Clear();
                 IntersectionPoints.Clear();
+                indexPoints = -1;
             }
         }
 
