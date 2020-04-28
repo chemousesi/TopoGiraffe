@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
+    <Grid Cursor="Hand">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="75"/>
