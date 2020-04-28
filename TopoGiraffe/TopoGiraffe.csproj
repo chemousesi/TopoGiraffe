@@ -19,9 +19,11 @@
     <None Remove="assets\img\import.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\line.png" />
+    <None Remove="assets\img\minus.png" />
     <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\page.png" />
     <None Remove="assets\img\Pente.png" />
+    <None Remove="assets\img\plusC.png" />
     <None Remove="assets\img\plusSS.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\return.png" />
@@ -32,6 +34,7 @@
     <None Remove="assets\img\SplashScreen2.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\triangle.png" />
+    <None Remove="assets\img\uiBlanc.png" />
     <None Remove="assets\img\visibility.png" />
     <None Remove="assets\img\zoom-in.png" />
     <None Remove="draw.png" />
@@ -71,9 +74,11 @@
     <Content Include="assets\img\line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="assets\img\minus.png" />
     <Resource Include="assets\img\navigation.png" />
     <Resource Include="assets\img\page.png" />
     <Resource Include="assets\img\Pente.png" />
+    <Resource Include="assets\img\plusC.png" />
     <Resource Include="assets\img\plusSS.png" />
     <Resource Include="assets\img\report.png" />
     <Resource Include="assets\img\return.png" />
@@ -83,15 +88,9 @@
     <Resource Include="assets\img\scale2.png" />
     <Resource Include="assets\img\tour.png" />
     <Resource Include="assets\img\triangle.png" />
+    <Resource Include="assets\img\uiBlanc.png" />
     <Resource Include="assets\img\visibility.png" />
     <Resource Include="assets\img\zoom-in.png" />
-    <Resource Include="import.png" />
-    <Resource Include="less.png" />
-    <Resource Include="plus.png" />
-    <Resource Include="plusS.png" />
-    <Resource Include="plusSS.png" />
-    <Resource Include="ruler.png" />
-    <Resource Include="uiBlanc.png" />
   </ItemGroup>
 
   <ItemGroup>

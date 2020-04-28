@@ -67,26 +67,33 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <StackPanel>
+                <Button  Height="60" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent"
+                        BorderThickness="0"  Click="ShowSauvgardeWindow_Click" >
+                    <Image Source="/assets/img/uiBlanc.png" Width="20" Height="20" Margin="0,0,0,0" ></Image>
+                </Button>
+            </Grid>   
+            <Grid Grid.Column="1">
 
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
-                <Button  x:Name="btn11" Width="90" Height="84" Background="#0000" BorderBrush="Transparent"
+
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
+                    <Button  x:Name="btn11" Width="90" Height="84" Background="#0000" BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" MouseEnter="Pen_MouseEnter" MouseLeave="Pen_MouseLeave" >
-                    <Image Source="/assets/img/draw.png" Width="30" Height="30" />
-                </Button>
-                <Button  x:Name="Pente" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+                        <Image Source="/assets/img/draw.png" Width="30" Height="30" />
+                    </Button>
+                    <Button  x:Name="Pente" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" >
-                    <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
-                </Button>
-                <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+                        <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
+                    </Button>
+                    <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Click="btn13_Click" MouseEnter="Profil_MouseEnter" MouseLeave="Profil_MouseLeave" >
-                    <Image Source="/assets/img/report.png" Width="30" Height="30"/>
-                </Button>
-                <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+                        <Image Source="/assets/img/report.png" Width="30" Height="30"/>
+                    </Button>
+                    <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"  >
-                    <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
-                </Button>
-            </StackPanel>
+                        <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
         </Grid>
         <Grid  Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -112,12 +119,10 @@
                         <ColumnDefinition Width="427*"/>
                     </Grid.ColumnDefinitions>
                     <Image Margin="12,12,10,10" Name="imgPhoto" Grid.ColumnSpan="3"  />
-
                     <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,-21" RenderTransformOrigin="0.498,0.517" Grid.ColumnSpan="3" >
                         <Canvas.Background>
                             <SolidColorBrush Color="#FFFFF3F0" Opacity=".1"  />
                         </Canvas.Background>
-
                     </Canvas>
                 </Grid>
 
@@ -249,7 +254,7 @@
                 </Grid>
 
             </Grid>
-            <Grid Grid.Column="0" Background="#EEEEEE" Margin="0,0,25,0" >
+            <Grid Grid.Column="0" Background="#EEEEEE"  >
                 <StackPanel VerticalAlignment="Top"  Margin="0,58,-1,0" >
 
                     <Button x:Name="nav" Height="60" Margin="0,0,0,0" Background="{x:Null}" BorderBrush="Transparent"
@@ -260,6 +265,10 @@
                     <Button x:Name="dessinerButton" Margin="0,0,0,0" Height="60"  Background="Transparent"  BorderBrush="Transparent"
                            BorderThickness="0" Click="dessinerButton_Click"  >
                         <Image Source="/assets/img/ink.png" Width="20" Height="20" Margin="0,0,0,0"/>
+                    </Button>
+                    <Button x:Name="dessinerPoint" Margin="0,0,0,0" Height="60"   BorderBrush="Transparent"
+                           BorderThickness="0" Click="drawPoint_Clicked" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave"  >
+                        <Image Source="/assets/img/triangle.png" Width="20" Height="20"  />
                     </Button>
                     <Button x:Name="add_line" Margin="0,0,0,0" Height="60" Background="Transparent" BorderBrush="Transparent"
                           BorderThickness="0" HorizontalAlignment="Center"  IsDefault="True" Click="add_line_Click">
@@ -327,4 +336,5 @@
             </Grid>
         </Popup>
     </Grid>
+        
 </Page>
