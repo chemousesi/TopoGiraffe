@@ -1744,7 +1744,7 @@ namespace TopoGiraffe
             //SauvgardePage pg = new SauvgardePage();
 
             //this.Content = pg;
-            this.NavigationService.Navigate(new SauvgardePage());
+            this.NavigationService.Navigate(new SauvgardePage(curves));
 
             /* _mainFrame.Content = new SauvgardePage(); */
         }
@@ -2088,24 +2088,24 @@ namespace TopoGiraffe
 
         }
 
-        public void saveFile()
-        {
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Document"; // Default file name
-            dlg.DefaultExt = ".topo"; // Default file extension
-            dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
+        //public void saveFile()
+        //{
+        //    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+        //    dlg.FileName = "Document"; // Default file name
+        //    dlg.DefaultExt = ".topo"; // Default file extension
+        //    dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
 
-            // Show open file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
+        //    // Show open file dialog box
+        //    Nullable<bool> result = dlg.ShowDialog();
 
-            // Process open file dialog box results
-            if (result == true)
-            {
-                // Open document
-                string filename = dlg.FileName;
-                this.Serializee(curves, filename);
-            }
-        }
+        //    // Process open file dialog box results
+        //    if (result == true)
+        //    {
+        //        // Open document
+        //        string filename = dlg.FileName;
+        //        this.Serializee(curves, filename);
+        //    }
+        //}
 
 
 
