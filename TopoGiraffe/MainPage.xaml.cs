@@ -1600,7 +1600,7 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
 
-        private void SupprimerPrécedent_MouseEnter(object sender, MouseEventArgs e)
+        private void SupprimerPrecedent_MouseEnter(object sender, MouseEventArgs e)
         {
             popup_uc.PlacementTarget = deletePreviousButton;
             popup_uc.Placement = PlacementMode.Right;
@@ -1608,7 +1608,7 @@ namespace TopoGiraffe
             Header.PopupText.Text = "Supprimer précedent";
         }
 
-        private void SupprimerPrécedent_MouseLeave(object sender, MouseEventArgs e)
+        private void SupprimerPrecedent_MouseLeave(object sender, MouseEventArgs e)
         {
             popup_uc.Visibility = Visibility.Collapsed;
             popup_uc.IsOpen = false;
@@ -1661,7 +1661,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = ThickSlider;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Modifier l'épaisseur de la courde";
+            Header.PopupText.Text = "Modifier l'épaisseur de la courbe";
         }
 
         private void Epaisseur_MouseLeave(object sender, MouseEventArgs e)
@@ -1675,7 +1675,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = AltSlider;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Modifier l'altitude de la courde";
+            Header.PopupText.Text = "Modifier l'altitude de la courbe";
         }
 
         private void Altitude_MouseLeave(object sender, MouseEventArgs e)
@@ -1689,7 +1689,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = cp;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir la couleur de la courde";
+            Header.PopupText.Text = "Choisir la couleur de la courbe";
         }
 
         private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
@@ -1703,7 +1703,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = styleCourbeCmb;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir le type de la courde";
+            Header.PopupText.Text = "Choisir le type de la courbe";
         }
 
         private void TypeCourbe_MouseLeave(object sender, MouseEventArgs e)
@@ -1905,7 +1905,108 @@ namespace TopoGiraffe
 
         double pente;
         List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
+        //---------------------------------------------------------------------------------------- popup vol 2 --------------------------
+        //--------------------------------------------------------------------------------------------------------------------------------
 
+        private void Nav_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = nav;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Navigation";
+        }
+
+        private void Nav_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void DessinPoint_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = dessinerPoint;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Dessiner un point";
+        }
+
+        private void DessinPoint_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+      
+
+        private void Pente_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = Pente;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Calculer la pente";
+        }
+
+        private void Pente_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Echelle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = scaleButton;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Enter l'echelle";
+        }
+
+        private void Echelle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Export_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = export;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Exporte";
+        }
+
+        private void EpaisseurTextBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = ThickText;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Entrer l'épaisseur";
+        }
+
+        private void Export_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void EpaisseurTextBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void AltitudeBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = AltitudeBox;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Entrer l'altitude";
+        }
+
+        private void AltitudeBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
 
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
