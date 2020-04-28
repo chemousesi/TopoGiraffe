@@ -22,8 +22,10 @@
     <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\page.png" />
     <None Remove="assets\img\Pente.png" />
+    <None Remove="assets\img\plusSS.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\return.png" />
+    <None Remove="assets\img\ruler.png" />
     <None Remove="assets\img\save.png" />
     <None Remove="assets\img\scale.png" />
     <None Remove="assets\img\scale2.png" />
@@ -35,8 +37,14 @@
     <None Remove="gear.png" />
     <None Remove="import.png" />
     <None Remove="ink.png" />
+    <None Remove="less.png" />
+    <None Remove="plus.png" />
+    <None Remove="plusS.png" />
+    <None Remove="plusSS.png" />
     <None Remove="report.png" />
+    <None Remove="ruler.png" />
     <None Remove="tour.png" />
+    <None Remove="uiBlanc.png" />
     <None Remove="visibility.png" />
     <None Remove="zoom-in.png" />
   </ItemGroup>
@@ -65,14 +73,23 @@
     <Resource Include="assets\img\navigation.png" />
     <Resource Include="assets\img\page.png" />
     <Resource Include="assets\img\Pente.png" />
+    <Resource Include="assets\img\plusSS.png" />
     <Resource Include="assets\img\report.png" />
     <Resource Include="assets\img\return.png" />
+    <Resource Include="assets\img\ruler.png" />
     <Resource Include="assets\img\save.png" />
     <Resource Include="assets\img\scale.png" />
     <Resource Include="assets\img\scale2.png" />
     <Resource Include="assets\img\tour.png" />
     <Resource Include="assets\img\visibility.png" />
     <Resource Include="assets\img\zoom-in.png" />
+    <Resource Include="import.png" />
+    <Resource Include="less.png" />
+    <Resource Include="plus.png" />
+    <Resource Include="plusS.png" />
+    <Resource Include="plusSS.png" />
+    <Resource Include="ruler.png" />
+    <Resource Include="uiBlanc.png" />
   </ItemGroup>
 
   <ItemGroup>
