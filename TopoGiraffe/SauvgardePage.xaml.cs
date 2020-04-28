@@ -1,5 +1,16 @@
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using TopoGiraffe.Noyau;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.Windows.Controls.Primitives;
 
 #pragma warning disable CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
 #pragma warning restore CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
@@ -15,16 +26,47 @@ namespace TopoGiraffe
     /// </summary>
     public partial class SauvgardePage : Page
     {
+        List<List<IntersectionDetail>> curves;
 
 
-        public SauvgardePage()
+        public SauvgardePage(List<List<IntersectionDetail>> curves)
         {
-
+            this.curves = curves;
             InitializeComponent();
             
 
 
         }
+        public void Serializee(List<List<IntersectionDetail>> objet, string filename)
+        {
+
+            OpenFileDialog op = new OpenFileDialog();
+
+            Stream s = File.Open(path: filename, FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(s, objet);
+            s.Close();
+        }
+        public void saveFile()
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Document"; // Default file name
+            dlg.DefaultExt = ".topo"; // Default file extension
+            dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
+
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string filename = dlg.FileName;
+                this.Serializee(curves, filename);
+            }
+        }
+
+      
 
         public void goback_Click(object sender, RoutedEventArgs e)
         {
@@ -36,8 +78,8 @@ namespace TopoGiraffe
 
         private void enregistrerSous_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.GoBack();
-            //pg.saveFile();
+            saveFile();
+           // MainWindow .saveFile()
         }
     }
 }
