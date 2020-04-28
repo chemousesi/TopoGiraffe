@@ -2008,19 +2008,16 @@ namespace TopoGiraffe
                     foreach (PointAltitude pointAltitude in pointsAltitude)
                     {
 
-                        if (pointAltitude.triangle.Equals((Polyline)selectedPolyline))
+                        if (pointAltitude.triangle.Equals((Polygon)selectedTriangle))
                         {
                             pointAltitudeActuel = pointAltitude ;
+                            
                             mainCanvas.Children.Remove(pointAltitudeActuel.altitudeTextBlock);
 
                         }
 
 
                     }
-
-
-
-
 
 
 
@@ -2063,9 +2060,16 @@ namespace TopoGiraffe
                 }
 
             }
+
+
+
             isDragging = false;
             (elDragging).Cursor = Cursors.Arrow;
             (elDragging).ReleaseMouseCapture();
+            
+
+            //pointAltitudeActuel.DisplayAltitudeTextBox(mainCanvas);
+
             elDragging = null;
             test = true;
         }
@@ -2085,6 +2089,7 @@ namespace TopoGiraffe
 
                     double left = ptElementStart.X + ptMouse.X - ptMouseStart.X;
                     double top = ptElementStart.Y + ptMouse.Y - ptMouseStart.Y;
+
 
 
                     elDragging.Margin = new Thickness(left, top, 0, 0);// modify the margin to move the curve
