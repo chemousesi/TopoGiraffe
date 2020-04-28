@@ -30,6 +30,7 @@ namespace TopoGiraffe
         {
             info.AddValue("point", point);
             info.AddValue("intersect", intersect);
+            info.AddValue("altitude", altitude);
 
         }
 
@@ -37,10 +38,11 @@ namespace TopoGiraffe
         {
             point = (Point)serializationInfo.GetValue("point", typeof(Point));
             intersect = (bool)serializationInfo.GetValue("intersect", typeof(bool));
+            altitude = (int)serializationInfo.GetValue("altitude", typeof(int));
 
         }
 
-        public IntersectionDetail(Point point, int Altitude , double distance)
+        public IntersectionDetail(Point point, int Altitude, double distance)
         {
             this.point = point;
             this.altitude = Altitude;

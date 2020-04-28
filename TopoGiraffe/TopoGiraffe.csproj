@@ -31,6 +31,7 @@
     <None Remove="assets\img\scale2.png" />
     <None Remove="assets\img\SplashScreen2.png" />
     <None Remove="assets\img\tour.png" />
+    <None Remove="assets\img\triangle.png" />
     <None Remove="assets\img\visibility.png" />
     <None Remove="assets\img\zoom-in.png" />
     <None Remove="draw.png" />
@@ -81,6 +82,7 @@
     <Resource Include="assets\img\scale.png" />
     <Resource Include="assets\img\scale2.png" />
     <Resource Include="assets\img\tour.png" />
+    <Resource Include="assets\img\triangle.png" />
     <Resource Include="assets\img\visibility.png" />
     <Resource Include="assets\img\zoom-in.png" />
     <Resource Include="import.png" />

@@ -5,46 +5,53 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TopoGiraffe"
              mc:Ignorable="d" 
-             d:DesignHeight="15" d:DesignWidth="110">
-    <Grid Background="#C5C5C5">
+             d:DesignHeight="15" d:DesignWidth="100"  UseLayoutRounding="False"  >
 
-        <!--draw the popup user control-->
-        <Path
-               x:Name="Container"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center"
-              
+    <Border BorderBrush="#DCDCDC" BorderThickness="3" CornerRadius="3" Opacity="0.8" >
+        <Grid Background="#DCDCDC" Opacity="0.8" ClipToBounds="True"  >
             
-            
-            
-            Fill="#3A6180"
-              Height="15"
-              Width="110"
-              Stroke="#3A6180"
-              Stretch="Fill"
-              Margin="3">
-        </Path>
+                    <!--draw the popup user control-->
+                    <Path
+                          x:Name="Container"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
 
+                          Height="25"
+                          Width="20"
+                          Margin="7,0"
+                        Stroke="#DCDCDC"
+                        Stretch="Fill"
+                        Fill="#DCDCDC"
+                          >
 
-        <!--reusable text-->
-        <TextBlock x:Name="PopupText"
-                   FontSize="13"
-                   Foreground="Black"
-                   Panel.ZIndex="1"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
-        </TextBlock>
-        <Grid.Effect>
-            <DropShadowEffect
-                                BlurRadius="20"
-                                ShadowDepth="1"
-                                Direction="0"
-                                Color="#000000">
+                    </Path>
+                    <!--reusable text-->
+                    <TextBlock x:Name="PopupText"
+                            FontSize="11"
+                            Foreground="#4D4D4D"
+                            Panel.ZIndex="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            TextWrapping="WrapWithOverflow"
+                            Margin="7,0"
+                            >
+                    </TextBlock>    
+                
+            <Grid.Effect>
+                <DropShadowEffect
+                        BlurRadius="0"
+                        ShadowDepth="0"
+                        Direction="90" 
+                        Color="Transparent" 
+                        Opacity="0.6"
+                
+                        >
 
-            </DropShadowEffect>
-        </Grid.Effect>
+                </DropShadowEffect>
+            </Grid.Effect>
 
-    </Grid>
+        </Grid>
+    </Border>
 
     <!--animate the user control-->
         <UserControl.Style>
