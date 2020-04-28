@@ -30,14 +30,13 @@ namespace TopoGiraffe
         {
 
 
-            MainWindow pg = new MainWindow();
-            this.Content = pg;
+           this.NavigationService.GoBack();
 
         }
 
         private void enregistrerSous_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow pg = new MainWindow();
+            this.NavigationService.GoBack();
             //pg.saveFile();
         }
     }
