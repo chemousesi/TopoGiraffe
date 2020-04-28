@@ -1744,7 +1744,7 @@ namespace TopoGiraffe
             //SauvgardePage pg = new SauvgardePage();
 
             //this.Content = pg;
-            this.NavigationService.Navigate(new SauvgardePage(curves));
+            this.NavigationService.Navigate(new SauvgardePage(curves, this));
 
             /* _mainFrame.Content = new SauvgardePage(); */
         }

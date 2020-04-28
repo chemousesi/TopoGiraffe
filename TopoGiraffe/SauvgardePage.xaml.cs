@@ -27,13 +27,13 @@ namespace TopoGiraffe
     public partial class SauvgardePage : Page
     {
         List<List<IntersectionDetail>> curves;
+        private MainPage _mainPage;
 
-
-        public SauvgardePage(List<List<IntersectionDetail>> curves)
+        public SauvgardePage(List<List<IntersectionDetail>> curves, MainPage mainPage)
         {
             this.curves = curves;
             InitializeComponent();
-            
+            _mainPage = mainPage;
 
 
         }
@@ -72,7 +72,7 @@ namespace TopoGiraffe
         {
 
 
-           this.NavigationService.GoBack();
+           this.NavigationService.Navigate(_mainPage);
 
         }
 
