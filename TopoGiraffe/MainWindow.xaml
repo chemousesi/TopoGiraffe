@@ -35,10 +35,30 @@
 
 
 
-
+    
     <Grid>
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            
 
-        <Frame Source="/MainPage.xaml" NavigationUIVisibility="Hidden"/>
+        </Grid.RowDefinitions>
+
+
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Fichier">
+                    <MenuItem Header="_Nouveau" />
+                    <MenuItem Header="_Ouvrir"/>
+                    <MenuItem Header="_Sauvegarder" Click="MenuItem_Click"/>
+                    <Separator />
+                    <MenuItem Header="_Exit" Click="MenuItem_Click" />
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>-->
+    
+        <Frame x:Name="mainFrame" Source="/MainPage.xaml" NavigationUIVisibility="Hidden"/>
 
         <!--<Grid.RowDefinitions>
             <RowDefinition Height="20"/>
