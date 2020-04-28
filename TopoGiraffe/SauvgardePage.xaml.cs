@@ -36,8 +36,8 @@ namespace TopoGiraffe
 
         private void enregistrerSous_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.GoBack();
-            //pg.saveFile();
+            
+           // MainWindow .saveFile()
         }
     }
 }

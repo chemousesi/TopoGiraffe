@@ -399,7 +399,7 @@
                         <Button Style="{DynamicResource EnregistrerSousBtn}" x:Name="enregistrerSous" Foreground="#FFFFFF" Height="40" Background="#0000" BorderBrush="Transparent"
                             BorderThickness="0" HorizontalContentAlignment="Left" Click="enregistrerSous_Click" Cursor="Hand" >
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
-                                <Image Source="/assets/img/save.png" Margin="5,8" ></Image>
+                                <Image Source="/assets/img/save.png" Margin="5,8" RenderTransformOrigin="0.849,0.548" ></Image>
                                 <TextBlock Text="Enregistrer sous" Margin="10,0" FontSize="15" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>

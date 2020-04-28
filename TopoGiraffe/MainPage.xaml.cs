@@ -536,8 +536,8 @@ namespace TopoGiraffe
 
 
 
-                    MessageBox.Show("la taille de curves lakhra " + curves[curves.Count() - 1].Count());
-                    for (int a = 0; a < (curves[curves.Count() - 1].Count()); a++) { MessageBox.Show(curves[curves.Count() - 1][a].altitude.ToString()); }
+                    //MessageBox.Show("la taille de curves lakhra " + curves[curves.Count() - 1].Count());
+                  //  for (int a = 0; a < (curves[curves.Count() - 1].Count()); a++) { MessageBox.Show(curves[curves.Count() - 1][a].altitude.ToString()); }
                     this.Serializee(curves);
 
                     // dessin des cercles representant les points d'intersection
@@ -1769,7 +1769,7 @@ namespace TopoGiraffe
             alts = alts.GetRange(0, itm2.Count() - 1);
             alts.Reverse();
             int h = 0;
-            for (int v = 0; v < alts.Count(); v++) { MessageBox.Show("wanted message is " + alts[v].altitude.ToString()); }
+           // for (int v = 0; v < alts.Count(); v++) { MessageBox.Show("wanted message is " + alts[v].altitude.ToString()); }
             for (int i = 0; i < itm2.Count(); i++)
             {
 
@@ -1912,7 +1912,7 @@ namespace TopoGiraffe
 
             //this.DeSerialize()[this.DeSerialize().Count()-1];
 
-            Echelle echel = new Echelle(200, 200);
+            Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
 
 
             pente = CalcPente(PenteIntersectionPoints, mainScale);
@@ -1987,7 +1987,24 @@ namespace TopoGiraffe
 
         }
 
+        public void saveFile()
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Document"; // Default file name
+            dlg.DefaultExt = ".topo"; // Default file extension
+            dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
 
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string filename = dlg.FileName;
+                this.Serializee(curves, filename);
+            }
+        }
 
 
 
