@@ -13,6 +13,7 @@
     <None Remove="assets\img\download.png" />
     <None Remove="assets\img\draw.png" />
     <None Remove="assets\img\export.png" />
+    <None Remove="assets\img\exportT.png" />
     <None Remove="assets\img\folder.png" />
     <None Remove="assets\img\gear.png" />
     <None Remove="assets\img\house.png" />
@@ -62,6 +63,7 @@
     </Resource>
     <Resource Include="assets\img\download.png" />
     <Resource Include="assets\img\export.png" />
+    <Resource Include="assets\img\exportT.png" />
     <Resource Include="assets\img\folder.png" />
     <Resource Include="assets\img\house.png" />
     <Resource Include="assets\img\ink.png" />
@@ -98,6 +100,10 @@
   </ItemGroup>
 
   <ItemGroup>
+
+    
+
+    <PackageReference Include="iTextSharp" Version="5.5.13.1" />
 
     
 

@@ -1090,7 +1090,7 @@ namespace TopoGiraffe
         //------------------------------------------------------------------------------------------------------------------------------------------------
         // code to handle dragging of the poyline --------------------------------------------------------------------------------------------------------
         bool isDragging, mvCtrl = true;
-        FrameworkElement elDragging, selectedPath, selectedPolyline;
+        FrameworkElement elDragging, selectedPath, selectedPolyline, selectedTriangle;
         double minX, minY, maxX, maxY;
         int indexdrag = 0;
 
@@ -1256,9 +1256,9 @@ namespace TopoGiraffe
                 {
 
                     if (elDragging == null)
-#pragma warning disable CS1717 // Assignation effectuée à la même variable ; souhaitiez-vous assigner un autre élément ?
+
                         elDragging = (elDragging);
-#pragma warning restore CS1717 // Assignation effectuée à la même variable ; souhaitiez-vous assigner un autre élément ?
+
                     double left = ptElementStart.X + ptMouse.X - ptMouseStart.X;
                     double top = ptElementStart.Y + ptMouse.Y - ptMouseStart.Y;
 
@@ -1601,7 +1601,7 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
 
-        private void SupprimerPrécedent_MouseEnter(object sender, MouseEventArgs e)
+        private void SupprimerPrecedent_MouseEnter(object sender, MouseEventArgs e)
         {
             popup_uc.PlacementTarget = deletePreviousButton;
             popup_uc.Placement = PlacementMode.Right;
@@ -1609,7 +1609,7 @@ namespace TopoGiraffe
             Header.PopupText.Text = "Supprimer précedent";
         }
 
-        private void SupprimerPrécedent_MouseLeave(object sender, MouseEventArgs e)
+        private void SupprimerPrecedent_MouseLeave(object sender, MouseEventArgs e)
         {
             popup_uc.Visibility = Visibility.Collapsed;
             popup_uc.IsOpen = false;
@@ -1662,7 +1662,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = ThickSlider;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Modifier l'épaisseur de la courde";
+            Header.PopupText.Text = "Modifier l'épaisseur de la courbe";
         }
 
         private void Epaisseur_MouseLeave(object sender, MouseEventArgs e)
@@ -1676,7 +1676,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = AltSlider;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Modifier l'altitude de la courde";
+            Header.PopupText.Text = "Modifier l'altitude de la courbe";
         }
 
         private void Altitude_MouseLeave(object sender, MouseEventArgs e)
@@ -1690,7 +1690,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = cp;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir la couleur de la courde";
+            Header.PopupText.Text = "Choisir la couleur de la courbe";
         }
 
         private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
@@ -1704,7 +1704,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = styleCourbeCmb;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir le type de la courde";
+            Header.PopupText.Text = "Choisir le type de la courbe";
         }
 
         private void TypeCourbe_MouseLeave(object sender, MouseEventArgs e)
@@ -1745,7 +1745,7 @@ namespace TopoGiraffe
             //SauvgardePage pg = new SauvgardePage();
 
             //this.Content = pg;
-            this.NavigationService.Navigate(new SauvgardePage());
+            this.NavigationService.Navigate(new SauvgardePage(curves, this));
 
             /* _mainFrame.Content = new SauvgardePage(); */
         }
@@ -1836,11 +1836,11 @@ namespace TopoGiraffe
 
                 if (i == (itm2.Count() - 1))
                 {
-
+                   
                     li.Stroke = Brushes.Purple;
                     li.StrokeThickness = 7;
-
-
+                   // li.Points.Add(new Point(li.Points[0].X*);
+                   
                 }
                 else
                 {
@@ -1906,7 +1906,108 @@ namespace TopoGiraffe
 
         double pente;
         List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
+        //---------------------------------------------------------------------------------------- popup vol 2 --------------------------
+        //--------------------------------------------------------------------------------------------------------------------------------
 
+        private void Nav_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = nav;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Navigation";
+        }
+
+        private void Nav_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void DessinPoint_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = dessinerPoint;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Dessiner un point";
+        }
+
+        private void DessinPoint_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+      
+
+        private void Pente_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = Pente;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Calculer la pente";
+        }
+
+        private void Pente_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Echelle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = scaleButton;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Enter l'echelle";
+        }
+
+        private void Echelle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void Export_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = export;
+            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Importer";
+        }
+
+        private void EpaisseurTextBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = ThickText;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Entrer l'épaisseur";
+        }
+
+        private void Export_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void EpaisseurTextBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
+        private void AltitudeBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = AltitudeBox;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Entrer l'altitude";
+        }
+
+        private void AltitudeBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
 
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
@@ -1957,6 +2058,12 @@ namespace TopoGiraffe
 
                 {
                     pointAltitudeActuel = new PointAltitude(result, pointAltBox.typePointCmb.SelectedIndex);
+                    
+
+                    pointAltitudeActuel.triangle.MouseLeftButtonDown += new MouseButtonEventHandler(Control_MouseLeftButtonDown2);
+                    pointAltitudeActuel.triangle.MouseLeftButtonUp += new MouseButtonEventHandler(Control_MouseLeftButtonUp2);
+                    pointAltitudeActuel.triangle.MouseMove += new MouseEventHandler(Control_MouseMove2);
+
 
                 }
                 else
@@ -1987,25 +2094,158 @@ namespace TopoGiraffe
 
 
         }
+      
 
-        public void saveFile()
+        private void Control_MouseLeftButtonDown2(object sender, MouseButtonEventArgs e)
         {
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Document"; // Default file name
-            dlg.DefaultExt = ".topo"; // Default file extension
-            dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
-
-            // Show open file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Process open file dialog box results
-            if (result == true)
+            selectedTriangle = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
+            if (selectedTriangle == null) return;
+            if (selectedTriangle != null && selectedTriangle is Polygon)
             {
-                // Open document
-                string filename = dlg.FileName;
-                this.Serializee(curves, filename);
+                
+                if (navClicked == true)
+                {
+
+
+                    foreach (PointAltitude pointAltitude in pointsAltitude)
+                    {
+
+                        if (pointAltitude.triangle.Equals((Polygon)selectedTriangle))
+                        {
+                            pointAltitudeActuel = pointAltitude ;
+                            
+                            mainCanvas.Children.Remove(pointAltitudeActuel.altitudeTextBlock);
+
+                        }
+
+
+                    }
+
+
+
+                    //AltSlider.Value = courbeActuelle.altitude;
+                    //ThickSlider.Value = courbeActuelle.polyline.StrokeThickness;
+                    mvCtrl = true;
+                    ptMouseStart = e.GetPosition(this);
+                    elDragging = (this).InputHitTest(ptMouseStart) as FrameworkElement;
+                    if (elDragging == null) return;
+                    if (elDragging != null && elDragging is Polygon)
+                    {
+                        ptElementStart = new Point(elDragging.Margin.Left, elDragging.Margin.Top);
+                        margin = new Thickness(elDragging.Margin.Left, elDragging.Margin.Top, 0, 0);
+                        elDragging.Cursor = Cursors.ScrollAll;
+                        Mouse.Capture((elDragging));
+                        isDragging = true;
+
+                    }
+                    
+
+                }
+                else return;
+
             }
         }
+
+        private void Control_MouseLeftButtonUp2(object sender, MouseButtonEventArgs e)
+        {
+            Point pnt = e.GetPosition(this);
+            if (elDragging == null) return;
+
+                   
+
+            if (isDragging)
+            {
+                if (!mvCtrl)
+                {
+                    elDragging.Margin = margin;
+
+                }
+
+            }
+
+
+
+            isDragging = false;
+            (elDragging).Cursor = Cursors.Arrow;
+            (elDragging).ReleaseMouseCapture();
+            
+
+            //pointAltitudeActuel.DisplayAltitudeTextBox(mainCanvas);
+
+            elDragging = null;
+            test = true;
+        }
+
+        private void Control_MouseMove2(object sender, MouseEventArgs e)
+        {
+            if ((elDragging) == null) return;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point ptMouse = e.GetPosition(this);
+                if (isDragging)
+                {
+
+                    if (elDragging == null)
+
+                        elDragging = (elDragging);
+
+                    double left = ptElementStart.X + ptMouse.X - ptMouseStart.X;
+                    double top = ptElementStart.Y + ptMouse.Y - ptMouseStart.Y;
+
+
+
+                    elDragging.Margin = new Thickness(left, top, 0, 0);// modify the margin to move the curve
+                    if (mvCtrl)
+                    {
+                        margin = elDragging.Margin;
+                    }
+
+
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //public void saveFile()
+        //{
+        //    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+        //    dlg.FileName = "Document"; // Default file name
+        //    dlg.DefaultExt = ".topo"; // Default file extension
+        //    dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
+
+        //    // Show open file dialog box
+        //    Nullable<bool> result = dlg.ShowDialog();
+
+        //    // Process open file dialog box results
+        //    if (result == true)
+        //    {
+        //        // Open document
+        //        string filename = dlg.FileName;
+        //        this.Serializee(curves, filename);
+        //    }
+        //}
 
 
 

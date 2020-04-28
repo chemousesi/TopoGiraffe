@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
+    <Grid Cursor="Hand">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="75"/>
@@ -38,10 +38,7 @@
             </Grid>-->
 
 
-        <Grid>
-            <Frame x:Name="_mainFrame"/>
-            <Button x:Name="fichier" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" Margin="0,-6,0,0" Height="32" VerticalAlignment="Top" Cursor="Hand" />
-        </Grid>
+       
         <!--
 
             <DockPanel Grid.Row="0">
@@ -76,19 +73,19 @@
 
 
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
-                    <Button  x:Name="btn11" Width="90" Height="84" Background="#0000" BorderBrush="Transparent"
+                    <Button  x:Name="btn11" Width="90" Height="75" Background="#0000" BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" MouseEnter="Pen_MouseEnter" MouseLeave="Pen_MouseLeave" >
                         <Image Source="/assets/img/draw.png" Width="30" Height="30" />
                     </Button>
-                    <Button  x:Name="Pente" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" >
+                    <Button  x:Name="Pente" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" MouseEnter="Pente_MouseEnter" MouseLeave="Pente_MouseLeave" >
                         <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
                     </Button>
-                    <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+                    <Button  x:Name="btn13" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Click="btn13_Click" MouseEnter="Profil_MouseEnter" MouseLeave="Profil_MouseLeave" >
                         <Image Source="/assets/img/report.png" Width="30" Height="30"/>
                     </Button>
-                    <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
+                    <Button  x:Name="btn14" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"  >
                         <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
                     </Button>
@@ -166,7 +163,7 @@
                                 <StackPanel VerticalAlignment="Center">
                                     <TextBlock Text="Type de courbe" Margin="40,25,40,5"></TextBlock>
 
-                                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="40,10,40,5" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" >
+                                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="40,10,40,5" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" MouseEnter="TypeCourbe_MouseEnter" MouseLeave="TypeCourbe_MouseLeave" >
                                         <ComboBoxItem >Courbe simple</ComboBoxItem>
                                         <ComboBoxItem >Courbe intermediare</ComboBoxItem>
                                         <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
@@ -174,16 +171,18 @@
                                 </StackPanel>
                                 <StackPanel>
                                     <TextBlock Text="Color Picker" Margin="40,25,40,5"></TextBlock>
-                                    <xctk1:ColorPicker Name="cp" Margin="40,3,40,5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" ></xctk1:ColorPicker>
+                                    <xctk1:ColorPicker Name="cp" Margin="40,3,40,5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" MouseEnter="ColorPicker_MouseEnter" MouseLeave="ColorPicker_MouseLeave" ></xctk1:ColorPicker>
                                 </StackPanel>
                             </StackPanel>
                             <DockPanel Grid.Row="3" VerticalAlignment="Center" Height="195" Margin="0,-44,0,0">
 
                                 <DockPanel DockPanel.Dock="Top" Height="80">
                                     <Label Margin="40,0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939" >Thickness</Label>
-                                    <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" VerticalAlignment="Bottom" Height="25" Width="50" HorizontalAlignment="Right" Margin="40 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                                    <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" VerticalAlignment="Bottom" Height="25" Width="50" HorizontalAlignment="Right" Margin="40 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="EpaisseurTextBox_MouseEnter" MouseLeave="EpaisseurTextBox_MouseLeave"></TextBox>
                                 </DockPanel>
-                                <Slider IsSnapToTickEnabled="True"  ValueChanged="ThickSlider_ValueChanged" Minimum = "1" Maximum = "15" Value="5" Name="ThickSlider"  ToolTip="largeur" VerticalAlignment="Center" Width="150" Margin="40,0" Height="25" Foreground="#5B6A77" />
+                                <Slider IsSnapToTickEnabled="True"  ValueChanged="ThickSlider_ValueChanged" Minimum = "1" Maximum = "15"
+                                        Value="5" Name="ThickSlider"  ToolTip="largeur" VerticalAlignment="Center" Width="150" Margin="40,0"
+                                        Height="25" Foreground="#5B6A77" MouseEnter="Epaisseur_MouseEnter" MouseLeave="Epaisseur_MouseLeave" />
 
 
                             </DockPanel>
@@ -204,11 +203,13 @@
 
                                         <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  DockPanel.Dock="Right" 
                                                  VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Center" Width="55" VerticalContentAlignment="Center"
-                                                 HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" ></TextBox>
+                                                 HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" MouseEnter="AltitudeBox_MouseEnter" MouseLeave="AltitudeBox_MouseLeave"  >
+                                            
+                                        </TextBox>
                                     </WrapPanel>
                                     <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="150"  
                                              ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="25"
-                                             Margin="20,0,40,16" Foreground="#5B6A77" HorizontalAlignment="Center"/>
+                                             Margin="20,0,40,16" Foreground="#5B6A77" HorizontalAlignment="Center" MouseEnter="Altitude_MouseEnter" MouseLeave="Altitude_MouseLeave"/>
                                 </DockPanel>
                             </DockPanel>
 
@@ -241,11 +242,11 @@
                     <Grid Grid.Column="1">
                         <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Top" >
                             <Button  x:Name="display" Width="60" Height="60"  BorderBrush="Transparent" 
-                                BorderThickness="0" Background="#EEEEEE" Click="display_Click"  >
+                                BorderThickness="0" Background="#EEEEEE" Click="display_Click" MouseEnter="display_MouseEnter" MouseLeave="display_MouseLeave"  >
                                 <Image Source="/assets/img/visibility.png" Width="30" Height="30" Margin="0" />
                             </Button>
                             <Button  x:Name="import" Width="60" Height="60"  BorderBrush="Transparent"
-                                BorderThickness="0" Background="#EEEEEE" Click="import_Click"  >
+                                BorderThickness="0" Background="#EEEEEE" Click="import_Click" MouseEnter="Import_MouseEnter" MouseLeave="Import_MouseLeave"  >
                                 <Image Source="/assets/img/import.png" Width="30" Height="30" Margin="0" />
                             </Button>
 
@@ -255,51 +256,51 @@
 
             </Grid>
             <Grid Grid.Column="0" Background="#EEEEEE"  >
-                <StackPanel VerticalAlignment="Top"  Margin="0,58,-1,0" >
+                <StackPanel VerticalAlignment="Top"  Margin="0,0,-1,0" >
 
                     <Button x:Name="nav" Height="60" Margin="0,0,0,0" Background="{x:Null}" BorderBrush="Transparent"
-                        BorderThickness="0"  Click="nav_Click" >
+                        BorderThickness="0"  Click="nav_Click" MouseEnter="Nav_MouseEnter" MouseLeave="Nav_MouseLeave" >
                         <Image Source="/assets/img/navigation.png" Width="20" Height="20" Margin="0,0,0,0" ></Image>
                     </Button>
 
                     <Button x:Name="dessinerButton" Margin="0,0,0,0" Height="60"  Background="Transparent"  BorderBrush="Transparent"
-                           BorderThickness="0" Click="dessinerButton_Click"  >
+                           BorderThickness="0" Click="dessinerButton_Click" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave" >
                         <Image Source="/assets/img/ink.png" Width="20" Height="20" Margin="0,0,0,0"/>
                     </Button>
-                    <Button x:Name="dessinerPoint" Margin="0,0,0,0" Height="60"   BorderBrush="Transparent"
-                           BorderThickness="0" Click="drawPoint_Clicked" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave"  >
+                    <Button x:Name="dessinerPoint" Margin="0,0,0,0" Height="60"   BorderBrush="Transparent" Background="Transparent"
+                           BorderThickness="0" Click="drawPoint_Clicked" MouseEnter="DessinPoint_MouseEnter" MouseLeave="DessinPoint_MouseLeave"  >
                         <Image Source="/assets/img/triangle.png" Width="20" Height="20"  />
                     </Button>
                     <Button x:Name="add_line" Margin="0,0,0,0" Height="60" Background="Transparent" BorderBrush="Transparent"
-                          BorderThickness="0" HorizontalAlignment="Center"  IsDefault="True" Click="add_line_Click">
+                          BorderThickness="0" HorizontalAlignment="Center"  IsDefault="True" Click="add_line_Click" MouseEnter="DessinDeSegment_MouseEnter" MouseLeave="DessinDeSegment_MouseLeave">
                         <Image Source="/assets/img/line.png" Margin="0,0,0,0" />
                     </Button>
 
 
                     <Button x:Name="deleteAllButton" Margin="0,0,0,0" Height="60" Background="Transparent" BorderBrush="Transparent"
-                         BorderThickness="0" Click="deleteAllButton_Click" >
+                         BorderThickness="0" Click="deleteAllButton_Click" MouseLeave="SupprimerTout_MouseLeave" MouseEnter="SupprimerTout_MouseEnter"  >
                         <Image Source="/assets/img/deleteAll.png" Width="20" Height="20" Margin="0,0,0,0" />
                     </Button>
                     <Button x:Name="deletePreviousButton" Margin="0,0,0,0" Height="60" Background="Transparent" BorderBrush="Transparent"
-                                BorderThickness="0" Click="deletePreviousButton_Click"   >
+                                BorderThickness="0" Click="deletePreviousButton_Click" MouseEnter="SupprimerPrecedent_MouseEnter" MouseLeave="SupprimerPrecedent_MouseLeave"   >
                         <Image Source="/assets/img/deletePrevious.png" Width="20" Height="20" Margin="0,0,0,0" />
                     </Button>
                     <Button  x:Name="btn1" Margin="0,0,0,0" Height="60"  Background="Transparent" BorderBrush="Transparent"
-                        BorderThickness="0"  >
+                        BorderThickness="0" MouseEnter="Zoom_MouseEnter" MouseLeave="Zoom_MouseLeave"  >
                         <Image Source="/assets/img/zoom-in.png" Width="20" Height="20" Margin="0,0,0,0"  />
                     </Button>
 
                     <Button  x:Name="scaleButton" Margin="0,0,0,0" Height="60"  Background="Transparent"  BorderBrush="Transparent"
                         
 
-                        BorderThickness="0" Click="scaleButton_Click" >
+                        BorderThickness="0" Click="scaleButton_Click" MouseEnter="Echelle_MouseEnter" MouseLeave="Echelle_MouseLeave"  >
                         <Image Source="/assets/img/ruler.png" Width="20" Height="20" Margin="0,0,0,0" />
 
                     </Button>
-                    <Button  Margin="0,0,0,0" Height="60" HorizontalContentAlignment="Center"
+                    <Button Name="export" Margin="0,0,0,0" Height="60" HorizontalContentAlignment="Center"
                              BorderBrush="Transparent"
-                            BorderThickness="0" Background="Transparent" Click="Button_Click" Cursor="Hand" >
-                        <Image Source="/assets/img/import.png" Width="20" Height="20" Margin="0,0,0,0" />
+                            BorderThickness="0" Background="Transparent" Click="Button_Click" Cursor="Hand" MouseEnter="Export_MouseEnter" MouseLeave="Export_MouseLeave" >
+                        <Image Source="/assets/img/exportT.png" Width="20" Height="20" Margin="0,0,0,0"  />
                     </Button>
                     <CheckBox Content="Activer Dessin" Margin="2,0" FontSize="6" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
 
