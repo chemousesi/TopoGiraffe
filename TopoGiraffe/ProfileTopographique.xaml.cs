@@ -89,22 +89,30 @@ namespace TopoGiraffe
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("ISM.pdf", FileMode.Create));
-
-
-            Viewbox viewbox = new Viewbox();
-
-
-
             RenderTargetBitmap rtb = new RenderTargetBitmap((int)chart.ActualWidth, (int)chart.ActualHeight, 96, 96, PixelFormats.Pbgra32);
             rtb.Render(visual: chart);
             PngBitmapEncoder png = new PngBitmapEncoder();
             png.Frames.Add(BitmapFrame.Create(rtb));
             MemoryStream stream = new MemoryStream();
             png.Save(stream);
-
             SaveToPng(chart, "MyChart.png");
+
+            iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("ISM.pdf", FileMode.Create));
+            doc.Open();
+            iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance("./MyChart.PNG");
+            jpg.Border = iTextSharp.text.Rectangle.BOX;
+            jpg.BorderWidth = 5f;
+            doc.Add(jpg);
+            doc.Add(new iTextSharp.text.Paragraph("Original Width: "));
+
+            Viewbox viewbox = new Viewbox();
+
+
+
+
+            
+            doc.Close();
         }
     }
 }
