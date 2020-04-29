@@ -2020,6 +2020,11 @@ namespace TopoGiraffe
             MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
         }
 
+        private void mapBut_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new MapPage(this));
+        }
+
         //methode de calcul de pente
         public double CalcPente(List<IntersectionDetail> points, Echelle sc)
         {
