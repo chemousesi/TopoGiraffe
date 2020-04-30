@@ -16,10 +16,12 @@
     <None Remove="assets\img\exportT.png" />
     <None Remove="assets\img\folder.png" />
     <None Remove="assets\img\gear.png" />
+    <None Remove="assets\img\globe.png" />
     <None Remove="assets\img\house.png" />
     <None Remove="assets\img\import.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\line.png" />
+    <None Remove="assets\img\maps2.png" />
     <None Remove="assets\img\minus.png" />
     <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\page.png" />
@@ -65,6 +67,7 @@
     <Resource Include="assets\img\export.png" />
     <Resource Include="assets\img\exportT.png" />
     <Resource Include="assets\img\folder.png" />
+    <Resource Include="assets\img\globe.png" />
     <Resource Include="assets\img\house.png" />
     <Resource Include="assets\img\ink.png" />
   </ItemGroup>
@@ -76,6 +79,7 @@
     <Content Include="assets\img\line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="assets\img\maps2.png" />
     <Resource Include="assets\img\minus.png" />
     <Resource Include="assets\img\navigation.png" />
     <Resource Include="assets\img\page.png" />
@@ -96,6 +100,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="maps\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
@@ -114,6 +119,8 @@
 
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1" />
 
+    <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3" />
+
     <PackageReference Include="OxyPlot.Core" Version="2.0.0" />
 
     <PackageReference Include="OxyPlot.Wpf" Version="2.0.0" />
@@ -123,6 +130,12 @@
     <PackageReference Include="MaterialDesignColors" Version="1.2.3" />
     <PackageReference Include="MaterialDesignThemes" Version="3.1.0" />
 
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Maps.MapControl.WPF">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Bing Maps WPF Control\V1\Libraries\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
