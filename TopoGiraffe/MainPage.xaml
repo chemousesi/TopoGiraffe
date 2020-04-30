@@ -38,7 +38,7 @@
             </Grid>-->
 
 
-       
+
         <!--
 
             <DockPanel Grid.Row="0">
@@ -68,7 +68,7 @@
                         BorderThickness="0"  Click="ShowSauvgardeWindow_Click" >
                     <Image Source="/assets/img/uiBlanc.png" Width="20" Height="20" Margin="0,0,0,0" ></Image>
                 </Button>
-            </Grid>   
+            </Grid>
             <Grid Grid.Column="1">
 
 
@@ -88,6 +88,19 @@
                     <Button  x:Name="btn14" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"  >
                         <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
+                    </Button>
+                    <Button  x:Name="mapBut" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave" Click="mapBut_Click"  >
+                        <Image Source="/assets/img/globe.png" Width="39" Height="40" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
                     </Button>
                 </StackPanel>
             </Grid>
@@ -187,10 +200,10 @@
 
                             </DockPanel>
                             <DockPanel Grid.Row="2" VerticalAlignment="Center" Height="163" >
-                                
+
                                 <DockPanel DockPanel.Dock="Top" Height="163">
                                     <Label Margin="40,20,40,0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude</Label>
-                                   
+
                                     <WrapPanel Width="334" DockPanel.Dock="Top" Margin="20" Height="47" HorizontalAlignment="Center" >
                                         <Button x:Name="ZoomIn"  HorizontalAlignment="Left" Background="Transparent" Width="60" Height="50" Margin="67,0,42,0"  
                                                 BorderBrush="Transparent" BorderThickness="0"  Click="ZoomIn_Click" >
@@ -204,7 +217,7 @@
                                         <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  DockPanel.Dock="Right" 
                                                  VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Center" Width="55" VerticalContentAlignment="Center"
                                                  HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" MouseEnter="AltitudeBox_MouseEnter" MouseLeave="AltitudeBox_MouseLeave"  >
-                                            
+
                                         </TextBox>
                                     </WrapPanel>
                                     <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="150"  
@@ -337,5 +350,5 @@
             </Grid>
         </Popup>
     </Grid>
-        
+
 </Page>
