@@ -1,0 +1,63 @@
+﻿<Page x:Class="TopoGiraffe.MapPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TopoGiraffe"   
+      mc:Ignorable="d" 
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="700" d:DesignWidth="1500"
+      Title="MapPage">
+
+    <Grid Background="AliceBlue">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Grid.Column="0" Background="#FF023788" >
+
+
+            <Grid Grid.Row="0">
+                <Button Style="{DynamicResource AccueuilBtn}" x:Name="goback"  Foreground="#FFFFFF" Height="40" Margin="10,10,-10,650" Background="#0000" BorderBrush="Transparent"
+                        BorderThickness="0" HorizontalContentAlignment="Left" Click="goback_Click" >
+                    <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
+                        <Image Source="/assets/img/return.png" Margin="5,9" ></Image>
+                        <TextBlock Text="" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource ExporterBtn}" x:Name="exporter" Foreground="#FFFFFF" Height="40" Background="#0000" BorderBrush="Transparent"
+                            BorderThickness="0" HorizontalContentAlignment="Left" Click="exporter_Click">
+                    <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
+                        <Image Source="/assets/img/export.png" Margin="5,9" ></Image>
+                        <TextBlock Text="Capturer" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+        </Grid>
+
+      
+
+            <m:Map x:Name="myMap" CredentialsProvider="AttsGkqIHCOIEA11KtQZDphl5bi8lppin64jeg-ZOOhiS4cdHA_EXJwHSbyZi4Xo" Mode="Road"  Grid.Column="1" ZoomLevel="17" Center="36.705063, 3.172479" >
+                <Canvas
+               
+        m:MapLayer.Position="36.705063, 3.172479"
+        m:MapLayer.PositionOrigin="BottomCenter" Width="30" Height="30"
+        >
+                    <materialDesign:PackIcon Kind="MapMarker" Width="30" Height="30" Foreground="#FF3C3C3C"/>
+                </Canvas>
+            </m:Map>
+
+       
+        
+        
+
+
+
+    </Grid>
+</Page>
