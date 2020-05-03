@@ -1844,7 +1844,6 @@ namespace TopoGiraffe
                 else
                 {
 
-
                     li.StrokeThickness = 2;
                 }
 
