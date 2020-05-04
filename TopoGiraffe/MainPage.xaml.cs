@@ -230,7 +230,7 @@ namespace TopoGiraffe
                     //    CourbesNiveau.Remove(temporaryFigure);
                     //}
                     mousePos = new Point(e.GetPosition(this.mainCanvas).X, e.GetPosition(this.mainCanvas).Y);
-                    temporaryFigure = courbeActuelle;
+                    //temporaryFigure = courbeActuelle;
                     courbeActuelle.polyline.Points.Add(mousePos);
 
                 }
@@ -249,25 +249,27 @@ namespace TopoGiraffe
         {
 
 
-
             if (courbeActuelle.polyline.Points.Count != 0) //to handle real-time drawing
             {
                 if (courbeActuelle.polyline.Points.Last().Equals(mousePos))
                 {
                     courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
                 }
-                if (CourbesNiveau.Contains(temporaryFigure))
-                {
-                    CourbesNiveau.Remove(temporaryFigure);
-                }
+                //if (CourbesNiveau.Contains(temporaryFigure))
+                //{
+                //    CourbesNiveau.Remove(temporaryFigure);
+                //}
                 mousePos = new Point(e.GetPosition(this.mainCanvas).X, e.GetPosition(this.mainCanvas).Y);
-                temporaryFigure = courbeActuelle;
+                //temporaryFigure = courbeActuelle;
                 courbeActuelle.polyline.Points.Add(mousePos);
             }
 
 
 
-            CourbesNiveau.Add(courbeActuelle);
+            //CourbesNiveau.Add(courbeActuelle);
+
+
+
 
         }
 
@@ -556,7 +558,31 @@ namespace TopoGiraffe
                     {
                         FindIntersection(courbe, line);
                     }
-                   
+                    if (pointsAltitude.Count > 0)
+                    {
+                        foreach (PointAltitude pointa in pointsAltitude)
+                        {
+                            hitResultsList.Clear();
+                            PathGeometry myPathGeometry = new PathGeometry();
+                            PathFigure pathFigure2 = new PathFigure();
+                            PolyLineSegment myPolyLineSegment = new PolyLineSegment();
+                            myPolyLineSegment.Points = pointa.triangle.Points;
+                            pathFigure2.Segments.Add(myPolyLineSegment);
+                            myPathGeometry.Figures.Add(pathFigure2);
+
+                            VisualTreeHelper.HitTest(poly, null, new HitTestResultCallback(MyHitTestResult), new GeometryHitTestParameters(myPathGeometry));
+                            if (hitResultsList.Count > 0)
+                            {
+
+                                IntersectionPoints.Add(new IntersectionDetail(pointa.point, Convert.ToInt32(pointa.altitude)));
+
+                            }
+                        }
+                    }
+
+
+                    distances();
+
 
                     curves.Add(IntersectionPoints);
 
@@ -706,30 +732,7 @@ namespace TopoGiraffe
 
 
             }
-            if (pointsAltitude.Count > 0)
-            {
-                foreach (PointAltitude pointa in pointsAltitude)
-                {
-                    hitResultsList.Clear();
-                    PathGeometry myPathGeometry = new PathGeometry();
-                    PathFigure pathFigure2 = new PathFigure();
-                    PolyLineSegment myPolyLineSegment = new PolyLineSegment();
-                    myPolyLineSegment.Points = pointa.triangle.Points;
-                    pathFigure2.Segments.Add(myPolyLineSegment);
-                    myPathGeometry.Figures.Add(pathFigure2);
-
-                    VisualTreeHelper.HitTest(poly, null, new HitTestResultCallback(MyHitTestResult), new GeometryHitTestParameters(myPathGeometry));
-                    if (hitResultsList.Count >= 0)
-                    {
-                        IntersectionDetail intersection = new IntersectionDetail(pointa.point, Convert.ToInt32(pointa.altitude));
-                        IntersectionPoints.Add(intersection);
-
-                    }
-                }
-            }
-
-
-            distances();
+          
 
         }
         public bool FindIntersection1(Polyline p, Line line)
