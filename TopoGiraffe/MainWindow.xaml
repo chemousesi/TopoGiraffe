@@ -52,7 +52,11 @@
 
         <Frame x:Name="mainFrame" Source="/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
 
-        <Rectangle Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#FF2B4F96"/>
+        <Rectangle  Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#FF023788"/>
+
+
+
+        <TextBlock Foreground="White" VerticalAlignment="Top" Margin="58,10,0,0" HorizontalAlignment="Left" > TOPOGIRAFFE</TextBlock>
 
         <Rectangle Height="77" Width="5" VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="move_window">
 
@@ -69,12 +73,12 @@
         <Rectangle Margin="8,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Right"
                    Width="56" Height="15" Fill="Transparent"
                    MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" />
-        <Ellipse Margin="8,15,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" 
+        <Rectangle Margin="8,15,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" 
                  Width="14" Height="15" MouseLeftButtonUp="EXIT" 
                  MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
                  MouseLeftButtonDown="Close_pressing" Name="Close_btn" 
                  Fill="{DynamicResource Close_inact}" />
-        <Ellipse Margin="29,15,70,0" VerticalAlignment="Top" HorizontalAlignment="Right" 
+        <Rectangle Margin="29,15,70,0" VerticalAlignment="Top" HorizontalAlignment="Right" 
                  Width="14" Height="15" MouseLeftButtonUp="MINIMIZE" 
                  MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
                  MouseLeftButtonDown="Min_pressing" Name="Min_btn" 
@@ -82,11 +86,12 @@
                  
         />
 
-        <Ellipse Margin="50,15,40,0" VerticalAlignment="Top" HorizontalAlignment="Right" 
+        <Rectangle Margin="50,15,40,0" VerticalAlignment="Top" HorizontalAlignment="Right" 
                  Width="14" Height="15" MouseLeftButtonUp="MAX_RESTORE" 
                  MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
                  MouseLeftButtonDown="Max_pressing" Name="Max_btn" 
                  Fill="{StaticResource Max_inact}" />
+        <Image HorizontalAlignment="Left" Height="33" Margin="10,1,0,0" VerticalAlignment="Top" Width="100" Source="splashScreen.png"/>
 
 
 

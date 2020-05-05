@@ -48,11 +48,13 @@
     <None Remove="import.png" />
     <None Remove="ink.png" />
     <None Remove="less.png" />
+    <None Remove="logo.png" />
     <None Remove="plus.png" />
     <None Remove="plusS.png" />
     <None Remove="plusSS.png" />
     <None Remove="report.png" />
     <None Remove="ruler.png" />
+    <None Remove="splashScreen.png" />
     <None Remove="tour.png" />
     <None Remove="uiBlanc.png" />
     <None Remove="visibility.png" />
@@ -103,6 +105,8 @@
     <Resource Include="assets\img\uiBlanc.png" />
     <Resource Include="assets\img\visibility.png" />
     <Resource Include="assets\img\zoom-in.png" />
+    <Resource Include="logo.png" />
+    <Resource Include="splashScreen.png" />
   </ItemGroup>
 
   <ItemGroup>
