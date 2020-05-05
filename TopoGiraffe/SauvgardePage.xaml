@@ -358,12 +358,12 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Button Style="{DynamicResource AccueuilBtn}" x:Name="goback"  Foreground="#FFFFFF" Height="40" Background="#0000" BorderBrush="Transparent"
-                        BorderThickness="0" HorizontalContentAlignment="Left" Click="goback_Click" >
+                    <Button Style="{DynamicResource AccueuilBtn}" x:Name="goback"  Foreground="#FFFFFF" Background="#0000" BorderBrush="Transparent"
+                        BorderThickness="0" HorizontalContentAlignment="Left" Click="goback_Click" Margin="0,35,0,0" >
                         <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
                             <Image Source="/assets/img/return.png" Margin="5,9" ></Image>
                             <TextBlock Text="" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
-                        </StackPanel>       
+                        </StackPanel>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
@@ -420,7 +420,7 @@
                             <TextBlock Text="Paramètres" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                </Grid>        
+                </Grid>
             </Grid>
             <Grid Grid.Column="1" Background="#FFFCFAFA">
                 <Grid.RowDefinitions>
