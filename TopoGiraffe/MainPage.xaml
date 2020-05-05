@@ -10,7 +10,7 @@
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1500"
-      Title="MainPage">
+      Title="MainPage" Cursor="Hand">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -58,7 +58,7 @@
 
 
 
-        <Grid Grid.Row="1"  Background="#FF023788" Opacity=".84" >
+        <Grid Grid.Row="1"  Background="#FF023788" Opacity="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="65" />
                 <ColumnDefinition Width="*"/>

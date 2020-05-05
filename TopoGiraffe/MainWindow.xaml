@@ -8,11 +8,12 @@
         xmlns:local="clr-namespace:TopoGiraffe"
         xmlns:utils="clr-namespace:TopoGiraffe"
         xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Background="{DynamicResource MaterialDesignPaper}"
+        Background="Transparent"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-
+        AllowsTransparency="True"
+        BorderBrush="Transparent"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" Cursor="Hand" >
+        Title="MainWindow"  Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStyle="None" Cursor="Hand"  >
 
 
 
@@ -35,302 +36,64 @@
 
 
 
-    
-    <Grid>
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-            
-
-        </Grid.RowDefinitions>
-
-
-        <DockPanel Grid.Row="0">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Fichier">
-                    <MenuItem Header="_Nouveau" />
-                    <MenuItem Header="_Ouvrir"/>
-                    <MenuItem Header="_Sauvegarder" Click="MenuItem_Click"/>
-                    <Separator />
-                    <MenuItem Header="_Exit" Click="MenuItem_Click" />
-                </MenuItem>
-            </Menu>
-            <TextBox AcceptsReturn="True" />
-        </DockPanel>-->
-    
-        <Frame x:Name="mainFrame" Source="/MainPage.xaml" NavigationUIVisibility="Hidden"/>
-
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="75"/>
-            <RowDefinition />
-            <RowDefinition Height="20" />
-
-        </Grid.RowDefinitions>
-
-
-        
-
-
-        <Grid>
-            <Frame x:Name="_mainFrame"/>
-            <Button x:Name="fichier" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" Margin="0,-6,0,-6" />
-        </Grid>
-       
 
+    <Grid x:Name="Main">
+        <Grid.Resources>
+            <ImageBrush x:Key="Close_inact"  ImageSource="./assets/img/Exit.png" />
+            <ImageBrush x:Key="Min_inact" ImageSource="./assets/img/Minimize.png"  />
+            <ImageBrush x:Key="Max_inact" ImageSource="./assets/img/Maximize.png"  />
+            <ImageBrush x:Key="Close_act" ImageSource="./assets/img/Exit.png"  />
+            <ImageBrush x:Key="Min_act" ImageSource="./assets/img/Minimize.png"  />
+            <ImageBrush x:Key="Max_act" ImageSource="./assets/img/Maximize.png"  />
+            <ImageBrush x:Key="Close_pr" ImageSource="./assets/img/Exit.png"  />
+            <ImageBrush x:Key="Min_pr" ImageSource="./assets/img/Minimize.png"  />
+            <ImageBrush x:Key="Max_pr" ImageSource="./assets/img/Maximize.png"  />
+        </Grid.Resources>
 
+        <Frame x:Name="mainFrame" Source="/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
 
-        <Grid Grid.Row="1"  Background="#FF023788" Opacity=".84" >
+        <Rectangle  Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#FF023788"/>
 
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
-                <Button  x:Name="btn11" Width="90" Height="84" Background="#0000" BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" MouseEnter="Pen_MouseEnter" MouseLeave="Pen_MouseLeave" >
-                    <Image Source="/assets/img/draw.png" Width="30" Height="30" />
-                </Button>
-                <Button  x:Name="Pente" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" >
-                    <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
-                </Button>
-                <Button  x:Name="btn13" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Click="btn13_Click" MouseEnter="Profil_MouseEnter" MouseLeave="Profil_MouseLeave" >
-                    <Image Source="/assets/img/report.png" Width="30" Height="30"/>
-                </Button>
-                <Button  x:Name="btn14" Width="90" Height="84"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"  >
-                    <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
-                </Button>
-            </StackPanel>
-        </Grid>
-        <Grid  Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="117" />
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="337" />
-            </Grid.ColumnDefinitions>
 
 
-            <utils:ZoomBorder x:Name="border" ClipToBounds="True" Background="#FFFCFAFA" Grid.Column="1" Margin="1,0,0,7" RenderTransformOrigin="0.5,0.5" KeyDown="border_KeyDown">
-                <utils:ZoomBorder.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.51"/>
-                        <RotateTransform Angle="0.456"/>
-                        <TranslateTransform Y="3.009"/>
-                    </TransformGroup>
-                </utils:ZoomBorder.RenderTransform>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="567*"/>
-                        <ColumnDefinition Width="51*"/>
-                        <ColumnDefinition Width="427*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Margin="12,12,10,10" Name="imgPhoto" Grid.ColumnSpan="3"  />
+        <TextBlock Foreground="White" VerticalAlignment="Top" Margin="58,10,0,0" HorizontalAlignment="Left" > TOPOGIRAFFE</TextBlock>
 
-                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,-21" RenderTransformOrigin="0.498,0.517" Grid.ColumnSpan="3" >
-                        <Canvas.Background>
-                            <SolidColorBrush Color="#FFFFF3F0" Opacity=".1"  />
-                        </Canvas.Background>
+        <Rectangle Height="77" Width="5" VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="move_window">
 
-                    </Canvas>
-                </Grid>
+            <Rectangle.Fill>
 
+                <ImageBrush  />
+                <!-- could be solidcolor as well -->
 
-            </utils:ZoomBorder>
+            </Rectangle.Fill>
 
+        </Rectangle>
 
 
+        <Rectangle Margin="8,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Right"
+                   Width="56" Height="15" Fill="Transparent"
+                   MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" />
+        <Rectangle Margin="8,15,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                 Width="14" Height="15" MouseLeftButtonUp="EXIT" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Close_pressing" Name="Close_btn" 
+                 Fill="{DynamicResource Close_inact}" />
+        <Rectangle Margin="29,15,70,0" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                 Width="14" Height="15" MouseLeftButtonUp="MINIMIZE" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Min_pressing" Name="Min_btn" 
+                 Fill="{StaticResource Min_inact}" 
+                 
+        />
 
+        <Rectangle Margin="50,15,40,0" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                 Width="14" Height="15" MouseLeftButtonUp="MAX_RESTORE" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Max_pressing" Name="Max_btn" 
+                 Fill="{StaticResource Max_inact}" />
+        <Image HorizontalAlignment="Left" Height="33" Margin="10,1,0,0" VerticalAlignment="Top" Width="100" Source="splashScreen.png"/>
 
 
-            <Grid Grid.Column="2" Background="#EEEEEE">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="177*"/>
-
-                </Grid.RowDefinitions>
-
-                <TabControl Background="#EEEEEE" SelectionChanged="TabControl_SelectionChanged" Margin="0,0,0,-16" RenderTransformOrigin="0.5,0.5">
-                    <TabControl.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleX="-0.158"/>
-                            <RotateTransform/>
-                            <TranslateTransform X="-0.597"/>
-                        </TransformGroup>
-                    </TabControl.RenderTransform>
-
-
-
-                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548" Margin="-2,-2,-83,0">
-
-                        <Grid Height="550">
-                            <Grid.RowDefinitions>
-                                <RowDefinition  Height="0*" />
-                                <RowDefinition Height="80*"/>
-                                <RowDefinition Height="87*"/>
-
-                                <RowDefinition Height="108*"/>
-                            </Grid.RowDefinitions>
-
-                            <StackPanel  VerticalAlignment="Top" Height="410" Margin="0,-20,0,0" Grid.Row="1" Grid.RowSpan="3" >
-
-
-                                <TextBlock Text="Type de courbe" Margin="33,-1,32.8,4"></TextBlock>
-
-
-                                <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="33,7,32.8,35" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" MouseEnter="TypeCourbe_MouseEnter" MouseLeave="TypeCourbe_MouseLeave" >
-                                    <ComboBoxItem >Courbe simple</ComboBoxItem>
-                                    <ComboBoxItem >Courbe intermediare</ComboBoxItem>
-                                    <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
-                                </ComboBox>
-                                <TextBlock Text="Color Picker" Margin="33,7,32.8,.5"></TextBlock>
-                                <xctk1:ColorPicker Name="cp"  Margin="33,7,32.8,.5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" MouseEnter="ColorPicker_MouseEnter" MouseLeave="ColorPicker_MouseLeave" ></xctk1:ColorPicker>
-
-
-
-                            </StackPanel>
-                            <DockPanel Grid.Row="3" VerticalAlignment="Center" Height="195" Margin="0,-44,0,0">
-
-                                <DockPanel DockPanel.Dock="Top" Height="80">
-                                    <Label Margin="10 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939" >Thickness</Label>
-                                    <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" VerticalAlignment="Bottom" Height="25" Width="80" HorizontalAlignment="Right" Margin="10 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
-                                </DockPanel>
-                                <Slider IsSnapToTickEnabled="True"  ValueChanged="ThickSlider_ValueChanged" Minimum = "1" Maximum = "15" Value="5" Name="ThickSlider"  VerticalAlignment="Center" Width="148" Margin="0,0,40,37" Height="25" Foreground="#FF311B92" MouseEnter="Epaisseur_MouseEnter" MouseLeave="Epaisseur_MouseLeave"  />
-
-
-                            </DockPanel>
-                            <DockPanel Grid.Row="2" VerticalAlignment="Center" Height="163" >
-                                <DockPanel DockPanel.Dock="Top" Height="163">
-                                    <Label Margin="10 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude</Label>
-                                    <WrapPanel Width="334" DockPanel.Dock="Top" Height="47" >
-                                        <Button x:Name="ZoomIn" Content="+" HorizontalAlignment="Left" Background="#90CAF9" Width="45" Height="40" Margin="67,0,42,0"   FontSize="22"  Opacity="0.6" Click="ZoomIn_Click" FontWeight="Bold" FontStyle="Normal"/>
-                                        <Button x:Name="ZoomOut" Content="-" Width="45" Height="40" Margin="17,0,15,0"  HorizontalAlignment="Center" Background="#90CAF9"  FontSize="22" Opacity="0.57" Click="ZoomOut_Click" FontWeight="Bold"/>
-                                        <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  DockPanel.Dock="Right" VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Right" Width="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" ></TextBox>
-
-                                    </WrapPanel>
-                                    <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="148"  ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="25" Margin="0,0,40,20" Foreground="#FF311B92" MouseEnter="Altitude_MouseEnter" MouseLeave="Altitude_MouseLeave"/>
-
-                                </DockPanel>
-                            </DockPanel>
-
-
-                        </Grid>
-                    </TabItem>
-
-                    <TabItem Header="Plan" Background="#C5C5C5" Margin="72,-2,-165,0" />
-
-
-                </TabControl>
-
-
-
-
-
-
-
-            </Grid>
-
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="84"/>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="300"/>
-
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="1">
-                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" >
-                            <Button  x:Name="display" Width="90" Height="84"  BorderBrush="Transparent"
-                                BorderThickness="0" Click="display_Click" MouseEnter="display_MouseEnter" MouseLeave="display_MouseLeave"  >
-                                <Image Source="/assets/img/visibility.png" Width="30" Height="30" />
-                            </Button>
-                            <Button  x:Name="import" Width="85" Height="84"  BorderBrush="Transparent"
-                                BorderThickness="0" Click="import_Click" MouseEnter="Import_MouseEnter" MouseLeave="Import_MouseLeave"  >
-                                <Image Source="/assets/img/import.png" Width="30" Height="30" />
-                            </Button>
-
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-
-            </Grid>
-            <Grid Grid.Column="0" Background="#EEEEEE" Margin="0,0,25,0" >
-                <StackPanel VerticalAlignment="Top"  Margin="0,58,-1,0" >
-
-                    <Button  Name="nav" Width="68" Height="51"  Background="{x:Null}" BorderBrush="Transparent"
-                        BorderThickness="0" Margin="0,0,0,20" Click="nav_Click" >
-                        <Image Source="/assets/img/navigation.png" Height="30" Width="30"  ></Image>
-                    </Button>
-
-                    <Button x:Name="dessinerButton" Width="90" Height="60"   BorderBrush="Transparent"
-                           BorderThickness="0" Click="dessinerButton_Click" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave"  >
-                        <Image Source="/assets/img/ink.png" Height="30" Width="30"  />
-                    </Button>
-                    <Button x:Name="dessinerPoint" Width="90" Height="60"   BorderBrush="Transparent"
-                           BorderThickness="0" Click="drawPoint_Clicked" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave"  >
-                        <Image Source="/assets/img/triangle.png" Height="30" Width="30"  />
-                    </Button>
-                    
-                    <Button x:Name="add_line" Width="90" Height="62"   BorderBrush="Transparent"
-                          BorderThickness="0" HorizontalAlignment="Center"  Margin="0,0,0,0"  IsDefault="True" Click="add_line_Click" MouseEnter="DessinDeSegment_MouseEnter" MouseLeave="DessinDeSegment_MouseLeave">
-                        <Image Source="/assets/img/line.png" Height="40" Width="50"  />
-                    </Button>
-
-
-                    <Button x:Name="deleteAllButton" Width="90" Height="60"   BorderBrush="Transparent"
-                         BorderThickness="0" Click="deleteAllButton_Click" MouseEnter="SupprimerTout_MouseEnter" MouseLeave="SupprimerTout_MouseLeave" >
-                        <Image Source="/assets/img/deleteAll.png" Height="36" Width="36"  />
-                    </Button>
-                    <Button x:Name="deletePreviousButton" Width="90" Height="63"   BorderBrush="Transparent"
-                                BorderThickness="0" Click="deletePreviousButton_Click" MouseEnter="SupprimerPrécedent_MouseEnter" MouseLeave="SupprimerPrécedent_MouseLeave"   >
-                        <Image Source="/assets/img/deletePrevious.png" Height="27" Width="34"  />
-                    </Button>
-                    <Button  x:Name="btn1" Width="60" Height="60"  Background="{x:Null}" BorderBrush="Transparent"
-                        BorderThickness="0" Margin="0,0,0,20" MouseEnter="Zoom_MouseEnter" MouseLeave="Zoom_MouseLeave" >
-                        <Image Source="/assets/img/zoom-in.png" Height="25" Width="25"  />
-                    </Button>
-
-                    <Button  x:Name="scaleButton" Width="83" Height="60"  Background="{x:Null}" BorderBrush="#FFF41111"
-
-                        BorderThickness="0" Click="scaleButton_Click" >
-
-                    </Button>
-                    <Button Content="Import" Width="79" FontSize="18" Foreground="Black" BorderBrush="#000" Background="#FF558CC8" Click="Button_Click" Height="33" Cursor="Hand" />
-                    <CheckBox Content="Activer Dessin" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
-
-
-
-                </StackPanel>
-
-            </Grid>
-
-
-        </Grid>
-        <StatusBar Name="sbar" 
-           VerticalAlignment="Center" Background="Beige" 
-                   Grid.Row="3" Height="20">
-
-            <StatusBarItem>
-                <TextBlock>Topogiraffe</TextBlock>
-            </StatusBarItem>
-            <StatusBarItem>
-
-            </StatusBarItem>
-            <Separator/>
-            <StatusBarItem>
-
-            </StatusBarItem>
-
-
-        </StatusBar>-->
-
-        
-       
 
 
     </Grid>
