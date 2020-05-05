@@ -10,7 +10,7 @@
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1500"
-      Title="MainPage">
+      Title="MainPage" Cursor="Hand">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
