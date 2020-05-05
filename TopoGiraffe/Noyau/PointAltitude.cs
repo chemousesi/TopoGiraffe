@@ -9,7 +9,7 @@ namespace TopoGiraffe.Noyau
     public class PointAltitude
     {
         public Point point;
-        private double altitude;
+        public double altitude;
         private Ellipse cercle;
         public Polygon triangle = new Polygon();
         private TypePoint typePoint;
