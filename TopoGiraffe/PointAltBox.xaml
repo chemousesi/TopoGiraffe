@@ -8,52 +8,63 @@
     xmlns:local="clr-namespace:TopoGiraffe"
     xmlns:utils="clr-namespace:TopoGiraffe"
     xmlns:c="clr-namespace:TopoGiraffe"
-    Title="Window1"
-    Height="300"
-    Width="450"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Background="#F9F9F9"
+
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    Height="250"
+    Width="200"
     MinHeight="10"
     MinWidth="300"
     ResizeMode="NoResize"
-    ShowInTaskbar="False"
-    WindowStartupLocation="CenterOwner"  >
+    WindowStartupLocation="CenterScreen" WindowStyle="None" Visibility="Visible"  >
 
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
 
 
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="67*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
 
-            <RowDefinition Height="63*"/>
-            <RowDefinition Height="62*"/>
-            <RowDefinition Height="92*"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="77*"/>
-            <ColumnDefinition Width="223*"/>
-        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Margin="38,25,38,0" Text="Remplir les informations suivantes pour créer un point :"
+                       TextWrapping="WrapWithOverflow" Height="50">
+
+            </TextBlock>
+        </Grid>
 
 
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <TextBox x:Name="Altitude" materialDesign:HintAssist.Hint="Altitude (mètre)" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                 PreviewTextInput="NumberValidationTextBox"
+                  Margin="38,0,38,0" Height="40"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left" RenderTransformOrigin="0.506,0.45" >
+                </TextBox>
+                <ComboBox x:Name="typePointCmb" materialDesign:HintAssist.Hint="Type du point" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                  SelectedValuePath="Content" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  
+                  Margin="38,15,38,0" Height="40"    VerticalContentAlignment="top" HorizontalContentAlignment="Left"  >
+                    <ComboBoxItem >Point Côté</ComboBoxItem>
+                    <ComboBoxItem >Point Sommet</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
 
-        <Label Content="Altitude (metre) :"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="19,0,0,0" Width="100" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="Altitude" PreviewTextInput="NumberValidationTextBox" Grid.Row="0" Grid.Column="1" Margin="38,21,33,17" FontWeight="Bold"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RenderTransformOrigin="0.506,0.45" >
 
-
-
-        </TextBox>
-        <!-- Accept or Cancel -->
-
-
-        <Button Content="OK" Grid.Column="1"  Padding="5,5,5,5" HorizontalAlignment="Left" IsDefault="True" Grid.Row="3" Margin="203,41,0,15" Width="98" Click="OkButton_Click" />
-        <Button Content="Cancel"  Padding="5,5,5,5" HorizontalAlignment="Left" IsCancel="True" Grid.Row="3" Margin="109,41,0,15" Width="81" Grid.Column="1" Click="CancelButton_Click" />
-
-        <Label Content="Type de Point :" Grid.Row="1" Margin="19,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Width="114" Grid.ColumnSpan="2"/>
-
-
-        <ComboBox x:Name="typePointCmb" SelectedValuePath="Content" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="1"  Grid.Row="1" Margin="38,21,33,13">
-            <ComboBoxItem >Point Côté</ComboBoxItem>
-            <ComboBoxItem >Point Sommet</ComboBoxItem>
-        </ComboBox>
+        <Button Content="OK" FontSize="13" Background="#E63946" HorizontalAlignment="Left" IsDefault="True" Grid.Row="3" 
+                Margin="203,10,0,10" Width="60" Height="30" Click="OkButton_Click"  />
+        <Button Content="Cancel" FontSize="13" Background="#E63946" Padding="5,5,5,5" HorizontalAlignment="Left" IsCancel="True" Grid.Row="3"
+                Margin="109,10,0,10" Width="60" Height="30" Grid.Column="1" Click="CancelButton_Click" />
     </Grid >
 </Window>

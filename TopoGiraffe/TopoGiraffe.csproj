@@ -8,16 +8,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\img\arrows.png" />
+    <None Remove="assets\img\basic-app.png" />
+    <None Remove="assets\img\button.png" />
+    <None Remove="assets\img\delete.png" />
     <None Remove="assets\img\deleteAll.png" />
     <None Remove="assets\img\deletePrevious.png" />
     <None Remove="assets\img\download.png" />
     <None Remove="assets\img\draw.png" />
+    <None Remove="assets\img\edit-tools.png" />
     <None Remove="assets\img\export.png" />
+    <None Remove="assets\img\export1.png" />
     <None Remove="assets\img\exportT.png" />
     <None Remove="assets\img\folder.png" />
     <None Remove="assets\img\gear.png" />
+    <None Remove="assets\img\go-back-left-arrow.png" />
     <None Remove="assets\img\house.png" />
     <None Remove="assets\img\import.png" />
+    <None Remove="assets\img\import1.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\line.png" />
     <None Remove="assets\img\minus.png" />
@@ -36,8 +44,10 @@
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\triangle.png" />
     <None Remove="assets\img\uiBlanc.png" />
+    <None Remove="assets\img\view.png" />
     <None Remove="assets\img\visibility.png" />
     <None Remove="assets\img\zoom-in.png" />
+    <None Remove="assets\img\zoom.png" />
     <None Remove="draw.png" />
     <None Remove="gear.png" />
     <None Remove="import.png" />
@@ -52,47 +62,6 @@
     <None Remove="uiBlanc.png" />
     <None Remove="visibility.png" />
     <None Remove="zoom-in.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="assets\img\deleteAll.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets\img\deletePrevious.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets\img\download.png" />
-    <Resource Include="assets\img\export.png" />
-    <Resource Include="assets\img\exportT.png" />
-    <Resource Include="assets\img\folder.png" />
-    <Resource Include="assets\img\house.png" />
-    <Resource Include="assets\img\ink.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="assets\img\draw.png" />
-    <Resource Include="assets\img\gear.png" />
-    <Resource Include="assets\img\import.png" />
-    <Content Include="assets\img\line.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="assets\img\minus.png" />
-    <Resource Include="assets\img\navigation.png" />
-    <Resource Include="assets\img\page.png" />
-    <Resource Include="assets\img\Pente.png" />
-    <Resource Include="assets\img\plusC.png" />
-    <Resource Include="assets\img\plusSS.png" />
-    <Resource Include="assets\img\report.png" />
-    <Resource Include="assets\img\return.png" />
-    <Resource Include="assets\img\ruler.png" />
-    <Resource Include="assets\img\save.png" />
-    <Resource Include="assets\img\scale.png" />
-    <Resource Include="assets\img\scale2.png" />
-    <Resource Include="assets\img\tour.png" />
-    <Resource Include="assets\img\triangle.png" />
-    <Resource Include="assets\img\uiBlanc.png" />
-    <Resource Include="assets\img\visibility.png" />
-    <Resource Include="assets\img\zoom-in.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -122,7 +91,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SplashScreen Include="assets\img\SplashScreen2.png" />
+    <Resource Include="assets\img\arrows.png" />
+    <Resource Include="assets\img\basic-app.png" />
+    <Resource Include="assets\img\delete.png" />
+    <Resource Include="assets\img\edit-tools.png" />
+    <Resource Include="assets\img\export1.png" />
+    <Resource Include="assets\img\gear.png" />
+    <Resource Include="assets\img\go-back-left-arrow.png" />
+    <Resource Include="assets\img\import1.png" />
+    <Resource Include="assets\img\line.png" />
+    <Resource Include="assets\img\Pente.png" />
+    <Resource Include="assets\img\report.png" />
+    <Resource Include="assets\img\ruler.png" />
+    <Resource Include="assets\img\view.png" />
+    <Resource Include="assets\img\zoom.png" />
   </ItemGroup>
 
 </Project>

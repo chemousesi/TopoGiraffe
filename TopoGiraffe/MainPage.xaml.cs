@@ -1712,19 +1712,7 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
 
-        private void Pen_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = btn11;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Pen";
-        }
-
-        private void Pen_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
+       
 
         // --------------------------------------------------------------------------- popup fin -------------------------------------//
         // --------------------------------------------------------------------------------------------------------------------------//
@@ -1955,7 +1943,7 @@ namespace TopoGiraffe
         private void Echelle_MouseEnter(object sender, MouseEventArgs e)
         {
             popup_uc.PlacementTarget = scaleButton;
-            popup_uc.Placement = PlacementMode.Right;
+            popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
             Header.PopupText.Text = "Enter l'echelle";
         }
@@ -1971,7 +1959,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = export;
             popup_uc.Placement = PlacementMode.Right;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Exporte";
+            Header.PopupText.Text = "Exporter";
         }
 
         private void EpaisseurTextBox_MouseEnter(object sender, MouseEventArgs e)
