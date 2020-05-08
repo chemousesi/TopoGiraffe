@@ -13,31 +13,31 @@ namespace TopoGiraffe
         }
         public string Equidistance
         {
-            get { return EquidistanceTextBox.Text; }
-            set { EquidistanceTextBox.Text = value; }
+            get => EquidistanceTextBox.Text;
+            set => EquidistanceTextBox.Text = value;
         }
         public string Max
         {
-            get { return MaxTextBox.Text; }
-            set { MaxTextBox.Text = value; }
+            get => MaxTextBox.Text;
+            set => MaxTextBox.Text = value;
         }
         public string Min
         {
-            get { return MinTextBox.Text; }
-            set { MinTextBox.Text = value; }
+            get => MinTextBox.Text;
+            set => MinTextBox.Text = value;
         }
 
 
         public string EchelleOnCanvas
         {
-            get { return EchelleTextBoxOnCanvas.Text; }
-            set { EchelleTextBoxOnCanvas.Text = value; }
+            get => EchelleTextBoxOnCanvas.Text;
+            set => EchelleTextBoxOnCanvas.Text = value;
         }
 
         public string EchelleOnField
         {
-            get { return EchelleTextBoxOnField.Text; }
-            set { EchelleTextBoxOnField.Text = value; }
+            get => EchelleTextBoxOnField.Text;
+            set => EchelleTextBoxOnField.Text = value;
         }
 
 

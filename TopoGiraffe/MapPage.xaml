@@ -8,7 +8,7 @@
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="700" d:DesignWidth="1500"
-      Title="MapPage">
+      Title="MapPage" Cursor="Hand">
 
     <Grid Background="AliceBlue">
         

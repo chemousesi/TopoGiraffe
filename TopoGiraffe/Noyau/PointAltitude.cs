@@ -72,7 +72,7 @@ namespace TopoGiraffe.Noyau
 
         public void MakeTriangleSommet(Canvas canvas)
         {
-         
+
 
             triangle.Points.Add(new Point(point.X - 5, point.Y + 5));
             triangle.Points.Add(new Point(point.X + 5, point.Y + 5));
@@ -99,7 +99,7 @@ namespace TopoGiraffe.Noyau
 
         public void MakeTriangleCote(Canvas canvas)
         {
-            
+
 
 
             triangle.Points.Add(new Point(point.X - 5, point.Y + 5));

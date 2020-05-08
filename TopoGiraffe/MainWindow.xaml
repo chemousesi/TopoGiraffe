@@ -52,7 +52,7 @@
 
         <Frame x:Name="mainFrame" Source="/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
 
-        <Rectangle  Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#FF023788"/>
+        <Rectangle  Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#311d3f"/>
 
 
 

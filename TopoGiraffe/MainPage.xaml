@@ -58,7 +58,7 @@
 
 
 
-        <Grid Grid.Row="1"  Background="#FF023788" Opacity="1" >
+        <Grid Grid.Row="1"  Background="#511845" Opacity="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="65" />
                 <ColumnDefinition Width="*"/>
@@ -190,39 +190,39 @@
                             <DockPanel Grid.Row="3" VerticalAlignment="Center" Height="195" Margin="0,-44,0,0">
 
                                 <DockPanel DockPanel.Dock="Top" Height="80">
-                                    <Label Margin="40,0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939" >Thickness</Label>
+                                    <Label Margin="40,0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#FF88304E" FontFamily="Gotham Ultra" FontSize="16" >Thickness</Label>
                                     <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" VerticalAlignment="Bottom" Height="25" Width="50" HorizontalAlignment="Right" Margin="40 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="EpaisseurTextBox_MouseEnter" MouseLeave="EpaisseurTextBox_MouseLeave"></TextBox>
                                 </DockPanel>
                                 <Slider IsSnapToTickEnabled="True"  ValueChanged="ThickSlider_ValueChanged" Minimum = "1" Maximum = "15"
                                         Value="5" Name="ThickSlider"  ToolTip="largeur" VerticalAlignment="Center" Width="150" Margin="40,0"
-                                        Height="25" Foreground="#5B6A77" MouseEnter="Epaisseur_MouseEnter" MouseLeave="Epaisseur_MouseLeave" />
+                                        Height="25" Foreground="#e23e57" MouseEnter="Epaisseur_MouseEnter" MouseLeave="Epaisseur_MouseLeave" />
 
 
                             </DockPanel>
                             <DockPanel Grid.Row="2" VerticalAlignment="Center" Height="163" >
 
                                 <DockPanel DockPanel.Dock="Top" Height="163">
-                                    <Label Margin="40,20,40,0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude</Label>
+                                    <Label Margin="40,20,40,0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#FF88304E" FontFamily="Gotham Ultra" FontWeight="Normal" FontSize="16">Altitude</Label>
 
                                     <WrapPanel Width="334" DockPanel.Dock="Top" Margin="20" Height="47" HorizontalAlignment="Center" >
                                         <Button x:Name="ZoomIn"  HorizontalAlignment="Left" Background="Transparent" Width="60" Height="50" Margin="67,0,42,0"  
                                                 BorderBrush="Transparent" BorderThickness="0"  Click="ZoomIn_Click" >
-                                            <Image Source="/assets/img/plusC.png" />
+                                            <Image Source="/assets/img/arrows.png" />
                                         </Button>
                                         <Button x:Name="ZoomOut" Width="60" Height="50" Margin="17,0,10,0"  HorizontalAlignment="Center" Background="Transparent"
                                                 Click="ZoomOut_Click" BorderBrush="Transparent" BorderThickness="0">
-                                            <Image Source="/assets/img/minus.png" />
+                                            <Image Source="/assets/img/caret-down.png" />
                                         </Button>
 
                                         <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  DockPanel.Dock="Right" 
                                                  VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Center" Width="55" VerticalContentAlignment="Center"
-                                                 HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" MouseEnter="AltitudeBox_MouseEnter" MouseLeave="AltitudeBox_MouseLeave"  >
+                                                 HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" MouseEnter="AltitudeBox_MouseEnter" MouseLeave="AltitudeBox_MouseLeave" Foreground="#e23e57">
 
                                         </TextBox>
                                     </WrapPanel>
                                     <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="150"  
                                              ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="25"
-                                             Margin="20,0,40,16" Foreground="#5B6A77" HorizontalAlignment="Center" MouseEnter="Altitude_MouseEnter" MouseLeave="Altitude_MouseLeave"/>
+                                             Margin="20,0,40,16" Foreground="#e23e57" HorizontalAlignment="Center" MouseEnter="Altitude_MouseEnter" MouseLeave="Altitude_MouseLeave"/>
                                 </DockPanel>
                             </DockPanel>
 
@@ -271,8 +271,8 @@
             <Grid Grid.Column="0" Background="#EEEEEE"  >
                 <StackPanel VerticalAlignment="Top"  Margin="0,0,-1,0" >
 
-                    <Button x:Name="nav" Height="60" Margin="0,0,0,0" Background="{x:Null}" BorderBrush="Transparent"
-                        BorderThickness="0"  Click="nav_Click" MouseEnter="Nav_MouseEnter" MouseLeave="Nav_MouseLeave" >
+                    <Button x:Name="nav" Height="60" Margin="0,0,0,0"  BorderBrush="#FF6B3131"
+                        BorderThickness="0"  Click="nav_Click" MouseEnter="Nav_MouseEnter" MouseLeave="Nav_MouseLeave" Cursor="Hand" >
                         <Image Source="/assets/img/navigation.png" Width="20" Height="20" Margin="0,0,0,0" ></Image>
                     </Button>
 

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TopoGiraffe
 {
@@ -35,15 +27,15 @@ namespace TopoGiraffe
 
         private void exporter_Click(object sender, RoutedEventArgs e)
         {
-            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(1300,600, 96, 96, PixelFormats.Pbgra32);
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(1300, 600, 96, 96, PixelFormats.Pbgra32);
             renderTargetBitmap.Render(myMap);
             PngBitmapEncoder pngImage = new PngBitmapEncoder();
             pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
 
-            string filepath= "./../../../maps/Capture1.png" ;
+            string filepath = "./../../../maps/Capture1.png";
             using (Stream fileStream = File.Create(filepath))
             {
-                
+
                 pngImage.Save(fileStream);
             }
 
