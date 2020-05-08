@@ -1456,13 +1456,30 @@ namespace TopoGiraffe
             if (dataDialog.DialogResult == true)
             {
 
+                try
+                {
+                    AltSlider.Minimum = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                    AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                    AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    ThickSlider.Value = 2;
+                    Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+                }
+                catch(Exception ecp )
+                {
+                    dataDialog = new DataDialog();
+                    //dataDialog.Owner = this;
+                    dataDialog.ShowDialog();
 
-                AltSlider.Minimum = Convert.ToInt32(dataDialog.MinTextBox.Text);
-                AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
-                AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
-                AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
-                ThickSlider.Value = 2;
-                Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+                    AltSlider.Minimum = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                    AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                    AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    ThickSlider.Value = 2;
+                    Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+
+                }
+
                 if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
                 {
                     mainScale = new Echelle(result1, result2);
