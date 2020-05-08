@@ -323,7 +323,7 @@ namespace TopoGiraffe
 
         private void deleteAllButton_Click(object sender, RoutedEventArgs e)
         {
-
+            // delteting the segment
             if (mainCanvas.Children.Count == 0)
             {
                 MessageBox.Show("no polygone to delete");
@@ -340,13 +340,36 @@ namespace TopoGiraffe
                 cercles.Clear();
                 IntersectionPoints.Clear();
                 indexPoints = -1;
-                nav.IsEnabled = true;
 
+                nav.IsEnabled = true;
+                dessinerButton.IsEnabled = true;
             }
         }
 
         private void deletePreviousButton_Click(object sender, RoutedEventArgs e)
         {
+            if (mainCanvas.Children.Count == 0)
+            {
+                MessageBox.Show("no polygone to delete");
+                return;
+            }
+
+            if (dessinerButton.IsEnabled == false)
+            {
+                mainCanvas.Children.Remove(CourbesNiveau[CourbesNiveau.Count - 1].polyline);
+                CourbesNiveau.RemoveAt(CourbesNiveau.Count - 1);
+                foreach(Ellipse el in cercles)
+                {
+                    mainCanvas.Children.Remove(el);
+                }
+                courbeActuelle = CourbesNiveau[CourbesNiveau.Count - 1];
+                cercles.Clear();
+                IntersectionPoints.Clear();
+                nav.IsEnabled = true;
+                dessinerButton.IsEnabled = true;
+
+                return;
+            }
             int index2 = CourbesNiveau.IndexOf(courbeActuelle);
 
             if (ShownCtrlPoint != PointsGlobal[index2])
@@ -376,12 +399,16 @@ namespace TopoGiraffe
                     
                     if (drawback == false)
                     {
-                        courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
+                      
                         // removing circles
                         index = CourbesNiveau.IndexOf(courbeActuelle); 
                         list = PointsGlobal[index];
-                        mainCanvas.Children.Remove(list[list.Count - 1].cercle);
-                        list.RemoveAt(list.Count - 1);
+                        if (courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 1].Equals(list[list.Count - 1].P))
+                        {
+                            mainCanvas.Children.Remove(list[list.Count - 1].cercle);
+                            list.RemoveAt(list.Count - 1);
+                        }
+                        courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
                     }
                     else
                     {
@@ -389,9 +416,7 @@ namespace TopoGiraffe
 
                         drawback = false;
                         courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
-                        //index = CourbesNiveau.IndexOf(courbeActuelle);
-                        //list = PointsGlobal[index];
-                        //mainCanvas.Children.Remove(list[0].cercle);
+                       
                     }
 
                 }
@@ -567,25 +592,15 @@ namespace TopoGiraffe
                     {
                         FindIntersection(courbe, line);
                     }
+                    // intersection des points altitude
                     if (pointsAltitude.Count > 0)
                     {
                         foreach (PointAltitude pointa in pointsAltitude)
                         {
-                            hitResultsList.Clear();
-                            PathGeometry myPathGeometry = new PathGeometry();
-                            PathFigure pathFigure2 = new PathFigure();
-                            PolyLineSegment myPolyLineSegment = new PolyLineSegment();
-                            myPolyLineSegment.Points = pointa.triangle.Points;
-                            pathFigure2.Segments.Add(myPolyLineSegment);
-                            myPathGeometry.Figures.Add(pathFigure2);
 
-                            VisualTreeHelper.HitTest(poly, null, new HitTestResultCallback(MyHitTestResult), new GeometryHitTestParameters(myPathGeometry));
-                            if (hitResultsList.Count > 0)
-                            {
 
-                                IntersectionPoints.Add(new IntersectionDetail(pointa.point, Convert.ToInt32(pointa.altitude)));
-
-                            }
+                            FindIntersection(pointa, line);
+                     
                         }
                     }
 
@@ -615,8 +630,8 @@ namespace TopoGiraffe
                     }
 
                     IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
-                    int AltitudeFinale = IntersectionPoints[IntersectionPoints.Count - 1].altitude;
-                    int AltitudeIni = IntersectionPoints[0].altitude;
+                    //int AltitudeFinale = IntersectionPoints[IntersectionPoints.Count - 1].altitude;
+                    //int AltitudeIni = IntersectionPoints[0].altitude;
 
 
 
@@ -630,8 +645,8 @@ namespace TopoGiraffe
 
                     addLineClicked = false;
                     double distance1 = Outils.DistanceBtwTwoPoints(new Point(line.X1, line.Y1), new Point(line.X2, line.Y2));// this can be optimized by using line.x, line.y
-                    IntersectionPoints.Add(new IntersectionDetail(new Point(line.X2, line.Y2), AltitudeFinale, distance1));
-                    IntersectionPoints.Add(new IntersectionDetail(new Point(line.X1, line.Y1), AltitudeIni, 0));
+                    //IntersectionPoints.Add(new IntersectionDetail(new Point(line.X2, line.Y2), AltitudeFinale, distance1));
+                    //IntersectionPoints.Add(new IntersectionDetail(new Point(line.X1, line.Y1), AltitudeIni, 0));
                     IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
                     nav.IsEnabled = false;
                     dessinerButton.IsEnabled = false;
@@ -748,6 +763,43 @@ namespace TopoGiraffe
 
 
         }
+        public void FindIntersection(PointAltitude p, Line line)
+        {
+            Line myLine = new Line();
+            IntersectionDetail inter;
+
+            for (int i = 0; i < p.triangle.Points.Count - 1; i++)
+            {
+                myLine.X1 = p.triangle.Points[i].X; myLine.Y1 = p.triangle.Points[i].Y;
+                myLine.X2 = p.triangle.Points[i + 1].X; myLine.Y2 = p.triangle.Points[i + 1].Y;
+                inter = intersectLines(myLine, line);
+
+                inter.altitude = Convert.ToInt32(p.altitude);
+
+                if (inter.intersect == true)
+                {
+
+                    IntersectionPoints.Add(inter);
+                    PenteIntersectionPoints.Add(inter);
+
+                }
+
+
+            }
+            myLine.X1 = p.triangle.Points[0].X; myLine.Y1 = p.triangle.Points[0].Y;
+            myLine.X2 = p.triangle.Points[2].X; myLine.Y2 = p.triangle.Points[2].Y;
+            inter = intersectLines(myLine, line);
+            if (inter.intersect == true)
+            {
+
+                IntersectionPoints.Add(inter);
+                PenteIntersectionPoints.Add(inter);
+
+            }
+
+
+        }
+
         public bool FindIntersection1(Polyline p, Line line)
         {
             Line myLine = new Line();
