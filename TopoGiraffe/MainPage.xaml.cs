@@ -114,6 +114,7 @@ namespace TopoGiraffe
 
         private void import_Click(object sender, RoutedEventArgs e)
         {
+
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a picture";
             op.Filter = "*.jpg,.png,.jpeg|*.jpg;*.jpeg;*.png|" +
@@ -124,7 +125,7 @@ namespace TopoGiraffe
                 imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
 
             }
-
+            
 
             imgPhoto.Opacity = .5;
             OpenInitialDialogBox();
@@ -1883,8 +1884,10 @@ namespace TopoGiraffe
 
 
             itm2 = this.DeSerialize();
-
-            alts = itm2[itm2.Count() - 1];
+            try
+            {
+                alts = itm2[itm2.Count() - 1];
+            
 
             alts = alts.GetRange(0, itm2.Count() - 1);
             alts.Reverse();
@@ -1939,16 +1942,7 @@ namespace TopoGiraffe
                 li.FillRule = FillRule.EvenOdd;
                 li.Visibility = System.Windows.Visibility.Visible;
                 h++;
-                //if (h == alts.Count())
-                //{
-                //    li.Stroke = Brushes.Purple;
-                //}
-                //else
-                //{
-                //    li.Stroke = new SolidColorBrush(AltitudeToColor(alts[h].altitude));
-                //}
-                //h++;
-                //MessageBox.Show("point par point" + itm2[itm2.Count()-1][h].altitude.ToString());
+                
 
 
 
@@ -1972,7 +1966,8 @@ namespace TopoGiraffe
 
             }
 
-
+            }
+            catch (ArgumentNullException ex) { }
 
 
 
@@ -2003,6 +1998,8 @@ namespace TopoGiraffe
 
         public List<List<IntersectionDetail>> DeSerialize()
         {
+            List<List<IntersectionDetail>> objet = null;
+
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a ";
             op.FileName = "Document"; // Default file name
@@ -2013,10 +2010,18 @@ namespace TopoGiraffe
                 string fiName = op.FileName;
 
             }
-            Stream s = File.Open(path: op.FileName, FileMode.Open);
+            try
+            {
+                Stream s = File.Open(path: op.FileName, FileMode.Open);
+           
             BinaryFormatter bf = new BinaryFormatter();
-            List<List<IntersectionDetail>> objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
+            objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
             s.Close();
+                 }
+            catch (FileNotFoundException x)
+            {
+                MessageBox.Show("boite de dialogue fermee !!");
+            } 
 
 
             return objet;

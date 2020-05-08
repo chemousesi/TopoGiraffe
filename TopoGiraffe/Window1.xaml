@@ -37,7 +37,7 @@
 
 
         <Label Content="Altitude (metre) :"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="19,0,0,0" Width="100" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="Altitude" PreviewTextInput="NumberValidationTextBox" Grid.Row="0" Grid.Column="1" Margin="38,21,33,17" FontWeight="Bold"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RenderTransformOrigin="0.506,0.45" >
+        <TextBox x:Name="Altitude" PreviewTextInput="NumberValidationTextBox" Grid.Row="0" Grid.Column="1" Margin="38,10,33,17" FontWeight="Bold"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RenderTransformOrigin="0.506,0.45" >
 
 
 
@@ -50,7 +50,7 @@
 
 
         <Label Content="Couleur :" Grid.Column="0" Grid.Row="2" Margin="58,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Width="57" />
-        <ComboBox Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged" Grid.Column="1" Grid.Row="2" Text="Choisissez une couleur" Margin="38,18,33,19"  >
+        <ComboBox Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged" Grid.Column="1" Grid.Row="2" Text="Choisissez une couleur" Margin="38,0,33,0" Height="43"  >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -72,7 +72,7 @@
         <Label Content="Type de courbe :" Grid.Row="1" Margin="19,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Width="114" Grid.ColumnSpan="2"/>
 
 
-        <ComboBox x:Name="styleCourbeCmbInDialogBox" SelectedValuePath="Content" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="1"  Grid.Row="1" Margin="38,21,33,13">
+        <ComboBox x:Name="styleCourbeCmbInDialogBox" SelectedValuePath="Content" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="1"  Grid.Row="1" Margin="38,0,33,0" Height="43">
             <ComboBoxItem >Courbe simple</ComboBoxItem>
             <ComboBoxItem >Courbe intermediare</ComboBoxItem>
             <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
