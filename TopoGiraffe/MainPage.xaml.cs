@@ -407,6 +407,7 @@ namespace TopoGiraffe
 
             //    }
             //}
+            IntersectionPoints.Clear();
         }
 
 
