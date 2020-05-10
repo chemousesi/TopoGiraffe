@@ -26,7 +26,7 @@ namespace TopoGiraffe
         public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList, Echelle mainScale, String pente)
         {
             this.IntersectionPoints = aIntersectionPoints;
-            this.distancesListe = adistancesList;
+           // this.distancesListe = adistancesList;
             this.mainScale = mainScale;
             this.penteText = pente;
 

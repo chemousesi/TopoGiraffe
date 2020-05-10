@@ -103,6 +103,7 @@ namespace TopoGiraffe
 
         private void import_Click(object sender, RoutedEventArgs e)
         {
+
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a picture";
             op.Filter = "*.jpg,.png,.jpeg|*.jpg;*.jpeg;*.png|" +
@@ -113,7 +114,7 @@ namespace TopoGiraffe
                 imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
 
             }
-
+            
 
             imgPhoto.Opacity = .5;
             OpenInitialDialogBox();
@@ -1473,14 +1474,20 @@ namespace TopoGiraffe
             if (polyline == null) return;
 
             int index = CourbesNiveau.IndexOf(polyline);
-
-            foreach (ArtPoint Ctrl in PointsGlobal[index])
+            try
             {
+                foreach (ArtPoint Ctrl in PointsGlobal[index])
+                {
 
-                mainCanvas.Children.Remove(Ctrl.cercle);
+                    mainCanvas.Children.Remove(Ctrl.cercle);
 
 
 
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Erreur de dessin");
             }
 
 
@@ -1522,13 +1529,30 @@ namespace TopoGiraffe
             if (dataDialog.DialogResult == true)
             {
 
+                try
+                {
+                    AltSlider.Minimum = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                    AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                    AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    ThickSlider.Value = 2;
+                    Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+                }
+                catch(Exception ecp )
+                {
+                    dataDialog = new DataDialog();
+                    //dataDialog.Owner = this;
+                    dataDialog.ShowDialog();
 
-                AltSlider.Minimum = Convert.ToInt32(dataDialog.MinTextBox.Text);
-                AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
-                AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
-                AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
-                ThickSlider.Value = 2;
-                Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+                    AltSlider.Minimum = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                    AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
+                    AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    ThickSlider.Value = 2;
+                    Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+
+                }
+
                 if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
                 {
                     mainScale = new Echelle(result1, result2);
@@ -1538,7 +1562,9 @@ namespace TopoGiraffe
                 }
                 else
                 {
-                    MessageBox.Show("Erreur !\n Entrée non valide, le plan n'est pas créé");
+                    MessageBox.Show("Attention !\n Echelle non saisie une valeur par defaut est prise en compte, veuillez la saisir avec l'outil adequat situe sur la barre a gauche");
+                    plan = new Plan(1, 1,1, mainScale);
+                    mainScale = new Echelle(1,1);
                 }
 
 
@@ -1954,8 +1980,14 @@ namespace TopoGiraffe
 
 
             itm2 = this.DeSerialize();
+            String penteText = " la pente est de   :" + pente.ToString() + " % ";
+            IntersectionPoints = itm2[itm2.Count()-1] ;
+            distances();
 
-            alts = itm2[itm2.Count() - 1];
+            try
+            {
+                alts = itm2[itm2.Count() - 1];
+            
 
             alts = alts.GetRange(0, itm2.Count() - 1);
             alts.Reverse();
@@ -2010,16 +2042,7 @@ namespace TopoGiraffe
                 li.FillRule = FillRule.EvenOdd;
                 li.Visibility = System.Windows.Visibility.Visible;
                 h++;
-                //if (h == alts.Count())
-                //{
-                //    li.Stroke = Brushes.Purple;
-                //}
-                //else
-                //{
-                //    li.Stroke = new SolidColorBrush(AltitudeToColor(alts[h].altitude));
-                //}
-                //h++;
-                //MessageBox.Show("point par point" + itm2[itm2.Count()-1][h].altitude.ToString());
+                
 
 
 
@@ -2043,7 +2066,8 @@ namespace TopoGiraffe
 
             }
 
-
+            }
+            catch (ArgumentNullException ex) { }
 
 
 
@@ -2074,6 +2098,8 @@ namespace TopoGiraffe
 
         public List<List<IntersectionDetail>> DeSerialize()
         {
+            List<List<IntersectionDetail>> objet = null;
+
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a ";
             op.FileName = "Document"; // Default file name
@@ -2084,10 +2110,18 @@ namespace TopoGiraffe
                 string fiName = op.FileName;
 
             }
-            Stream s = File.Open(path: op.FileName, FileMode.Open);
+            try
+            {
+                Stream s = File.Open(path: op.FileName, FileMode.Open);
+           
             BinaryFormatter bf = new BinaryFormatter();
-            List<List<IntersectionDetail>> objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
+            objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
             s.Close();
+                 }
+            catch (FileNotFoundException x)
+            {
+                MessageBox.Show("boite de dialogue fermee !!");
+            } 
 
 
             return objet;
@@ -2208,7 +2242,7 @@ namespace TopoGiraffe
 
 
             pente = CalcPente(PenteIntersectionPoints, mainScale);
-            MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
+            MessageBox.Show(" la pente est de   :" + (pente*100).ToString() + " % ");
         }
 
         private void mapBut_Click(object sender, RoutedEventArgs e)
@@ -2228,8 +2262,8 @@ namespace TopoGiraffe
 
                 l.X1 = points[i + 1].point.X; l.Y1 = points[i + 1].point.Y;
                 l.X2 = points[i].point.X; l.Y2 = points[i].point.Y;
-                sum += ((points[i + 1].altitude - points[i].altitude) * 100 / sc.FindDistanceOnField(l));
-                // MessageBox.Show( "altitudes are " + points[i + 1].altitude.ToString() + " " + points[i].altitude.ToString() );
+                sum += ((points[i + 1].altitude - points[i].altitude)  / sc.FindDistanceOnField(l));
+               
             }
             return (sum / (points.Count() - 1));
         }

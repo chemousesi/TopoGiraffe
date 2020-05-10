@@ -29,17 +29,23 @@
             <StackPanel   HorizontalAlignment="Left"  Margin="25,20,0,10" Width="451" Background="{DynamicResource MaterialDesignBackground}" Panel.ZIndex="1" Grid.ColumnSpan="2" >
                 <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
                     <Label Content="EQUIDISTANCE (m) : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="108"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="EquidistanceTextBox"  Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#FFA04646" Height="30" Width="150"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#890D389C" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="35,0,0,0"/>
+                    <TextBox x:Name="EquidistanceTextBox"  PreviewTextInput="NumberValidationTextBox"  Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#FFA04646" Height="30" Width="150"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#890D389C" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="35,0,0,0">
+                        <Binding Path="Equid">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
 
 
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
                     <Label Content="MAX (m) : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="MaxTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="42,0,0,0" />
+                    <TextBox x:Name="MaxTextBox" PreviewTextInput="NumberValidationTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="42,0,0,0" />
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
                     <Label Content="MIN  ( m): " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="MinTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="42,0,0,0" />
+                    <TextBox x:Name="MinTextBox" PreviewTextInput="NumberValidationTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="42,0,0,0" />
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
 
@@ -47,7 +53,7 @@
 
                     <Label Content="ECHELLE  (px): " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
 
-                    <TextBox x:Name="EchelleTextBoxOnCanvas" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="43,0,0,0" />
+                    <TextBox x:Name="EchelleTextBoxOnCanvas" PreviewTextInput="NumberValidationTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="43,0,0,0" />
                 </StackPanel>
                 <Label Content="* Donner la valeur de l'echelle en pixels sur le plan" FontSize="7" Width="171"  HorizontalAlignment="Stretch"/>
                 <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
@@ -56,7 +62,7 @@
                     <Label Content="(m)" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="108"   HorizontalContentAlignment="Center" />
 
 
-                    <TextBox x:Name="EchelleTextBoxOnField" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="35,0,0,0"/>
+                    <TextBox x:Name="EchelleTextBoxOnField" PreviewTextInput="NumberValidationTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="35,0,0,0"/>
                 </StackPanel>
                 <Label Content="* Donner la valeur de l'echelle en (m)" FontSize="7" Width="157" HorizontalAlignment="Center" />
             </StackPanel>
@@ -74,7 +80,19 @@
 
                 <Button Content="Créer" Width="118" Height="30" 
                     Margin="4" IsDefault="True"  
-                    Click="OnOKClicked">
+                    Click="OnOKClicked" Command="{Binding Créer}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=EquidistanceTextBox, Path=Text.Length }">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=MaxTextBox, Path=Text.Length}" Value="True">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
 
                 </Button>
 
