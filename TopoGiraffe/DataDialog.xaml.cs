@@ -9,27 +9,7 @@ namespace TopoGiraffe
     /// Logique d'interaction pour DataDialog.xaml
     /// </summary>
     /// 
-    public class Customer
-    {
-        private string _equid;
-
-        public string Equid
-        {
-            get { return _equid; }
-            set
-            {
-                _equid = value;
-                if (String.IsNullOrEmpty(value))
-                {
-                    throw new ApplicationException("Equidistance is mandatory.");
-                }
-            }
-
-
-        }
-    }
-
-
+   
 
     public partial class DataDialog : Window
     {

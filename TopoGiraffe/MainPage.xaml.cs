@@ -1407,14 +1407,20 @@ namespace TopoGiraffe
             if (polyline == null) return;
 
             int index = CourbesNiveau.IndexOf(polyline);
-
-            foreach (ArtPoint Ctrl in PointsGlobal[index])
+            try
             {
+                foreach (ArtPoint Ctrl in PointsGlobal[index])
+                {
 
-                mainCanvas.Children.Remove(Ctrl.cercle);
+                    mainCanvas.Children.Remove(Ctrl.cercle);
 
 
 
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Erreur de dessin");
             }
 
 
@@ -1489,7 +1495,9 @@ namespace TopoGiraffe
                 }
                 else
                 {
-                    MessageBox.Show("Erreur !\n Entrée non valide, le plan n'est pas créé");
+                    MessageBox.Show("Attention !\n Echelle non saisie une valeur par defaut est prise en compte, veuillez la saisir avec l'outil adequat situe sur la barre a gauche");
+                    plan = new Plan(1, 1,1, mainScale);
+                    mainScale = new Echelle(1,1);
                 }
 
 
@@ -1901,6 +1909,10 @@ namespace TopoGiraffe
 
 
             itm2 = this.DeSerialize();
+            String penteText = " la pente est de   :" + pente.ToString() + " % ";
+            IntersectionPoints = itm2[itm2.Count()-1] ;
+            distances();
+
             try
             {
                 alts = itm2[itm2.Count() - 1];
@@ -2159,7 +2171,7 @@ namespace TopoGiraffe
 
 
             pente = CalcPente(PenteIntersectionPoints, mainScale);
-            MessageBox.Show(" la pente est de   :" + pente.ToString() + " % ");
+            MessageBox.Show(" la pente est de   :" + (pente*100).ToString() + " % ");
         }
 
         private void mapBut_Click(object sender, RoutedEventArgs e)
@@ -2179,8 +2191,8 @@ namespace TopoGiraffe
 
                 l.X1 = points[i + 1].point.X; l.Y1 = points[i + 1].point.Y;
                 l.X2 = points[i].point.X; l.Y2 = points[i].point.Y;
-                sum += ((points[i + 1].altitude - points[i].altitude) * 100 / sc.FindDistanceOnField(l));
-                // MessageBox.Show( "altitudes are " + points[i + 1].altitude.ToString() + " " + points[i].altitude.ToString() );
+                sum += ((points[i + 1].altitude - points[i].altitude)  / sc.FindDistanceOnField(l));
+               
             }
             return (sum / (points.Count() - 1));
         }
