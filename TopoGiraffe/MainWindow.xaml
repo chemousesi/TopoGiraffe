@@ -10,7 +10,7 @@
         xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
         Background="Transparent"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        AllowsTransparency="True"
+        AllowsTransparency="False"
         BorderBrush="Transparent"
         mc:Ignorable="d"
          Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStyle="None" Cursor="Hand"  >

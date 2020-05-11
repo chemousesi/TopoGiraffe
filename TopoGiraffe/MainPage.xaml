@@ -32,9 +32,9 @@
 
 
             </ResourceDictionary.MergedDictionaries>
-           
+
         </ResourceDictionary>
-       
+
 
     </Page.Resources>
 
@@ -74,7 +74,7 @@
                 </Button>
             </Grid>
             <Grid Grid.Column="1">
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 14 0 0">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,14,0,0" >
                     <Button x:Name="scaleButton" Width="90" Height="94" Background="{x:Null}" BorderBrush="Transparent"
         BorderThickness="0"  Margin="45,20,0,0" Click="scaleButton_Click" MouseEnter="Echelle_MouseEnter" MouseLeave="Echelle_MouseLeave" HorizontalAlignment="Center" >
                         <StackPanel Orientation="Vertical">
@@ -134,7 +134,7 @@
                         <ColumnDefinition Width="51*"/>
                         <ColumnDefinition Width="427*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <Image Margin="20 30 20 25" Name="imgPhoto" Grid.ColumnSpan="3" Grid.RowSpan="2"  />
                     <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" 
                             MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="20 30 20 25" RenderTransformOrigin="0.498,0.517" Grid.ColumnSpan="3" Grid.RowSpan="2" >
@@ -282,7 +282,7 @@
                                 BorderThickness="0"  Click="import_Click" MouseEnter="Import_MouseEnter" MouseLeave="Import_MouseLeave"  >
                                 <Image Source="/assets/img/ImportWhite.png" Width="26" Height="28" Margin="0" />
                             </Button>
-                            
+
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -292,7 +292,7 @@
             <!-- ********************************************************************** Didplay, Import section : Fin *************************************************** -->
 
             <Grid Grid.Column="0" Opacity="1" Background="#4a4b52">
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="*"/>
@@ -351,7 +351,7 @@
 
             </Grid>
         </Grid>
-        
+
         <Popup x:Name="popup_uc"
                    AllowsTransparency="True"
                    HorizontalOffset="10"
