@@ -3,8 +3,15 @@ using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection.Metadata;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using TopoGiraffe.Noyau;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.Windows.Controls;
 
 namespace TopoGiraffe
 {
@@ -65,9 +72,47 @@ namespace TopoGiraffe
         public Func<double, string> YFormatter { get; set; }
         public ChartValues<ObservablePoint> MyValues { get; set; }
 
-        private void CartesianChart_Loaded(object sender, RoutedEventArgs e)
+        public void SaveToPng(FrameworkElement visual, string fileName)
         {
+            var encoder = new PngBitmapEncoder();
+            EncodeVisual(visual, fileName, encoder);
+        }
 
+        private static void EncodeVisual(FrameworkElement visual, string fileName, BitmapEncoder encoder)
+        {
+            var bitmap = new RenderTargetBitmap((int)visual.ActualWidth, (int)visual.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            bitmap.Render(visual);
+            var frame = BitmapFrame.Create(bitmap);
+            encoder.Frames.Add(frame);
+            using (var stream = File.Create(fileName)) encoder.Save(stream);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)chart.ActualWidth, (int)chart.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            rtb.Render(visual: chart);
+            PngBitmapEncoder png = new PngBitmapEncoder();
+            png.Frames.Add(BitmapFrame.Create(rtb));
+            MemoryStream stream = new MemoryStream();
+            png.Save(stream);
+            SaveToPng(chart, "MyChart.png");
+
+            iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("ISM.pdf", FileMode.Create));
+            doc.Open();
+            iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance("./MyChart.PNG");
+            jpg.Border = iTextSharp.text.Rectangle.BOX;
+            jpg.BorderWidth = 5f;
+            doc.Add(jpg);
+            doc.Add(new iTextSharp.text.Paragraph("Original Width: "));
+
+            Viewbox viewbox = new Viewbox();
+
+
+
+
+            
+            doc.Close();
         }
     }
 }

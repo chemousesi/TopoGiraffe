@@ -4,78 +4,73 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="TopoGiraffe.Window1"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+
     mc:Ignorable="d"
     xmlns:local="clr-namespace:TopoGiraffe"
     xmlns:utils="clr-namespace:TopoGiraffe"
     xmlns:c="clr-namespace:TopoGiraffe"
-    Title="Window1"
-    Height="300"
-    Width="450"
+    Height="350"
+    Width="350"
     MinHeight="10"
     MinWidth="300"
     ResizeMode="NoResize"
     ShowInTaskbar="False"
+    FontFamily="arial"
     WindowStartupLocation="CenterOwner"  >
-
-
-
-
-
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="67*"/>
-
-            <RowDefinition Height="63*"/>
-            <RowDefinition Height="62*"/>
-            <RowDefinition Height="92*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="77*"/>
-            <ColumnDefinition Width="223*"/>
-        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Text="Remplir les informations suivantes :" Foreground="Black" FontSize="17" 
+                           Margin="30 25 10 0" Height="44" VerticalAlignment="Top" TextWrapping="WrapWithOverflow"/>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Vertical" Margin="30 0">
+                <TextBox x:Name="Altitude" PreviewTextInput="NumberValidationTextBox"  Margin="0,20,0,0"  Height="55"
+                 VerticalContentAlignment="Top"  RenderTransformOrigin="0.506,0.45" Padding="0,1,0,0"
+                 materialDesign:HintAssist.Hint="Altitude (mètre)" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                </TextBox>
+                <ComboBox x:Name="styleCourbeCmbInDialogBox" SelectedValuePath="Content" 
+                          SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  
+                   Margin="0" Height="55" Padding="0,8,0,0"
+                  materialDesign:HintAssist.Hint="Type de courbe" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBoxItem >Courbe simple</ComboBoxItem>
+                    <ComboBoxItem >Courbe intermediare</ComboBoxItem>
+                    <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
+                </ComboBox>
+                <ComboBox Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged"  
+                          Margin="0" Height="55" Padding="0,8,0,0" VerticalAlignment="Center" VerticalContentAlignment="Top" 
+                          materialDesign:HintAssist.Hint="Couleur" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Fill="{Binding Rect.Fill}" Height="20" Width="20"/>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+
+                    </ComboBox.ItemTemplate> 
 
 
-
-        <Label Content="Altitude (metre) :"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="19,0,0,0" Width="100" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="Altitude" PreviewTextInput="NumberValidationTextBox" Grid.Row="0" Grid.Column="1" Margin="38,21,33,17" FontWeight="Bold"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RenderTransformOrigin="0.506,0.45" >
-
-
-
-        </TextBox>
-
-
-
-
-
-
-
-        <Label Content="Couleur :" Grid.Column="0" Grid.Row="2" Margin="58,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Width="57" />
-        <ComboBox Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged" Grid.Column="1" Grid.Row="2" Text="Choisissez une couleur" Margin="38,18,33,19"  >
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Fill="{Binding Rect.Fill}" Height="20" Width="20"/>
-                        <TextBlock Text="{Binding Name}"/>
-                    </StackPanel>
-                </DataTemplate>
-
-            </ComboBox.ItemTemplate>
-
-
-        </ComboBox>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
         <!-- Accept or Cancel -->
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="OK" Grid.Column="1" Padding="5,5,5,5" HorizontalAlignment="Left" IsDefault="True" 
+                         Margin="140,0,0,20" Height="35" Width="75" Click="OkButton_Click" Background="#4a4b52" Opacity=".8" />
+                <Button Content="Cancel"  Padding="5,5,5,5" HorizontalAlignment="Left" IsCancel="True" 
+                        Margin="10,0,0,20" Height="35" Width="75" Grid.Column="1" Click="CancelButton_Click" Background="#4a4b52" Opacity=".8"/>
 
-
-        <Button Content="OK" Grid.Column="1"  Padding="5,5,5,5" HorizontalAlignment="Left" IsDefault="True" Grid.Row="3" Margin="203,41,0,15" Width="98" Click="OkButton_Click" />
-        <Button Content="Cancel"  Padding="5,5,5,5" HorizontalAlignment="Left" IsCancel="True" Grid.Row="3" Margin="109,41,0,15" Width="81" Grid.Column="1" Click="CancelButton_Click" />
-
-        <Label Content="Type de courbe :" Grid.Row="1" Margin="19,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Width="114" Grid.ColumnSpan="2"/>
-
-
-        <ComboBox x:Name="styleCourbeCmbInDialogBox" SelectedValuePath="Content" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="1"  Grid.Row="1" Margin="38,21,33,13">
-            <ComboBoxItem >Courbe simple</ComboBoxItem>
-            <ComboBoxItem >Courbe intermediare</ComboBoxItem>
-            <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
-        </ComboBox>
+            </StackPanel>
+        </Grid>
     </Grid >
 </Window>

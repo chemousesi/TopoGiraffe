@@ -10,10 +10,10 @@
     xmlns:c="clr-namespace:TopoGiraffe"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     Background="#F9F9F9"
-
+    FontFamily="arial"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Height="250"
-    Width="200"
+    Width="300"
     MinHeight="10"
     MinWidth="300"
     ResizeMode="NoResize"
@@ -62,9 +62,9 @@
         </Grid>
 
 
-        <Button Content="OK" FontSize="13" Background="#E63946" HorizontalAlignment="Left" IsDefault="True" Grid.Row="3" 
-                Margin="203,10,0,10" Width="60" Height="30" Click="OkButton_Click"  />
-        <Button Content="Cancel" FontSize="13" Background="#E63946" Padding="5,5,5,5" HorizontalAlignment="Left" IsCancel="True" Grid.Row="3"
-                Margin="109,10,0,10" Width="60" Height="30" Grid.Column="1" Click="CancelButton_Click" />
+        <Button Content="OK" FontSize="13" Background="#4a4b52" HorizontalAlignment="Left" IsDefault="True" Grid.Row="3" Opacity=".9"
+                Margin="203,10,0,10" Width="60" Height="30" Click="OkButton_Click" Foreground="White"  />
+        <Button Content="Cancel" FontSize="13" Background="#4a4b52" Padding="5,5,5,5" HorizontalAlignment="Left" IsCancel="True" Grid.Row="3" Opacity=".9"
+                Margin="109,10,0,10" Width="60" Height="30" Grid.Column="1" Click="CancelButton_Click" Foreground="White"/>
     </Grid >
 </Window>

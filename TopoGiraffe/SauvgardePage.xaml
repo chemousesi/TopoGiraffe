@@ -6,9 +6,11 @@
       xmlns:local="clr-namespace:TopoGiraffe"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SauvgardePage">
+      FontFamily="arial"
+     >
 
     <Page.Resources>
         <Style x:Key="FocusVisual">
@@ -358,16 +360,19 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Button Style="{DynamicResource AccueuilBtn}" x:Name="goback"  Foreground="#FFFFFF" Height="40" Background="#0000" BorderBrush="Transparent"
-                        BorderThickness="0" HorizontalContentAlignment="Left" Click="goback_Click" >
+                    <Button Style="{DynamicResource AccueuilBtn}" x:Name="goback"  Foreground="#FFFFFF" Background="#0000" BorderBrush="Transparent"
+                        BorderThickness="0" HorizontalContentAlignment="Left" Click="goback_Click" Margin="0,35,0,0" >
                         <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
                             <Image Source="/assets/img/return.png" Margin="5,9" ></Image>
                             <TextBlock Text="" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
-                        </StackPanel>       
+                        </StackPanel>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,-1,0">
+                    <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                        <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#FF0069C0" Width="10" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+                    </materialDesign:TransitioningContent>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,-1,0" >
                         <Button Style="{DynamicResource AccueuilBtn}" x:Name="accueuil"  Foreground="#FFFFFF" Height="40" Background="#0000" BorderBrush="Transparent"
                             BorderThickness="0" HorizontalContentAlignment="Left" >
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
@@ -375,6 +380,7 @@
                                 <TextBlock Text="Accueuil" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
+                        
                         <Button Style="{DynamicResource NouveauBtn}"  x:Name="nouveau"  Foreground="#FFFFFF" Height="40" Background="#0000" BorderBrush="Transparent"
                             BorderThickness="0" HorizontalContentAlignment="Left"  >
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
@@ -420,7 +426,7 @@
                             <TextBlock Text="Paramètres" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                </Grid>        
+                </Grid>
             </Grid>
             <Grid Grid.Column="1" Background="#FFFCFAFA">
                 <Grid.RowDefinitions>
