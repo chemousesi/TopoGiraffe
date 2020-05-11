@@ -377,8 +377,6 @@ namespace TopoGiraffe
             {
                 RemoveCtrlPoints();
                 ShownCtrlPoint = PointsGlobal[index2];
-
-                //ShownCtrlPoint = PointsGlobal[index];
                 DrawCtrlPoints(courbeActuelle);
 
             }
@@ -398,33 +396,45 @@ namespace TopoGiraffe
                 if (courbeActuelle.polyline.Points.Count > 0)
                 {
                     
-                    if (drawback == false)
+                    if (courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 1].Equals(courbeActuelle.polyline.Points[0]))
                     {
-                      
-                        // removing circles
-                        index = CourbesNiveau.IndexOf(courbeActuelle); 
-                        list = PointsGlobal[index];
-                        if (courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 1].Equals(list[list.Count - 1].P))
-                        {
-                            mainCanvas.Children.Remove(list[list.Count - 1].cercle);
-                            list.RemoveAt(list.Count - 1);
-                        }
+
                         courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
+
                     }
                     else
                     {
                        
 
-                        drawback = false;
-                        courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
+                        // removing circles
+                        index = CourbesNiveau.IndexOf(courbeActuelle);
+                        list = PointsGlobal[index];
+                        if (courbeActuelle.polyline.Points.Count == 2)
+                        {
+                            mainCanvas.Children.Remove(list[0].cercle);
+                            mainCanvas.Children.Remove(list[1].cercle);
+                            courbeActuelle.polyline.Points.Clear();
+
+                            list.Clear();
+                        }
+                        else if (courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 1].Equals(list[list.Count - 1].P))
+                        {
+                            mainCanvas.Children.Remove(list[list.Count - 1].cercle);
+                            list.RemoveAt(list.Count - 1);
+                            courbeActuelle.polyline.Points.RemoveAt(courbeActuelle.polyline.Points.Count - 1);
+                        }
                        
+                       
+
                     }
 
                 }
                 else
                 {
-
-                    CourbesNiveau.Remove(CourbesNiveau[CourbesNiveau.Count - 1]);
+                    index = CourbesNiveau.IndexOf(courbeActuelle);
+                    list = PointsGlobal[index];
+                    CourbesNiveau.Remove(courbeActuelle);
+                    PointsGlobal.Remove(list);
 
                     if (CourbesNiveau.Count > 0)
                     {
@@ -543,6 +553,8 @@ namespace TopoGiraffe
                         courbeActuelle.polyline.Points.Add(lastPoint);
                         Ellipse circle = new Ellipse();
                         ArtPoint artPoint = new ArtPoint(circle, lastPoint);
+                        ShownCtrlPoint = PointsGlobal[indexPoints];
+
                         PointsGlobal[indexPoints].Add(artPoint);
                         circle.Width = 10;
                         circle.Height = 10;
@@ -702,7 +714,7 @@ namespace TopoGiraffe
                     {
                         int index = CourbesNiveau.IndexOf(courbeActuelle);
 
-                        if (ShownCtrlPoint != PointsGlobal[index])
+                        if (ShownCtrlPoint != PointsGlobal[index] )
                         {
                             RemoveCtrlPoints();
                             ShownCtrlPoint = PointsGlobal[index];
