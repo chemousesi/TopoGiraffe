@@ -3,7 +3,7 @@ using System.Windows.Shapes;
 
 namespace TopoGiraffe.Noyau
 {
-    public  class CourbeNiveau
+    public class CourbeNiveau
     {
         public Polyline polyline;
         public float altitude;
@@ -25,7 +25,7 @@ namespace TopoGiraffe.Noyau
         public CourbeNiveau(Polyline polyline)
         {
             this.polyline = polyline;
-          
+
         }
         public CourbeNiveau()
         {

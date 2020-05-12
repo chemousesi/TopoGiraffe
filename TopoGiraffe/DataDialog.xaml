@@ -3,82 +3,86 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="#F9F9F9"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         xmlns:local="clr-namespace:TopoGiraffe"
         mc:Ignorable="d"
+        MinHeight="10"
+        MinWidth="300"
+        ResizeMode="NoResize"
+        Visibility="Visible"
+        FontFamily="arial"
+        Height="450" Width="400" 
+        WindowStartupLocation="CenterScreen" 
+        Cursor="Hand"   >
 
-       
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
-        Title="DataDialog" Height="463" Width="454" WindowStartupLocation="CenterScreen" Cursor="Hand" >
-
-
-
-    <Grid Background="White" Height="434" Cursor="Hand">
+    <Grid Cursor="Hand">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="6*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="0,0,0,66" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="149*"/>
-                <ColumnDefinition Width="18*"/>
-            </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="0*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <StackPanel   HorizontalAlignment="Left"  Margin="25,20,0,10" Width="451" Background="{DynamicResource MaterialDesignBackground}" Panel.ZIndex="1" Grid.ColumnSpan="2" >
-                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
-                    <Label Content="EQUIDISTANCE (m) : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="108"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="EquidistanceTextBox"  PreviewTextInput="NumberValidationTextBox"  Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#FFA04646" Height="30" Width="150"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#890D389C" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="35,0,0,0">
+
+            <Grid Grid.Row="0">
+                <TextBlock Text="Remplir les informations suivantes :" Foreground="Black" FontSize="17" 
+                           Margin="40 15 10 0" Height="44" VerticalAlignment="Top" TextWrapping="WrapWithOverflow"/>
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center"   
+                         Panel.ZIndex="1" Grid.ColumnSpan="2" Height="330" Width="400" Margin="0,-10,0,0" >
+
+                    <TextBox x:Name="EquidistanceTextBox" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="Equidistance" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalContentAlignment="Top" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                        FontSize="15" Foreground="#000000" Margin="0,10,0,10"   Height="45" Width="280" >
                         <Binding Path="Equid">
                             <Binding.ValidationRules>
                                 <ExceptionValidationRule />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox>
+                    <TextBox x:Name="MaxTextBox" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="Altitude max (m)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalContentAlignment="top" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        FontSize="15" Foreground="#000000" Margin="0,0,0,10"   Height="45" Width="280" />
 
+                    <TextBox x:Name="MinTextBox" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="Altitude min (m)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalContentAlignment="Top" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        FontSize="15" Foreground="#000000" Margin="0,0,0,10"   Height="45" Width="280" />
 
+                    <TextBox x:Name="EchelleTextBoxOnCanvas" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="Echelle (pixel)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalContentAlignment="Top" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        FontSize="15" Foreground="#000000" Margin="0,0,0,10"   Height="45" Width="280" />
+                    <TextBox x:Name="EchelleTextBoxOnField" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="Echelle (mètre)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalContentAlignment="Top" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        FontSize="15" Foreground="#000000" Margin="0,0,0,0"   Height="45" Width="280" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
-                    <Label Content="MAX (m) : " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="MaxTextBox" PreviewTextInput="NumberValidationTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="42,0,0,0" />
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
-                    <Label Content="MIN  ( m): " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
-                    <TextBox x:Name="MinTextBox" PreviewTextInput="NumberValidationTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="42,0,0,0" />
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
-
-
-
-                    <Label Content="ECHELLE  (px): " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="100"   HorizontalContentAlignment="Center" />
-
-                    <TextBox x:Name="EchelleTextBoxOnCanvas" PreviewTextInput="NumberValidationTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="43,0,0,0" />
-                </StackPanel>
-                <Label Content="* Donner la valeur de l'echelle en pixels sur le plan" FontSize="7" Width="171"  HorizontalAlignment="Stretch"/>
-                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="7,7">
-
-
-                    <Label Content="(m)" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="10"  Foreground="#515251" Height="45" Width="108"   HorizontalContentAlignment="Center" />
-
-
-                    <TextBox x:Name="EchelleTextBoxOnField" PreviewTextInput="NumberValidationTextBox" Background="#E6E6E6" FontWeight="Bold" FontSize="17"  Foreground="#515251" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="35,0,0,0"/>
-                </StackPanel>
-                <Label Content="* Donner la valeur de l'echelle en (m)" FontSize="7" Width="157" HorizontalAlignment="Center" />
-            </StackPanel>
-
+            </Grid>
         </Grid>
-        <Grid Grid.Row="1" Margin="0,51,0,0">
+        <Grid Grid.Row="1" >
             <StackPanel Orientation="Horizontal" 
                     VerticalAlignment="Center"  
                     HorizontalAlignment="Right" 
-                    Margin="20,5">
+                    Margin="40,0">
 
-                <Button Content="Annuler" Width="106" Height="30" 
+                <Button Content="Annuler" Width="100" Height="35" Background="#4a4b52" Opacity=".9" Foreground="White"
                     Margin="4" IsCancel="True"  
                     Click="OnCancelClicked"/>
 
-                <Button Content="Créer" Width="118" Height="30" 
+                <Button Content="Créer" Width="100" Height="35" Background="#4a4b52" Opacity=".9" Foreground="White"
                     Margin="4" IsDefault="True"  
                     Click="OnOKClicked" Command="{Binding Créer}">
                     <Button.Style>
@@ -94,11 +98,11 @@
                         </Style>
                     </Button.Style>
 
+
                 </Button>
 
             </StackPanel>
         </Grid>
     </Grid>
-
 
 </Window>

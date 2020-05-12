@@ -13,7 +13,7 @@
         AllowsTransparency="False"
         BorderBrush="Transparent"
         mc:Ignorable="d"
-        Title="MainWindow"  Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStyle="None" Cursor="Hand"  >
+         Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStyle="None" Cursor="Hand"  >
 
 
 
@@ -52,7 +52,7 @@
 
         <Frame x:Name="mainFrame" Source="/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
 
-        <Rectangle  Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#FF023788"/>
+        <Rectangle  Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#1f1e21"/>
 
 
 

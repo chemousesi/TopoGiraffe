@@ -8,8 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\img\button.png" />
     <None Remove="assets\img\deleteAll.png" />
     <None Remove="assets\img\deletePrevious.png" />
+    <None Remove="assets\img\DessinCourbeWhite.png" />
     <None Remove="assets\img\download.png" />
     <None Remove="assets\img\draw.png" />
     <None Remove="assets\img\Exit.png" />
@@ -22,10 +24,12 @@
     <None Remove="assets\img\import.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\line.png" />
+    <None Remove="assets\img\location.png" />
     <None Remove="assets\img\maps2.png" />
     <None Remove="assets\img\Maximize.png" />
     <None Remove="assets\img\Minimize.png" />
     <None Remove="assets\img\minus.png" />
+    <None Remove="assets\img\NavBarWhite.png" />
     <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\page.png" />
     <None Remove="assets\img\Pente.png" />
@@ -33,6 +37,7 @@
     <None Remove="assets\img\plusSS.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\return.png" />
+    <None Remove="assets\img\ReturnBackWhite.png" />
     <None Remove="assets\img\ruler.png" />
     <None Remove="assets\img\save.png" />
     <None Remove="assets\img\scale.png" />
@@ -62,12 +67,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\img\button.png" />
     <Resource Include="assets\img\deleteAll.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="assets\img\deletePrevious.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="assets\img\DessinCourbeWhite.png" />
     <Resource Include="assets\img\download.png" />
     <Resource Include="assets\img\Exit.png" />
     <Resource Include="assets\img\export.png" />
@@ -85,10 +92,12 @@
     <Content Include="assets\img\line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="assets\img\location.png" />
     <Resource Include="assets\img\maps2.png" />
     <Resource Include="assets\img\Maximize.png" />
     <Resource Include="assets\img\Minimize.png" />
     <Resource Include="assets\img\minus.png" />
+    <Resource Include="assets\img\NavBarWhite.png" />
     <Resource Include="assets\img\navigation.png" />
     <Resource Include="assets\img\page.png" />
     <Resource Include="assets\img\Pente.png" />
@@ -96,6 +105,7 @@
     <Resource Include="assets\img\plusSS.png" />
     <Resource Include="assets\img\report.png" />
     <Resource Include="assets\img\return.png" />
+    <Resource Include="assets\img\ReturnBackWhite.png" />
     <Resource Include="assets\img\ruler.png" />
     <Resource Include="assets\img\save.png" />
     <Resource Include="assets\img\scale.png" />
