@@ -6,38 +6,41 @@
       xmlns:local="clr-namespace:TopoGiraffe"
       xmlns:utils="clr-namespace:TopoGiraffe"
       xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
-      Background="{DynamicResource MaterialDesignPaper}"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar;assembly=MaterialDesignThemes.Wpf"
+
+
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      FontFamily="arial"
+      Background="#454F56"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1500"
-      Title="MainPage" Cursor="Hand">
+      Title="MainPage"
+      xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+      >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
+
+
     </Page.Resources>
 
-    <Grid Cursor="Hand">
+    <Grid Cursor="Hand" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="75"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="118"/>
             <RowDefinition />
-            <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-
-
-
-
-        <!--<Grid>
-                <Frame x:Name="_mainFrame"/>
-                <Button x:Name="fichier" VerticalAlignment="Center" Content="Ficher" BorderBrush="Transparent" BorderThickness="0" Width="80" HorizontalAlignment="Left" Click="ShowSauvgardeWindow_Click" >
-                    
-                </Button>
-            </Grid>-->
-
-
 
         <!--
 
@@ -55,57 +58,79 @@
             </DockPanel>
         -->
 
-
-
-
-        <Grid Grid.Row="1"  Background="#FF023788" Opacity="1" >
+        <Grid Grid.Row="1"  Background="{DynamicResource NormalBackground}" Opacity="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="65" />
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="337"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Button  Height="60" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent"
+                <Button  Height="60" Margin="10,30,0,0" Background="{x:Null}" BorderBrush="{x:Null}"
                         BorderThickness="0"  Click="ShowSauvgardeWindow_Click" >
-                    <Image Source="/assets/img/uiBlanc.png" Width="20" Height="20" Margin="0,0,0,0" ></Image>
+                    <Image Source="/assets/img/button.png" Width="20" Height="20" Margin="0,0,0,0" />
                 </Button>
             </Grid>
             <Grid Grid.Column="1">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,14,0,0" >
+                    <Button x:Name="scaleButton" Width="90" Height="94" Background="{x:Null}" BorderBrush="Transparent"
+        BorderThickness="0"  Margin="45,20,0,0" Click="scaleButton_Click" MouseEnter="Echelle_MouseEnter" MouseLeave="Echelle_MouseLeave" HorizontalAlignment="Center" >
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="/assets/img/ruler.png" Width="30" Height="30" />
+                            <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
+                                   Foreground="White" Content="Echelle" HorizontalContentAlignment="Center" Margin="0 5 0 0" />
+                        </StackPanel>
+                    </Button>
+                    <Button  x:Name="Pente" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="45,20,0,0" Click="Pente_Click" MouseEnter="Pente_MouseEnter" MouseLeave="Pente_MouseLeave" >
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
+                            <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
+                                   Foreground="White" Content="Pente" HorizontalContentAlignment="Center" Margin="0 5 0 0" />
+                        </StackPanel>
+                    </Button>
+                    <Button  x:Name="btn13" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="45,20,0,0" Click="btn13_Click" MouseEnter="Profil_MouseEnter" MouseLeave="Profil_MouseLeave" HorizontalContentAlignment="Center" >
+                        <StackPanel Orientation="Vertical"  >
+                            <Image Source="/assets/img/report.png" Width="30" Height="30"/>
+                            <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
+                                   Foreground="White" Content="Profil" HorizontalContentAlignment="Center" Margin="0 5 0 0" />
+                        </StackPanel>
+                    </Button>
+                    <Button  x:Name="mapBut" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A"  Click="mapBut_Click"  >
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="/assets/img/Localisation.png" Width="30" Height="30" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="0"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
+                                   Foreground="White" Content="Map" HorizontalContentAlignment="Center" Margin="0 5 0 0" />
+                        </StackPanel>
 
+                    </Button>
+                    <Button  x:Name="btn14" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"   >
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
+                            <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
+                                   Foreground="White" Content="Paramètres" HorizontalContentAlignment="Center" Margin="0 5 0 0" />
+                        </StackPanel>
+                    </Button>
 
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
-                    <Button  x:Name="btn11" Width="90" Height="75" Background="#0000" BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" MouseEnter="Pen_MouseEnter" MouseLeave="Pen_MouseLeave" >
-                        <Image Source="/assets/img/draw.png" Width="30" Height="30" />
-                    </Button>
-                    <Button  x:Name="Pente" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" MouseEnter="Pente_MouseEnter" MouseLeave="Pente_MouseLeave" >
-                        <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
-                    </Button>
-                    <Button  x:Name="btn13" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Click="btn13_Click" MouseEnter="Profil_MouseEnter" MouseLeave="Profil_MouseLeave" >
-                        <Image Source="/assets/img/report.png" Width="30" Height="30"/>
-                    </Button>
-                    <Button  x:Name="btn14" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"  >
-                        <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
-                    </Button>
-                    <Button  x:Name="mapBut" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave" Click="mapBut_Click"  >
-                        <Image Source="/assets/img/globe.png" Width="39" Height="40" RenderTransformOrigin="0.5,0.5">
-                            <Image.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Image.RenderTransform>
-                        </Image>
-                    </Button>
                 </StackPanel>
             </Grid>
+            <StackPanel Grid.Column="2">
+                <ToggleButton Content="" HorizontalAlignment="Center" Height="24" Width="65" Margin="16,48,2,19" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" />
+            </StackPanel>
+            <Label  Grid.Column="2" Style="{DynamicResource ModeLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,75,-4,0" FontSize="16"/>
         </Grid>
-        <Grid  Grid.Row="2">
+        <Grid  Grid.Row="2" Background="{DynamicResource SideColor}" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="65" />
                 <ColumnDefinition Width="*"/>
@@ -113,27 +138,38 @@
             </Grid.ColumnDefinitions>
 
 
-            <utils:ZoomBorder x:Name="border" ClipToBounds="True" Background="#FFFCFAFA" Grid.Column="1" Margin="1,0,0,7" RenderTransformOrigin="0.5,0.5" KeyDown="border_KeyDown">
-                <utils:ZoomBorder.RenderTransform>
+            <utils:ZoomBorder x:Name="border" ClipToBounds="True" Grid.Column="1" Margin="0" 
+                              RenderTransformOrigin="0.5,0.5" KeyDown="border_KeyDown" BorderBrush="Transparent" BorderThickness="0" Background="{x:Null}">
+                <!-- <utils:ZoomBorder.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform AngleY="-0.51"/>
                         <RotateTransform Angle="0.456"/>
                         <TranslateTransform Y="3.009"/>
                     </TransformGroup>
-                </utils:ZoomBorder.RenderTransform>
+                </utils:ZoomBorder.RenderTransform> -->
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="567*"/>
-                        <ColumnDefinition Width="51*"/>
-                        <ColumnDefinition Width="427*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Margin="12,12,10,10" Name="imgPhoto" Grid.ColumnSpan="3"  />
-                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="-4,-1,4,-21" RenderTransformOrigin="0.498,0.517" Grid.ColumnSpan="3" >
-                        <Canvas.Background>
-                            <SolidColorBrush Color="#FFFFF3F0" Opacity=".1"  />
-                        </Canvas.Background>
-                    </Canvas>
+                    <Grid Margin="20 30 20 25" Background="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="567*"/>
+                            <ColumnDefinition Width="51*"/>
+                            <ColumnDefinition Width="427*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Margin="0" Name="imgPhoto" Grid.ColumnSpan="3" Grid.RowSpan="2"  />
+                        <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" 
+                            MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="0" RenderTransformOrigin="0.498,0.517" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                            <Canvas.Background>
+                                <SolidColorBrush Color="#FFFFFF" Opacity=".6"  />
+                            </Canvas.Background>
+                            <Canvas.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#E5E5E5" ShadowDepth=".2" Softness=".3" Direction="-90" >
+
+                                </DropShadowBitmapEffect>
+                            </Canvas.BitmapEffect>
+                        </Canvas>
+                    </Grid>
+
                 </Grid>
 
 
@@ -141,206 +177,179 @@
 
 
 
-            <Grid Grid.Column="2" Background="#EEEEEE">
+            <Grid Grid.Column="2" Background="{DynamicResource SideColor}" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="177*"/>
 
                 </Grid.RowDefinitions>
 
-                <TabControl Background="#EEEEEE" SelectionChanged="TabControl_SelectionChanged" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                    <TabControl.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleX="-0.158"/>
-                            <RotateTransform/>
-                            <TranslateTransform X="-0.597"/>
-                        </TransformGroup>
-                    </TabControl.RenderTransform>
+                <TabControl Background="{DynamicResource SideColor}" SelectionChanged="TabControl_SelectionChanged" Margin="0,30,0,0" RenderTransformOrigin="0.5,0.5" BorderBrush="Transparent" BorderThickness="0">
 
-
-
-                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548" Margin="-2,-2,-83,0">
-
+                    <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548" Foreground="Gray" Margin="0,0,-83,0" BorderBrush="Transparent" BorderThickness="0" Background="{DynamicResource SideColor}" Height="40">
                         <Grid Height="550">
                             <Grid.RowDefinitions>
                                 <RowDefinition  Height="0*" />
-                                <RowDefinition Height="80*"/>
+                                <RowDefinition Height="90*"/>
                                 <RowDefinition Height="87*"/>
 
                                 <RowDefinition Height="108*"/>
                             </Grid.RowDefinitions>
+                            <Grid Grid.Row="1">
+                                <StackPanel  VerticalAlignment="Top" Height="410" Margin="0,25,0,0"  Grid.RowSpan="3" >
 
-                            <StackPanel  VerticalAlignment="Top" Height="410" Margin="0,0,0,0" Grid.Row="1" Grid.RowSpan="3" >
+                                    <StackPanel VerticalAlignment="Center">
+                                        <ComboBox x:Name="styleCourbeCmb" Width="250" Height="50" Margin="40,0,40,0" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"
+                                              materialDesign:HintAssist.Hint="Choisir un type de courbe" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                              Foreground="{DynamicResource TextBox}" FontSize="15"
+                                              SelectionChanged="styleCourbeCmb_SelectionChanged" MouseEnter="TypeCourbe_MouseEnter" MouseLeave="TypeCourbe_MouseLeave"
+                                              HorizontalAlignment="Center" VerticalContentAlignment="Top">
+                                            <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" >Courbe simple</ComboBoxItem>
+                                            <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" >Courbe intermediare</ComboBoxItem>
+                                            <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" >Courbe Maitresse</ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Margin="0">
+                                        <TextBlock Text="Choisir une couleur" Margin="40,25,40,5" Foreground="{DynamicResource TextBox}" FontSize="15"/>
+                                        <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="18">
+                                            <xctk1:ColorPicker Name="cp" Margin="40,3,40,5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" 
+                                                       AvailableColorsSortingMode="HueSaturationBrightness" MouseEnter="ColorPicker_MouseEnter" MouseLeave="ColorPicker_MouseLeave"
+                                                       materialDesign:HintAssist.Hint="Choisissez la couleur de la courbe"   
+                                                        />
+                                        </Border>
 
-                                <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Type de courbe" Margin="40,25,40,5"></TextBlock>
-
-                                    <ComboBox x:Name="styleCourbeCmb" Text="Choisissez une couleur" Margin="40,10,40,5" Height="26" SelectionChanged="styleCourbeCmb_SelectionChanged" MouseEnter="TypeCourbe_MouseEnter" MouseLeave="TypeCourbe_MouseLeave" >
-                                        <ComboBoxItem >Courbe simple</ComboBoxItem>
-                                        <ComboBoxItem >Courbe intermediare</ComboBoxItem>
-                                        <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
-                                    </ComboBox>
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel>
-                                    <TextBlock Text="Color Picker" Margin="40,25,40,5"></TextBlock>
-                                    <xctk1:ColorPicker Name="cp" Margin="40,3,40,5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" MouseEnter="ColorPicker_MouseEnter" MouseLeave="ColorPicker_MouseLeave" ></xctk1:ColorPicker>
-                                </StackPanel>
-                            </StackPanel>
-                            <DockPanel Grid.Row="3" VerticalAlignment="Center" Height="195" Margin="0,-44,0,0">
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="337" >
+                                        <Label Margin="40 0 50 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" FontSize="16">Altitude</Label>
+                                        <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  
+                                                 VerticalAlignment="Top" Height="25" Margin="105 0 40 0" Foreground="{DynamicResource TextBox}" HorizontalAlignment="Right" Width="55" VerticalContentAlignment="Center" 
+                                                 HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" MouseEnter="AltitudeBox_MouseEnter" MouseLeave="AltitudeBox_MouseLeave"  />
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <WrapPanel Width="334" DockPanel.Dock="Top"  Height="47" HorizontalAlignment="Center" Orientation="Horizontal" >
+                                        <Button x:Name="ZoomIn"  HorizontalAlignment="Left" Background="{DynamicResource Plus}" Width="60" Height="50" Margin="60,0,40,0"  
+                                                BorderBrush="{x:Null}" BorderThickness="0"  Click="ZoomIn_Click"  />
+                                        <Button x:Name="ZoomOut" Width="60" Height="50" Margin="57,0,0,0"  HorizontalAlignment="Right" Background="{DynamicResource Minus}"
+                                                Click="ZoomOut_Click" BorderBrush="{x:Null}" BorderThickness="0"/>
 
-                                <DockPanel DockPanel.Dock="Top" Height="80">
-                                    <Label Margin="40,0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939" >Thickness</Label>
-                                    <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" VerticalAlignment="Bottom" Height="25" Width="50" HorizontalAlignment="Right" Margin="40 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="EpaisseurTextBox_MouseEnter" MouseLeave="EpaisseurTextBox_MouseLeave"></TextBox>
-                                </DockPanel>
-                                <Slider IsSnapToTickEnabled="True"  ValueChanged="ThickSlider_ValueChanged" Minimum = "1" Maximum = "15"
-                                        Value="5" Name="ThickSlider"  ToolTip="largeur" VerticalAlignment="Center" Width="150" Margin="40,0"
-                                        Height="25" Foreground="#5B6A77" MouseEnter="Epaisseur_MouseEnter" MouseLeave="Epaisseur_MouseLeave" />
-
-
-                            </DockPanel>
-                            <DockPanel Grid.Row="2" VerticalAlignment="Center" Height="163" >
-
-                                <DockPanel DockPanel.Dock="Top" Height="163">
-                                    <Label Margin="40,20,40,0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#393939">Altitude</Label>
-
-                                    <WrapPanel Width="334" DockPanel.Dock="Top" Margin="20" Height="47" HorizontalAlignment="Center" >
-                                        <Button x:Name="ZoomIn"  HorizontalAlignment="Left" Background="Transparent" Width="60" Height="50" Margin="67,0,42,0"  
-                                                BorderBrush="Transparent" BorderThickness="0"  Click="ZoomIn_Click" >
-                                            <Image Source="/assets/img/plusC.png" />
-                                        </Button>
-                                        <Button x:Name="ZoomOut" Width="60" Height="50" Margin="17,0,10,0"  HorizontalAlignment="Center" Background="Transparent"
-                                                Click="ZoomOut_Click" BorderBrush="Transparent" BorderThickness="0">
-                                            <Image Source="/assets/img/minus.png" />
-                                        </Button>
-
-                                        <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  DockPanel.Dock="Right" 
-                                                 VerticalAlignment="Center" Height="25" Margin="10 0" HorizontalAlignment="Center" Width="55" VerticalContentAlignment="Center"
-                                                 HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" MouseEnter="AltitudeBox_MouseEnter" MouseLeave="AltitudeBox_MouseLeave"  >
-
-                                        </TextBox>
                                     </WrapPanel>
+                                </Grid>
+                                <Grid Grid.Row="2">
                                     <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="150"  
-                                             ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="25"
-                                             Margin="20,0,40,16" Foreground="#5B6A77" HorizontalAlignment="Center" MouseEnter="Altitude_MouseEnter" MouseLeave="Altitude_MouseLeave"/>
+                                             ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="30"
+                                             Margin="40,0,40,0" Foreground="{DynamicResource SliderColor}" HorizontalAlignment="Center" MouseEnter="Altitude_MouseEnter" MouseLeave="Altitude_MouseLeave"
+                                             />
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="3">
+                                <DockPanel  VerticalAlignment="Center" Height="195" Margin="0,-44,0,0">
+
+                                    <DockPanel DockPanel.Dock="Top" Height="80">
+                                        <Label Margin="40 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" FontSize="16" >Largeur</Label>
+                                        <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"
+                                                 Foreground="{DynamicResource TextBox}"
+                                                 VerticalAlignment="Bottom" Height="25" Width="50" HorizontalAlignment="Right" Margin="40 0" VerticalContentAlignment="Center" 
+                                                 HorizontalContentAlignment="Center" MouseEnter="EpaisseurTextBox_MouseEnter" MouseLeave="EpaisseurTextBox_MouseLeave"/>
+                                    </DockPanel>
+                                    <Slider IsSnapToTickEnabled="True"  ValueChanged="ThickSlider_ValueChanged" Minimum = "1" Maximum = "15"
+                                        Value="5" Name="ThickSlider"   VerticalAlignment="Center" Width="150" Margin="40 -35 40 0"
+                                        Height="25" Foreground="{DynamicResource SliderColor}" MouseEnter="Epaisseur_MouseEnter" MouseLeave="Epaisseur_MouseLeave" />
                                 </DockPanel>
-                            </DockPanel>
-
-
+                            </Grid>
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Plan" Background="#C5C5C5" Margin="72,-2,-165,0" />
-
-
+                    <TabItem Header="Plan" Background="{DynamicResource SideColor}" Margin="72,0,-165,0" Foreground="Gray" BorderBrush="Transparent" BorderThickness="0" />
                 </TabControl>
-
-
-
             </Grid>
 
-
+            <!-- ********************************************************************** Didplay, Import section *************************************************** -->
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="84"/>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="300"/>
 
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="1">
-                        <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Top" >
-                            <Button  x:Name="display" Width="60" Height="60"  BorderBrush="Transparent" 
-                                BorderThickness="0" Background="#EEEEEE" Click="display_Click" MouseEnter="display_MouseEnter" MouseLeave="display_MouseLeave"  >
-                                <Image Source="/assets/img/visibility.png" Width="30" Height="30" Margin="0" />
-                            </Button>
-                            <Button  x:Name="import" Width="60" Height="60"  BorderBrush="Transparent"
-                                BorderThickness="0" Background="#EEEEEE" Click="import_Click" MouseEnter="Import_MouseEnter" MouseLeave="Import_MouseLeave"  >
-                                <Image Source="/assets/img/import.png" Width="30" Height="30" Margin="0" />
-                            </Button>
+                    <Grid Grid.Column="1"  >
+                        <StackPanel Style="{DynamicResource StackPanel}" Opacity=".3" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Top"
+                                    Margin="0 30 20 0" >
+                            <Button  x:Name="display" Width="60" Height="54" Background="{DynamicResource View}"  BorderBrush="{x:Null}" 
+                                BorderThickness="0" Click="display_Click" MouseEnter="display_MouseEnter" MouseLeave="display_MouseLeave"  />
+                            <Button  x:Name="import" Width="60" Height="54" Background="{DynamicResource Import}"  BorderBrush="{x:Null}"
+                                BorderThickness="0"  Click="import_Click" MouseEnter="Import_MouseEnter" MouseLeave="Import_MouseLeave"  />
 
                         </StackPanel>
                     </Grid>
                 </Grid>
 
-            </Grid>
-            <Grid Grid.Column="0" Background="#EEEEEE"  >
-                <StackPanel VerticalAlignment="Top"  Margin="0,0,-1,0" >
-
-                    <Button x:Name="nav" Height="60" Margin="0,0,0,0" Background="{x:Null}" BorderBrush="Transparent"
-                        BorderThickness="0"  Click="nav_Click" MouseEnter="Nav_MouseEnter" MouseLeave="Nav_MouseLeave" >
-                        <Image Source="/assets/img/navigation.png" Width="20" Height="20" Margin="0,0,0,0" ></Image>
-                    </Button>
-
-                    <Button x:Name="dessinerButton" Margin="0,0,0,0" Height="60"  Background="Transparent"  BorderBrush="Transparent"
-                           BorderThickness="0" Click="dessinerButton_Click" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave" >
-                        <Image Source="/assets/img/ink.png" Width="20" Height="20" Margin="0,0,0,0"/>
-                    </Button>
-                    <Button x:Name="dessinerPoint" Margin="0,0,0,0" Height="60"   BorderBrush="Transparent" Background="Transparent"
-                           BorderThickness="0" Click="drawPoint_Clicked" MouseEnter="DessinPoint_MouseEnter" MouseLeave="DessinPoint_MouseLeave"  >
-                        <Image Source="/assets/img/triangle.png" Width="20" Height="20"  />
-                    </Button>
-                    <Button x:Name="add_line" Margin="0,0,0,0" Height="60" Background="Transparent" BorderBrush="Transparent"
-                          BorderThickness="0" HorizontalAlignment="Center"  IsDefault="True" Click="add_line_Click" MouseEnter="DessinDeSegment_MouseEnter" MouseLeave="DessinDeSegment_MouseLeave">
-                        <Image Source="/assets/img/line.png" Margin="0,0,0,0" />
-                    </Button>
-
-
-                    <Button x:Name="deleteAllButton" Margin="0,0,0,0" Height="60" Background="Transparent" BorderBrush="Transparent"
-                         BorderThickness="0" Click="deleteAllButton_Click" MouseLeave="SupprimerTout_MouseLeave" MouseEnter="SupprimerTout_MouseEnter"  >
-                        <Image Source="/assets/img/deleteAll.png" Width="20" Height="20" Margin="0,0,0,0" />
-                    </Button>
-                    <Button x:Name="deletePreviousButton" Margin="0,0,0,0" Height="60" Background="Transparent" BorderBrush="Transparent"
-                                BorderThickness="0" Click="deletePreviousButton_Click" MouseEnter="SupprimerPrecedent_MouseEnter" MouseLeave="SupprimerPrecedent_MouseLeave"   >
-                        <Image Source="/assets/img/deletePrevious.png" Width="20" Height="20" Margin="0,0,0,0" />
-                    </Button>
-                    <Button  x:Name="btn1" Margin="0,0,0,0" Height="60"  Background="Transparent" BorderBrush="Transparent"
-                        BorderThickness="0" MouseEnter="Zoom_MouseEnter" MouseLeave="Zoom_MouseLeave"  >
-                        <Image Source="/assets/img/zoom-in.png" Width="20" Height="20" Margin="0,0,0,0"  />
-                    </Button>
-
-                    <Button  x:Name="scaleButton" Margin="0,0,0,0" Height="60"  Background="Transparent"  BorderBrush="Transparent"
-                        
-
-                        BorderThickness="0" Click="scaleButton_Click" MouseEnter="Echelle_MouseEnter" MouseLeave="Echelle_MouseLeave"  >
-                        <Image Source="/assets/img/ruler.png" Width="20" Height="20" Margin="0,0,0,0" />
-
-                    </Button>
-                    <Button Name="export" Margin="0,0,0,0" Height="60" HorizontalContentAlignment="Center"
-                             BorderBrush="Transparent"
-                            BorderThickness="0" Background="Transparent" Click="Button_Click" Cursor="Hand" MouseEnter="Export_MouseEnter" MouseLeave="Export_MouseLeave" >
-                        <Image Source="/assets/img/exportT.png" Width="20" Height="20" Margin="0,0,0,0"  />
-                    </Button>
-                    <CheckBox Content="Activer Dessin" Margin="2,0" FontSize="6" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent" x:Name="activerDessinCheckBox" Checked="activerDessinCheckBox_Checked" />
-
-
-
-                </StackPanel>
 
             </Grid>
+            <!-- ********************************************************************** Didplay, Import section : Fin *************************************************** -->
 
+            <Grid Grid.Column="0" Opacity="1" Background="{DynamicResource SideColor}">
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <StackPanel VerticalAlignment="Top"  Margin="2,20,0,0" >
+                        <Button  x:Name="deletePreviousButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource DeletePrevious}" BorderBrush="{x:Null}"
+                                 BorderThickness="0" Click="deletePreviousButton_Click" MouseEnter="SupprimerPrecedent_MouseEnter" MouseLeave="SupprimerPrecedent_MouseLeave" 
+                               />
+                        <Button x:Name="nav" Height="60" Margin="0,0,0,0" Background="{DynamicResource Navigation}" BorderBrush="{x:Null}"
+                                BorderThickness="0"  Click="nav_Click" MouseEnter="Nav_MouseEnter" MouseLeave="Nav_MouseLeave" 
+                                 />
+                        <Button x:Name="dessinerButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource Dessiner}"  BorderBrush="{x:Null}"
+                                   BorderThickness="0" Click="dessinerButton_Click" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave"
+                                >
+                        </Button>
+                        <Button x:Name="dessinerPoint" Margin="0,0,0,0" Height="60"   BorderBrush="{x:Null}" Background="{DynamicResource Point}"
+                                   BorderThickness="0" Click="drawPoint_Clicked" MouseEnter="DessinPoint_MouseEnter" MouseLeave="DessinPoint_MouseLeave"
+                                />
+                        <Button x:Name="add_line" Margin="0,0,0,0" Height="66"  Background="{DynamicResource Segment}" BorderBrush="{x:Null}"
+                                  BorderThickness="0" HorizontalAlignment="Center"  IsDefault="True" Click="add_line_Click" 
+                                MouseEnter="DessinDeSegment_MouseEnter" MouseLeave="DessinDeSegment_MouseLeave" Width="62"
+                                />
+                        <Button x:Name="btn1" Margin="0,0,0,0" Height="60"  Background="{DynamicResource Zoom}" BorderBrush="{x:Null}"
+                                BorderThickness="0" MouseEnter="Zoom_MouseEnter" MouseLeave="Zoom_MouseLeave" 
+                                 />
+
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <StackPanel VerticalAlignment="Bottom"  Margin="8,0,0,20">
+                        <Button x:Name="deleteAllButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource Delete}" BorderBrush="{x:Null}"
+                                 BorderThickness="0" Click="deleteAllButton_Click" MouseLeave="SupprimerTout_MouseLeave" MouseEnter="SupprimerTout_MouseEnter" 
+                                >
+                        </Button>
+                        <Button Name="export" Margin="0,0,0,0" Height="60" HorizontalContentAlignment="Center"
+                                     BorderBrush="{x:Null}" BorderThickness="0" Background="{DynamicResource Export}" Click="Button_Click" Cursor="Hand" MouseEnter="Export_MouseEnter" MouseLeave="Export_MouseLeave" 
+                                >
+                        </Button>
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
         </Grid>
-        <StatusBar Name="sbar" 
-           VerticalAlignment="Center" Background="Beige" 
-                   Grid.Row="3" Height="20">
 
-            <StatusBarItem>
-                <TextBlock>Topogiraffe</TextBlock>
-            </StatusBarItem>
-            <StatusBarItem>
-
-            </StatusBarItem>
-            <Separator/>
-            <StatusBarItem>
-
-            </StatusBarItem>
-
-        </StatusBar>
         <Popup x:Name="popup_uc"
                    AllowsTransparency="True"
                    HorizontalOffset="10"

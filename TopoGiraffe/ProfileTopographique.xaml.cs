@@ -1,17 +1,15 @@
-﻿using LiveCharts;
+﻿using iTextSharp.text.pdf;
+using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection.Metadata;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TopoGiraffe.Noyau;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.Windows.Controls;
 
 namespace TopoGiraffe
 {
@@ -28,7 +26,7 @@ namespace TopoGiraffe
         public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList, Echelle mainScale, String pente)
         {
             this.IntersectionPoints = aIntersectionPoints;
-            this.distancesListe = adistancesList;
+           // this.distancesListe = adistancesList;
             this.mainScale = mainScale;
             this.penteText = pente;
 
@@ -111,7 +109,7 @@ namespace TopoGiraffe
 
 
 
-            
+
             doc.Close();
         }
     }

@@ -1,10 +1,16 @@
-﻿using System.Windows;
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Input;
 
 namespace TopoGiraffe
 {
     /// <summary>
     /// Logique d'interaction pour DataDialog.xaml
     /// </summary>
+    /// 
+   
+
     public partial class DataDialog : Window
     {
         public DataDialog()
@@ -13,31 +19,31 @@ namespace TopoGiraffe
         }
         public string Equidistance
         {
-            get { return EquidistanceTextBox.Text; }
-            set { EquidistanceTextBox.Text = value; }
+            get => EquidistanceTextBox.Text;
+            set => EquidistanceTextBox.Text = value;
         }
         public string Max
         {
-            get { return MaxTextBox.Text; }
-            set { MaxTextBox.Text = value; }
+            get => MaxTextBox.Text;
+            set => MaxTextBox.Text = value;
         }
         public string Min
         {
-            get { return MinTextBox.Text; }
-            set { MinTextBox.Text = value; }
+            get => MinTextBox.Text;
+            set => MinTextBox.Text = value;
         }
 
 
         public string EchelleOnCanvas
         {
-            get { return EchelleTextBoxOnCanvas.Text; }
-            set { EchelleTextBoxOnCanvas.Text = value; }
+            get => EchelleTextBoxOnCanvas.Text;
+            set => EchelleTextBoxOnCanvas.Text = value;
         }
 
         public string EchelleOnField
         {
-            get { return EchelleTextBoxOnField.Text; }
-            set { EchelleTextBoxOnField.Text = value; }
+            get => EchelleTextBoxOnField.Text;
+            set => EchelleTextBoxOnField.Text = value;
         }
 
 
@@ -52,6 +58,14 @@ namespace TopoGiraffe
         private void OnCancelClicked(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9.-]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
