@@ -78,11 +78,11 @@
                     HorizontalAlignment="Right" 
                     Margin="40,0">
 
-                <Button Content="Annuler" Width="100" Height="35" Background="#4a4b52" Opacity=".9" Foreground="White"
+                <Button Content="Annuler" Width="100" Height="35" Background="{DynamicResource NormalBackground}" Opacity=".7" Foreground="White"
                     Margin="4" IsCancel="True"  
                     Click="OnCancelClicked"/>
 
-                <Button Content="Créer" Width="100" Height="35" Background="#4a4b52" Opacity=".9" Foreground="White"
+                <Button Content="Créer" Width="100" Height="35" Background="{DynamicResource NormalBackground}" Opacity=".7" Foreground="White"
                     Margin="4" IsDefault="True"  
                     Click="OnOKClicked" Command="{Binding Créer}">
                     <Button.Style>

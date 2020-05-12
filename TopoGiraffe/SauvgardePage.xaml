@@ -352,7 +352,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" Background="#28272b" >
+            <Grid Grid.Column="0" Background="{DynamicResource NormalBackground}" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>

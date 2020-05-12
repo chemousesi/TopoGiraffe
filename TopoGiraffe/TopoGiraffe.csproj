@@ -11,6 +11,7 @@
     <None Remove="assets\img\arrows.png" />
     <None Remove="assets\img\button.png" />
     <None Remove="assets\img\deleteAll.png" />
+    <None Remove="assets\img\DeleteAllGray.png" />
     <None Remove="assets\img\DeleteAllWhite.png" />
     <None Remove="assets\img\deletePrevious.png" />
     <None Remove="assets\img\DessinCourbeWhite.png" />
@@ -87,6 +88,7 @@
 
   <ItemGroup>
     <Resource Include="assets\img\arrows.png" />
+    <Resource Include="assets\img\DeleteAllGray.png" />
     <Resource Include="assets\img\DeleteAllWhite.png" />
     <Resource Include="assets\img\edit-tools.png" />
     <Resource Include="assets\img\export1.png" />
