@@ -126,20 +126,6 @@ namespace TopoGiraffe
 
 
 
-        private void activerDessinCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            if (CourbesNiveau.Count == 0)
-            {
-                MessageBox.Show("Il Faut avoir au moins une courbe");
-                activerDessinCheckBox.IsChecked = false;
-
-            }
-            else
-            {
-                courbeActuelle = CourbesNiveau[CourbesNiveau.Count - 1];
-            }
-        }
-
 
 
 
@@ -275,7 +261,6 @@ namespace TopoGiraffe
 
                 CourbesNiveau.Add(myCurve);
 
-                activerDessinCheckBox.IsChecked = true; navClicked = false;
 
 
                 // styling
@@ -1948,13 +1933,13 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
 
-        private void Pen_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = btn11;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Pen";
-        }
+        //private void Pen_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    popup_uc.PlacementTarget = btn11;
+        //    popup_uc.Placement = PlacementMode.Bottom;
+        //    popup_uc.IsOpen = true;
+        //    Header.PopupText.Text = "Pen";
+        //}
 
         private void Pen_MouseLeave(object sender, MouseEventArgs e)
         {
