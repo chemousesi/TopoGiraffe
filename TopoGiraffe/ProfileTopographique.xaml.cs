@@ -98,7 +98,7 @@ namespace TopoGiraffe
             SaveToPng(chart, "MyChart.png");
 
             iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("ISM.pdf", FileMode.Create));
+            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("test.pdf", FileMode.Create));
             doc.Open();
             iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance("./MyChart.PNG");
             jpg.Border = iTextSharp.text.Rectangle.BOX;
