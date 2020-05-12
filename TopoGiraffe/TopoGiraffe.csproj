@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\img\arrows.png" />
     <None Remove="assets\img\button.png" />
     <None Remove="assets\img\deleteAll.png" />
     <None Remove="assets\img\DeleteAllWhite.png" />
@@ -15,15 +16,19 @@
     <None Remove="assets\img\DessinCourbeWhite.png" />
     <None Remove="assets\img\download.png" />
     <None Remove="assets\img\draw.png" />
+    <None Remove="assets\img\edit-tools.png" />
     <None Remove="assets\img\Exit.png" />
     <None Remove="assets\img\export.png" />
+    <None Remove="assets\img\export1.png" />
     <None Remove="assets\img\exportT.png" />
     <None Remove="assets\img\ExportWhite.png" />
     <None Remove="assets\img\folder.png" />
     <None Remove="assets\img\gear.png" />
     <None Remove="assets\img\globe.png" />
+    <None Remove="assets\img\go-back-left-arrow.png" />
     <None Remove="assets\img\house.png" />
     <None Remove="assets\img\import.png" />
+    <None Remove="assets\img\import1.png" />
     <None Remove="assets\img\ImportWhite.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\line.png" />
@@ -33,12 +38,14 @@
     <None Remove="assets\img\Maximize.png" />
     <None Remove="assets\img\Minimize.png" />
     <None Remove="assets\img\minus.png" />
+    <None Remove="assets\img\minusgray.png" />
     <None Remove="assets\img\MinusWhite.png" />
     <None Remove="assets\img\NavBarWhite.png" />
     <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\page.png" />
     <None Remove="assets\img\Pente.png" />
     <None Remove="assets\img\plusC.png" />
+    <None Remove="assets\img\plusgray.png" />
     <None Remove="assets\img\plusSS.png" />
     <None Remove="assets\img\Pluswhite.png" />
     <None Remove="assets\img\report.png" />
@@ -48,12 +55,14 @@
     <None Remove="assets\img\save.png" />
     <None Remove="assets\img\scale.png" />
     <None Remove="assets\img\scale2.png" />
+    <None Remove="assets\img\Segmentgray.png" />
     <None Remove="assets\img\SegmentWhite.png" />
     <None Remove="assets\img\SplashScreen2.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\triangle.png" />
     <None Remove="assets\img\TriangleWhite.png" />
     <None Remove="assets\img\uiBlanc.png" />
+    <None Remove="assets\img\view.png" />
     <None Remove="assets\img\ViewWhite.png" />
     <None Remove="assets\img\visibility.png" />
     <None Remove="assets\img\zoom-in.png" />
@@ -77,14 +86,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\img\arrows.png" />
     <Resource Include="assets\img\DeleteAllWhite.png" />
+    <Resource Include="assets\img\edit-tools.png" />
+    <Resource Include="assets\img\export1.png" />
     <Resource Include="assets\img\ExportWhite.png" />
+    <Resource Include="assets\img\go-back-left-arrow.png" />
+    <Resource Include="assets\img\import1.png" />
     <Resource Include="assets\img\ImportWhite.png" />
     <Resource Include="assets\img\Localisation.png" />
+    <Resource Include="assets\img\minusgray.png" />
     <Resource Include="assets\img\MinusWhite.png" />
+    <Resource Include="assets\img\plusgray.png" />
     <Resource Include="assets\img\Pluswhite.png" />
+    <Resource Include="assets\img\Segmentgray.png" />
     <Resource Include="assets\img\SegmentWhite.png" />
     <Resource Include="assets\img\TriangleWhite.png" />
+    <Resource Include="assets\img\view.png" />
     <Resource Include="assets\img\ViewWhite.png" />
   </ItemGroup>
 

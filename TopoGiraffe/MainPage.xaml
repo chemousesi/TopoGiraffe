@@ -227,7 +227,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="337" >
-                                        <Label Margin="40 0 50 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" FontSize="16">Altitude</Label>
+                                        <Label Margin="40 0 50 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" FontSize="16">Altitude</Label>
                                         <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  
                                                  VerticalAlignment="Top" Height="25" Margin="105 0 40 0" Foreground="White" HorizontalAlignment="Right" Width="55" VerticalContentAlignment="Center" 
                                                  HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" MouseEnter="AltitudeBox_MouseEnter" MouseLeave="AltitudeBox_MouseLeave"  >
@@ -237,14 +237,12 @@
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <WrapPanel Width="334" DockPanel.Dock="Top"  Height="47" HorizontalAlignment="Center" Orientation="Horizontal" >
-                                        <Button x:Name="ZoomIn"  HorizontalAlignment="Left" Background="{x:Null}" Width="60" Height="50" Margin="60,0,40,0"  
+                                        <Button x:Name="ZoomIn"  HorizontalAlignment="Left" Background="{DynamicResource Plus}" Width="60" Height="50" Margin="60,0,40,0"  
                                                 BorderBrush="{x:Null}" BorderThickness="0"  Click="ZoomIn_Click"  >
-                                            <Image Source="/assets/img/Pluswhite.png" Opacity=".5"/>
 
                                         </Button>
-                                        <Button x:Name="ZoomOut" Width="60" Height="50" Margin="57,0,0,0"  HorizontalAlignment="Right" Background="{x:Null}"
+                                        <Button x:Name="ZoomOut" Width="60" Height="50" Margin="57,0,0,0"  HorizontalAlignment="Right" Background="{DynamicResource Minus}"
                                                 Click="ZoomOut_Click" BorderBrush="{x:Null}" BorderThickness="0">
-                                            <Image Source="/assets/img/MinusWhite.png" Opacity=".5" />
 
                                         </Button>
 
@@ -261,7 +259,7 @@
                                 <DockPanel  VerticalAlignment="Center" Height="195" Margin="0,-44,0,0">
 
                                     <DockPanel DockPanel.Dock="Top" Height="80">
-                                        <Label Margin="40 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" FontSize="16" >Largeur</Label>
+                                        <Label Margin="40 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" FontSize="16" >Largeur</Label>
                                         <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"
                                                  Foreground="White"
                                                  VerticalAlignment="Bottom" Height="25" Width="50" HorizontalAlignment="Right" Margin="40 0" VerticalContentAlignment="Center" 
@@ -295,13 +293,12 @@
                     <Grid Grid.Column="1"  >
                         <StackPanel Background="#454F56" Opacity=".3" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Top"
                                     Margin="0 30 20 0" >
-                            <Button  x:Name="display" Width="60" Height="54" Background="{x:Null}"  BorderBrush="{x:Null}" 
+                            <Button  x:Name="display" Width="60" Height="54" Background="{DynamicResource View}"  BorderBrush="{x:Null}" 
                                 BorderThickness="0" Click="display_Click" MouseEnter="display_MouseEnter" MouseLeave="display_MouseLeave"  >
-                                <Image Source="/assets/img/ViewWhite.png" Width="26" Height="28" Margin="0"/>
+                                
                             </Button>
-                            <Button  x:Name="import" Width="60" Height="54" Background="{x:Null}"  BorderBrush="{x:Null}"
+                            <Button  x:Name="import" Width="60" Height="54" Background="{DynamicResource Import}"  BorderBrush="{x:Null}"
                                 BorderThickness="0"  Click="import_Click" MouseEnter="Import_MouseEnter" MouseLeave="Import_MouseLeave"  >
-                                <Image Source="/assets/img/ImportWhite.png" Width="26" Height="28" Margin="0" />
                             </Button>
 
                         </StackPanel>

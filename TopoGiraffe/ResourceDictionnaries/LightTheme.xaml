@@ -14,17 +14,17 @@ ImageSource="/assets/img/navigation.png" >
 
     <ImageBrush x:Key="Navigation" TileMode="None"
      ViewportUnits="Absolute" Viewport="20 20 20 20"
-     ImageSource="/assets/img/navigation.png" >
+     ImageSource="/assets/img/arrows.png" >
     </ImageBrush>
   
   <ImageBrush x:Key="Zoom" TileMode="None"
    ViewportUnits="Absolute" Viewport="20 20 20 20"
-   ImageSource="/assets/img/zoom.png" >
+   ImageSource="/assets/img/zoom-in.png" >
   </ImageBrush>
   
   <ImageBrush x:Key="Segment" TileMode="None"
    ViewportUnits="Absolute" Viewport="30 20 20 20"
-   ImageSource="/assets/img/SegmentWhite.png" >
+   ImageSource="/assets/img/Segmentgray.png" >
   </ImageBrush>
   
   <ImageBrush x:Key="Point" TileMode="None"
@@ -33,13 +33,37 @@ ImageSource="/assets/img/navigation.png" >
   </ImageBrush>
   <ImageBrush x:Key="Dessiner" TileMode="None"
  ViewportUnits="Absolute" Viewport="20 20 20 20"
- ImageSource="/assets/img/DessinCourbeWhite.png" >
+ ImageSource="/assets/img/edit-tools.png" >
   </ImageBrush>
   <ImageBrush x:Key="DeletePrevious" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
-ImageSource="/assets/img/ReturnBackWhite.png" >
+ImageSource="/assets/img/deletePrevious.png" >
   </ImageBrush>
 
+    <ImageBrush x:Key="Export" TileMode="None"
+ViewportUnits="Absolute" Viewport="20 20 20 20"
+ImageSource= "/assets/img/export1.png" >
+    </ImageBrush>
+    <ImageBrush x:Key="Import" TileMode="None"
+ViewportUnits="Absolute" Viewport="20 20 20 20"
+ImageSource= "/assets/img/import1.png" >
+    </ImageBrush>
+    <ImageBrush x:Key="View" TileMode="None"
+ViewportUnits="Absolute" Viewport="20 20 20 20"
+ImageSource= "/assets/img/view.png" >
+    </ImageBrush>
+    <ImageBrush x:Key="Plus" TileMode="None"
+ViewportUnits="Absolute" Viewport="20 20 20 20"
+ImageSource= "/assets/img/plusgray.png" >
+    </ImageBrush>
+    <ImageBrush x:Key="Minus" TileMode="None"
+ViewportUnits="Absolute" Viewport="20 20 20 20"
+ImageSource= "/assets/img/minusgray.png" >
+    </ImageBrush>
+
+    <Style TargetType="Label" x:Key="LabelStyle" >
+    <Setter Property="Foreground" Value="Black"/>
+  </Style>
 
 
 
