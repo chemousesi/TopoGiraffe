@@ -9,6 +9,8 @@ ImageSource="/assets/img/page.png" >
     <SolidColorBrush x:Key="SideColor" Color="#4a4b52"/>
     <SolidColorBrush x:Key="SliderColor" Color="#E76F51" />
     <SolidColorBrush x:Key="ForegroundColor" Color="White"/>
+    <SolidColorBrush x:Key="TextBox" Color="White"/>
+
 
     <ImageBrush x:Key="Navigation" TileMode="None"
     ViewportUnits="Absolute" Viewport="20 20 20 20"
@@ -61,6 +63,31 @@ ImageSource= "/assets/img/MinusWhite.png" >
     <Style TargetType="Label" x:Key="LabelStyle" >
     <Setter Property="Foreground" Value="White"/>
   </Style>
- 
+
+    <Style TargetType="StackPanel" x:Key="StackPanel" >
+        <Setter Property="Background" Value="#454F56"/>
+        <Setter Property="Opacity"  Value="0.3"  />
+    </Style>
+    <Style TargetType="TextBox" x:Key="textBox" >
+        <Setter Property="Foreground" Value="White"/>
+
+    </Style>
+    <Style TargetType="Label" x:Key="ModeLabel" >
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Content" Value="Mode Sombre"/>
+
+
+    </Style>
+    <Style TargetType="Grid" x:Key="Grid" >
+        <Setter Property="Background" Value="#28272b"/>
+      
+
+
+    </Style>
+
+
+
+
+
 
 </ResourceDictionary>

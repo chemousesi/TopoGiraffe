@@ -11,6 +11,7 @@ ImageSource="/assets/img/navigation.png" >
     <SolidColorBrush x:Key="SideColor" Color="#e6e8e6"/>
     <SolidColorBrush x:Key="SliderColor" Color="#E63946"/>
     <SolidColorBrush x:Key="ForegroundColor" Color="Black"/>
+    <SolidColorBrush x:Key="TextBox" Color="Black"/>
 
     <ImageBrush x:Key="Navigation" TileMode="None"
      ViewportUnits="Absolute" Viewport="20 20 20 20"
@@ -46,7 +47,7 @@ ImageSource= "/assets/img/export1.png" >
     </ImageBrush>
     <ImageBrush x:Key="Import" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
-ImageSource= "/assets/img/import1.png" >
+ImageSource= "/assets/img/import.png" >
     </ImageBrush>
     <ImageBrush x:Key="View" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
@@ -60,10 +61,30 @@ ImageSource= "/assets/img/plusgray.png" >
 ViewportUnits="Absolute" Viewport="20 20 20 20"
 ImageSource= "/assets/img/minusgray.png" >
     </ImageBrush>
-
     <Style TargetType="Label" x:Key="LabelStyle" >
-    <Setter Property="Foreground" Value="Black"/>
-  </Style>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="StackPanel" >
+        <Setter Property="Background" Value="#E5E5E5"/>
+        <Setter Property="Opacity"  Value="0.9"  />
+    </Style>
+    <Style TargetType="Label" x:Key="ModeLabel" >
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Content" Value="Mode Clair"/>
+
+
+    </Style>
+    <Style TargetType="Grid" x:Key="Grid" >
+        <Setter Property="Background" Value="#14213D"/>
+
+
+
+    </Style>
+
+
+
+
 
 
 

@@ -1021,10 +1021,7 @@ namespace TopoGiraffe
             finalCtrlPoint = false;
             // EditPolyline = courbeActuelle;
 
-            this.Resources.Clear();
-            this.Resources.MergedDictionaries.Clear();
-
-            AddResourceDictionary("ResourceDictionnaries/LightTheme.xaml");
+           
             //this.NavigationService.Refresh();
         }
 
@@ -1965,6 +1962,9 @@ namespace TopoGiraffe
             //SauvgardePage pg = new SauvgardePage();
 
             //this.Content = pg;
+           
+           
+
             this.NavigationService.Navigate(new SauvgardePage(curves, this));
 
             /* _mainFrame.Content = new SauvgardePage(); */
@@ -2261,7 +2261,24 @@ namespace TopoGiraffe
         }
         private void AddResourceDictionary(string src)
         {
-            this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
+            Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Resources.Clear();
+            Resources.MergedDictionaries.Clear();
+
+            AddResourceDictionary("ResourceDictionnaries/LightTheme.xaml");
+           
+        }
+        
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Resources.Clear();
+            Resources.MergedDictionaries.Clear();
+
+            AddResourceDictionary("ResourceDictionnaries/DarkTheme.xaml");
         }
 
         //methode de calcul de pente

@@ -13,7 +13,10 @@
      >
 
     <Page.Resources>
-        <Style x:Key="FocusVisual">
+
+        <ResourceDictionary Source="/ResourceDictionnaries/LightTheme.xaml"/>
+
+        <!--<Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate>
@@ -342,7 +345,8 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
+
     </Page.Resources>
 
     <Grid>
@@ -352,7 +356,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" Background="#28272b" >
+            <Grid Grid.Column="0" Style="{DynamicResource Grid}" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>
