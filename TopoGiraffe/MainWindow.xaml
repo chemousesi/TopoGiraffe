@@ -42,7 +42,12 @@
             <ImageBrush x:Key="Close_inact"  ImageSource="./assets/img/Exit.png" />
             <ImageBrush x:Key="Min_inact" ImageSource="./assets/img/Minimize.png"  />
             <ImageBrush x:Key="Max_inact" ImageSource="./assets/img/Maximize.png"  />
-   
+            <ImageBrush x:Key="Close_act" ImageSource="./assets/img/Exit.png"  />
+            <ImageBrush x:Key="Min_act" ImageSource="./assets/img/Minimize.png"  />
+            <ImageBrush x:Key="Max_act" ImageSource="./assets/img/Maximize.png"  />
+            <ImageBrush x:Key="Close_pr" ImageSource="./assets/img/Exit.png"  />
+            <ImageBrush x:Key="Min_pr" ImageSource="./assets/img/Minimize.png"  />
+            <ImageBrush x:Key="Max_pr" ImageSource="./assets/img/Maximize.png"  />
         </Grid.Resources>
 
         <Frame x:Name="mainFrame" Source="/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
