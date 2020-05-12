@@ -47,7 +47,7 @@ ImageSource= "/assets/img/export1.png" >
     </ImageBrush>
     <ImageBrush x:Key="Import" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
-ImageSource= "/assets/img/import.png" >
+ImageSource= "/assets/img/import1.png" >
     </ImageBrush>
     <ImageBrush x:Key="View" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
@@ -70,7 +70,7 @@ ImageSource= "/assets/img/DeleteAllGray.png" >
     </Style>
 
     <Style TargetType="StackPanel" x:Key="StackPanel" >
-        <Setter Property="Background" Value="#E5E5E5"/>
+        <Setter Property="Background" Value="#d4d4d4"/>
         <Setter Property="Opacity"  Value="0.9"  />
     </Style>
     <Style TargetType="Label" x:Key="ModeLabel" >

@@ -1255,6 +1255,8 @@ namespace TopoGiraffe
 
             if (mainScale != null)
             {
+                pente = CalcPente(PenteIntersectionPoints, mainScale);
+                pente = (double)System.Math.Round(pente, 3);
                 String penteText = " la pente est de   :" + pente.ToString() + " % ";
                 ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale, penteText);
                 profile.Show();
@@ -1998,7 +2000,18 @@ namespace TopoGiraffe
 
             itm2 = this.DeSerialize();
             String penteText = " la pente est de   :" + pente.ToString() + " % ";
-            IntersectionPoints = itm2[itm2.Count()-1] ;
+            
+            try
+            {
+                IntersectionPoints = itm2[itm2.Count() - 1];
+            }catch(Exception x)
+            {
+                MessageBox.Show("pas de projet importer");
+            }
+            if (mainScale != null)
+            {
+                CalcPente(IntersectionPoints, mainScale);
+            }
             distances();
 
             try
