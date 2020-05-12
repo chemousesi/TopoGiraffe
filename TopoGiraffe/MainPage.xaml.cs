@@ -1256,7 +1256,7 @@ namespace TopoGiraffe
             if (mainScale != null)
             {
                 pente = CalcPente(PenteIntersectionPoints, mainScale);
-                pente = (double)System.Math.Round(pente, 2);
+                pente = (double)System.Math.Round(pente, 3);
                 String penteText = " la pente est de   :" + pente.ToString() + " % ";
                 ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale, penteText);
                 profile.Show();
