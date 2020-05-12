@@ -111,6 +111,7 @@ namespace TopoGiraffe
 
 
             doc.Close();
+            Export.IsEnabled = false;
         }
     }
 }

@@ -160,7 +160,7 @@
                         <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" 
                             MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="0" RenderTransformOrigin="0.498,0.517" Grid.ColumnSpan="3" Grid.RowSpan="2">
                             <Canvas.Background>
-                                <SolidColorBrush Color="#FFFFFF" Opacity=".6"  />
+                                <SolidColorBrush Color="#FFFFFF" Opacity=".4"  />
                             </Canvas.Background>
                             <Canvas.BitmapEffect>
                                 <DropShadowBitmapEffect Color="#E5E5E5" ShadowDepth=".2" Softness=".3" Direction="-90" >
@@ -269,7 +269,25 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Plan" Background="{DynamicResource SideColor}" Margin="72,0,-165,0" Foreground="Gray" BorderBrush="Transparent" BorderThickness="0" />
+                    <TabItem Header="Plan" Background="{DynamicResource SideColor}" Margin="72,0,-165,0" Foreground="Gray" BorderBrush="Transparent" BorderThickness="0" >
+                        <Grid>
+                            <Label  Name="label1" Margin="45,50,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1" 
+                                    Content="Equidistance"/>
+                            <Label  Name="label2" Margin="45,115,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1"
+                                    Content=" AltitudeMax"/>
+                            <Label  Name="label3" Margin="45,183,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1"
+                                    Content="AltitudeMin"/>
+                            <Label Name="label4" Margin="45,250,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1" 
+                                   Content="EchelleOnField"/>
+                            <Label Name="label5" Margin="45,316,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1" 
+                                   Content="EcheleOnCanvas"/>
+                            <TextBox Text="Altitude :" TextWrapping="Wrap" Width="120"  Margin="47,384,164,143"/>
+                            <TextBox x:Name="texyboxalt" Text="" TextWrapping="Wrap"  Margin="128,384,137,143"/>
+                            <TextBox Text="Type de courbe :" TextWrapping="Wrap" Width="120" Margin="47,442,164,85"/>
+                            <TextBox x:Name="TextBoxtype" Text="" TextWrapping="Wrap" Margin="154,442,111,85"/>
+
+                        </Grid>
+                    </TabItem>
                 </TabControl>
             </Grid>
 

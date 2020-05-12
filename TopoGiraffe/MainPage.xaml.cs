@@ -1541,6 +1541,9 @@ namespace TopoGiraffe
                     AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
                     ThickSlider.Value = 2;
                     Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+                    label1.Content = Equidistance.ToString();
+                    label2.Content = AltitudeMax.ToString();
+                    label3.Content = AltitudeMin.ToString();
                 }
                 catch(Exception ecp )
                 {
@@ -1554,6 +1557,9 @@ namespace TopoGiraffe
                     AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
                     ThickSlider.Value = 2;
                     Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+                    label1.Content = Equidistance.ToString();
+                    label2.Content = AltitudeMax.ToString();
+                    label3.Content = AltitudeMin.ToString();
 
                 }
 
@@ -1571,7 +1577,11 @@ namespace TopoGiraffe
                     mainScale = new Echelle(1,1);
                 }
 
-
+                string s = "E04";
+                int scalecan = (int)mainScale.scaleDistanceOnCanvas;
+                int scaleFil = (int)mainScale.scaleDistanceOnField;
+                label4.Content = scaleFil.ToString();
+                label5.Content = scalecan.ToString();
 
 
 
