@@ -65,7 +65,7 @@
         </Grid>
         <!-- Accept or Cancel -->
         <Grid Grid.Row="2">
-            <Button Content="OK" Background="#4a4b52" Opacity="1" Padding="5,5,5,5" HorizontalAlignment="Left" IsDefault="True"  Margin="203,0,0,15" Width="98" Height="40" Click="OkButton_Click" >
+            <Button Content="OK" Background="{DynamicResource NormalBackground}" Opacity="1" Padding="5,5,5,5" HorizontalAlignment="Left" IsDefault="True"  Margin="203,0,0,15" Width="98" Height="40" Click="OkButton_Click" >
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Style.Triggers>

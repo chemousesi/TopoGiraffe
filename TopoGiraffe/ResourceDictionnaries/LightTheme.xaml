@@ -61,6 +61,10 @@ ImageSource= "/assets/img/plusgray.png" >
 ViewportUnits="Absolute" Viewport="20 20 20 20"
 ImageSource= "/assets/img/minusgray.png" >
     </ImageBrush>
+    <ImageBrush x:Key="Delete" TileMode="None"
+ViewportUnits="Absolute" Viewport="20 20 20 20"
+ImageSource= "/assets/img/DeleteAllGray.png" >
+    </ImageBrush>
     <Style TargetType="Label" x:Key="LabelStyle" >
         <Setter Property="Foreground" Value="Black"/>
     </Style>
