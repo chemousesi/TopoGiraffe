@@ -34,6 +34,7 @@
     <None Remove="assets\img\ImportWhite.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\line.png" />
+    <None Remove="assets\img\Localisation.png" />
     <None Remove="assets\img\maps2.png" />
     <None Remove="assets\img\Maximize.png" />
     <None Remove="assets\img\Minimize.png" />
@@ -115,6 +116,7 @@
     <Content Include="assets\img\line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="assets\img\Localisation.png" />
     <Resource Include="assets\img\maps2.png" />
     <Resource Include="assets\img\Maximize.png" />
     <Resource Include="assets\img\Minimize.png" />

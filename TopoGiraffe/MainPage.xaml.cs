@@ -2141,6 +2141,20 @@ namespace TopoGiraffe
             this.NavigationService.Navigate(new MapPage(this));
         }
 
+        private void Map_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_uc.PlacementTarget = mapBut;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Trouver sur la Map";
+        }
+
+        private void Map_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
+
         //methode de calcul de pente
         public double CalcPente(List<IntersectionDetail> points, Echelle sc)
         {

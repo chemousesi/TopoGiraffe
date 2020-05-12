@@ -99,6 +99,24 @@
                                    Foreground="White" Content="Profil" HorizontalContentAlignment="Center" Margin="0 5 0 0" />
                         </StackPanel>
                     </Button>
+                    <Button  x:Name="mapBut" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" MouseEnter="Map_MouseEnter" MouseLeave="Map_MouseLeave" Click="mapBut_Click"  >
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="/assets/img/Localisation.png" Width="30" Height="30" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="0"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
+                                   Foreground="White" Content="Map" HorizontalContentAlignment="Center" Margin="0 5 0 0" />
+                        </StackPanel>
+
+                    </Button>
                     <Button  x:Name="btn14" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"   >
                         <StackPanel Orientation="Vertical">
@@ -107,6 +125,7 @@
                                    Foreground="White" Content="Paramètres" HorizontalContentAlignment="Center" Margin="0 5 0 0" />
                         </StackPanel>
                     </Button>
+
                 </StackPanel>
             </Grid>
         </Grid>
@@ -128,25 +147,28 @@
                         <TranslateTransform Y="3.009"/>
                     </TransformGroup>
                 </utils:ZoomBorder.RenderTransform> -->
-                <Grid  >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="567*"/>
-                        <ColumnDefinition Width="51*"/>
-                        <ColumnDefinition Width="427*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid Margin="20 30 20 25" Background="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="567*"/>
+                            <ColumnDefinition Width="51*"/>
+                            <ColumnDefinition Width="427*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Image Margin="20 30 20 25" Name="imgPhoto" Grid.ColumnSpan="3" Grid.RowSpan="2"  />
-                    <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" 
-                            MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="20 30 20 25" RenderTransformOrigin="0.498,0.517" Grid.ColumnSpan="3" Grid.RowSpan="2" >
-                        <Canvas.Background>
-                            <SolidColorBrush Color="#FFFFFF" Opacity=".6"  />
-                        </Canvas.Background>
-                        <Canvas.BitmapEffect>
-                            <DropShadowBitmapEffect Color="#E5E5E5" ShadowDepth=".1" Softness=".2" Direction="-90" >
+                        <Image Margin="0" Name="imgPhoto" Grid.ColumnSpan="3" Grid.RowSpan="2"  />
+                        <Canvas x:Name="mainCanvas" MouseEnter="mainCanvas_MouseEnter" MouseMove="mainCanvas_MouseMove" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" 
+                            MouseRightButtonDown="mainCanvas_MouseRightButtonDown" Margin="0" RenderTransformOrigin="0.498,0.517" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                            <Canvas.Background>
+                                <SolidColorBrush Color="#FFFFFF" Opacity=".6"  />
+                            </Canvas.Background>
+                            <Canvas.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#E5E5E5" ShadowDepth=".2" Softness=".3" Direction="-90" >
 
-                            </DropShadowBitmapEffect>
-                        </Canvas.BitmapEffect>
-                    </Canvas>
+                                </DropShadowBitmapEffect>
+                            </Canvas.BitmapEffect>
+                        </Canvas>
+                    </Grid>
+                    
                 </Grid>
 
 

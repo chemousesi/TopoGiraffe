@@ -19,18 +19,18 @@
         </Grid.ColumnDefinitions>
 
 
-        <Grid Grid.Column="0" Background="#FF023788" >
+        <Grid Grid.Column="0" Background="#28272b" >
 
 
             <Grid Grid.Row="0">
-                <Button Style="{DynamicResource AccueuilBtn}" x:Name="goback"  Foreground="#FFFFFF" Height="40" Margin="10,10,-10,650" Background="#0000" BorderBrush="Transparent"
+                <Button Style="{DynamicResource AccueuilBtn}" x:Name="goback"  Foreground="#FFFFFF" Height="55" Margin="0,10,0,650" Background="#0000" BorderBrush="Transparent"
                         BorderThickness="0" HorizontalContentAlignment="Left" Click="goback_Click" >
                     <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
                         <Image Source="/assets/img/return.png" Margin="5,9" ></Image>
                         <TextBlock Text="" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button Style="{DynamicResource ExporterBtn}" x:Name="exporter" Foreground="#FFFFFF" Height="40" Background="#0000" BorderBrush="Transparent"
+                <Button Style="{DynamicResource ExporterBtn}" x:Name="exporter" Foreground="#FFFFFF" Height="55" Background="#0000" BorderBrush="Transparent"
                             BorderThickness="0" HorizontalContentAlignment="Left" Click="exporter_Click">
                     <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
                         <Image Source="/assets/img/export.png" Margin="5,9" ></Image>
