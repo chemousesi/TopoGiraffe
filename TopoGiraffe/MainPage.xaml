@@ -99,7 +99,7 @@
                         </StackPanel>
                     </Button>
                     <Button  x:Name="mapBut" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" MouseEnter="Map_MouseEnter" MouseLeave="Map_MouseLeave" Click="mapBut_Click"  >
+        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A"  Click="mapBut_Click"  >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/Localisation.png" Width="30" Height="30" RenderTransformOrigin="0.5,0.5">
                                 <Image.RenderTransform>
@@ -167,7 +167,7 @@
                             </Canvas.BitmapEffect>
                         </Canvas>
                     </Grid>
-                    
+
                 </Grid>
 
 

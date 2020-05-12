@@ -96,6 +96,9 @@ namespace TopoGiraffe
             styleCourbeCmb.SelectedIndex = 0;
 
 
+
+
+
         }
 
 
@@ -114,11 +117,17 @@ namespace TopoGiraffe
             }
             
 
-            imgPhoto.Opacity = .9;
+            imgPhoto.Opacity = .5;
             OpenInitialDialogBox();
 
 
         }
+
+
+
+
+
+
 
 
 
@@ -252,7 +261,6 @@ namespace TopoGiraffe
 
                 CourbesNiveau.Add(myCurve);
 
-            navClicked = false;
 
 
                 // styling
@@ -1564,6 +1572,12 @@ namespace TopoGiraffe
                 }
 
 
+
+
+
+
+
+
             }
 
         }
@@ -1854,7 +1868,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = display;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Afficher";
+            Header.PopupText.Text = "afficher";
         }
 
         private void display_MouseLeave(object sender, MouseEventArgs e)
@@ -1919,7 +1933,19 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
 
-       
+        //private void Pen_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    popup_uc.PlacementTarget = btn11;
+        //    popup_uc.Placement = PlacementMode.Bottom;
+        //    popup_uc.IsOpen = true;
+        //    Header.PopupText.Text = "Pen";
+        //}
+
+        private void Pen_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
 
         // --------------------------------------------------------------------------- popup fin -------------------------------------//
         // --------------------------------------------------------------------------------------------------------------------------//
@@ -2108,8 +2134,8 @@ namespace TopoGiraffe
 
         double pente;
         List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
-        //---------------------------------------------------------------------------------------- popup vol 2 ---------------------------------------
-        //--------------------------------------------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------- popup vol 2 --------------------------
+        //--------------------------------------------------------------------------------------------------------------------------------
 
         private void Nav_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -2158,9 +2184,9 @@ namespace TopoGiraffe
         private void Echelle_MouseEnter(object sender, MouseEventArgs e)
         {
             popup_uc.PlacementTarget = scaleButton;
-            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.Placement = PlacementMode.Right;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Entrer l'echelle";
+            Header.PopupText.Text = "Enter l'echelle";
         }
 
         private void Echelle_MouseLeave(object sender, MouseEventArgs e)
@@ -2174,8 +2200,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = export;
             popup_uc.Placement = PlacementMode.Right;
             popup_uc.IsOpen = true;
-
-            Header.PopupText.Text = "Exporter";
+            Header.PopupText.Text = "Importer";
         }
 
         private void EpaisseurTextBox_MouseEnter(object sender, MouseEventArgs e)
@@ -2212,8 +2237,6 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
        
-        //----------------------------------------------------------------------- popup fin ------------------------------------------------------------
-
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
 
@@ -2239,20 +2262,6 @@ namespace TopoGiraffe
         private void AddResourceDictionary(string src)
         {
             this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
-        }
-
-        private void Map_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = mapBut;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Trouver sur la Map";
-        }
-
-        private void Map_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
         }
 
         //methode de calcul de pente
@@ -2438,6 +2447,27 @@ namespace TopoGiraffe
                 }
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

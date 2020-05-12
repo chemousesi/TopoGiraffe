@@ -1,4 +1,4 @@
-﻿    <Page x:Class="TopoGiraffe.SauvgardePage"
+﻿<Page x:Class="TopoGiraffe.SauvgardePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -369,10 +369,10 @@
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                   
+
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,0,0" >
-                       
-                        
+
+
                         <Button Style="{DynamicResource NouveauBtn}"  x:Name="nouveau"  Foreground="#FFFFFF" Height="50" Background="#0000" BorderBrush="Transparent"
                             BorderThickness="0" HorizontalContentAlignment="Left" Margin="0" >
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
