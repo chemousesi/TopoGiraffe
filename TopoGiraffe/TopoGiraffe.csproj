@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="assets\img\button.png" />
     <None Remove="assets\img\deleteAll.png" />
+    <None Remove="assets\img\DeleteAllWhite.png" />
     <None Remove="assets\img\deletePrevious.png" />
     <None Remove="assets\img\DessinCourbeWhite.png" />
     <None Remove="assets\img\download.png" />
@@ -17,24 +18,29 @@
     <None Remove="assets\img\Exit.png" />
     <None Remove="assets\img\export.png" />
     <None Remove="assets\img\exportT.png" />
+    <None Remove="assets\img\ExportWhite.png" />
     <None Remove="assets\img\folder.png" />
     <None Remove="assets\img\gear.png" />
     <None Remove="assets\img\globe.png" />
     <None Remove="assets\img\house.png" />
     <None Remove="assets\img\import.png" />
+    <None Remove="assets\img\ImportWhite.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\line.png" />
+    <None Remove="assets\img\Localisation.png" />
     <None Remove="assets\img\location.png" />
     <None Remove="assets\img\maps2.png" />
     <None Remove="assets\img\Maximize.png" />
     <None Remove="assets\img\Minimize.png" />
     <None Remove="assets\img\minus.png" />
+    <None Remove="assets\img\MinusWhite.png" />
     <None Remove="assets\img\NavBarWhite.png" />
     <None Remove="assets\img\navigation.png" />
     <None Remove="assets\img\page.png" />
     <None Remove="assets\img\Pente.png" />
     <None Remove="assets\img\plusC.png" />
     <None Remove="assets\img\plusSS.png" />
+    <None Remove="assets\img\Pluswhite.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\return.png" />
     <None Remove="assets\img\ReturnBackWhite.png" />
@@ -42,12 +48,16 @@
     <None Remove="assets\img\save.png" />
     <None Remove="assets\img\scale.png" />
     <None Remove="assets\img\scale2.png" />
+    <None Remove="assets\img\SegmentWhite.png" />
     <None Remove="assets\img\SplashScreen2.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\triangle.png" />
+    <None Remove="assets\img\TriangleWhite.png" />
     <None Remove="assets\img\uiBlanc.png" />
+    <None Remove="assets\img\ViewWhite.png" />
     <None Remove="assets\img\visibility.png" />
     <None Remove="assets\img\zoom-in.png" />
+    <None Remove="assets\img\ZoomWhite.png" />
     <None Remove="draw.png" />
     <None Remove="gear.png" />
     <None Remove="import.png" />
@@ -64,6 +74,18 @@
     <None Remove="uiBlanc.png" />
     <None Remove="visibility.png" />
     <None Remove="zoom-in.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\img\DeleteAllWhite.png" />
+    <Resource Include="assets\img\ExportWhite.png" />
+    <Resource Include="assets\img\ImportWhite.png" />
+    <Resource Include="assets\img\Localisation.png" />
+    <Resource Include="assets\img\MinusWhite.png" />
+    <Resource Include="assets\img\Pluswhite.png" />
+    <Resource Include="assets\img\SegmentWhite.png" />
+    <Resource Include="assets\img\TriangleWhite.png" />
+    <Resource Include="assets\img\ViewWhite.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,7 +114,6 @@
     <Content Include="assets\img\line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="assets\img\location.png" />
     <Resource Include="assets\img\maps2.png" />
     <Resource Include="assets\img\Maximize.png" />
     <Resource Include="assets\img\Minimize.png" />
@@ -115,6 +136,7 @@
     <Resource Include="assets\img\uiBlanc.png" />
     <Resource Include="assets\img\visibility.png" />
     <Resource Include="assets\img\zoom-in.png" />
+    <Resource Include="assets\img\ZoomWhite.png" />
     <Resource Include="logo.png" />
     <Resource Include="splashScreen.png" />
   </ItemGroup>
