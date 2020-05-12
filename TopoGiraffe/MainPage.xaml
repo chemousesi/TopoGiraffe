@@ -16,7 +16,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
             </ResourceDictionary.MergedDictionaries>
+          
+
+
         </ResourceDictionary>
+      
     </Page.Resources>
 
     <Grid Cursor="Hand">
@@ -58,7 +62,7 @@
 
 
 
-        <Grid Grid.Row="1"  Background="#511845" Opacity="1" >
+        <Grid Grid.Row="1"  Background="{DynamicResource NormalBackground}" Opacity="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="65" />
                 <ColumnDefinition Width="*"/>
@@ -81,9 +85,10 @@
         BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" MouseEnter="Pente_MouseEnter" MouseLeave="Pente_MouseLeave" >
                         <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
                     </Button>
-                    <Button  x:Name="btn13" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,0,0,0" Click="btn13_Click" MouseEnter="Profil_MouseEnter" MouseLeave="Profil_MouseLeave" >
-                        <Image Source="/assets/img/report.png" Width="30" Height="30"/>
+                    <Button  x:Name="btn13" Width="90" Height="75"  Background="{DynamicResource TileBrush}"  BorderBrush="Transparent"
+        BorderThickness="0"  Margin="40,0,0,0" Click="btn13_Click" MouseEnter="Profil_MouseEnter" MouseLeave="Profil_MouseLeave" Cursor="Hand" >
+                        <Image  Source="{DynamicResource TileBrush12}" Width="30" Height="30"/>
+
                     </Button>
                     <Button  x:Name="btn14" Width="90" Height="75"  Background="{x:Null}"  BorderBrush="Transparent"
         BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"  >
@@ -104,6 +109,7 @@
                     </Button>
                 </StackPanel>
             </Grid>
+            <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="108,10,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
         </Grid>
         <Grid  Grid.Row="2">
             <Grid.ColumnDefinitions>

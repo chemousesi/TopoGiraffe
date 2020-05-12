@@ -64,6 +64,7 @@ namespace TopoGiraffe
 #pragma warning restore CS0169 // Le champ 'MainWindow.scaleLine' n'est jamais utilisé
         Boolean drawingScale = false;
         Echelle mainScale;
+       
 
 
         public MainPage()
@@ -1034,6 +1035,12 @@ namespace TopoGiraffe
             btn2Clicked = false;
             finalCtrlPoint = false;
             // EditPolyline = courbeActuelle;
+
+            this.Resources.Clear();
+            this.Resources.MergedDictionaries.Clear();
+
+            AddResourceDictionary("ResourceDictionnaries/LightTheme.xaml");
+            //this.NavigationService.Refresh();
         }
 
         int cptdebug = 0; int index2 = 0;
@@ -2244,7 +2251,7 @@ namespace TopoGiraffe
             popup_uc.Visibility = Visibility.Collapsed;
             popup_uc.IsOpen = false;
         }
-
+       
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
 
@@ -2260,6 +2267,16 @@ namespace TopoGiraffe
         private void mapBut_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new MapPage(this));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+           
+              
+        }
+        private void AddResourceDictionary(string src)
+        {
+            this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
         }
 
         //methode de calcul de pente
