@@ -126,7 +126,7 @@
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Column="2">
-                <ToggleButton Content="" HorizontalAlignment="Center" Height="24" Width="65" Margin="16,48,2,19" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"/>
+                <ToggleButton Content="" HorizontalAlignment="Center" Height="24" Width="65" Margin="16,48,2,19" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" />
             </StackPanel>
             <Label  Grid.Column="2" Style="{DynamicResource ModeLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,75,-4,0" FontSize="16"/>
         </Grid>

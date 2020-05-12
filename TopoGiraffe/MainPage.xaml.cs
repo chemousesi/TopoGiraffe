@@ -256,6 +256,7 @@ namespace TopoGiraffe
         {
             btn2Clicked = true;
             dragbool = false;
+            navClicked = false;
             Cursor = Cursors.Cross;
             CourbeNiveau myCurve = DrawNewCurve();
 
@@ -484,21 +485,9 @@ namespace TopoGiraffe
             double x = Mouse.GetPosition(mainCanvas).X;
             double y = Mouse.GetPosition(mainCanvas).Y;
             bool inter = false;
+
             object TestClicked = this.InputHitTest(e.GetPosition(this)) as FrameworkElement;//test the element we clicked on
-            if (TestClicked is Polyline)
-            {
-                foreach (CourbeNiveau courbe in CourbesNiveau)
-                {
-
-                    if (courbe.polyline.Equals((Polyline)TestClicked))
-                    {
-                        courbeActuelle = courbe;
-
-                    }
-
-
-                }
-            }
+          
 
             if (btn2Clicked == true)
             {
@@ -694,6 +683,20 @@ namespace TopoGiraffe
             }
             else if (navClicked == true)
             {
+                if (TestClicked is Polyline)
+                {
+                    foreach (CourbeNiveau courbe in CourbesNiveau)
+                    {
+
+                        if (courbe.polyline.Equals((Polyline)TestClicked))
+
+                            courbeActuelle = courbe;
+
+                    }
+
+
+                }
+
                 if (TestClicked != null)
                 {
                     if (TestClicked is Polyline || TestClicked is Ellipse)
