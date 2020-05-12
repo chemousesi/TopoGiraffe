@@ -1,16 +1,10 @@
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
-using TopoGiraffe.Noyau;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-using System.Windows.Controls.Primitives;
 
 #pragma warning disable CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
 #pragma warning restore CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
@@ -66,20 +60,20 @@ namespace TopoGiraffe
             }
         }
 
-      
+
 
         public void goback_Click(object sender, RoutedEventArgs e)
         {
 
 
-           this.NavigationService.Navigate(_mainPage);
+            this.NavigationService.Navigate(_mainPage);
 
         }
 
         private void enregistrerSous_Click(object sender, RoutedEventArgs e)
         {
             saveFile();
-           // MainWindow .saveFile()
+            // MainWindow .saveFile()
         }
     }
 }

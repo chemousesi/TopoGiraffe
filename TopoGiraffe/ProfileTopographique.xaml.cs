@@ -1,17 +1,15 @@
-﻿using LiveCharts;
+﻿using iTextSharp.text.pdf;
+using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection.Metadata;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TopoGiraffe.Noyau;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.Windows.Controls;
 
 namespace TopoGiraffe
 {
@@ -98,7 +96,7 @@ namespace TopoGiraffe
             SaveToPng(chart, "MyChart.png");
 
             iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("ISM.pdf", FileMode.Create));
+            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("test.pdf", FileMode.Create));
             doc.Open();
             iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance("./MyChart.PNG");
             jpg.Border = iTextSharp.text.Rectangle.BOX;
@@ -111,7 +109,7 @@ namespace TopoGiraffe
 
 
 
-            
+
             doc.Close();
         }
     }
