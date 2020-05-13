@@ -13,6 +13,7 @@
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       FontFamily="arial"
       Background="#454F56"
+       
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1500"
       Title="MainPage"

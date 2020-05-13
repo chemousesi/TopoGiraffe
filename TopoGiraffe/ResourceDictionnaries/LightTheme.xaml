@@ -90,19 +90,26 @@ ImageSource= "/assets/img/DeleteAllGray.png" >
 ViewportUnits="Absolute" Viewport="120 52 20 20"
 ImageSource= "/assets/img/Light.png" >
     </ImageBrush>
-    <Style TargetType="lvc:CartesianChart">
+    <!--<Style TargetType="lvc:CartesianChart">
         <Setter Property="AnimationsSpeed" Value="0:0:0.5"></Setter>
         <Setter Property="SeriesColors" Value="{StaticResource ColorsCollection11}"/>
         <Setter Property="Background" Value="#F2F5FD"/>
         <Setter Property="BorderBrush" Value="#F2F5FD"/>
     </Style>
+    <Style TargetType="lvc:Separator">
+        <Setter Property="Stroke" Value="BlueViolet"/>
+        <Setter Property="StrokeThickness" Value="1.5"/>
+        <Setter Property="StrokeDashArray" Value="4"/>
+    </Style>
+    <Style TargetType="lvc:Axis">
+        <Setter Property="IsMerged" Value="True"></Setter>
 
+    </Style>-->
     <lvc:ColorsCollection x:Key="ColorsCollection11">
         <Color A="255" R="230" G="57" B="70" />
 
     </lvc:ColorsCollection>
-
-
+    
 
 
 
