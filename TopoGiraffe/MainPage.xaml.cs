@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using TopoGiraffe.Noyau;
 using TopoSurf.MessageBoxStyle;
 using TopoGiraffe.Exceptions;
+using System.Runtime.Serialization;
 
 namespace TopoGiraffe
 {
@@ -1543,9 +1544,9 @@ namespace TopoGiraffe
                     AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
                     ThickSlider.Value = 2;
                     Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
-                    label1.Content = Equidistance.ToString();
-                    label2.Content = AltitudeMax.ToString();
-                    label3.Content = AltitudeMin.ToString();
+                    equidistance.Text = Equidistance.ToString();
+                    altitudeMax.Text = AltitudeMax.ToString();
+                    altMin.Text = AltitudeMin.ToString();
                 }
                 catch(Exception ecp )
                 {
@@ -1559,9 +1560,8 @@ namespace TopoGiraffe
                     AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
                     ThickSlider.Value = 2;
                     Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
-                    label1.Content = Equidistance.ToString();
-                    label2.Content = AltitudeMax.ToString();
-                    label3.Content = AltitudeMin.ToString();
+                    altitudeMax.Text = AltitudeMax.ToString();
+                    altMin.Text = AltitudeMin.ToString();
 
                 }
 
@@ -1582,8 +1582,8 @@ namespace TopoGiraffe
                 string s = "E04";
                 int scalecan = (int)mainScale.scaleDistanceOnCanvas;
                 int scaleFil = (int)mainScale.scaleDistanceOnField;
-                label4.Content = scaleFil.ToString();
-                label5.Content = scalecan.ToString();
+               echelleOnField.Text = scaleFil.ToString();
+               echelleOnCanvas.Text = scalecan.ToString();
 
 
 
@@ -1638,7 +1638,7 @@ namespace TopoGiraffe
             }
             else
             {
-                throw new ErreurDeSaisieException("Erreur dans a saisie ");
+                //throw new ErreurDeSaisieException("Erreur dans a saisie ");
             }
 
             return Courbe;
@@ -2295,16 +2295,19 @@ namespace TopoGiraffe
             Resources.Clear();
             Resources.MergedDictionaries.Clear();
 
-            AddResourceDictionary("ResourceDictionnaries/LightTheme.xaml");
-           
+            AddResourceDictionary("ResourceDictionnaries/DarkTheme.xaml");
+
+
+
         }
-        
+
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             Resources.Clear();
             Resources.MergedDictionaries.Clear();
 
-            AddResourceDictionary("ResourceDictionnaries/DarkTheme.xaml");
+            AddResourceDictionary("ResourceDictionnaries/LightTheme.xaml");
+
         }
 
         //methode de calcul de pente
@@ -2364,7 +2367,7 @@ namespace TopoGiraffe
 
         Boolean drawPointsClicked = false;
 
-
+        public SerializationInfo BaseUri { get; private set; }
 
         private void drawPoint_Clicked(object sender, RoutedEventArgs e)
         // this method is when the trianngle button is clicked, it puts all other options to false, except the one for drawing the point

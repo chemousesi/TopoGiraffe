@@ -64,6 +64,12 @@ ImageSource= "/assets/img/MinusWhite.png" >
 ViewportUnits="Absolute" Viewport="20 20 20 20"
 ImageSource= "/assets/img/DeleteAllWhite.png" >
     </ImageBrush>
+    <ImageBrush x:Key="Img" TileMode="None"
+ViewportUnits="Absolute" Viewport="120 52 20 20"
+ImageSource= "/assets/img/Night.png" >
+    </ImageBrush>
+
+
     <Style TargetType="Label" x:Key="LabelStyle" >
     <Setter Property="Foreground" Value="White"/>
   </Style>

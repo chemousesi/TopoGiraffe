@@ -125,8 +125,8 @@
 
                 </StackPanel>
             </Grid>
-            <StackPanel Grid.Column="2">
-                <ToggleButton Content="" HorizontalAlignment="Center" Height="24" Width="65" Margin="16,48,2,19" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" />
+            <StackPanel Grid.Column="2" Background="{DynamicResource Img}">
+                <ToggleButton Content="" HorizontalAlignment="Center" Height="29" Width="94" Margin="16,48,2,19" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" FlowDirection="LeftToRight" Grid.IsSharedSizeScope="True" Foreground="#FF1BBA1D" Background="#FF4FDC22" ScrollViewer.HorizontalScrollBarVisibility="Visible" />
             </StackPanel>
             <Label  Grid.Column="2" Style="{DynamicResource ModeLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,75,-4,0" FontSize="16"/>
         </Grid>
@@ -184,66 +184,67 @@
 
                 </Grid.RowDefinitions>
 
-                <TabControl Background="{DynamicResource SideColor}" SelectionChanged="TabControl_SelectionChanged" Margin="0,30,0,0" RenderTransformOrigin="0.5,0.5" BorderBrush="Transparent" BorderThickness="0">
+                <TabControl Background="{DynamicResource SideColor}" SelectionChanged="TabControl_SelectionChanged" Margin="0,10,0,0" RenderTransformOrigin="0.5,0.5" BorderBrush="Transparent" BorderThickness="0">
 
                     <TabItem Header="Courbe" RenderTransformOrigin="0.505,0.548" Foreground="Gray" Margin="0,0,-83,0" BorderBrush="Transparent" BorderThickness="0" Background="{DynamicResource SideColor}" Height="40">
-                        <Grid Height="550">
+                        <Grid Height="686">
                             <Grid.RowDefinitions>
-                                <RowDefinition  Height="0*" />
-                                <RowDefinition Height="90*"/>
-                                <RowDefinition Height="87*"/>
+                                <RowDefinition Height="55*"/>
+                                <RowDefinition Height="55*" />
+                                <RowDefinition Height="65*"/>
+                                <RowDefinition Height="74*"/>
 
-                                <RowDefinition Height="108*"/>
+
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="1">
-                                <StackPanel  VerticalAlignment="Top" Height="410" Margin="0,25,0,0"  Grid.RowSpan="3" >
+                            <Grid Grid.Row="0">
 
-                                    <StackPanel VerticalAlignment="Center">
-                                        <ComboBox x:Name="styleCourbeCmb" Width="250" Height="50" Margin="40,0,40,0" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"
-                                              materialDesign:HintAssist.Hint="Choisir un type de courbe" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                <StackPanel VerticalAlignment="Center" Margin="0,-28,0,8">
+                                    <ComboBox x:Name="styleCourbeCmb" Width="250" Height="50" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"
+                                              wpf:HintAssist.Hint="Choisir un type de courbe" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
                                               Foreground="{DynamicResource TextBox}" FontSize="15"
-                                              SelectionChanged="styleCourbeCmb_SelectionChanged" MouseEnter="TypeCourbe_MouseEnter" MouseLeave="TypeCourbe_MouseLeave"
-                                              HorizontalAlignment="Center" VerticalContentAlignment="Top">
-                                            <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" >Courbe simple</ComboBoxItem>
-                                            <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" >Courbe intermediare</ComboBoxItem>
-                                            <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" >Courbe Maitresse</ComboBoxItem>
-                                        </ComboBox>
-                                    </StackPanel>
-                                    <StackPanel Margin="0">
-                                        <TextBlock Text="Choisir une couleur" Margin="40,25,40,5" Foreground="{DynamicResource TextBox}" FontSize="15"/>
-                                        <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="18">
-                                            <xctk1:ColorPicker Name="cp" Margin="40,3,40,5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" 
+                                              SelectionChanged="styleCourbeCmb_SelectionChanged" MouseEnter="TypeCourbe_MouseEnter" MouseLeave="TypeCourbe_MouseLeave" VerticalContentAlignment="Top" Margin="0,5,0,0">
+                                        <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" Content="Courbe simple" />
+                                        <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" Content="Courbe intermediare" />
+                                        <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" Content="Courbe Maitresse" />
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Margin="0">
+                                    <TextBlock Text="Choisir une couleur" Margin="40,25,40,5" Foreground="{DynamicResource TextBox}" FontSize="15"/>
+                                    <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="18">
+                                        <xctk1:ColorPicker Name="cp" Margin="40,3,40,5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" 
                                                        AvailableColorsSortingMode="HueSaturationBrightness" MouseEnter="ColorPicker_MouseEnter" MouseLeave="ColorPicker_MouseLeave"
                                                        materialDesign:HintAssist.Hint="Choisissez la couleur de la courbe"   
                                                         />
-                                        </Border>
+                                    </Border>
 
-                                    </StackPanel>
                                 </StackPanel>
                             </Grid>
+
                             <Grid Grid.Row="2">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
+
                                 </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="337" >
-                                        <Label Margin="40 0 50 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" FontSize="16">Altitude</Label>
-                                        <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  
-                                                 VerticalAlignment="Top" Height="25" Margin="105 0 40 0" Foreground="{DynamicResource TextBox}" HorizontalAlignment="Right" Width="55" VerticalContentAlignment="Center" 
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="337" Grid.Row="0" >
+                                    <Label Margin="40 0 50 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" FontSize="16">Altitude</Label>
+                                    <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  
+                                                 VerticalAlignment="Top" Height="25" Margin="91,0,39,0" Foreground="{DynamicResource TextBox}" HorizontalAlignment="Right" Width="50" VerticalContentAlignment="Center" 
                                                  HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" MouseEnter="AltitudeBox_MouseEnter" MouseLeave="AltitudeBox_MouseLeave"  />
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Row="1">
-                                    <WrapPanel Width="334" DockPanel.Dock="Top"  Height="47" HorizontalAlignment="Center" Orientation="Horizontal" >
-                                        <Button x:Name="ZoomIn"  HorizontalAlignment="Left" Background="{DynamicResource Plus}" Width="60" Height="50" Margin="60,0,40,0"  
+                                </StackPanel>
+
+
+                                <WrapPanel Grid.Row="1" Width="334" DockPanel.Dock="Top"  Height="47" HorizontalAlignment="Center" Orientation="Horizontal" >
+                                    <Button x:Name="ZoomIn"  HorizontalAlignment="Left" Background="{DynamicResource Plus}" Width="60" Height="50" Margin="60,0,40,0"  
                                                 BorderBrush="{x:Null}" BorderThickness="0"  Click="ZoomIn_Click"  />
-                                        <Button x:Name="ZoomOut" Width="60" Height="50" Margin="57,0,0,0"  HorizontalAlignment="Right" Background="{DynamicResource Minus}"
+                                    <Button x:Name="ZoomOut" Width="60" Height="50" Margin="57,0,0,0"  HorizontalAlignment="Right" Background="{DynamicResource Minus}"
                                                 Click="ZoomOut_Click" BorderBrush="{x:Null}" BorderThickness="0"/>
 
-                                    </WrapPanel>
-                                </Grid>
+                                </WrapPanel>
+
                                 <Grid Grid.Row="2">
                                     <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="150"  
                                              ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="30"
@@ -251,11 +252,11 @@
                                              />
                                 </Grid>
                             </Grid>
-                            <Grid Grid.Row="3">
-                                <DockPanel  VerticalAlignment="Center" Height="195" Margin="0,-44,0,0">
+                            <Grid Grid.Row="3" Margin="0,0,0,7">
+                                <DockPanel  VerticalAlignment="Top" Height="150" Margin="0,23,0,0">
 
-                                    <DockPanel DockPanel.Dock="Top" Height="80">
-                                        <Label Margin="40 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" FontSize="16" >Largeur</Label>
+                                    <DockPanel DockPanel.Dock="Top" Height="61" Margin="0,0,0,17">
+                                        <Label Margin="40 0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" FontSize="16" Content="Epaisseur" />
                                         <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"
                                                  Foreground="{DynamicResource TextBox}"
                                                  VerticalAlignment="Bottom" Height="25" Width="50" HorizontalAlignment="Right" Margin="40 0" VerticalContentAlignment="Center" 
@@ -266,25 +267,60 @@
                                         Height="25" Foreground="{DynamicResource SliderColor}" MouseEnter="Epaisseur_MouseEnter" MouseLeave="Epaisseur_MouseLeave" />
                                 </DockPanel>
                             </Grid>
+
+
+
                         </Grid>
                     </TabItem>
 
                     <TabItem Header="Plan" Background="{DynamicResource SideColor}" Margin="72,0,-165,0" Foreground="Gray" BorderBrush="Transparent" BorderThickness="0" >
-                        <Grid>
-                            <Label  Name="label1" Margin="45,50,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1" 
-                                    Content="Equidistance"/>
-                            <Label  Name="label2" Margin="45,115,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1"
-                                    Content=" AltitudeMax"/>
-                            <Label  Name="label3" Margin="45,183,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1"
-                                    Content="AltitudeMin"/>
-                            <Label Name="label4" Margin="45,250,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1" 
-                                   Content="EchelleOnField"/>
-                            <Label Name="label5" Margin="45,316,45,0" VerticalAlignment="Top" Height="38" Background="{DynamicResource MaterialDesignCheckBoxDisabled}" BorderBrush="Black" BorderThickness="1" 
-                                   Content="EcheleOnCanvas"/>
-                            <TextBox Text="Altitude :" TextWrapping="Wrap" Width="120"  Margin="47,384,164,143"/>
-                            <TextBox x:Name="texyboxalt" Text="" TextWrapping="Wrap"  Margin="128,384,137,143"/>
-                            <TextBox Text="Type de courbe :" TextWrapping="Wrap" Width="120" Margin="47,442,164,85"/>
-                            <TextBox x:Name="TextBoxtype" Text="" TextWrapping="Wrap" Margin="154,442,111,85"/>
+                        <Grid Margin="0,52,0,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                               
+
+                            </Grid.RowDefinitions>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="334" Height="40" >
+
+                                <TextBox x:Name="equidistance" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=Equidistance, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}"  Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+
+                                <Label Content="Equidistance (m)" Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
+                            </StackPanel >
+
+                            <StackPanel  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="334">
+
+                                <TextBox x:Name="altitudeMax" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=AltitudeMax, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+
+                                <Label Content="Altitude Max (m)" Height="40" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
+                            </StackPanel>
+
+                            <StackPanel  Grid.Row="2" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center" Width="333">
+
+                                <TextBox x:Name="altMin" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=AltitudeMin, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+
+                                <Label Content="Altitude Min (m)" Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
+                            </StackPanel>
+
+                            <StackPanel  Grid.Row="3" Height="40" Margin="0,0,-1,2" Grid.RowSpan="1">
+
+                                <TextBox x:Name="echelleOnField" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=echelleOnField, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+
+                                <Label Content="Echelle en (m)" Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
+                            </StackPanel>
+
+                            <StackPanel  Grid.Row="4" Height="40">
+
+
+                                <TextBox x:Name="echelleOnCanvas" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=echelleOnCanvas, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+
+                                <Label Content="Echelle en px " Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center"/>
+                            </StackPanel>
+                           
+
 
                         </Grid>
                     </TabItem>

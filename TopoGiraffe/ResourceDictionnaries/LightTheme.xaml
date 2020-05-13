@@ -82,9 +82,11 @@ ImageSource= "/assets/img/DeleteAllGray.png" >
     <Style TargetType="Grid" x:Key="Grid" >
         <Setter Property="Background" Value="#14213D"/>
 
-
-
     </Style>
+    <ImageBrush x:Key="Img" TileMode="None"
+ViewportUnits="Absolute" Viewport="120 52 20 20"
+ImageSource= "/assets/img/Light.png" >
+    </ImageBrush>
 
 
 
