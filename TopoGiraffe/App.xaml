@@ -1,6 +1,7 @@
 ﻿<Application x:Class="TopoGiraffe.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:local="clr-namespace:TopoGiraffe"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -10,7 +11,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Red.xaml" />-->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Blue.xaml" />
-              <ResourceDictionary Source="/ResourceDictionnaries/LightTheme.xaml"/> 
+              <ResourceDictionary Source="/ResourceDictionnaries/LightTheme.xaml"/>
+              
             </ResourceDictionary.MergedDictionaries>
            
             

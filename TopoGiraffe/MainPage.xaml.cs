@@ -1763,89 +1763,6 @@ namespace TopoGiraffe
         /* --------------------------------------------------------------------------- aide contextuel ------------------------------------------------*/
         /* -------------------------------------------------------------------------------------------------------------------------------------------*/
 
-        private void Profil_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = btn13;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Générer le profile";
-        }
-
-        private void Profil_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void Parametres_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = btn14;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Paramètres";
-        }
-
-        private void Parametres_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void DessinDeCourbes_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = dessinerButton;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Dessin de courbes";
-        }
-
-        private void DessinDeCourbes_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void DessinDeSegment_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = add_line;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Dessin de segments ";
-        }
-
-        private void DessinDeSegment_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void SupprimerTout_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = deleteAllButton;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Supprimer tout";
-        }
-
-        private void SupprimerTout_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void SupprimerPrecedent_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = deletePreviousButton;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Supprimer précedent";
-        }
-
-        private void SupprimerPrecedent_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
 
         private void Import_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -1861,19 +1778,7 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
 
-        private void Zoom_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = btn1;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Zoom";
-        }
-
-        private void Zoom_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
+     
 
         private void display_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -1889,33 +1794,7 @@ namespace TopoGiraffe
             popup_uc.IsOpen = false;
         }
 
-        private void Epaisseur_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = ThickSlider;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Modifier l'épaisseur de la courbe";
-        }
-
-        private void Epaisseur_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void Altitude_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = AltSlider;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Modifier l'altitude de la courbe";
-        }
-
-        private void Altitude_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
+       
 
         private void ColorPicker_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -1940,20 +1819,6 @@ namespace TopoGiraffe
         }
 
         private void TypeCourbe_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        //private void Pen_MouseEnter(object sender, MouseEventArgs e)
-        //{
-        //    popup_uc.PlacementTarget = btn11;
-        //    popup_uc.Placement = PlacementMode.Bottom;
-        //    popup_uc.IsOpen = true;
-        //    Header.PopupText.Text = "Pen";
-        //}
-
-        private void Pen_MouseLeave(object sender, MouseEventArgs e)
         {
             popup_uc.Visibility = Visibility.Collapsed;
             popup_uc.IsOpen = false;
@@ -2163,71 +2028,7 @@ namespace TopoGiraffe
         //---------------------------------------------------------------------------------------- popup vol 2 --------------------------
         //--------------------------------------------------------------------------------------------------------------------------------
 
-        private void Nav_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = nav;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Navigation";
-        }
-
-        private void Nav_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void DessinPoint_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = dessinerPoint;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Dessiner un point";
-        }
-
-        private void DessinPoint_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-
-
-        private void Pente_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = Pente;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Calculer la pente";
-        }
-
-        private void Pente_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void Echelle_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = scaleButton;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Enter l'echelle";
-        }
-
-        private void Echelle_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void Export_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = export;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Importer";
-        }
+      
 
         private void EpaisseurTextBox_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -2285,17 +2086,19 @@ namespace TopoGiraffe
            
               
         }
-        private void AddResourceDictionary(string src)
+        public  void AddResourceDictionary(string src)
         {
             Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
         }
-
+        public static String CurrentMode = "ResourceDictionnaries/LightTheme.xaml";
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             Resources.Clear();
+
             Resources.MergedDictionaries.Clear();
 
             AddResourceDictionary("ResourceDictionnaries/DarkTheme.xaml");
+            CurrentMode = "ResourceDictionnaries/DarkTheme.xaml";
 
 
 
@@ -2307,6 +2110,7 @@ namespace TopoGiraffe
             Resources.MergedDictionaries.Clear();
 
             AddResourceDictionary("ResourceDictionnaries/LightTheme.xaml");
+            CurrentMode = "ResourceDictionnaries/LightTheme.xaml";
 
         }
 
