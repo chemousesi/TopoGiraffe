@@ -73,7 +73,7 @@
             <Grid Grid.Column="1">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,14,0,0" >
                     <Button x:Name="scaleButton" Width="90" Height="94" Background="{x:Null}" BorderBrush="Transparent"
-        BorderThickness="0"  Margin="45,20,0,0" Click="scaleButton_Click" MouseEnter="Echelle_MouseEnter" MouseLeave="Echelle_MouseLeave" HorizontalAlignment="Center" >
+        BorderThickness="0"  Margin="45,20,0,0" Click="scaleButton_Click"  ToolTip="Echelle" HorizontalAlignment="Center" >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/ruler.png" Width="30" Height="30" />
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -81,7 +81,7 @@
                         </StackPanel>
                     </Button>
                     <Button  x:Name="Pente" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="45,20,0,0" Click="Pente_Click" MouseEnter="Pente_MouseEnter" MouseLeave="Pente_MouseLeave" >
+        BorderThickness="0"  Margin="45,20,0,0" Click="Pente_Click" ToolTip="Pente" >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -89,7 +89,7 @@
                         </StackPanel>
                     </Button>
                     <Button  x:Name="btn13" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="45,20,0,0" Click="btn13_Click" MouseEnter="Profil_MouseEnter" MouseLeave="Profil_MouseLeave" HorizontalContentAlignment="Center" >
+        BorderThickness="0"  Margin="45,20,0,0" Click="btn13_Click" ToolTip="generer le profil topographique" HorizontalContentAlignment="Center" >
                         <StackPanel Orientation="Vertical"  >
                             <Image Source="/assets/img/report.png" Width="30" Height="30"/>
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -97,7 +97,7 @@
                         </StackPanel>
                     </Button>
                     <Button  x:Name="mapBut" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A"  Click="mapBut_Click"  >
+        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A"  Click="mapBut_Click"  ToolTip="Importer une carte à partir de Maps" >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/Localisation.png" Width="30" Height="30" RenderTransformOrigin="0.5,0.5">
                                 <Image.RenderTransform>
@@ -115,7 +115,7 @@
 
                     </Button>
                     <Button  x:Name="btn14" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" MouseEnter="Parametres_MouseEnter" MouseLeave="Parametres_MouseLeave"   >
+        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" ToolTip="Parametres"  >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -126,7 +126,7 @@
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Column="2" Background="{DynamicResource Img}">
-                <ToggleButton Content="" HorizontalAlignment="Center" Height="29" Width="94" Margin="16,48,2,19" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" FlowDirection="LeftToRight" Grid.IsSharedSizeScope="True" Foreground="#FF1BBA1D" Background="#FF4FDC22" ScrollViewer.HorizontalScrollBarVisibility="Visible" />
+                <ToggleButton Content="" HorizontalAlignment="Center" Height="29" Width="94" Margin="16,48,2,19" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" FlowDirection="LeftToRight" Grid.IsSharedSizeScope="True" Foreground="#FF1BBA1D" Background="#FF4FDC22" ScrollViewer.HorizontalScrollBarVisibility="Visible" ToolTip="Mode d'affichage" />
             </StackPanel>
             <Label  Grid.Column="2" Style="{DynamicResource ModeLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,75,-4,0" FontSize="16"/>
         </Grid>
@@ -233,7 +233,7 @@
                                     <Label Margin="40 0 50 0" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" FontSize="16">Altitude</Label>
                                     <TextBox x:Name="AltitudeBox" Text="{Binding ElementName=AltSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  
                                                  VerticalAlignment="Top" Height="25" Margin="91,0,39,0" Foreground="{DynamicResource TextBox}" HorizontalAlignment="Right" Width="50" VerticalContentAlignment="Center" 
-                                                 HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618" MouseEnter="AltitudeBox_MouseEnter" MouseLeave="AltitudeBox_MouseLeave"  />
+                                                 HorizontalContentAlignment="Center" KeyDown="keyDownOnAltitude" RenderTransformOrigin="0.541,0.618"  ToolTip="Altitude" />
                                 </StackPanel>
 
 
@@ -248,7 +248,7 @@
                                 <Grid Grid.Row="2">
                                     <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="150"  
                                              ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="30"
-                                             Margin="40,0,40,0" Foreground="{DynamicResource SliderColor}" HorizontalAlignment="Center" MouseEnter="Altitude_MouseEnter" MouseLeave="Altitude_MouseLeave"
+                                             Margin="40,0,40,0" Foreground="{DynamicResource SliderColor}" HorizontalAlignment="Center"
                                              />
                                 </Grid>
                             </Grid>
@@ -260,11 +260,11 @@
                                         <TextBox Name="ThickText" Text="{Binding ElementName=ThickSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"
                                                  Foreground="{DynamicResource TextBox}"
                                                  VerticalAlignment="Bottom" Height="25" Width="50" HorizontalAlignment="Right" Margin="40 0" VerticalContentAlignment="Center" 
-                                                 HorizontalContentAlignment="Center" MouseEnter="EpaisseurTextBox_MouseEnter" MouseLeave="EpaisseurTextBox_MouseLeave"/>
+                                                 HorizontalContentAlignment="Center"  ToolTip="Epaisseur"/>
                                     </DockPanel>
                                     <Slider IsSnapToTickEnabled="True"  ValueChanged="ThickSlider_ValueChanged" Minimum = "1" Maximum = "15"
-                                        Value="5" Name="ThickSlider"   VerticalAlignment="Center" Width="150" Margin="40 -35 40 0"
-                                        Height="25" Foreground="{DynamicResource SliderColor}" MouseEnter="Epaisseur_MouseEnter" MouseLeave="Epaisseur_MouseLeave" />
+                                        Value="5" Name="ThickSlider" Width="150" Margin="40,-35,40,0"
+                                        Height="30" Foreground="{DynamicResource SliderColor}"  ToolTip="Epaisseur" />
                                 </DockPanel>
                             </Grid>
 
@@ -281,33 +281,33 @@
                                 <RowDefinition Height="80"/>
                                 <RowDefinition Height="80"/>
                                 <RowDefinition Height="80"/>
-                               
+
 
                             </Grid.RowDefinitions>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="334" Height="40" >
 
-                                <TextBox x:Name="equidistance" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=Equidistance, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}"  Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+                                <TextBox x:Name="equidistance" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=Equidistance, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}"  Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
 
                                 <Label Content="Equidistance (m)" Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
                             </StackPanel >
 
                             <StackPanel  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="334">
 
-                                <TextBox x:Name="altitudeMax" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=AltitudeMax, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+                                <TextBox x:Name="altitudeMax" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=AltitudeMax, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
 
                                 <Label Content="Altitude Max (m)" Height="40" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
                             </StackPanel>
 
                             <StackPanel  Grid.Row="2" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center" Width="333">
 
-                                <TextBox x:Name="altMin" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=AltitudeMin, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+                                <TextBox x:Name="altMin" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=AltitudeMin, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
 
                                 <Label Content="Altitude Min (m)" Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
                             </StackPanel>
 
                             <StackPanel  Grid.Row="3" Height="40" Margin="0,0,-1,2" Grid.RowSpan="1">
 
-                                <TextBox x:Name="echelleOnField" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=echelleOnField, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+                                <TextBox x:Name="echelleOnField" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=echelleOnField, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
 
                                 <Label Content="Echelle en (m)" Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
                             </StackPanel>
@@ -315,11 +315,11 @@
                             <StackPanel  Grid.Row="4" Height="40">
 
 
-                                <TextBox x:Name="echelleOnCanvas" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=echelleOnCanvas, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="120" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,0"/>
+                                <TextBox x:Name="echelleOnCanvas" Text="{Binding DataContext, BindsDirectlyToSource=True, ElementName=echelleOnCanvas, NotifyOnSourceUpdated=True, XPath=Equidistance}" TextWrapping="Wrap" Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
 
                                 <Label Content="Echelle en px " Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center"/>
                             </StackPanel>
-                           
+
 
 
                         </Grid>
@@ -365,24 +365,24 @@
                 <Grid Grid.Row="0">
                     <StackPanel VerticalAlignment="Top"  Margin="2,20,0,0" >
                         <Button  x:Name="deletePreviousButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource DeletePrevious}" BorderBrush="{x:Null}"
-                                 BorderThickness="0" Click="deletePreviousButton_Click" MouseEnter="SupprimerPrecedent_MouseEnter" MouseLeave="SupprimerPrecedent_MouseLeave" 
+                                 BorderThickness="0" Click="deletePreviousButton_Click" ToolTip="Supprimer l'action precedente"
                                />
                         <Button x:Name="nav" Height="60" Margin="0,0,0,0" Background="{DynamicResource Navigation}" BorderBrush="{x:Null}"
-                                BorderThickness="0"  Click="nav_Click" MouseEnter="Nav_MouseEnter" MouseLeave="Nav_MouseLeave" 
+                                BorderThickness="0"  Click="nav_Click" ToolTip="Outil de Selection"
                                  />
                         <Button x:Name="dessinerButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource Dessiner}"  BorderBrush="{x:Null}"
-                                   BorderThickness="0" Click="dessinerButton_Click" MouseEnter="DessinDeCourbes_MouseEnter" MouseLeave="DessinDeCourbes_MouseLeave"
+                                   BorderThickness="0" Click="dessinerButton_Click" ToolTip="Dessiner une courbe"
                                 >
                         </Button>
                         <Button x:Name="dessinerPoint" Margin="0,0,0,0" Height="60"   BorderBrush="{x:Null}" Background="{DynamicResource Point}"
-                                   BorderThickness="0" Click="drawPoint_Clicked" MouseEnter="DessinPoint_MouseEnter" MouseLeave="DessinPoint_MouseLeave"
+                                   BorderThickness="0" Click="drawPoint_Clicked" ToolTip="Dessiner un point "
                                 />
                         <Button x:Name="add_line" Margin="0,0,0,0" Height="66"  Background="{DynamicResource Segment}" BorderBrush="{x:Null}"
                                   BorderThickness="0" HorizontalAlignment="Center"  IsDefault="True" Click="add_line_Click" 
-                                MouseEnter="DessinDeSegment_MouseEnter" MouseLeave="DessinDeSegment_MouseLeave" Width="62"
+                               ToolTip="Dessiner le segment AB" Width="62"
                                 />
                         <Button x:Name="btn1" Margin="0,0,0,0" Height="60"  Background="{DynamicResource Zoom}" BorderBrush="{x:Null}"
-                                BorderThickness="0" MouseEnter="Zoom_MouseEnter" MouseLeave="Zoom_MouseLeave" 
+                                BorderThickness="0" ToolTip="Zoomer" 
                                  />
 
                     </StackPanel>
@@ -390,11 +390,11 @@
                 <Grid Grid.Row="1">
                     <StackPanel VerticalAlignment="Bottom"  Margin="8,0,0,20">
                         <Button x:Name="deleteAllButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource Delete}" BorderBrush="{x:Null}"
-                                 BorderThickness="0" Click="deleteAllButton_Click" MouseLeave="SupprimerTout_MouseLeave" MouseEnter="SupprimerTout_MouseEnter" 
+                                 BorderThickness="0" Click="deleteAllButton_Click" ToolTip="Supperimer Tout"
                                 >
                         </Button>
                         <Button Name="export" Margin="0,0,0,0" Height="60" HorizontalContentAlignment="Center"
-                                     BorderBrush="{x:Null}" BorderThickness="0" Background="{DynamicResource Export}" Click="Button_Click" Cursor="Hand" MouseEnter="Export_MouseEnter" MouseLeave="Export_MouseLeave" 
+                                     BorderBrush="{x:Null}" BorderThickness="0" Background="{DynamicResource Export}" Click="Button_Click" Cursor="Hand" ToolTip="Exporter"
                                 >
                         </Button>
                     </StackPanel>
