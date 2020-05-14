@@ -32,6 +32,7 @@
     <None Remove="assets\img\import1.png" />
     <None Remove="assets\img\ImportWhite.png" />
     <None Remove="assets\img\ink.png" />
+    <None Remove="assets\img\Light.png" />
     <None Remove="assets\img\line.png" />
     <None Remove="assets\img\Localisation.png" />
     <None Remove="assets\img\location.png" />
@@ -43,6 +44,7 @@
     <None Remove="assets\img\MinusWhite.png" />
     <None Remove="assets\img\NavBarWhite.png" />
     <None Remove="assets\img\navigation.png" />
+    <None Remove="assets\img\Night.png" />
     <None Remove="assets\img\page.png" />
     <None Remove="assets\img\Pente.png" />
     <None Remove="assets\img\plusC.png" />
@@ -96,9 +98,11 @@
     <Resource Include="assets\img\go-back-left-arrow.png" />
     <Resource Include="assets\img\import1.png" />
     <Resource Include="assets\img\ImportWhite.png" />
+    <Resource Include="assets\img\Light.png" />
     <Resource Include="assets\img\Localisation.png" />
     <Resource Include="assets\img\minusgray.png" />
     <Resource Include="assets\img\MinusWhite.png" />
+    <Resource Include="assets\img\Night.png" />
     <Resource Include="assets\img\plusgray.png" />
     <Resource Include="assets\img\Pluswhite.png" />
     <Resource Include="assets\img\Segmentgray.png" />

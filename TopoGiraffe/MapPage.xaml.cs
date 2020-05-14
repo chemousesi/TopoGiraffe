@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System;
+
 
 namespace TopoGiraffe
 {
@@ -18,6 +20,15 @@ namespace TopoGiraffe
         {
             InitializeComponent();
             _mainPage = mainPage;
+            Resources.Clear();
+
+            Resources.MergedDictionaries.Clear();
+
+          AddResourceDictionary(MainPage.CurrentMode);
+        }
+        private void AddResourceDictionary(string src)
+        {
+            Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
         }
 
         private void goback_Click(object sender, RoutedEventArgs e)

@@ -12,7 +12,7 @@
          TextElement.FontSize="13"
          TextOptions.TextFormattingMode="Ideal"
          TextOptions.TextRenderingMode="Auto"
-         Background="{DynamicResource MaterialDesignPaper}"
+         Background="{DynamicResource ProfilColor}"
          FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Profile Topographique" Height="450" Width="800" Cursor="Hand">
     <Grid>
@@ -21,7 +21,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1" Name="MyPente">
-            <TextBox x:Name="penteTextBox" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-62,0,0" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" RenderTransformOrigin="0.536,-1.041" Height="25"></TextBox>
+            <TextBox Foreground="{DynamicResource TextBox}" x:Name="penteTextBox" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-62,0,0" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" RenderTransformOrigin="0.536,-1.041" Height="25"></TextBox>
 
         </Grid>
         <Grid Grid.Row="2">
@@ -29,7 +29,7 @@
 
             </lvc:CartesianChart>
         </Grid>
-        <Button Content="Exporter PDF" HorizontalAlignment="Left" Margin="661,0,0,0" VerticalAlignment="Center" Click="Button_Click" Foreground="#FF363ED6" BorderBrush="#FF3348BC"/>
+        <Button x:Name="Export" Content="ExportToPdf" HorizontalAlignment="Left" Margin="661,0,0,0" VerticalAlignment="Center" Click="Button_Click" Foreground="#FF363ED6" BorderBrush="#FF3348BC"/>
 
     </Grid>
 </Window>

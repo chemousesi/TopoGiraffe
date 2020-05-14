@@ -29,6 +29,12 @@ namespace TopoGiraffe
            // this.distancesListe = adistancesList;
             this.mainScale = mainScale;
             this.penteText = pente;
+            Resources.Clear();
+
+            Resources.MergedDictionaries.Clear();
+
+            AddResourceDictionary(MainPage.CurrentMode);
+            //AddResourceDictionary("pack://application:,,,/LiveCharts.Wpf;component/Themes/base.xaml");
 
 
             InitializeComponent();
@@ -42,6 +48,7 @@ namespace TopoGiraffe
 
 
 
+
             foreach (IntersectionDetail IntersectionPoint in IntersectionPoints)
             {
                 MyValues.Add(new ObservablePoint(mainScale.FindDistanceOnField(IntersectionPoint.distance), IntersectionPoint.altitude));
@@ -50,7 +57,7 @@ namespace TopoGiraffe
                 {
                 new LineSeries
                 {
-                    Title = "Topgraphie",
+                    Title = " Profil Topgraphique",
                    // Fill = Brushes.Red,
                    // StrokeThickness = 4,
                     Values = MyValues,//les valeurs
@@ -62,6 +69,10 @@ namespace TopoGiraffe
             };
 
             DataContext = this;
+        }
+        private void AddResourceDictionary(string src)
+        {
+            Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
         }
 
         public SeriesCollection SeriesCollection { get; set; }
@@ -111,6 +122,7 @@ namespace TopoGiraffe
 
 
             doc.Close();
+            Export.IsEnabled = false;
         }
     }
 }
