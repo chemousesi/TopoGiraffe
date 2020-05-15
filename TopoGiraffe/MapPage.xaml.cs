@@ -53,5 +53,36 @@ namespace TopoGiraffe
             MessageBox.Show("Capture enregistré dans le Dossier \" TopoGiraffe/maps \" ");
 
         }
+
+
+
+
+
+
+
+
+        public void saveFile()
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Document"; // Default file name
+            dlg.DefaultExt = ".topo"; // Default file extension
+            dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
+
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string filename = dlg.FileName;
+                this.Serializee(curves, filename);
+            }
+        }
+
     }
+
+
+
+
 }

@@ -81,7 +81,6 @@
     <None Remove="plusSS.png" />
     <None Remove="report.png" />
     <None Remove="ruler.png" />
-    <None Remove="splashScreen.png" />
     <None Remove="tour.png" />
     <None Remove="uiBlanc.png" />
     <None Remove="visibility.png" />
@@ -162,7 +161,6 @@
     <Resource Include="assets\img\zoom-in.png" />
     <Resource Include="assets\img\ZoomWhite.png" />
     <Resource Include="logo.png" />
-    <Resource Include="splashScreen.png" />
   </ItemGroup>
 
   <ItemGroup>
