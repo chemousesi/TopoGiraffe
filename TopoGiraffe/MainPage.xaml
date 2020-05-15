@@ -238,7 +238,7 @@
                                 </StackPanel>
 
 
-                                <WrapPanel Grid.Row="1" Width="334" DockPanel.Dock="Top"  Height="47" HorizontalAlignment="Center" Orientation="Horizontal" >
+                                <WrapPanel Grid.Row="1" Width="334" DockPanel.Dock="Top"  Height="47" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,-30,0,0" >
                                     <Button x:Name="ZoomIn"  HorizontalAlignment="Left" Background="{DynamicResource Plus}" Width="60" Height="50" Margin="60,0,40,0"  
                                                 BorderBrush="{x:Null}" BorderThickness="0"  Click="ZoomIn_Click"  />
                                     <Button x:Name="ZoomOut" Width="60" Height="50" Margin="57,0,0,0"  HorizontalAlignment="Right" Background="{DynamicResource Minus}"
@@ -249,7 +249,7 @@
                                 <Grid Grid.Row="2">
                                     <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="150"  
                                              ValueChanged="altitudeSliderValueChange" LargeChange="5" SmallChange="5" TickFrequency="5" DockPanel.Dock="Bottom" Height="30"
-                                             Margin="40,0,40,0" Foreground="{DynamicResource SliderColor}" HorizontalAlignment="Center"
+                                             Margin="40,-41,40,0" Foreground="{DynamicResource SliderColor}" HorizontalAlignment="Center"
                                              />
                                 </Grid>
                             </Grid>
