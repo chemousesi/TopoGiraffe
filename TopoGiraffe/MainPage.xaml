@@ -202,8 +202,8 @@
                                 <StackPanel VerticalAlignment="Center" Margin="0,-28,0,8">
                                     <ComboBox x:Name="styleCourbeCmb" Width="250" Height="50" SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"
                                               wpf:HintAssist.Hint="Choisir un type de courbe" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                              Foreground="{DynamicResource TextBox}" FontSize="15"
-                                              SelectionChanged="styleCourbeCmb_SelectionChanged" MouseEnter="TypeCourbe_MouseEnter" MouseLeave="TypeCourbe_MouseLeave" VerticalContentAlignment="Top" Margin="0,5,0,0">
+                                              Foreground="Black" FontSize="15"
+                                              SelectionChanged="styleCourbeCmb_SelectionChanged" MouseEnter="TypeCourbe_MouseEnter" MouseLeave="TypeCourbe_MouseLeave" VerticalContentAlignment="Top" Margin="0,5,0,0" >
                                         <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" Content="Courbe simple" />
                                         <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" Content="Courbe intermediare" />
                                         <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" Content="Courbe Maitresse" />
