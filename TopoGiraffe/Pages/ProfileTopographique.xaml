@@ -16,20 +16,29 @@
          FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Profile Topographique" Height="450" Width="800" Cursor="Hand">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="659*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1" Name="MyPente">
+        <Grid Grid.Row="1" Name="MyPente" Grid.ColumnSpan="2">
             <TextBox Foreground="{DynamicResource TextBox}" x:Name="penteTextBox" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-62,0,0" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" RenderTransformOrigin="0.536,-1.041" Height="25"></TextBox>
 
         </Grid>
-        <Grid Grid.Row="2">
-            <lvc:CartesianChart Name="chart" Series="{Binding SeriesCollection}" LegendLocation="Right" >
-
-            </lvc:CartesianChart>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,77,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="39*"/>
+                <ColumnDefinition Width="202*"/>
+            </Grid.ColumnDefinitions>
+            <lvc:CartesianChart Name="chart" Series="{Binding SeriesCollection}" LegendLocation="Right" Grid.ColumnSpan="2" />
         </Grid>
-        <Button x:Name="Export" Content="Exporter en Pdf" HorizontalAlignment="Left" Margin="661,0,0,0" VerticalAlignment="Center" Click="Button_Click" Foreground="#FF363ED6" BorderBrush="#FF3348BC"/>
+        <Button x:Name="Export" Content="Exporter en Pdf" HorizontalAlignment="Left" Margin="520,0,0,0" VerticalAlignment="Center" Click="Button_Click" Foreground="#FF363ED6" BorderBrush="#FF3348BC" Grid.Column="1"/>
+        <Label Content="Altitude(m)" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Distance(m)" Grid.Column="1" HorizontalAlignment="Left" Margin="584,337,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+
 
     </Grid>
 </Window>
