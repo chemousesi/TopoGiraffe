@@ -72,6 +72,7 @@
     <None Remove="assets\img\viewOrangeLight.png" />
     <None Remove="assets\img\ViewWhite.png" />
     <None Remove="assets\img\visibility.png" />
+    <None Remove="assets\img\WindowBar.png" />
     <None Remove="assets\img\zoom-in.png" />
     <None Remove="assets\img\ZoomWhite.png" />
     <None Remove="draw.png" />
@@ -167,6 +168,7 @@
     <Resource Include="assets\img\triangle.png" />
     <Resource Include="assets\img\uiBlanc.png" />
     <Resource Include="assets\img\visibility.png" />
+    <Resource Include="assets\img\WindowBar.png" />
     <Resource Include="assets\img\zoom-in.png" />
     <Resource Include="assets\img\ZoomWhite.png" />
     <Resource Include="logo.png" />
