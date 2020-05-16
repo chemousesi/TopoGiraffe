@@ -92,7 +92,7 @@
                  MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
                  MouseLeftButtonDown="Max_pressing" Name="Max_btn" 
                  Fill="{StaticResource Max_inact}" />
-        <Image HorizontalAlignment="Left" Height="33" Margin="10,1,0,0" VerticalAlignment="Top" Width="100" Source="splashScreen.png"/>
+        <Image HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="41" Source="logoWbg.png"/>
 
 
 

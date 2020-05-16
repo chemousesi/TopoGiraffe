@@ -43,14 +43,8 @@ namespace TopoGiraffe
             PngBitmapEncoder pngImage = new PngBitmapEncoder();
             pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
 
-            string filepath = "./../../../maps/Capture1.png";
-            using (Stream fileStream = File.Create(filepath))
-            {
-
-                pngImage.Save(fileStream);
-            }
-
-            MessageBox.Show("Capture enregistré dans le Dossier \" TopoGiraffe/maps \" ");
+            saveFile(pngImage);
+            
 
         }
 
@@ -61,12 +55,13 @@ namespace TopoGiraffe
 
 
 
-        public void saveFile()
+        public void saveFile(PngBitmapEncoder pngImage)
         {
+
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Document"; // Default file name
-            dlg.DefaultExt = ".topo"; // Default file extension
-            dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
+            dlg.FileName = "Capture"; // Default file name
+            dlg.DefaultExt = ".png"; // Default file extension
+            dlg.Filter = "Text documents (.png)|*.png"; // Filter files by extension
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
@@ -75,8 +70,16 @@ namespace TopoGiraffe
             if (result == true)
             {
                 // Open document
-                string filename = dlg.FileName;
-                this.Serializee(curves, filename);
+                //string filename = dlg.FileName;
+
+
+                string filepath = dlg.FileName;
+                using (Stream fileStream = File.Create(filepath))
+                {
+
+                    pngImage.Save(fileStream);
+                }
+
             }
         }
 

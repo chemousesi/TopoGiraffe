@@ -36,6 +36,7 @@
     <None Remove="assets\img\line.png" />
     <None Remove="assets\img\Localisation.png" />
     <None Remove="assets\img\location.png" />
+    <None Remove="assets\img\logoWbg.png" />
     <None Remove="assets\img\maps2.png" />
     <None Remove="assets\img\Maximize.png" />
     <None Remove="assets\img\Minimize.png" />
@@ -99,6 +100,7 @@
     <Resource Include="assets\img\ImportWhite.png" />
     <Resource Include="assets\img\Light.png" />
     <Resource Include="assets\img\Localisation.png" />
+    <Resource Include="assets\img\logoWbg.png" />
     <Resource Include="assets\img\minusgray.png" />
     <Resource Include="assets\img\MinusWhite.png" />
     <Resource Include="assets\img\Night.png" />
