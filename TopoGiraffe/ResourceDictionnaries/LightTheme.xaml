@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
                      xmlns:local="clr-namespace:TopoGiraffe">
 
 
@@ -12,6 +13,7 @@ ImageSource="/assets/img/navigation.png" >
     <SolidColorBrush x:Key="SliderColor" Color="#E63946"/>
     <SolidColorBrush x:Key="ForegroundColor" Color="Black"/>
     <SolidColorBrush x:Key="TextBox" Color="Black"/>
+    <SolidColorBrush x:Key="ProfilColor" Color="#F2F5FD"/>
 
     <ImageBrush x:Key="Navigation" TileMode="None"
      ViewportUnits="Absolute" Viewport="20 20 20 20"
@@ -47,7 +49,7 @@ ImageSource= "/assets/img/export1.png" >
     </ImageBrush>
     <ImageBrush x:Key="Import" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
-ImageSource= "/assets/img/import.png" >
+ImageSource= "/assets/img/import1.png" >
     </ImageBrush>
     <ImageBrush x:Key="View" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
@@ -70,7 +72,7 @@ ImageSource= "/assets/img/DeleteAllGray.png" >
     </Style>
 
     <Style TargetType="StackPanel" x:Key="StackPanel" >
-        <Setter Property="Background" Value="#E5E5E5"/>
+        <Setter Property="Background" Value="#d4d4d4"/>
         <Setter Property="Opacity"  Value="0.9"  />
     </Style>
     <Style TargetType="Label" x:Key="ModeLabel" >
@@ -82,9 +84,24 @@ ImageSource= "/assets/img/DeleteAllGray.png" >
     <Style TargetType="Grid" x:Key="Grid" >
         <Setter Property="Background" Value="#14213D"/>
 
-
-
     </Style>
+  
+    <ImageBrush x:Key="Img" TileMode="None"
+ViewportUnits="Absolute" Viewport="120 52 20 20"
+ImageSource= "/assets/img/Light.png" >
+    </ImageBrush>
+    <Style TargetType="lvc:CartesianChart">
+        <Setter Property="AnimationsSpeed" Value="0:0:0.5"></Setter>
+        <Setter Property="SeriesColors" Value="{StaticResource ColorsCollection11}"/>
+        <Setter Property="Background" Value="#F2F5FD"/>
+        <Setter Property="BorderBrush" Value="#F2F5FD"/>
+    </Style>
+
+    <lvc:ColorsCollection x:Key="ColorsCollection11">
+        <Color A="255" R="230" G="57" B="70" />
+
+    </lvc:ColorsCollection>
+
 
 
 

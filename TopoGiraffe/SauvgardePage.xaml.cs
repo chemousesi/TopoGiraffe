@@ -23,13 +23,22 @@ namespace TopoGiraffe
         List<List<IntersectionDetail>> curves;
         private MainPage _mainPage;
 
-        public SauvgardePage(List<List<IntersectionDetail>> curves, MainPage mainPage)
+        public SauvgardePage(List<List<IntersectionDetail>> curves, MainPage mainPage )
         {
             this.curves = curves;
             InitializeComponent();
             _mainPage = mainPage;
+            Resources.Clear();
+
+            Resources.MergedDictionaries.Clear();
+
+            AddResourceDictionary(MainPage.CurrentMode);
 
 
+        }
+        private void AddResourceDictionary(string src)
+        {
+            Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
         }
         public void Serializee(List<List<IntersectionDetail>> objet, string filename)
         {
