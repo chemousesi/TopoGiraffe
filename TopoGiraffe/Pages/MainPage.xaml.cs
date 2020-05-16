@@ -62,7 +62,7 @@ namespace TopoGiraffe
         Plan plan;
 #pragma warning disable CS0169 // Le champ 'MainWindow.scaleLine' n'est jamais utilisé
         Line scaleLine;
-#pragma warning restore CS0169 // Le champ 'MainWindow.scaleLine' n'est jamais utilisé
+#pragma warning restore CS0169 // Le champ 'MainWindow.scaleLine' n'
         Boolean drawingScale = false;
         Echelle mainScale;
        
@@ -319,19 +319,26 @@ namespace TopoGiraffe
             }
             else
             {
-                CourbesNiveau.Clear();
-                mainCanvas.Children.Clear();
-                foreach (List<ArtPoint> ae in PointsGlobal)
-                {
-                    ae.Clear();
-                }
-                PointsGlobal.Clear();
-                cercles.Clear();
-                IntersectionPoints.Clear();
-                indexPoints = -1;
 
-                nav.IsEnabled = true;
-                dessinerButton.IsEnabled = true;
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Vous êtes sûr ?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+
+                    CourbesNiveau.Clear();
+                    mainCanvas.Children.Clear();
+                    foreach (List<ArtPoint> ae in PointsGlobal)
+                    {
+                        ae.Clear();
+                    }
+                    PointsGlobal.Clear();
+                    cercles.Clear();
+                    IntersectionPoints.Clear();
+                    indexPoints = -1;
+
+                    nav.IsEnabled = true;
+                    dessinerButton.IsEnabled = true;
+                }
+
             }
         }
 

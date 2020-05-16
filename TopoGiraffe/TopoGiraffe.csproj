@@ -38,6 +38,7 @@
     <None Remove="assets\img\line.png" />
     <None Remove="assets\img\Localisation.png" />
     <None Remove="assets\img\location.png" />
+    <None Remove="assets\img\logoWbg.png" />
     <None Remove="assets\img\maps2.png" />
     <None Remove="assets\img\Maximize.png" />
     <None Remove="assets\img\Minimize.png" />
@@ -86,7 +87,6 @@
     <None Remove="plusSS.png" />
     <None Remove="report.png" />
     <None Remove="ruler.png" />
-    <None Remove="splashScreen.png" />
     <None Remove="tour.png" />
     <None Remove="uiBlanc.png" />
     <None Remove="visibility.png" />
@@ -107,6 +107,7 @@
     <Resource Include="assets\img\ImportWhite.png" />
     <Resource Include="assets\img\Light.png" />
     <Resource Include="assets\img\Localisation.png" />
+    <Resource Include="assets\img\logoWbg.png" />
     <Resource Include="assets\img\minusgray.png" />
     <Resource Include="assets\img\MinusWhite.png" />
     <Resource Include="assets\img\Night.png" />
@@ -172,11 +173,9 @@
     <Resource Include="assets\img\zoom-in.png" />
     <Resource Include="assets\img\ZoomWhite.png" />
     <Resource Include="logo.png" />
-    <Resource Include="splashScreen.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="maps\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
