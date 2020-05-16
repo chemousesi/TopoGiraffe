@@ -29,7 +29,10 @@
 
             </lvc:CartesianChart>
         </Grid>
-        <Button x:Name="Export" Content="ExportToPdf" HorizontalAlignment="Left" Margin="661,0,0,0" VerticalAlignment="Center" Click="Button_Click" Foreground="#FF363ED6" BorderBrush="#FF3348BC"/>
+
+        <Button x:Name="Export" Content="Exporter en Pdf" HorizontalAlignment="Left" Margin="661,0,0,0" VerticalAlignment="Center" Click="Button_Click" Foreground="#FF363ED6" BorderBrush="#FF3348BC"/>
+
+
 
     </Grid>
 </Window>

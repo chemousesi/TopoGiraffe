@@ -342,7 +342,7 @@
 
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="1"  >
-                        <StackPanel Style="{DynamicResource StackPanel}" Opacity=".3" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Top"
+                        <StackPanel Style="{DynamicResource StackPanel}" Opacity=".5" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Top"
                                     Margin="0 30 20 0" >
                             <Button  x:Name="display" Width="60" Height="54" Background="{DynamicResource View}"  BorderBrush="{x:Null}" 
                                 BorderThickness="0" Click="display_Click" MouseEnter="display_MouseEnter" MouseLeave="display_MouseLeave"  />

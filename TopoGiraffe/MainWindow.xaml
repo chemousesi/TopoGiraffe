@@ -51,7 +51,7 @@
             <ImageBrush x:Key="Max_pr" ImageSource="./assets/img/Maximize.png"  />
         </Grid.Resources>
 
-        <Frame x:Name="mainFrame" Source="/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
+        <Frame x:Name="mainFrame" Source="/Pages/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
 
         <Rectangle  Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#1f1e21"/>
 
@@ -92,7 +92,7 @@
                  MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
                  MouseLeftButtonDown="Max_pressing" Name="Max_btn" 
                  Fill="{StaticResource Max_inact}" />
-        <Image HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="41" Source="logoWbg.png"/>
+        <Image HorizontalAlignment="Left" Height="29" Margin="10,1,0,0" VerticalAlignment="Top" Width="40" Source="/assets/img/WindowBar.png"/>
 
 
 
