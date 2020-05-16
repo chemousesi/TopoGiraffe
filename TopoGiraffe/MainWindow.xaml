@@ -51,7 +51,7 @@
             <ImageBrush x:Key="Max_pr" ImageSource="./assets/img/Maximize.png"  />
         </Grid.Resources>
 
-        <Frame x:Name="mainFrame" Source="/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
+        <Frame x:Name="mainFrame" Source="/Pages/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
 
         <Rectangle  Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#1f1e21"/>
 
