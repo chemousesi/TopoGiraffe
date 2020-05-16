@@ -904,17 +904,26 @@ namespace TopoGiraffe
 
         private void add_line_Click(object sender, RoutedEventArgs e)
         {
-            poly = new Polyline();
-            addLineClicked = true;
-            btn2Clicked = false;
-            LinePointscpt = 0;
-            poly.Stroke = Brushes.Indigo;
-            poly.StrokeThickness = 5;
-            poly.FillRule = FillRule.EvenOdd;
-            CourbeNiveau polyC = new CourbeNiveau(poly, -1);
-            CourbesNiveau.Add(polyC);
-            courbeActuelle = polyC;
-            mainCanvas.Children.Add(poly);
+            try { 
+                if( CourbesNiveau.Count == 0)
+                {
+                    throw new ErreurDeDessinDeSegment("Aucune courbe n'a été dessiné!");
+                }
+                poly = new Polyline();
+                addLineClicked = true;
+                btn2Clicked = false;
+                LinePointscpt = 0;
+                poly.Stroke = Brushes.Indigo;
+                poly.StrokeThickness = 5;
+                poly.FillRule = FillRule.EvenOdd;
+                CourbeNiveau polyC = new CourbeNiveau(poly, -1);
+                CourbesNiveau.Add(polyC);
+                courbeActuelle = polyC;
+                mainCanvas.Children.Add(poly);
+            }catch(ErreurDeDessinDeSegment exeption)
+            {
+
+            }
 
         }
 
