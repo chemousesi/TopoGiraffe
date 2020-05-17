@@ -1673,21 +1673,32 @@ namespace TopoGiraffe
         private void scaleButton_Click(object sender, RoutedEventArgs e)
         {
             //Echelle testScale = new Echelle(10, 100);
+            ScaleDialog scaleDialog = new ScaleDialog();
+            scaleDialog.ShowDialog();
 
+            if(scaleDialog.DialogResult == true)
+            {
+                if ((bool)scaleDialog.drawScaleCheckBox.IsChecked)
+                {
+                    drawingScale = true;
+                    btn2Clicked = false;
+                    addLineClicked = false;
+                    navClicked = false;
 
-            drawingScale = true;
-            btn2Clicked = false;
-            addLineClicked = false;
-            navClicked = false;
+                    // making the polyline
+                    scalePolyline = new Polyline();
 
-            // making the polyline
-            scalePolyline = new Polyline();
+                    scalePolyline.Stroke = Brushes.Indigo;
+                    scalePolyline.StrokeThickness = 3;
+                    scalePolyline.FillRule = FillRule.EvenOdd;
 
-            scalePolyline.Stroke = Brushes.Indigo;
-            scalePolyline.StrokeThickness = 3;
-            scalePolyline.FillRule = FillRule.EvenOdd;
+                    mainCanvas.Children.Add(scalePolyline);
+                }
+                // else should be here 
 
-            mainCanvas.Children.Add(scalePolyline);
+            }
+
+           
 
 
             //double result = testScale.FindDistanceOnField(20);
