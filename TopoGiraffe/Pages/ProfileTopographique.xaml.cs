@@ -65,6 +65,7 @@ namespace TopoGiraffe
                  //   PointGeometrySize = 4,
                     AreaLimit = 0,
                     LineSmoothness = 0.4,
+                    
                     //DataLabels = true,
                 }
             };
@@ -81,6 +82,7 @@ namespace TopoGiraffe
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
         public ChartValues<ObservablePoint> MyValues { get; set; }
+  
 
         public void SaveToPng(FrameworkElement visual, string fileName)
         {
