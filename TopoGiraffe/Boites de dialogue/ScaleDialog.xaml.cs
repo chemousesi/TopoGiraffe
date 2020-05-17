@@ -22,14 +22,14 @@ namespace TopoGiraffe
 
         public string EchelleOnCanvas
         {
-            get => EchelleTextBoxOnCanvas.Text;
-            set => EchelleTextBoxOnCanvas.Text = value;
+            get => EchelleTextBoxOnCanvasScaleDB.Text;
+            set => EchelleTextBoxOnCanvasScaleDB.Text = value;
         }
 
         public string EchelleOnField
         {
-            get => EchelleTextBoxOnField.Text;
-            set => EchelleTextBoxOnField.Text = value;
+            get => EchelleTextBoxOnFieldScaleDB.Text;
+            set => EchelleTextBoxOnFieldScaleDB.Text = value;
         }
 
 

@@ -15,6 +15,7 @@ using TopoGiraffe.Noyau;
 using TopoSurf.MessageBoxStyle;
 using TopoGiraffe.Exceptions;
 using System.Runtime.Serialization;
+using Microsoft.Maps.MapControl.WPF.Overlays;
 
 namespace TopoGiraffe
 {
@@ -1682,21 +1683,46 @@ namespace TopoGiraffe
 
             if(scaleDialog.DialogResult == true)
             {
-                if ((bool)scaleDialog.drawScaleCheckBox.IsChecked)
+                if ((bool)scaleDialog.ScaleDrawingRadioBtn.IsChecked)
                 {
-                    drawingScale = true;
-                    btn2Clicked = false;
-                    addLineClicked = false;
-                    navClicked = false;
+                    if (int.TryParse(scaleDialog.EchelleOnField, out int result))
+                    {
+                        // assign the first proprety of the scale scaleonField
+                        mainScale = new Echelle(result);
 
-                    // making the polyline
-                    scalePolyline = new Polyline();
+                        drawingScale = true;
+                        btn2Clicked = false;
+                        addLineClicked = false;
+                        navClicked = false;
 
-                    scalePolyline.Stroke = Brushes.Indigo;
-                    scalePolyline.StrokeThickness = 3;
-                    scalePolyline.FillRule = FillRule.EvenOdd;
+                        // making the polyline
+                        scalePolyline = new Polyline();
 
-                    mainCanvas.Children.Add(scalePolyline);
+                        scalePolyline.Stroke = Brushes.Indigo;
+                        scalePolyline.StrokeThickness = 3;
+                        scalePolyline.FillRule = FillRule.EvenOdd;
+
+                        mainCanvas.Children.Add(scalePolyline);
+                    }
+                    else
+                    {
+                        (new MssgBox("Entrée non valide , Vérifier l'échelle ne mètre !")).ShowDialog();
+                    }
+                    
+                }else
+                {
+                    if (int.TryParse(scaleDialog.EchelleOnCanvas, out int result1) && (int.TryParse(scaleDialog.EchelleOnField, out int result2)))
+                    {
+                        mainScale = new Echelle(result1, result2);
+
+                    }
+                    else
+                    {
+                        (new MssgBox("Entrée non valide , Vérifier !")).ShowDialog();
+
+                    }
+
+
                 }
                 // else should be here 
 
@@ -1764,7 +1790,7 @@ namespace TopoGiraffe
                 }
                 catch (System.FormatException)
                 {
-                    (new MssgBox("Enter a numeric value to the altitude !")).ShowDialog();
+                    (new MssgBox("Donner une valeur numérique dans le champ Altitude")).ShowDialog();
                 }
                 catch (System.NullReferenceException)
                 {
