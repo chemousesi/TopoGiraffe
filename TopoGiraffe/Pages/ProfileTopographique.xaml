@@ -34,7 +34,11 @@
                 <ColumnDefinition Width="202*"/>
 
             </Grid.ColumnDefinitions>
-            <lvc:CartesianChart Name="chart" Series="{Binding SeriesCollection}" LegendLocation="Right" Grid.ColumnSpan="2" Margin="0,25,48,0" />
+            <lvc:CartesianChart Name="chart" Series="{Binding SeriesCollection}" LegendLocation="Right" Grid.ColumnSpan="2" Margin="0,25,48,0" >
+            <lvc:CartesianChart.DataTooltip>
+                <lvc:DefaultTooltip BulletSize="10" Background="Gray" />
+            </lvc:CartesianChart.DataTooltip>
+            </lvc:CartesianChart>
             <Label Content="Altitude(m)" HorizontalAlignment="Left" Margin="5,3,0,0" VerticalAlignment="Top"/>
             <Label Content="Distance(m)" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,15,15" VerticalAlignment="Bottom"/>
         </Grid>
