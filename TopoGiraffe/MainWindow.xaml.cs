@@ -34,7 +34,12 @@ namespace TopoGiraffe
 
 		private void EXIT(object sender, MouseButtonEventArgs e)
 		{
-			Environment.Exit(0);
+			MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Vous êtes sûr?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
+			if (messageBoxResult == MessageBoxResult.Yes)
+			{
+				Environment.Exit(0);
+
+			}
 		}
 
 		private void MINIMIZE(object sender, MouseButtonEventArgs e)

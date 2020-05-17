@@ -49,11 +49,11 @@ ImageSource= "/assets/img/ExportWhite.png" >
   </ImageBrush>
     <ImageBrush x:Key="Import" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
-ImageSource= "/assets/img/ImportWhite.png" >
+ImageSource= "/assets/img/importOrangeDark.png" >
     </ImageBrush>
     <ImageBrush x:Key="View" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
-ImageSource= "/assets/img/ViewWhite.png" >
+ImageSource= "/assets/img/viewOrangeDark.png" >
     </ImageBrush>
     <ImageBrush x:Key="Plus" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"

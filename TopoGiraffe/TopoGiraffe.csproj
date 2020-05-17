@@ -30,12 +30,15 @@
     <None Remove="assets\img\house.png" />
     <None Remove="assets\img\import.png" />
     <None Remove="assets\img\import1.png" />
+    <None Remove="assets\img\importOrangeDark.png" />
+    <None Remove="assets\img\importOrangeLight.png" />
     <None Remove="assets\img\ImportWhite.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\Light.png" />
     <None Remove="assets\img\line.png" />
     <None Remove="assets\img\Localisation.png" />
     <None Remove="assets\img\location.png" />
+    <None Remove="assets\img\logoWbg.png" />
     <None Remove="assets\img\maps2.png" />
     <None Remove="assets\img\Maximize.png" />
     <None Remove="assets\img\Minimize.png" />
@@ -66,8 +69,11 @@
     <None Remove="assets\img\TriangleWhite.png" />
     <None Remove="assets\img\uiBlanc.png" />
     <None Remove="assets\img\view.png" />
+    <None Remove="assets\img\viewOrangeDark.png" />
+    <None Remove="assets\img\viewOrangeLight.png" />
     <None Remove="assets\img\ViewWhite.png" />
     <None Remove="assets\img\visibility.png" />
+    <None Remove="assets\img\WindowBar.png" />
     <None Remove="assets\img\zoom-in.png" />
     <None Remove="assets\img\ZoomWhite.png" />
     <None Remove="draw.png" />
@@ -77,13 +83,17 @@
     <None Remove="less.png" />
     <None Remove="logo.png" />
     <None Remove="logogris.png" />
+    <None Remove="Pages\logogris.png" />
+    <None Remove="Pages\softwarebox.png" />
     <None Remove="plus.png" />
     <None Remove="plusS.png" />
     <None Remove="plusSS.png" />
     <None Remove="report.png" />
     <None Remove="ruler.png" />
+
     <None Remove="softwarebox.png" />
     <None Remove="splashScreen.png" />
+
     <None Remove="tour.png" />
     <None Remove="uiBlanc.png" />
     <None Remove="visibility.png" />
@@ -99,9 +109,12 @@
     <Resource Include="assets\img\ExportWhite.png" />
     <Resource Include="assets\img\go-back-left-arrow.png" />
     <Resource Include="assets\img\import1.png" />
+    <Resource Include="assets\img\importOrangeDark.png" />
+    <Resource Include="assets\img\importOrangeLight.png" />
     <Resource Include="assets\img\ImportWhite.png" />
     <Resource Include="assets\img\Light.png" />
     <Resource Include="assets\img\Localisation.png" />
+    <Resource Include="assets\img\logoWbg.png" />
     <Resource Include="assets\img\minusgray.png" />
     <Resource Include="assets\img\MinusWhite.png" />
     <Resource Include="assets\img\Night.png" />
@@ -111,6 +124,8 @@
     <Resource Include="assets\img\SegmentWhite.png" />
     <Resource Include="assets\img\TriangleWhite.png" />
     <Resource Include="assets\img\view.png" />
+    <Resource Include="assets\img\viewOrangeDark.png" />
+    <Resource Include="assets\img\viewOrangeLight.png" />
     <Resource Include="assets\img\ViewWhite.png" />
   </ItemGroup>
 
@@ -161,16 +176,20 @@
     <Resource Include="assets\img\triangle.png" />
     <Resource Include="assets\img\uiBlanc.png" />
     <Resource Include="assets\img\visibility.png" />
+    <Resource Include="assets\img\WindowBar.png" />
     <Resource Include="assets\img\zoom-in.png" />
     <Resource Include="assets\img\ZoomWhite.png" />
     <Resource Include="logo.png" />
+
     <Resource Include="logogris.png" />
-    <Resource Include="softwarebox.png" />
-    <Resource Include="splashScreen.png" />
+
+    <Resource Include="Pages\logogris.png" />
+
+    <Resource Include="Pages\softwarebox.png" />
+
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="maps\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

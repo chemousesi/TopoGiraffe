@@ -62,7 +62,7 @@ namespace TopoGiraffe
         Plan plan;
 #pragma warning disable CS0169 // Le champ 'MainWindow.scaleLine' n'est jamais utilisé
         Line scaleLine;
-#pragma warning restore CS0169 // Le champ 'MainWindow.scaleLine' n'est jamais utilisé
+#pragma warning restore CS0169 // Le champ 'MainWindow.scaleLine' n'
         Boolean drawingScale = false;
         Echelle mainScale;
        
@@ -321,19 +321,26 @@ namespace TopoGiraffe
             }
             else
             {
-                CourbesNiveau.Clear();
-                mainCanvas.Children.Clear();
-                foreach (List<ArtPoint> ae in PointsGlobal)
-                {
-                    ae.Clear();
-                }
-                PointsGlobal.Clear();
-                cercles.Clear();
-                IntersectionPoints.Clear();
-                indexPoints = -1;
 
-                nav.IsEnabled = true;
-                dessinerButton.IsEnabled = true;
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Vous êtes sûr ?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+
+                    CourbesNiveau.Clear();
+                    mainCanvas.Children.Clear();
+                    foreach (List<ArtPoint> ae in PointsGlobal)
+                    {
+                        ae.Clear();
+                    }
+                    PointsGlobal.Clear();
+                    cercles.Clear();
+                    IntersectionPoints.Clear();
+                    indexPoints = -1;
+
+                    nav.IsEnabled = true;
+                    dessinerButton.IsEnabled = true;
+                }
+
             }
         }
 
@@ -906,17 +913,26 @@ namespace TopoGiraffe
 
         private void add_line_Click(object sender, RoutedEventArgs e)
         {
-            poly = new Polyline();
-            addLineClicked = true;
-            btn2Clicked = false;
-            LinePointscpt = 0;
-            poly.Stroke = Brushes.Indigo;
-            poly.StrokeThickness = 5;
-            poly.FillRule = FillRule.EvenOdd;
-            CourbeNiveau polyC = new CourbeNiveau(poly, -1);
-            CourbesNiveau.Add(polyC);
-            courbeActuelle = polyC;
-            mainCanvas.Children.Add(poly);
+            try { 
+                if( CourbesNiveau.Count == 0)
+                {
+                    throw new ErreurDeDessinDeSegment("Aucune courbe n'a été dessiné!");
+                }
+                poly = new Polyline();
+                addLineClicked = true;
+                btn2Clicked = false;
+                LinePointscpt = 0;
+                poly.Stroke = Brushes.Indigo;
+                poly.StrokeThickness = 5;
+                poly.FillRule = FillRule.EvenOdd;
+                CourbeNiveau polyC = new CourbeNiveau(poly, -1);
+                CourbesNiveau.Add(polyC);
+                courbeActuelle = polyC;
+                mainCanvas.Children.Add(poly);
+            }catch(ErreurDeDessinDeSegment exeption)
+            {
+
+            }
 
         }
 
@@ -1255,25 +1271,30 @@ namespace TopoGiraffe
 
         private void btn13_Click(object sender, RoutedEventArgs e)
         {
-
-            if (mainScale != null)
+            try
             {
-                pente = CalcPente(PenteIntersectionPoints, mainScale);
-                pente = (double)System.Math.Round(pente, 3);
-                String penteText = " la pente est de   :" + pente.ToString() + " % ";
-                ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale, penteText);
-                profile.Show();
+                if (IntersectionPoints.Count == 0)
+                {
+                    throw new ErreurDeDessinDeSegment("Aucun point d'intersection n'est trouvé!");
+                }
+           
+                if (mainScale != null)
+                {
+                    pente = CalcPente(PenteIntersectionPoints, mainScale);
+                    pente = (double)System.Math.Round(pente, 3);
+                    String penteText = " la pente est de   :" + pente.ToString() + " % ";
+                    ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale, penteText);
+                    profile.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("Echelle non connue !");
+                }
+            }catch(ErreurDeDessinDeSegment exception)
+            {
 
             }
-            else
-            {
-                MessageBox.Show("Echelle non connue !");
-            }
-
-
-
-
-
         }
 
         List<ArtPoint> DragPoints;
