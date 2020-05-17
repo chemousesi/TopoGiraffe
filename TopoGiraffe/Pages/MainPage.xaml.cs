@@ -124,6 +124,8 @@ namespace TopoGiraffe
 
         }
 
+        
+
 
 
 
@@ -1568,6 +1570,8 @@ namespace TopoGiraffe
                     equidistance.Text = Equidistance.ToString();
                     altitudeMax.Text = AltitudeMax.ToString();
                     altMin.Text = AltitudeMin.ToString();
+
+                    if( AltitudeMin > AltitudeMax ) { throw new ErreurDeSaisieException("Altitude min ne doit pas etre superieur a l'altitude max"); }
                 }
                 catch(Exception ecp )
                 {
@@ -2100,9 +2104,14 @@ namespace TopoGiraffe
         {
 
             //this.DeSerialize()[this.DeSerialize().Count()-1];
-
-            Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
-
+            try
+            {
+                Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
+            }
+            catch(NullReferenceException ecp)
+            {
+                MessageBox.Show("echelle pas encore disponible ");
+            }
 
             pente = CalcPente(PenteIntersectionPoints, mainScale);
             MessageBox.Show(" la pente est de   :" + (pente*100).ToString() + " % ");
