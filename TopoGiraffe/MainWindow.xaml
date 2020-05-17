@@ -13,7 +13,7 @@
         AllowsTransparency="False"
         BorderBrush="Transparent"
         mc:Ignorable="d"
-         Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStyle="None" Cursor="Hand"  >
+         Height="700" Width="1200"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStyle="None" Cursor="Hand"  >
 
 
 

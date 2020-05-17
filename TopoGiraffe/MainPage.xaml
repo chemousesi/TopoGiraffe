@@ -378,13 +378,11 @@
                         <Button x:Name="dessinerPoint" Margin="0,0,0,0" Height="60"   BorderBrush="{x:Null}" Background="{DynamicResource Point}"
                                    BorderThickness="0" Click="drawPoint_Clicked" ToolTip="Dessiner un point "
                                 />
-                        <Button x:Name="add_line" Margin="0,0,0,0" Height="66"  Background="{DynamicResource Segment}" BorderBrush="{x:Null}"
-                                  BorderThickness="0" HorizontalAlignment="Center"  IsDefault="True" Click="add_line_Click" 
-                               ToolTip="Dessiner le segment AB" Width="62"
+                        <Button x:Name="add_line" Height="60"  Background="{DynamicResource Segment}" BorderBrush="{x:Null}"
+                                  BorderThickness="0"  IsDefault="True" Click="add_line_Click" 
+                               ToolTip="Dessiner le segment AB" Width="62" Cursor="Hand"  
                                 />
-                        <Button x:Name="btn1" Margin="0,0,0,0" Height="60"  Background="{DynamicResource Zoom}" BorderBrush="{x:Null}"
-                                BorderThickness="0" ToolTip="Zoomer" 
-                                 />
+
 
                     </StackPanel>
                 </Grid>

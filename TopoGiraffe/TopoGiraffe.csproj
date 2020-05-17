@@ -76,11 +76,13 @@
     <None Remove="ink.png" />
     <None Remove="less.png" />
     <None Remove="logo.png" />
+    <None Remove="logogris.png" />
     <None Remove="plus.png" />
     <None Remove="plusS.png" />
     <None Remove="plusSS.png" />
     <None Remove="report.png" />
     <None Remove="ruler.png" />
+    <None Remove="softwarebox.png" />
     <None Remove="splashScreen.png" />
     <None Remove="tour.png" />
     <None Remove="uiBlanc.png" />
@@ -162,6 +164,8 @@
     <Resource Include="assets\img\zoom-in.png" />
     <Resource Include="assets\img\ZoomWhite.png" />
     <Resource Include="logo.png" />
+    <Resource Include="logogris.png" />
+    <Resource Include="softwarebox.png" />
     <Resource Include="splashScreen.png" />
   </ItemGroup>
 
