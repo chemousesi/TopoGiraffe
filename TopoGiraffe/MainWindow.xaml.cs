@@ -44,7 +44,7 @@ namespace TopoGiraffe
 
 		private void MAX_RESTORE(object sender, MouseButtonEventArgs e)
 		{
-			if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
+			if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Normal;
 			else this.WindowState = WindowState.Normal;
 		}
 

@@ -255,11 +255,16 @@ namespace TopoGiraffe
 
         private void dessinerButton_Click(object sender, RoutedEventArgs e)
         {
-            btn2Clicked = true;
-            dragbool = false;
-            navClicked = false;
-            Cursor = Cursors.Cross;
-            CourbeNiveau myCurve = DrawNewCurve();
+
+
+            try
+            {
+                CourbeNiveau myCurve = DrawNewCurve();
+                btn2Clicked = true;
+                dragbool = false;
+                navClicked = false;
+                Cursor = Cursors.Cross;
+
 
                 CourbesNiveau.Add(myCurve);
 
@@ -284,6 +289,11 @@ namespace TopoGiraffe
                 // handling ctrl points
                 RemoveCtrlPoints();
                 ShownCtrlPoint = null;
+            }
+            catch (ErreurDeSaisieException excp)
+            {
+
+            }
 
 
           
@@ -502,7 +512,6 @@ namespace TopoGiraffe
 
 
                     // verify that the polyline doesn't intersect itself
-
 
 
                     if (courbeActuelle.polyline.Points.Count > 2)
@@ -904,6 +913,7 @@ namespace TopoGiraffe
 
         private void add_line_Click(object sender, RoutedEventArgs e)
         {
+
             poly = new Polyline();
             addLineClicked = true;
             btn2Clicked = false;
@@ -1600,6 +1610,8 @@ namespace TopoGiraffe
         // this function generates a dialog box , create , style a polyline from that dialog box entries
         // and return a new polyline, :)
         {
+
+          
             Window1 window1 = new Window1();
             window1.ShowDialog();
 
@@ -1638,7 +1650,7 @@ namespace TopoGiraffe
             }
             else
             {
-                //throw new ErreurDeSaisieException("Erreur dans a saisie ");
+                throw new ErreurDeSaisieException("Erreur dans La saisie ");
             }
 
             return Courbe;
