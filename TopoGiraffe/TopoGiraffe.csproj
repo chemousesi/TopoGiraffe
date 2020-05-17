@@ -176,7 +176,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="maps\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
