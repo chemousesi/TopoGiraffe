@@ -22,6 +22,7 @@ namespace TopoGiraffe
     {
         List<List<IntersectionDetail>> curves;
         private MainPage _mainPage;
+        string filename;
 
         public SauvgardePage(List<List<IntersectionDetail>> curves, MainPage mainPage )
         {
@@ -64,7 +65,7 @@ namespace TopoGiraffe
             if (result == true)
             {
                 // Open document
-                string filename = dlg.FileName;
+                filename = dlg.FileName;
                 this.Serializee(curves, filename);
             }
         }
@@ -83,6 +84,22 @@ namespace TopoGiraffe
         {
             saveFile();
             // MainWindow .saveFile()
+        }
+
+      
+
+        private void enregistrer_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.Serializee(curves, filename);
+            }
+            catch (ArgumentNullException excp)
+            {
+                MessageBox.Show("fichier de sauvegarde non choisis, clickez enregistrer sous d'abord");
+
+            }
+
         }
     }
 }

@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>logoWbg.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,6 +38,7 @@
     <None Remove="assets\img\line.png" />
     <None Remove="assets\img\Localisation.png" />
     <None Remove="assets\img\location.png" />
+    <None Remove="assets\img\logoWbg.png" />
     <None Remove="assets\img\maps2.png" />
     <None Remove="assets\img\Maximize.png" />
     <None Remove="assets\img\Minimize.png" />
@@ -81,12 +82,18 @@
     <None Remove="ink.png" />
     <None Remove="less.png" />
     <None Remove="logo.png" />
+    <None Remove="logogris.png" />
+    <None Remove="Pages\logogris.png" />
+    <None Remove="Pages\softwarebox.png" />
     <None Remove="plus.png" />
     <None Remove="plusS.png" />
     <None Remove="plusSS.png" />
     <None Remove="report.png" />
     <None Remove="ruler.png" />
+
+    <None Remove="softwarebox.png" />
     <None Remove="splashScreen.png" />
+
     <None Remove="tour.png" />
     <None Remove="uiBlanc.png" />
     <None Remove="visibility.png" />
@@ -107,6 +114,7 @@
     <Resource Include="assets\img\ImportWhite.png" />
     <Resource Include="assets\img\Light.png" />
     <Resource Include="assets\img\Localisation.png" />
+    <Resource Include="assets\img\logoWbg.png" />
     <Resource Include="assets\img\minusgray.png" />
     <Resource Include="assets\img\MinusWhite.png" />
     <Resource Include="assets\img\Night.png" />
@@ -172,11 +180,16 @@
     <Resource Include="assets\img\zoom-in.png" />
     <Resource Include="assets\img\ZoomWhite.png" />
     <Resource Include="logo.png" />
-    <Resource Include="splashScreen.png" />
+
+    <Resource Include="logogris.png" />
+
+    <Resource Include="Pages\logogris.png" />
+
+    <Resource Include="Pages\softwarebox.png" />
+
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="maps\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

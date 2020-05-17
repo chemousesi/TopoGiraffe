@@ -9,7 +9,7 @@
        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      FontFamily="arial"
+      FontFamily="arial" Cursor="Hand"
      >
 
     <Page.Resources>
@@ -374,21 +374,14 @@
 
 
                         <Button Style="{DynamicResource NouveauBtn}"  x:Name="nouveau"  Foreground="#FFFFFF" Height="50" Background="#0000" BorderBrush="Transparent"
-                            BorderThickness="0" HorizontalContentAlignment="Left" Margin="0" >
+                            BorderThickness="0" HorizontalContentAlignment="Left" Margin="0" Click="goback_Click" >
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
                                 <Image Source="/assets/img/page.png" Margin="5,9" ></Image>
                                 <TextBlock Text="Nouvelle carte" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{DynamicResource OuvrirBtn}" x:Name="ouvrir"  Foreground="#FFFFFF" Height="50" Background="#0000" BorderBrush="Transparent"
-                            BorderThickness="0" HorizontalContentAlignment="Left" Margin="0 15 0 0" >
-                            <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
-                                <Image Source="/assets/img/folder.png" Margin="5,9" ></Image>
-                                <TextBlock Text="Ouvrir" Margin="10,0" FontSize="15" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
                         <Button Style="{DynamicResource EnregistrerBtn}" x:Name="enregistrer" Foreground="#FFFFFF" Height="50" Background="#0000" BorderBrush="Transparent"
-                            BorderThickness="0" HorizontalContentAlignment="Left" Margin="0 15 0 0" >
+                            BorderThickness="0" HorizontalContentAlignment="Left" Margin="0 15 0 0" Click="enregistrer_Click" >
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
                                 <Image Source="/assets/img/download.png" Margin="5,9" ></Image>
                                 <TextBlock Text="Enregistrer" Margin="10,0" FontSize="15" VerticalAlignment="Center"/>
@@ -399,13 +392,6 @@
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left" >
                                 <Image Source="/assets/img/save.png" Margin="5,8" RenderTransformOrigin="0.849,0.548" ></Image>
                                 <TextBlock Text="Enregistrer sous" Margin="10,0" FontSize="15" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{DynamicResource ExporterBtn}" x:Name="exporter" Foreground="#FFFFFF" Height="50" Background="#0000" BorderBrush="Transparent"
-                            BorderThickness="0" HorizontalContentAlignment="Left" Margin="0 15 0 0" >
-                            <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left" >
-                                <Image Source="/assets/img/export.png" Margin="5,9" ></Image>
-                                <TextBlock Text="Exporter" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -433,6 +419,64 @@
                     <Grid Grid.Row="0">
                         <TextBlock x:Name="CarteTitre" Text="Titre : " HorizontalAlignment="Right" FontSize="15" FontWeight="Bold" Foreground="#000000" Margin="50,5"/>
                     </Grid>
+                </Grid>
+                <Grid Background="AliceBlue" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.ColumnSpan="2" Margin="10,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Bienvenu a Topogiraffe" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40" RenderTransformOrigin="0.323,0.104" FontFamily="Gabriola" Margin="0,12,0,0" Grid.Row="1"/>
+                        <ScrollViewer Grid.Row="2" >
+                            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" xml:space="preserve" FontSize="16" Width="Auto" FontFamily="Malgun Gothic Semilight" >
+                                - Ceci est un logiciel de generation de profils topographiques a partir de courbes de niveaux réalisé par l'equipe 22 du projet 2CPI sous l'encadrement de :<LineBreak/>
+                                -Mme N.Belattar.
+                                -Mme Bouzar.
+                                
+                                Ce logiciel conçu répond à un cahier des charges donné au début du projet. Parmi ses fonctionnalités : l’importation d’une image, ou navigation sur une carte,
+                                le dessin de courbes de niveaux,la génération d’un profil topographique d’une région, le calcul de pente et l’exportation.
+                                Ce travail a vu le jour avec le travail collectif de six étudiants dont un est chef d’équipe :
+                                
+                                -  Noui Akram
+                                -  Benaziza ChemsEddine  
+                                -  Hafri SeifAli  
+                                -  Dejffal Belkis  
+                                -  Nasri AlaEddine  
+                                -  Lourguoui Zoher
+                                
+                                
+                             <Image HorizontalAlignment="Right" Height="320" VerticalAlignment="Bottom" Width="250" Source="softwarebox.png" Margin="0,0,0,0" Grid.Row="2"/>
+
+
+                            <TextBlock FontSize="20"  Text="Nos Liens" FontWeight="ExtraBold" /> 
+                                
+                             - Le lien du projet sur github pour les contributions :  https://github.com/chemousesi/TopoGiraffe
+                             - Email : <Hyperlink>Topogiraffe@gmail.com</Hyperlink> 
+                             - Lien vers manuel d'utilisation: <Hyperlink>https://lourguioui.github.io/TopoGiraffeDocs/ </Hyperlink>
+                                
+                                
+                                
+                                
+                                
+                                
+                             le logiciel est a utiliser a des fins personnels ou commercials, le logiciel est servi sans aucune garantie ou responsabilité   
+                             
+                            @Tous le droits sont réservés ESI2020
+
+                                
+
+                            </TextBlock>
+
+                        </ScrollViewer>
+
+                    </Grid>
+                    <Image HorizontalAlignment="Left" Height="86" Margin="0,82,0,0" VerticalAlignment="Top" Width="93" Grid.Column="1" Source="logogris.png"/>
+
                 </Grid>
             </Grid>
         </Grid>

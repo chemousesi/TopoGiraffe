@@ -17,7 +17,7 @@
     MinHeight="10"
     MinWidth="300"
     ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen" WindowStyle="None" Visibility="Visible"  >
+    WindowStartupLocation="CenterScreen" WindowStyle="None" Visibility="Visible" Cursor="Hand"  >
 
 
     <Window.Resources>
