@@ -110,6 +110,18 @@ namespace TopoGiraffe
           
         }
 
+        private void nouvelle_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Voulez vous sauvgarder ?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                saveFile();
+            }
+            _mainPage.prepareCanvas_Click(new object(), new RoutedEventArgs());
+            this.NavigationService.Navigate(_mainPage);
+
+        }
+
 
         //private void openManual_Click(object sender, RoutedEventArgs e)
         //{
