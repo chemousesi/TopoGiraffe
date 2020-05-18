@@ -90,6 +90,10 @@ ImageSource= "/assets/img/DeleteAllGray.png" >
 ViewportUnits="Absolute" Viewport="120 52 20 20"
 ImageSource= "/assets/img/Light.png" >
     </ImageBrush>
+    <ImageBrush x:Key="DeleteCurve" TileMode="None"
+ViewportUnits="Absolute" Viewport="20 20 20 20"
+ImageSource= "/assets/img/DeleteCurveLight.png" >
+    </ImageBrush>
     <Style TargetType="lvc:CartesianChart">
         <Setter Property="AnimationsSpeed" Value="0:0:0.5"></Setter>
         <Setter Property="SeriesColors" Value="{StaticResource ColorsCollection11}"/>

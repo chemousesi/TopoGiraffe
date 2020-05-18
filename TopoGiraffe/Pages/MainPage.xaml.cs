@@ -421,7 +421,7 @@ namespace TopoGiraffe
                         // removing circles
                         index = CourbesNiveau.IndexOf(courbeActuelle);
                         list = PointsGlobal[index];
-                        if (courbeActuelle.polyline.Points.Count == 2)
+                        if (courbeActuelle.polyline.Points.Count == 2 && list.Count == 2)
                         {
                             mainCanvas.Children.Remove(list[0].cercle);
                             mainCanvas.Children.Remove(list[1].cercle);
@@ -552,6 +552,7 @@ namespace TopoGiraffe
                         courbeActuelle.polyline.Points.Add(lastPoint);
                         Ellipse circle = new Ellipse();
                         ArtPoint artPoint = new ArtPoint(circle, lastPoint);
+                        indexPoints = CourbesNiveau.IndexOf(courbeActuelle);
                         ShownCtrlPoint = PointsGlobal[indexPoints];
 
                         PointsGlobal[indexPoints].Add(artPoint);
@@ -621,11 +622,7 @@ namespace TopoGiraffe
 
 
                     curves.Add(IntersectionPoints);
-
-
-
-                    //MessageBox.Show("la taille de curves lakhra " + curves[curves.Count() - 1].Count());
-                    //  for (int a = 0; a < (curves[curves.Count() - 1].Count()); a++) { MessageBox.Show(curves[curves.Count() - 1][a].altitude.ToString()); }
+    
                     this.Serializee(curves);
 
                     // dessin des cercles representant les points d'intersection
@@ -2274,7 +2271,28 @@ namespace TopoGiraffe
             return (sum / (points.Count() - 1));
         }
 
-       
+        private void DeleteCurve_Click(object sender, RoutedEventArgs e)
+        {
+            if (courbeActuelle == null) return;
+            mainCanvas.Children.Remove(courbeActuelle.polyline);
+            int index = CourbesNiveau.IndexOf(courbeActuelle);
+            List<ArtPoint> list = PointsGlobal[index];
+            foreach(ArtPoint art in list)
+            {
+                mainCanvas.Children.Remove(art.cercle);
+
+            }
+            CourbesNiveau.Remove(courbeActuelle);
+            PointsGlobal.Remove(list);
+            list.Clear();
+
+            if (CourbesNiveau.Count > 0)
+            {
+                courbeActuelle = CourbesNiveau[CourbesNiveau.Count - 1];
+
+            } else { courbeActuelle = null; }
+
+        }
 
         PointAltitude pointAltitudeActuel = null;
 

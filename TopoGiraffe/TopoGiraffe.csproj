@@ -16,6 +16,8 @@
     <None Remove="assets\img\deleteAll.png" />
     <None Remove="assets\img\DeleteAllGray.png" />
     <None Remove="assets\img\DeleteAllWhite.png" />
+    <None Remove="assets\img\DeleteCurveDark.png" />
+    <None Remove="assets\img\DeleteCurveLight.png" />
     <None Remove="assets\img\deletePrevious.png" />
     <None Remove="assets\img\DessinCourbeWhite.png" />
     <None Remove="assets\img\download.png" />
@@ -110,6 +112,8 @@
     <Resource Include="assets\img\arrows.png" />
     <Resource Include="assets\img\DeleteAllGray.png" />
     <Resource Include="assets\img\DeleteAllWhite.png" />
+    <Resource Include="assets\img\DeleteCurveDark.png" />
+    <Resource Include="assets\img\DeleteCurveLight.png" />
     <Resource Include="assets\img\edit-tools.png" />
     <Resource Include="assets\img\export1.png" />
     <Resource Include="assets\img\ExportWhite.png" />

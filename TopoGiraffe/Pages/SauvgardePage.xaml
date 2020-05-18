@@ -431,7 +431,9 @@
                             <RowDefinition Height="80"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Bienvenu a Topogiraffe" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40" RenderTransformOrigin="0.323,0.104" FontFamily="Gabriola" Margin="0,12,0,0" Grid.Row="1"/>
+                        
+                        <TextBlock Text="Bienvenue à Topogiraffe" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.323,0.104" FontFamily="Gotham Black" Margin="0,-1,0,0" Grid.Row="1" Height="41" Width="456"/>
+
                         <ScrollViewer Grid.Row="2" >
                             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" xml:space="preserve" FontSize="16" Width="Auto" FontFamily="Malgun Gothic Semilight" >
                                 - Ceci est un logiciel de generation de profils topographiques a partir de courbes de niveaux réalisé par l'equipe 22 du projet 2CPI sous l'encadrement de :<LineBreak/>
