@@ -742,17 +742,22 @@ namespace TopoGiraffe
                     if (TestClicked is Polyline || TestClicked is Ellipse)
                     {
                         int index = CourbesNiveau.IndexOf(courbeActuelle);
-
-                        if (ShownCtrlPoint != PointsGlobal[index])
+                        try
                         {
-                            RemoveCtrlPoints();
-                            ShownCtrlPoint = PointsGlobal[index];
+                            if (ShownCtrlPoint != PointsGlobal[index])
+                            {
+                                RemoveCtrlPoints();
 
-                            //ShownCtrlPoint = PointsGlobal[index];
-                            DrawCtrlPoints(courbeActuelle);
+                                ShownCtrlPoint = PointsGlobal[index];
 
 
+                                //ShownCtrlPoint = PointsGlobal[index];
+                                DrawCtrlPoints(courbeActuelle);
+
+
+                            }
                         }
+                        catch (Exception excp ) { }
                         return;
                     }
                     else
@@ -1391,6 +1396,18 @@ namespace TopoGiraffe
                         ShownCtrlPoint = PointsGlobal[index];
 
                         DrawCtrlPoints(courbeActuelle);
+                        //for( int k=0; k<3;k++ )
+                        //{
+
+                        //   // mainCanvas.Children.Remove(Ellipse circle);
+
+
+
+
+
+
+                        //}
+                        
 
 
                     }
@@ -1449,7 +1466,7 @@ namespace TopoGiraffe
                 byte Blue = C.B;
                 colorVal = Convert.ToInt64(Blue * (Math.Pow(256, 0)) + Green * (Math.Pow(256, 1)) + Red * (Math.Pow(256, 2)));
                 chosenBrush = new SolidColorBrush(Color.FromRgb(Red, Green, Blue));
-                // update courbe actulle 
+                // update courbe actuelle 
                 if (courbeActuelle != null)
                 {
                     courbeActuelle.polyline.Stroke = chosenBrush;
@@ -2353,7 +2370,10 @@ namespace TopoGiraffe
                 mainCanvas.Children.Remove(courbeActuelle.polyline);
                 int index = CourbesNiveau.IndexOf(courbeActuelle);
 
-                List<ArtPoint> list = PointsGlobal[index];
+                try
+                {
+                    List<ArtPoint> list = PointsGlobal[index];
+               
 
                 foreach (ArtPoint art in list)
                 {
@@ -2364,7 +2384,8 @@ namespace TopoGiraffe
                 PointsGlobal.Remove(list);
                 list.Clear();
 
-
+                }
+                catch (ArgumentOutOfRangeException excp) { }
                 if (CourbesNiveau.Count > 0)
                 {
                     courbeActuelle = CourbesNiveau[CourbesNiveau.Count - 1];
@@ -2372,7 +2393,7 @@ namespace TopoGiraffe
                 }
                 else { courbeActuelle = null; }
             }
-            catch(Exception exp) { MessageBox.Show("pas de courbe selectionnée"); }
+            catch(ArgumentNullException exp) { MessageBox.Show("pas de courbe selectionnée"); }
 
         } 
        
