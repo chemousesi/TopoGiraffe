@@ -19,7 +19,7 @@
       d:DesignHeight="700" d:DesignWidth="1500"
       Title="MainPage"
       xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-      xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue">
+      xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue" Cursor="Hand">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -383,6 +383,12 @@
                                   BorderThickness="0"  IsDefault="True" Click="add_line_Click" 
                                ToolTip="Dessiner le segment AB" Width="62" Cursor="Hand"  
                                 />
+                        <Button x:Name="DeleteCurve" Height="60"  Background="{DynamicResource DeleteCurve}" BorderBrush="{x:Null}"
+                                  BorderThickness="0"  IsDefault="True"
+                               ToolTip="Supprimer une courbe de niveau" Width="62" Cursor="Hand" Click="DeleteCurve_Click"  
+                                />
+
+
                         <Button x:Name="addTextButton" Height="60"  Background="{DynamicResource AddText}" BorderBrush="{x:Null}"
                                   BorderThickness="0"  IsDefault="True" Click="AddNewText"
                                ToolTip="Ajouter un Texte" Width="62" Cursor="Hand"  

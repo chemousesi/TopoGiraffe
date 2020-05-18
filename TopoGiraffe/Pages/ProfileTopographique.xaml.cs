@@ -51,7 +51,7 @@ namespace TopoGiraffe
 
             foreach (IntersectionDetail IntersectionPoint in IntersectionPoints)
             {
-                double distance = (double)System.Math.Round(mainScale.FindDistanceOnField(IntersectionPoint.distance), 3);
+                double distance = System.Math.Round(mainScale.FindDistanceOnField(IntersectionPoint.distance), 3);
                 MyValues.Add(new ObservablePoint(distance, IntersectionPoint.altitude));
             }
             SeriesCollection = new SeriesCollection

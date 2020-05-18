@@ -113,8 +113,13 @@ ImageSource= "/assets/img/Night.png" >
 
     </lvc:ColorsCollection>
 
+    <ImageBrush x:Key="DeleteCurve" TileMode="None"
+    ViewportUnits="Absolute" Viewport="20 20 20 20"
+    ImageSource= "/assets/img/DeleteCurveDark.png" >
+    </ImageBrush>
 
-    
+
+
 
 
 
