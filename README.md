@@ -6,7 +6,7 @@
 
 ## Installation
 
-- Telechargez le fichier d'installation dans le repo et suivez les instructions indiquées dans le manuel d'installation 
+- Telechargez le fichier d'installation dans le repo et suivez les instructions indiquées dans le manuel d'installation.
 
 ## Preview
 ### Light Mode 
@@ -16,7 +16,7 @@
 
 
 ## Authors
- - Noui Akram
+ -NOUI Akram
 - BENAZIZA Chemeseddine 
 - DJEFFAL Belkis
 - HAFRI Seif Ali 
