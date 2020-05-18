@@ -12,12 +12,17 @@
     Background="#F9F9F9"
     FontFamily="arial"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-    Height="250"
+    Height="290"
     Width="300"
     MinHeight="10"
     MinWidth="300"
     ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen" WindowStyle="None" Visibility="Visible" Cursor="Hand"  >
+
+    WindowStartupLocation="CenterScreen" 
+    
+    Visibility="Visible"
+    ShowInTaskbar="False">
+
 
 
     <Window.Resources>
