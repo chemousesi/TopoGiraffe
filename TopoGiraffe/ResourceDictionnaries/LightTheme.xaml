@@ -26,7 +26,7 @@ ImageSource="/assets/img/navigation.png" >
   </ImageBrush>
   
   <ImageBrush x:Key="Segment" TileMode="None"
-   ViewportUnits="Absolute" Viewport="30 20 20 20"
+   ViewportUnits="Absolute" Viewport="20 20 20 20"
    ImageSource="/assets/img/Segmentgray.png" >
   </ImageBrush>
   

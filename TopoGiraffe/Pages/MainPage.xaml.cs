@@ -14,7 +14,11 @@ using System.Windows.Shapes;
 using TopoGiraffe.Noyau;
 using TopoSurf.MessageBoxStyle;
 using TopoGiraffe.Exceptions;
+using System.Threading;
+using System.Diagnostics;
+
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace TopoGiraffe
 {
@@ -1796,18 +1800,30 @@ namespace TopoGiraffe
         /* -------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-        private void Import_MouseEnter(object sender, MouseEventArgs e)
+        private async void Import_MouseEnter(object sender, MouseEventArgs e)
         {
             popup_uc.PlacementTarget = import;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
             Header.PopupText.Text = "Importer une carte";
+           
+
+
+
+
+
         }
+        async Task PutTaskDelay()
+        {
+            await Task.Delay(5000);
+        }
+
 
         private void Import_MouseLeave(object sender, MouseEventArgs e)
         {
             popup_uc.Visibility = Visibility.Collapsed;
             popup_uc.IsOpen = false;
+          
         }
 
      
@@ -1830,30 +1846,75 @@ namespace TopoGiraffe
 
         private void ColorPicker_MouseEnter(object sender, MouseEventArgs e)
         {
-            popup_uc.PlacementTarget = cp;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir la couleur de la courbe";
+           
+
+            //popup_uc.Visibility = Visibility.Collapsed;
+            //popup_uc.IsOpen = false;
         }
 
-        private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
+        //private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
+        //{
+        //    popup_uc.Visibility = Visibility.Collapsed;
+        //    popup_uc.IsOpen = false;
+        //}
 
         private void TypeCourbe_MouseEnter(object sender, MouseEventArgs e)
         {
             popup_uc.PlacementTarget = styleCourbeCmb;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
+            Stopwatch stopWatch = new Stopwatch();
+            
             Header.PopupText.Text = "Choisir le type de la courbe";
+            Thread.Sleep(10);
+            popup_uc.IsOpen = false;
+        }
+        // code pour l'aide
+
+        private async void btn14_Click(object sender, RoutedEventArgs e)
+        {
+
+            popup_ud.IsOpen = true;
+            await PutTaskDelay();
+            popup_ud.IsOpen = false;
+            popup_ue.IsOpen = true;
+            popup_uh.PlacementTarget = import;
+            popup_uh.Placement = PlacementMode.Bottom;
+           Pops.PopupText.Text = "Importer une Carte";
+
+            popup_uh.IsOpen = true;
+            await PutTaskDelay();
+            popup_uh.Visibility = Visibility.Collapsed;
+
+            popup_ue.IsOpen = false;
+            popup_uf.IsOpen = true;
+            // button guide
+
+            popup_uh.PlacementTarget = dessinerButton;
+            popup_uh.Placement = PlacementMode.Bottom;
+            Pops.PopupText.Text = "Dessiner une courbe";
+            await PutTaskDelay();
+            popup_uh.Visibility = Visibility.Collapsed;
+
+            popup_uf.IsOpen = false;
+            popup_ug.IsOpen = true;
+
+            popup_uh.PlacementTarget = btn13;
+            popup_uh.Placement = PlacementMode.Bottom;
+            Pops.PopupText.Text = "Generer le Profil topographique";
+            await PutTaskDelay();
+            popup_ug.IsOpen = false;
+            popup_uh.Visibility = Visibility.Collapsed;
+            popup_uh.IsOpen = false;
+
+
+
         }
 
         private void TypeCourbe_MouseLeave(object sender, MouseEventArgs e)
         {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
+            //popup_uc.Visibility = Visibility.Collapsed;
+            //popup_uc.IsOpen = false;
         }
 
         // --------------------------------------------------------------------------- popup fin -------------------------------------//
@@ -2087,13 +2148,18 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = AltitudeBox;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
+            Stopwatch stopWatch = new Stopwatch();
+            //stopWatch.Start();
+            //stopWatch.Stop();
             Header.PopupText.Text = "Entrer l'altitude";
+
         }
 
         private void AltitudeBox_MouseLeave(object sender, MouseEventArgs e)
         {
             popup_uc.Visibility = Visibility.Collapsed;
             popup_uc.IsOpen = false;
+
         }
        
         private void Pente_Click(object sender, RoutedEventArgs e)
@@ -2164,8 +2230,7 @@ namespace TopoGiraffe
             return (sum / (points.Count() - 1));
         }
 
-
-
+       
 
         PointAltitude pointAltitudeActuel = null;
 

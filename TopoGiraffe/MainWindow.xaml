@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:TopoGiraffe"
         xmlns:utils="clr-namespace:TopoGiraffe"
         xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue"
         Background="Transparent"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         AllowsTransparency="False"
@@ -94,7 +95,7 @@
                  Fill="{StaticResource Max_inact}" />
         <Image HorizontalAlignment="Left" Height="29" Margin="10,1,0,0" VerticalAlignment="Top" Width="40" Source="/assets/img/WindowBar.png" Opacity="1"/>
 
-
+     
 
 
     </Grid>
