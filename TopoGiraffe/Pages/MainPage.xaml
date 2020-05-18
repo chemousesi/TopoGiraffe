@@ -19,7 +19,7 @@
       d:DesignHeight="700" d:DesignWidth="1500"
       Title="MainPage"
       xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-      xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue">
+      xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue" Cursor="Hand">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

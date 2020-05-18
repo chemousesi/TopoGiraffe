@@ -1,6 +1,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
@@ -25,7 +26,7 @@ namespace TopoGiraffe
         private MainPage _mainPage;
         string filename;
 
-        public SauvgardePage(List<List<IntersectionDetail>> curves, MainPage mainPage )
+        public SauvgardePage(List<List<IntersectionDetail>> curves, MainPage mainPage)
         {
             this.curves = curves;
             InitializeComponent();
@@ -87,7 +88,7 @@ namespace TopoGiraffe
             // MainWindow .saveFile()
         }
 
-      
+
 
         private void enregistrer_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +96,7 @@ namespace TopoGiraffe
             {
                 this.Serializee(curves, filename);
             }
-            catch (ArgumentNullException excp)
+            catch (ArgumentNullException)
             {
                 MessageBox.Show("fichier de sauvegarde non choisis, clickez enregistrer sous d'abord");
 
@@ -103,13 +104,22 @@ namespace TopoGiraffe
 
         }
 
-      
 
-
-
-        private void openManual_Click(object sender, RoutedEventArgs e)
+        void HandleRequestNavigate(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.facebook.com/");
+            string navigateUri = hl.NavigateUri.ToString();
+            // if the URI somehow came from an untrusted source, make sure to
+            // validate it before calling Process.Start(), e.g. check to see
+            // the scheme is HTTP, etc.
+            Process.Start(new Uri(navigateUri).AbsoluteUri.ToString());
+            e.Handled = true;
         }
+
+
+        //private void openManual_Click(object sender, RoutedEventArgs e)
+        //{
+        //    System.Diagnostics.Process.Start("IExplore.exe");
+        //    //System.Diagnostics.Process.Start("IExplore.exe", "www.northwindtraders.com");
+        //}
     }
 }

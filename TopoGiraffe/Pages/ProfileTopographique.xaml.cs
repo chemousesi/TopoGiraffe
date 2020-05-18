@@ -26,7 +26,7 @@ namespace TopoGiraffe
         public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList, Echelle mainScale, String pente)
         {
             this.IntersectionPoints = aIntersectionPoints;
-           // this.distancesListe = adistancesList;
+            // this.distancesListe = adistancesList;
             this.mainScale = mainScale;
             this.penteText = pente;
             Resources.Clear();
@@ -51,7 +51,7 @@ namespace TopoGiraffe
 
             foreach (IntersectionDetail IntersectionPoint in IntersectionPoints)
             {
-                double distance = (double)System.Math.Round(mainScale.FindDistanceOnField(IntersectionPoint.distance), 3);
+                double distance = System.Math.Round(mainScale.FindDistanceOnField(IntersectionPoint.distance), 3);
                 MyValues.Add(new ObservablePoint(distance, IntersectionPoint.altitude));
             }
             SeriesCollection = new SeriesCollection
@@ -82,7 +82,7 @@ namespace TopoGiraffe
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
         public ChartValues<ObservablePoint> MyValues { get; set; }
-  
+
 
         public void SaveToPng(FrameworkElement visual, string fileName)
         {
@@ -112,28 +112,28 @@ namespace TopoGiraffe
             iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A3, 10, 40, 42, 35);
 
 
-                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-                dlg.FileName = "Document"; // Default file name
-                dlg.DefaultExt = ".pdf"; // Default file extension
-                //dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Document"; // Default file name
+            dlg.DefaultExt = ".pdf"; // Default file extension
+                                     //dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
 
-                // Show open file dialog box
-                Nullable<bool> result = dlg.ShowDialog();
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
 
             // Process open file dialog box results
-                string filename = null;
-                if (result == true)
-                {
-                    // Open document
-                    filename = dlg.FileName;
-                   
-                }
+            string filename = null;
+            if (result == true)
+            {
+                // Open document
+                filename = dlg.FileName;
+
+            }
             try
             {
 
                 PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(filename, FileMode.Create));
             }
-            catch(ArgumentNullException excp)
+            catch (ArgumentNullException)
             {
                 MessageBox.Show("il faut specifier un fichier pdf");
             }
