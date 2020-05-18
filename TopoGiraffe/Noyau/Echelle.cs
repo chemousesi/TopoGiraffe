@@ -5,19 +5,18 @@ namespace TopoGiraffe.Noyau
 {
     public class Echelle
     {
-        public double scaleDistanceOnCanvas;
-        public double scaleDistanceOnField;
+       
 
         public Echelle(double aDistanceOnField)
         {
-            scaleDistanceOnField = aDistanceOnField;
+            ScaleDistanceOnField = aDistanceOnField;
 
         }
 
         public Echelle(double aDistanceOnCanvas, double aDistanceOnField)
         {
-            scaleDistanceOnCanvas = aDistanceOnCanvas;
-            scaleDistanceOnField = aDistanceOnField;
+            ScaleDistanceOnCanvas = aDistanceOnCanvas;
+            ScaleDistanceOnField = aDistanceOnField;
 
         }
 
@@ -35,7 +34,7 @@ namespace TopoGiraffe.Noyau
             double tempDistance = Outils.DistanceBtwTwoPoints(pointA, pointB);
 
 
-            return (tempDistance * scaleDistanceOnField) / scaleDistanceOnCanvas;
+            return (tempDistance * ScaleDistanceOnField) / ScaleDistanceOnCanvas;
 
 
         }
@@ -45,14 +44,15 @@ namespace TopoGiraffe.Noyau
         public double FindDistanceOnField(double aDistanceOnCanvas)//pixels
         // takes a distance from the canvas (distance btw two points) and returns distance in meters
         {
-            return (aDistanceOnCanvas * scaleDistanceOnField) / scaleDistanceOnCanvas;
+            return (aDistanceOnCanvas * ScaleDistanceOnField) / ScaleDistanceOnCanvas;
         }
 
 
 
         public double ScaleDistanceOnCanvas
         {
-            get; set;
+            get;
+            set;
         }
         public double ScaleDistanceOnField
         {

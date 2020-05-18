@@ -691,12 +691,12 @@ namespace TopoGiraffe
 
                 if (scaleLinePointsCount == 2)
                 {
-                    mainScale.scaleDistanceOnCanvas = Outils.DistanceBtwTwoPoints(scalePolyline.Points[0], scalePolyline.Points[1]);
+                    mainScale.ScaleDistanceOnCanvas = Outils.DistanceBtwTwoPoints(scalePolyline.Points[0], scalePolyline.Points[1]);
 
-                    string message = "Echelle sur plan " + Math.Round(mainScale.scaleDistanceOnCanvas, 3) + "------>" + mainScale.scaleDistanceOnField + " mètres";
+                    string message = "Echelle sur plan " + Math.Round(mainScale.ScaleDistanceOnCanvas, 3) + "------>" + mainScale.ScaleDistanceOnField + " mètres";
                     MessageBox.Show(message);
                     mainCanvas.Children.Remove(scalePolyline);
-                    drawingScale = false;
+                    drawingScale = false; 
                 }
 
 
@@ -1676,8 +1676,8 @@ namespace TopoGiraffe
                     mainScale = new Echelle(1, 1);
                 }
 
-                //int scalecan = (int)mainScale.scaleDistanceOnCanvas;
-                //int scaleFil = (int)mainScale.scaleDistanceOnField;
+                //int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
+                //int scaleFil = (int)mainScale.ScaleDistanceOnField;
                 // echelleOnFieldPlan.Text = scaleFil.ToString();
                 //echelleOnCanvasPlan.Text = scalecan.ToString();
 
@@ -2321,7 +2321,7 @@ namespace TopoGiraffe
             //this.DeSerialize()[this.DeSerialize().Count()-1];
             try
             {
-                Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
+                Echelle echel = new Echelle(mainScale.ScaleDistanceOnCanvas, mainScale.ScaleDistanceOnField);
             }
             catch (NullReferenceException ecp)
             {
