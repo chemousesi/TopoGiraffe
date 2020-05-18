@@ -8,7 +8,7 @@
              d:DesignHeight="15" d:DesignWidth="100"  UseLayoutRounding="False" Cursor="Hand"  >
 
     <Border BorderBrush="#DCDCDC" BorderThickness="3" CornerRadius="3" Opacity="0.8" >
-        <Grid Background="#DCDCDC" Opacity="0.8" ClipToBounds="True"  >
+        <Grid Background="#DCDCDC" Opacity="1" ClipToBounds="True" Margin="-1,-1,-1,-1"  >
             
                     <!--draw the popup user control-->
                     <Path
