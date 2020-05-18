@@ -37,7 +37,7 @@
 
     </Page.Resources>
 
-    <Grid Cursor="Hand" >
+    <Grid Cursor="Cross">
         <Grid.RowDefinitions>
             <RowDefinition Height="0"/>
             <RowDefinition Height="118"/>
