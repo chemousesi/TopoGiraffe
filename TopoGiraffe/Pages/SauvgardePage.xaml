@@ -464,7 +464,7 @@
 
                             <TextBlock FontSize="20"  Text="Nos Liens" FontWeight="Bold" /> 
                                 
-                             - Le lien du projet sur github pour les contributions :  https://github.com/chemousesi/TopoGiraffe
+                             - Le lien du projet sur github pour les contributions : <Hyperlink> https://github.com/chemousesi/TopoGiraffe </Hyperlink> 
                              - Email : <Hyperlink>Topogiraffe@gmail.com</Hyperlink> 
                              - Lien vers manuel d'utilisation: <Hyperlink>https://lourguioui.github.io/TopoGiraffeDocs/ </Hyperlink>
                                 
