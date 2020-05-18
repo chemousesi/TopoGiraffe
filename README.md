@@ -1,15 +1,16 @@
-
-<img src="screenshots/logogris.png" alt="Aimeos logo" title="Aimeos" align="right" height="60" />
+<img src="Screenshots/logogris.png"  align="right" height="100" />
 # TopoGiraffe
-
 >TopoGiraffe est un logiciel de traitement de terrains pour aider les topographes à générer des plans topographiques à partir des images sur terrain. En plus ce programme aide à concevoir des routes et des segments sur un terrain en relief. Ce projet est exclusivement fait pour des fins d'apprentissage.
 
 ## Installation
 
-Telechargez le fichier d'installation dans le repo et suivez les instructions indiquées dans le manuel d'installation 
+- Telechargez le fichier d'installation dans le repo et suivez les instructions indiquées dans le manuel d'installation 
 
 ## Preview
-![](assets/img/logogris.png)
+### Light Mode 
+![](Screenshots/TopoLight.JPG)
+### Dark Mode
+![](Screenshots/TopoDark.JPG)
 
 
 ## Authors
