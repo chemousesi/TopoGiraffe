@@ -270,7 +270,7 @@ namespace TopoGiraffe
                 btn2Clicked = true;
                 dragbool = false;
                 navClicked = false;
-                Cursor = Cursors.Cross;
+                Cursor = Cursors.Arrow;
 
 
                 CourbesNiveau.Add(myCurve);
