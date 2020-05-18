@@ -348,6 +348,25 @@ namespace TopoGiraffe
 
             }
         }
+        public void prepareCanvas_Click(object sender, RoutedEventArgs e)
+        {
+            
+                    CourbesNiveau.Clear();
+                    mainCanvas.Children.Clear();
+                    foreach (List<ArtPoint> ae in PointsGlobal)
+                    {
+                        ae.Clear();
+                    }
+                    PointsGlobal.Clear();
+                    cercles.Clear();
+                    IntersectionPoints.Clear();
+                    indexPoints = -1;
+
+                    nav.IsEnabled = true;
+                    dessinerButton.IsEnabled = true;
+               
+            
+        }
 
         // supprimer la derniere action-------------------------------------------------
 
