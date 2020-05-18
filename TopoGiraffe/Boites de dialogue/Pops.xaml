@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="100"   UseLayoutRounding="False" Cursor="Hand"  >
 
-    <Border BorderBrush="#e63946" BorderThickness="3" CornerRadius="3" Opacity=".9" >
-        <Grid Background="#e63946" Opacity="1" ClipToBounds="True" UseLayoutRounding="False" ShowGridLines="False">
+    <Border BorderBrush="#EFCAC4" BorderThickness="3" CornerRadius="3" Opacity=".96" >
+        <Grid Background="#EFCAC4" Opacity="1" ClipToBounds="True" UseLayoutRounding="False" ShowGridLines="False">
 
 
             <!--draw the popup user control-->
@@ -20,9 +20,9 @@
                           Height="25"
                           Width="20"
                           Margin="7,0"
-                        Stroke="#e63946"
+                        Stroke="#EFCAC4"
                         Stretch="None"
-                        Fill="#e63946"
+                        Fill="#EFCAC4"
                           >
             </Path>
             <!--reusable text-->

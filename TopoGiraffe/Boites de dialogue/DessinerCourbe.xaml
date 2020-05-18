@@ -26,7 +26,7 @@
 
             </Grid>
             <Grid Grid.Row="1">
-                <Line Stretch="Uniform" Stroke="#455874" StrokeThickness="4" Height="5" X1="20"  Width="80" Margin="30,-12,190,251"   />
+                    <Line Stretch="Uniform" Stroke="#EFCAC4" StrokeThickness="4" Height="5" X1="20"  Width="80" Margin="30,-12,190,251"   />
 
                 <TextBlock HorizontalAlignment="Center" Height="83" Margin="0,101,0,0"  
                    Text="Vous pouvez également déssiner des courbes de niveaux, des points et un segement AB" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" 
