@@ -1,17 +1,17 @@
-﻿<UserControl x:Class="TopoGiraffe.PopupUserControl"
+﻿<UserControl x:Class="TopoGiraffe.Boites_de_dialogue.Pops"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TopoGiraffe"
-             mc:Ignorable="d" 
-             d:DesignHeight="15" d:DesignWidth="100"  UseLayoutRounding="False"  >
+             xmlns:local="clr-namespace:TopoGiraffe.Boites_de_dialogue"
+              mc:Ignorable="d" 
+             d:DesignHeight="15" d:DesignWidth="100"  UseLayoutRounding="False" Cursor="Hand"  >
 
-    <Border BorderBrush="#DCDCDC" BorderThickness="3" CornerRadius="3" Opacity="0.8" >
-        <Grid Background="#DCDCDC" Opacity="0.8" ClipToBounds="True"  >
-            
-                    <!--draw the popup user control-->
-                    <Path
+    <Border BorderBrush="#FFDC7849" BorderThickness="3" CornerRadius="3" Opacity="0.8" >
+        <Grid Background="#FFDC7849" Opacity="0.8" ClipToBounds="True"  >
+
+            <!--draw the popup user control-->
+            <Path
                           x:Name="Container"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
@@ -24,19 +24,19 @@
                         Fill="#DCDCDC"
                           >
 
-                    </Path>
-                    <!--reusable text-->
-                    <TextBlock x:Name="PopupText"
+            </Path>
+            <!--reusable text-->
+            <TextBlock x:Name="PopupText"
                             FontSize="11"
-                            Foreground="#4D4D4D"
+                            Foreground="White"
                             Panel.ZIndex="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             TextWrapping="WrapWithOverflow"
                             Margin="7,0"
                             >
-                    </TextBlock>    
-                
+            </TextBlock>
+
             <Grid.Effect>
                 <DropShadowEffect
                         BlurRadius="0"
@@ -54,21 +54,21 @@
     </Border>
 
     <!--animate the user control-->
-        <UserControl.Style>
-            <Style>
-                <Style.Triggers>
-                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:00:05" From="0" To="15"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <Trigger Property="FrameworkElement.Visibility" Value="Collapsed">
-                        <Setter Property="FrameworkElement.Opacity" Value="0"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-        </UserControl.Style>
-    
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:00:05" From="0" To="15"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <Trigger Property="FrameworkElement.Visibility" Value="Collapsed">
+                    <Setter Property="FrameworkElement.Opacity" Value="0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+
 </UserControl>

@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="TopoGiraffe.Boites_de_dialogue.DessinerCourbe"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TopoGiraffe.Boites_de_dialogue"
+               mc:Ignorable="d"  UseLayoutRounding="False" Width="690" Height="390" >
+    <Border BorderBrush="#DCDCDC" BorderThickness="8" CornerRadius="0" Opacity="0.8" Margin="0,0,0,0"   >
+        <Grid Background="#FF141428" ClipToBounds="True"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="134*"></RowDefinition>
+                <RowDefinition Height="53*"></RowDefinition>
+
+
+
+            </Grid.RowDefinitions>
+
+            <Grid   Grid.Row="0" Background="White" >
+                <Image Source="/TopoGiraffe;component/assets/img/Profil Topo 3.png"  />
+
+            </Grid>
+            <TextBlock HorizontalAlignment="Left" Height="43" Margin="10,10,0,0" Grid.Row="1" Text="Dessiner des courbes de niveau" TextWrapping="Wrap" VerticalAlignment="Top" Width="398" Foreground="#FFFCFCFC" FontFamily="Gotham Black" FontSize="22" Padding="0,3,0,0"/>
+            <TextBlock HorizontalAlignment="Left" Height="38" Margin="35,58,0,0" Grid.Row="1" Text="Vous pouvez egalement dessiner des courbes de niveau , des points , et un segement AB" TextWrapping="Wrap" VerticalAlignment="Top" Width="596" Foreground="#FFF7F7F7" FontFamily="HelveticaNeue" FontSize="16"/>
+
+
+
+
+        </Grid>
+    </Border>
+</UserControl>

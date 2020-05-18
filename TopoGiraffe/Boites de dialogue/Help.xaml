@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="TopoGiraffe.Boites_de_dialogue.Help"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TopoGiraffe"
+                     xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue"
+
+             mc:Ignorable="d"  UseLayoutRounding="False" Width="690" Height="390" >
+    <Border BorderBrush="#DCDCDC" BorderThickness="8" CornerRadius="0" Opacity="0.8" Margin="0,0,0,0"   >
+        <Grid Background="#FF141428" ClipToBounds="True"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="179*"/>
+                <ColumnDefinition Width="126*"/>
+
+
+            </Grid.ColumnDefinitions>
+
+            <Grid   Grid.Column="0" >
+                <Image Source="/TopoGiraffe;component/assets/img/SplashScreen2.png" Width="584" HorizontalAlignment="Left" Margin="-73,0,0,0"  />
+                <TextBlock HorizontalAlignment="Left" Height="29" Margin="27,160,0,0" Text="Merci d'avoir Installé TopoGiraffe" TextWrapping="Wrap" VerticalAlignment="Top" Width="291" FontFamily="Gotham XLight" FontSize="16" Padding="40,0,0,0"/>
+                <TextBlock HorizontalAlignment="Center" Height="72" Margin="0,171,0,0" Text="Bienvenue" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" FontFamily="Gotham Black" FontSize="48" Opacity="0.8" Grid.Column="1" Panel.ZIndex="33"/>
+
+            </Grid>
+            <TextBlock HorizontalAlignment="Left" Height="67" Margin="391,137,0,0" Text="Prise en main." TextWrapping="Wrap" VerticalAlignment="Top" Width="279" FontFamily="HelveticaNeue" Foreground="White" FontSize="36" Grid.ColumnSpan="2" Padding="31,0,0,0"/>
+
+
+
+        </Grid>
+        
+    </Border>
+    
+
+</UserControl>
