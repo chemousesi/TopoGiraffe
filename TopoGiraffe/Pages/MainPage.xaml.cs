@@ -343,6 +343,7 @@ namespace TopoGiraffe
                     PointsGlobal.Clear();
                     cercles.Clear();
                     IntersectionPoints.Clear();
+                    PenteIntersectionPoints.Clear();
                     itm2.Clear();
 
                     indexPoints = -1;
@@ -365,6 +366,7 @@ namespace TopoGiraffe
                     PointsGlobal.Clear();
                     cercles.Clear();
                     IntersectionPoints.Clear();
+                    PenteIntersectionPoints.Clear();
                     indexPoints = -1;
 
                     nav.IsEnabled = true;
@@ -434,6 +436,7 @@ namespace TopoGiraffe
 
                 if (courbeActuelle.polyline.Points.Count > 0)
                 {
+                    
 
                     if (courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 1].Equals(courbeActuelle.polyline.Points[0]))
                     {
@@ -448,6 +451,8 @@ namespace TopoGiraffe
                         // removing circles
                         index = CourbesNiveau.IndexOf(courbeActuelle);
                         list = PointsGlobal[index];
+                        
+                        
                         if (courbeActuelle.polyline.Points.Count == 2 && list.Count == 2)
                         {
                             mainCanvas.Children.Remove(list[0].cercle);
@@ -1396,18 +1401,7 @@ namespace TopoGiraffe
                         ShownCtrlPoint = PointsGlobal[index];
 
                         DrawCtrlPoints(courbeActuelle);
-                        //for( int k=0; k<3;k++ )
-                        //{
-
-                        //   // mainCanvas.Children.Remove(Ellipse circle);
-
-
-
-
-
-
-                        //}
-                        
+                      
 
 
                     }
@@ -1652,20 +1646,8 @@ namespace TopoGiraffe
 
                 if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
                 {
-                    mainScale = new Echelle() { ScaleDistanceOnCanvas = result1, ScaleDistanceOnField = result2} ;
-                   // plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
-                    plan = new Plan() { Equidistance = Convert.ToInt32(dataDialog.Equidistance), MaxAltitude = Convert.ToInt32(dataDialog.Max), MinAltitude = Convert.ToInt32(dataDialog.Min) };
-
-                    dataDialog.EquidistanceTextBox.DataContext = plan;
-                    dataDialog.MaxTextBox.DataContext = plan;
-                    dataDialog.MinTextBox.DataContext = plan;
-
-
-
-                    echelleOnCanvasPlan.DataContext = mainScale;
-                    echelleOnFieldPlan.DataContext = mainScale;
-
-
+                    mainScale = new Echelle(result1, result2);
+                    plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
 
 
                 }
@@ -1676,10 +1658,17 @@ namespace TopoGiraffe
                     mainScale = new Echelle(1, 1);
                 }
 
+                int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
+                int scaleFil = (int)mainScale.ScaleDistanceOnField;
+                echelleOnFieldPlan.Text = scaleFil.ToString();
+                echelleOnCanvasPlan.Text = scalecan.ToString();
+
+
                 //int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
                 //int scaleFil = (int)mainScale.ScaleDistanceOnField;
                 // echelleOnFieldPlan.Text = scaleFil.ToString();
                 //echelleOnCanvasPlan.Text = scalecan.ToString();
+
 
 
 
@@ -1751,11 +1740,6 @@ namespace TopoGiraffe
         {
             //Echelle testScale = new Echelle(10, 100);
             ScaleDialog scaleDialog = new ScaleDialog();
-
-            scaleDialog.EchelleTextBoxOnCanvasScaleDB.DataContext = mainScale;
-            scaleDialog.EchelleTextBoxOnFieldScaleDB.DataContext = mainScale;
-
-
             scaleDialog.ShowDialog();
 
             if (scaleDialog.DialogResult == true)
@@ -1765,16 +1749,7 @@ namespace TopoGiraffe
                     if (int.TryParse(scaleDialog.EchelleOnField, out int result))
                     {
                         // assign the first proprety of the scale scaleonField
-                        
-                        if (mainScale == null)
-                        {
-                            mainScale = new Echelle() { ScaleDistanceOnField = result, ScaleDistanceOnCanvas = 0 };
-                        }
-                        else
-                        {
-                            mainScale.ScaleDistanceOnField = result;
-                        }
-
+                        mainScale = new Echelle(result);
 
                         drawingScale = true;
                         btn2Clicked = false;
@@ -2041,7 +2016,8 @@ namespace TopoGiraffe
 
             try
             {
-                IntersectionPoints = itm2[itm2.Count() - 1];
+                PenteIntersectionPoints = itm2[itm2.Count() - 1];
+                IntersectionPoints = PenteIntersectionPoints;
             }
             catch (Exception x)
             {
@@ -2049,7 +2025,7 @@ namespace TopoGiraffe
             }
             if (mainScale != null)
             {
-                CalcPente(IntersectionPoints, mainScale);
+                CalcPente(PenteIntersectionPoints, mainScale);
             }
             distances();
 
@@ -2304,6 +2280,7 @@ namespace TopoGiraffe
                 CourbesNiveau.Remove(courbeActuelle);
                 PointsGlobal.Remove(list);
                 list.Clear();
+               
 
                 }
                 catch (ArgumentOutOfRangeException excp) { }
