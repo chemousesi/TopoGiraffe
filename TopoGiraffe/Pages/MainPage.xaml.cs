@@ -1865,10 +1865,6 @@ namespace TopoGiraffe
             Header.PopupText.Text = "Importer une carte";
 
 
-
-
-
-
         }
         async Task PutTaskDelay()
         {
@@ -1890,7 +1886,7 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = display;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Header.PopupText.Text = "afficher";
+            Header.PopupText.Text = "Afficher";
         }
 
         private void display_MouseLeave(object sender, MouseEventArgs e)
@@ -1904,16 +1900,17 @@ namespace TopoGiraffe
         private void ColorPicker_MouseEnter(object sender, MouseEventArgs e)
         {
 
-
-            //popup_uc.Visibility = Visibility.Collapsed;
-            //popup_uc.IsOpen = false;
+            popup_uc.PlacementTarget = cp;
+            popup_uc.Placement = PlacementMode.Bottom;
+            popup_uc.IsOpen = true;
+            Header.PopupText.Text = "Choisir la couleur de la courbe";
         }
 
-        //private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
-        //{
-        //    popup_uc.Visibility = Visibility.Collapsed;
-        //    popup_uc.IsOpen = false;
-        //}
+        private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
+        }
 
         private void TypeCourbe_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -1921,8 +1918,7 @@ namespace TopoGiraffe
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
             Header.PopupText.Text = "Choisir le type de la courbe";
-            Thread.Sleep(10);
-            popup_uc.IsOpen = false;
+            
         }
         // code pour l'aide
 
@@ -1946,8 +1942,8 @@ namespace TopoGiraffe
             // button guide
 
             popup_uh.PlacementTarget = dessinerButton;
-            popup_uh.Placement = PlacementMode.Bottom;
-            Pops.PopupText.Text = "Dessiner une courbe";
+            popup_uh.Placement = PlacementMode.Right;
+            Pops.PopupText.Text = "Déssiner une courbe";
             await PutTaskDelay();
             popup_uh.Visibility = Visibility.Collapsed;
 
@@ -1956,7 +1952,7 @@ namespace TopoGiraffe
 
             popup_uh.PlacementTarget = btn13;
             popup_uh.Placement = PlacementMode.Bottom;
-            Pops.PopupText.Text = "Generer le Profil topographique";
+            Pops.PopupText.Text = "Générer le Profil topographique";
             await PutTaskDelay();
             popup_ug.IsOpen = false;
             popup_uh.Visibility = Visibility.Collapsed;
@@ -1985,7 +1981,7 @@ namespace TopoGiraffe
 
             popup_uh.PlacementTarget = dessinerButton;
             popup_uh.Placement = PlacementMode.Bottom;
-            Pops.PopupText.Text = "Dessiner une courbe";
+            Pops.PopupText.Text = "Déssiner une courbe";
             await PutTaskDelay();
             popup_uh.Visibility = Visibility.Collapsed;
 
@@ -1994,7 +1990,7 @@ namespace TopoGiraffe
 
             popup_uh.PlacementTarget = btn13;
             popup_uh.Placement = PlacementMode.Bottom;
-            Pops.PopupText.Text = "Generer le Profil topographique";
+            Pops.PopupText.Text = "Générr le Profil topographique";
             await PutTaskDelay();
             popup_ug.IsOpen = false;
             popup_uh.Visibility = Visibility.Collapsed;
@@ -2004,8 +2000,8 @@ namespace TopoGiraffe
 
         private void TypeCourbe_MouseLeave(object sender, MouseEventArgs e)
         {
-            //popup_uc.Visibility = Visibility.Collapsed;
-            //popup_uc.IsOpen = false;
+            popup_uc.Visibility = Visibility.Collapsed;
+            popup_uc.IsOpen = false;
         }
 
         // --------------------------------------------------------------------------- popup fin -------------------------------------//

@@ -142,14 +142,7 @@
 
             <utils:ZoomBorder x:Name="border" ClipToBounds="True" Grid.Column="1" Margin="0" 
                               RenderTransformOrigin="0.5,0.5" KeyDown="border_KeyDown" BorderBrush="Transparent" BorderThickness="0" Background="{x:Null}">
-                <!-- <utils:ZoomBorder.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.51"/>
-                        <RotateTransform Angle="0.456"/>
-                        <TranslateTransform Y="3.009"/>
-                    </TransformGroup>
-                </utils:ZoomBorder.RenderTransform> -->
+               
                 <Grid>
                     <Grid Margin="20 30 20 25" Background="White">
                         <Grid.ColumnDefinitions>
@@ -405,7 +398,7 @@
                                 >
                         </Button>
                         <Button Name="export" Margin="0,0,0,0" Height="60" HorizontalContentAlignment="Center"
-                                     BorderBrush="{x:Null}" BorderThickness="0" Background="{DynamicResource Export}" Click="Button_Click" Cursor="Hand" ToolTip="Exporter"
+                                     BorderBrush="{x:Null}" BorderThickness="0" Background="{DynamicResource Export}" Click="Button_Click" Cursor="Hand" ToolTip="Importer"
                                 >
                         </Button>
                     </StackPanel>
@@ -425,7 +418,10 @@
         </Popup>
         <Popup x:Name="popup_ud"
                     Placement="Center"
-               IsOpen="False"
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"
                   
                   >
             <Grid>
@@ -434,8 +430,11 @@
 
         </Popup>
         <Popup x:Name="popup_ue"
-                    Placement="Center"
-               IsOpen="False"
+                     Placement="Center"
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"
                   
                   >
             <Grid>
@@ -444,8 +443,11 @@
 
         </Popup>
         <Popup x:Name="popup_uf"
-                    Placement="Center"
-               IsOpen="False"
+                     Placement="Center"
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"
                   
                   >
             <Grid>
@@ -455,7 +457,10 @@
         </Popup>
         <Popup x:Name="popup_ug"
                     Placement="Center"
-               IsOpen="False"
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"
                   
                   >
             <Grid>
@@ -465,11 +470,13 @@
         </Popup>
         <Popup x:Name="popup_uh"
                     Placement="Center"
-               IsOpen="False"
-                  
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"  
                   >
             <Grid>
-                <local1:Pops  x:Name="Pops" />
+                <local1:Pops  x:Name="Pops" Foreground="#E0FFFF"/>
             </Grid>
 
         </Popup>
