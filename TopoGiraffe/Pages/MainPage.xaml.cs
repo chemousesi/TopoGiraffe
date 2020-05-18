@@ -1886,72 +1886,15 @@ namespace TopoGiraffe
         /* -------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-        private async void Import_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = import;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Importer une carte";
-
-
-        }
+        
         async Task PutTaskDelay()
         {
             await Task.Delay(5000);
         }
 
-
-        private void Import_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-
-        }
-
-
-
-        private void display_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = display;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Afficher";
-        }
-
-        private void display_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-
-
-        private void ColorPicker_MouseEnter(object sender, MouseEventArgs e)
-        {
-
-            popup_uc.PlacementTarget = cp;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir la couleur de la courbe";
-        }
-
-        private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void TypeCourbe_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = styleCourbeCmb;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir le type de la courbe";
-            
-        }
         // code pour l'aide
 
-        private async void btn14_Click(object sender, RoutedEventArgs e)
+        private async void Help_Click(object sender, RoutedEventArgs e)
         {
 
             popup_ud.IsOpen = true;
@@ -2025,12 +1968,6 @@ namespace TopoGiraffe
             popup_uh.Visibility = Visibility.Collapsed;
             popup_uh.IsOpen = false;
 
-        }
-
-        private void TypeCourbe_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
         }
 
         // --------------------------------------------------------------------------- popup fin -------------------------------------//
@@ -2244,50 +2181,7 @@ namespace TopoGiraffe
 
         double pente;
         List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
-        //---------------------------------------------------------------------------------------- popup vol 2 --------------------------
-        //--------------------------------------------------------------------------------------------------------------------------------
-
-
-
-        private void EpaisseurTextBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = ThickText;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Entrer l'épaisseur";
-        }
-
-        private void Export_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void EpaisseurTextBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void AltitudeBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = AltitudeBox;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Stopwatch stopWatch = new Stopwatch();
-            //stopWatch.Start();
-            //stopWatch.Stop();
-            Header.PopupText.Text = "Entrer l'altitude";
-
-        }
-
-        private void AltitudeBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-
-        }
-
+      
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
 
