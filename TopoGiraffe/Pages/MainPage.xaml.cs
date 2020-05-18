@@ -89,7 +89,7 @@ namespace TopoGiraffe
             if (exec == 0)
             {
                 exec++;
-                File.WriteAllText(@"./assets/exec.txt", exec.ToString());
+                File.WriteAllText("../../../assets/exec.txt", exec.ToString());
               
                 HelpWindow();
             }
