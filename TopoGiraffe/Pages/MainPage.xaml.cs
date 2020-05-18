@@ -750,6 +750,22 @@ namespace TopoGiraffe
 
                 }
 
+            }else if (addTextClicked == true)
+            {
+
+
+
+                addTextClicked = false;
+
+                texteBlockActuel.FontSize = 9;
+                texteBlockActuel.Height = 10;
+                texteBlockActuel.Width = 20;
+                Canvas.SetLeft(texteBlockActuel, x- (texteBlockActuel.Width / 2));
+                Canvas.SetTop(texteBlockActuel, y - (texteBlockActuel.Height / 2));
+                mainCanvas.Children.Add(texteBlockActuel);
+
+
+
             }
         }
 
@@ -2319,6 +2335,7 @@ namespace TopoGiraffe
 
         Boolean drawPointsClicked = false;
 
+       
         public SerializationInfo BaseUri { get; private set; }
 
         private void drawPoint_Clicked(object sender, RoutedEventArgs e)
@@ -2449,9 +2466,50 @@ namespace TopoGiraffe
 
 
 
+        TextBlock texteBlockActuel;
+        Boolean addTextClicked = false;
+       
+
+        public void AddNewText(object sender, RoutedEventArgs e)
+        // this method creates a point and assigns it to PointAltitudeActuel
+        {
+
+            AddTextDialog addTextDialog = new AddTextDialog();// add text here
+            addTextDialog.ShowDialog();
 
 
+            if (addTextDialog.DialogResult == true)
+            {
+                if (addTextDialog.textTextBox.Text != "")
+                {
 
+
+                    addTextClicked = true;
+                    drawPointsClicked = false;
+                    addLineClicked = false;
+                    btn2Clicked = false;
+                    drawingScale = false;
+                    texteBlockActuel = new TextBlock();
+                    texteBlockActuel.Text = addTextDialog.textTextBox.Text;
+                    
+
+                }
+                else
+                {
+                    (new MssgBox("Pas de texte en entrée")).Show();
+                }
+                
+
+            }
+
+
+        }
+
+      
+
+       
+
+        
 
 
 
@@ -2494,9 +2552,5 @@ namespace TopoGiraffe
 
 
     }
-    class RectangleName
-    {
-        public Rectangle Rect { get; set; }
-        public string Name { get; set; }
-    }
+   
 }

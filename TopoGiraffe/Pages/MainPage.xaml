@@ -37,7 +37,7 @@
 
     </Page.Resources>
 
-    <Grid Cursor="Hand" >
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="0"/>
             <RowDefinition Height="118"/>
@@ -384,7 +384,7 @@
                                ToolTip="Dessiner le segment AB" Width="62" Cursor="Hand"  
                                 />
                         <Button x:Name="addTextButton" Height="60"  Background="{DynamicResource AddText}" BorderBrush="{x:Null}"
-                                  BorderThickness="0"  IsDefault="True" 
+                                  BorderThickness="0"  IsDefault="True" Click="AddNewText"
                                ToolTip="Ajouter un Texte" Width="62" Cursor="Hand"  
                                 />
 
