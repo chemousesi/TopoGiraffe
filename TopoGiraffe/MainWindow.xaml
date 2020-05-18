@@ -8,12 +8,13 @@
         xmlns:local="clr-namespace:TopoGiraffe"
         xmlns:utils="clr-namespace:TopoGiraffe"
         xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue"
         Background="Transparent"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         AllowsTransparency="False"
         BorderBrush="Transparent"
         mc:Ignorable="d"
-         Height="700" Width="1500"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStyle="None" Cursor="Hand"  >
+         Height="700" Width="1200"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStyle="None" Cursor="Hand"  >
 
 
 
@@ -92,9 +93,9 @@
                  MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
                  MouseLeftButtonDown="Max_pressing" Name="Max_btn" 
                  Fill="{StaticResource Max_inact}" />
-        <Image HorizontalAlignment="Left" Height="29" Margin="10,1,0,0" VerticalAlignment="Top" Width="40" Source="/assets/img/WindowBar.png"/>
+        <Image HorizontalAlignment="Left" Height="29" Margin="10,1,0,0" VerticalAlignment="Top" Width="40" Source="/assets/img/WindowBar.png" Opacity="1"/>
 
-
+     
 
 
     </Grid>

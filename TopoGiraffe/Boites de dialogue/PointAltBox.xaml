@@ -17,10 +17,12 @@
     MinHeight="10"
     MinWidth="300"
     ResizeMode="NoResize"
+
     WindowStartupLocation="CenterScreen" 
     
     Visibility="Visible"
     ShowInTaskbar="False">
+
 
 
     <Window.Resources>

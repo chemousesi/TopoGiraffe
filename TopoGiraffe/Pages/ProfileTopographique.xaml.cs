@@ -65,6 +65,7 @@ namespace TopoGiraffe
                  //   PointGeometrySize = 4,
                     AreaLimit = 0,
                     LineSmoothness = 0.4,
+                    
                     //DataLabels = true,
                 }
             };
@@ -81,6 +82,7 @@ namespace TopoGiraffe
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
         public ChartValues<ObservablePoint> MyValues { get; set; }
+  
 
         public void SaveToPng(FrameworkElement visual, string fileName)
         {
@@ -107,8 +109,37 @@ namespace TopoGiraffe
             png.Save(stream);
             SaveToPng(chart, "MyChart.png");
 
-            iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("test.pdf", FileMode.Create));
+            iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A3, 10, 40, 42, 35);
+
+
+                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                dlg.FileName = "Document"; // Default file name
+                dlg.DefaultExt = ".pdf"; // Default file extension
+                //dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
+
+                // Show open file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+                string filename = null;
+                if (result == true)
+                {
+                    // Open document
+                    filename = dlg.FileName;
+                   
+                }
+            try
+            {
+
+                PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(filename, FileMode.Create));
+            }
+            catch(ArgumentNullException excp)
+            {
+                MessageBox.Show("il faut specifier un fichier pdf");
+            }
+
+
+
             doc.Open();
             iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance("./MyChart.PNG");
             jpg.Border = iTextSharp.text.Rectangle.BOX;
