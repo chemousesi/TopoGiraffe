@@ -72,6 +72,7 @@ ImageSource= "/assets/img/minusgray.png" >
 ViewportUnits="Absolute" Viewport="20 20 20 20"
 ImageSource= "/assets/img/DeleteAllGray.png" >
     </ImageBrush>
+    
     <Style TargetType="Label" x:Key="LabelStyle" >
         <Setter Property="Foreground" Value="Black"/>
     </Style>

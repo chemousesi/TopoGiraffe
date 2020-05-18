@@ -8,7 +8,7 @@
              d:DesignHeight="15" d:DesignWidth="100"   UseLayoutRounding="False" Cursor="Hand"  >
 
     <Border BorderBrush="#EFCAC4" BorderThickness="3" CornerRadius="3" Opacity=".96" >
-        <Grid Background="#EFCAC4" Opacity="1" ClipToBounds="True" UseLayoutRounding="False" ShowGridLines="False">
+        <Grid Background="#EFCAC4" Opacity="1" ClipToBounds="True" UseLayoutRounding="False" ShowGridLines="False" Margin="-1,-1,-1,-1">
 
 
             <!--draw the popup user control-->
