@@ -19,6 +19,7 @@ using System.Diagnostics;
 
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Microsoft.Maps.MapControl.WPF.Overlays;
 
 namespace TopoGiraffe
 {
@@ -127,6 +128,8 @@ namespace TopoGiraffe
 
 
         }
+
+        
 
 
 
@@ -1581,6 +1584,8 @@ namespace TopoGiraffe
                     equidistance.Text = Equidistance.ToString();
                     altitudeMax.Text = AltitudeMax.ToString();
                     altMin.Text = AltitudeMin.ToString();
+
+                    if( AltitudeMin > AltitudeMax ) { throw new ErreurDeSaisieException("Altitude min ne doit pas etre superieur a l'altitude max"); }
                 }
                 catch(Exception ecp )
                 {
@@ -1688,21 +1693,57 @@ namespace TopoGiraffe
         private void scaleButton_Click(object sender, RoutedEventArgs e)
         {
             //Echelle testScale = new Echelle(10, 100);
+            ScaleDialog scaleDialog = new ScaleDialog();
+            scaleDialog.ShowDialog();
+
+            if(scaleDialog.DialogResult == true)
+            {
+                if ((bool)scaleDialog.ScaleDrawingRadioBtn.IsChecked)
+                {
+                    if (int.TryParse(scaleDialog.EchelleOnField, out int result))
+                    {
+                        // assign the first proprety of the scale scaleonField
+                        mainScale = new Echelle(result);
+
+                        drawingScale = true;
+                        btn2Clicked = false;
+                        addLineClicked = false;
+                        navClicked = false;
+
+                        // making the polyline
+                        scalePolyline = new Polyline();
+
+                        scalePolyline.Stroke = Brushes.Indigo;
+                        scalePolyline.StrokeThickness = 3;
+                        scalePolyline.FillRule = FillRule.EvenOdd;
+
+                        mainCanvas.Children.Add(scalePolyline);
+                    }
+                    else
+                    {
+                        (new MssgBox("Entrée non valide , Vérifier l'échelle ne mètre !")).ShowDialog();
+                    }
+                    
+                }else
+                {
+                    if (int.TryParse(scaleDialog.EchelleOnCanvas, out int result1) && (int.TryParse(scaleDialog.EchelleOnField, out int result2)))
+                    {
+                        mainScale = new Echelle(result1, result2);
+
+                    }
+                    else
+                    {
+                        (new MssgBox("Entrée non valide , Vérifier !")).ShowDialog();
+
+                    }
 
 
-            drawingScale = true;
-            btn2Clicked = false;
-            addLineClicked = false;
-            navClicked = false;
+                }
+                // else should be here 
 
-            // making the polyline
-            scalePolyline = new Polyline();
+            }
 
-            scalePolyline.Stroke = Brushes.Indigo;
-            scalePolyline.StrokeThickness = 3;
-            scalePolyline.FillRule = FillRule.EvenOdd;
-
-            mainCanvas.Children.Add(scalePolyline);
+           
 
 
             //double result = testScale.FindDistanceOnField(20);
@@ -1764,7 +1805,7 @@ namespace TopoGiraffe
                 }
                 catch (System.FormatException)
                 {
-                    (new MssgBox("Enter a numeric value to the altitude !")).ShowDialog();
+                    (new MssgBox("Donner une valeur numérique dans le champ Altitude")).ShowDialog();
                 }
                 catch (System.NullReferenceException)
                 {
@@ -1863,8 +1904,6 @@ namespace TopoGiraffe
             popup_uc.PlacementTarget = styleCourbeCmb;
             popup_uc.Placement = PlacementMode.Bottom;
             popup_uc.IsOpen = true;
-            Stopwatch stopWatch = new Stopwatch();
-            
             Header.PopupText.Text = "Choisir le type de la courbe";
             Thread.Sleep(10);
             popup_uc.IsOpen = false;
@@ -2166,9 +2205,14 @@ namespace TopoGiraffe
         {
 
             //this.DeSerialize()[this.DeSerialize().Count()-1];
-
-            Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
-
+            try
+            {
+                Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
+            }
+            catch(NullReferenceException ecp)
+            {
+                MessageBox.Show("echelle pas encore disponible ");
+            }
 
             pente = CalcPente(PenteIntersectionPoints, mainScale);
             MessageBox.Show(" la pente est de   :" + (pente*100).ToString() + " % ");
