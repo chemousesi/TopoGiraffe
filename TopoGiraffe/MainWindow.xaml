@@ -8,7 +8,6 @@
         xmlns:local="clr-namespace:TopoGiraffe"
         xmlns:utils="clr-namespace:TopoGiraffe"
         xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue"
         Background="Transparent"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         AllowsTransparency="False"
@@ -26,40 +25,7 @@
                 <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
 
-
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="{x:Type Button}" x:Key="TitleBarButtons"  >
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Padding" Value="14"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background">
-                            <Setter.Value>#3f48cc</Setter.Value>
-                        </Setter>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
-            <Style TargetType="{x:Type Button}" x:Key="ExitButton" BasedOn="{StaticResource TitleBarButtons}">
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background">
-                            <Setter.Value>#e21d1d</Setter.Value>
-                        </Setter>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
         </ResourceDictionary>
 
     </Window.Resources>
@@ -73,7 +39,17 @@
 
 
     <Grid x:Name="Main">
-
+        <Grid.Resources>
+            <ImageBrush x:Key="Close_inact"  ImageSource="./assets/img/Exit.png" />
+            <ImageBrush x:Key="Min_inact" ImageSource="./assets/img/Minimize.png"  />
+            <ImageBrush x:Key="Max_inact" ImageSource="./assets/img/Maximize.png"  />
+            <ImageBrush x:Key="Close_act" ImageSource="./assets/img/Exit.png"  />
+            <ImageBrush x:Key="Min_act" ImageSource="./assets/img/Minimize.png"  />
+            <ImageBrush x:Key="Max_act" ImageSource="./assets/img/Maximize.png"  />
+            <ImageBrush x:Key="Close_pr" ImageSource="./assets/img/Exit.png"  />
+            <ImageBrush x:Key="Min_pr" ImageSource="./assets/img/Minimize.png"  />
+            <ImageBrush x:Key="Max_pr" ImageSource="./assets/img/Maximize.png"  />
+        </Grid.Resources>
 
         <Frame x:Name="mainFrame" Source="/Pages/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
 
@@ -82,21 +58,8 @@
 
 
         <TextBlock Foreground="White" VerticalAlignment="Top" Margin="58,10,0,0" HorizontalAlignment="Left" > TOPOGIRAFFE</TextBlock>
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="502" Height="49">
-            <Button Name="Minimize"  Style="{StaticResource TitleBarButtons}" 
-                   Width="56" MouseLeftButtonUp="MINIMIZE" HorizontalAlignment="Right" Margin="300,0,0,0">
-                <Image Source="./assets/img/Minimize.png" />
-            </Button>
-            <Button Name="Maximize"  Style="{StaticResource TitleBarButtons}"   MouseLeftButtonUp="MAX_RESTORE" HorizontalAlignment="Left" >
-                <Image Source="./assets/img/maximize.png" />
-            </Button>
-            <Button Name="Exit"  Style="{StaticResource ExitButton}"  MouseLeftButtonUp="EXIT"  HorizontalAlignment="Left" MouseLeftButtonDown="Exit_MouseLeftButtonDown" >
-                <Image Source="./assets/img/exit.png"  />
-            </Button>
-        </StackPanel>
 
         <Rectangle Height="77" Width="5" VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="move_window">
-
 
             <Rectangle.Fill>
 
@@ -106,10 +69,30 @@
             </Rectangle.Fill>
 
         </Rectangle>
-        
 
 
-        <Image HorizontalAlignment="Left" Height="29" Margin="10,1,0,0" VerticalAlignment="Top" Width="40" Source="/assets/img/WindowBar.png" Opacity="1"/>
+        <Rectangle Margin="8,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Right"
+                   Width="56" Height="15" Fill="Transparent"
+                   MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" />
+        <Rectangle Margin="8,15,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                 Width="14" Height="15" MouseLeftButtonUp="EXIT" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Close_pressing" Name="Close_btn" 
+                 Fill="{DynamicResource Close_inact}" />
+        <Rectangle Margin="29,15,70,0" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                 Width="14" Height="15" MouseLeftButtonUp="MINIMIZE" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Min_pressing" Name="Min_btn" 
+                 Fill="{StaticResource Min_inact}" 
+                 
+        />
+
+        <Rectangle Margin="50,15,40,0" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                 Width="14" Height="15" MouseLeftButtonUp="MAX_RESTORE" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Max_pressing" Name="Max_btn" 
+                 Fill="{StaticResource Max_inact}" />
+        <Image HorizontalAlignment="Left" Height="29" Margin="10,1,0,0" VerticalAlignment="Top" Width="40" Source="/assets/img/WindowBar.png"/>
 
 
 

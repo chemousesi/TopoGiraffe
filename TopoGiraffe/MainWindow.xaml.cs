@@ -47,11 +47,40 @@ namespace TopoGiraffe
 			this.WindowState = WindowState.Minimized;
 		}
 
-
 		private void MAX_RESTORE(object sender, MouseButtonEventArgs e)
 		{
-			if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Normal;
+			if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
 			else this.WindowState = WindowState.Normal;
+		}
+
+		private void Activate_Title_Icons(object sender, MouseEventArgs e)
+		{
+			//hover effect, make sure your grid is named "Main" or replace "Main" with the name of your grid
+			Close_btn.Fill = (ImageBrush)Main.Resources["Close_act"];
+			Min_btn.Fill = (ImageBrush)Main.Resources["Min_act"];
+			Max_btn.Fill = (ImageBrush)Main.Resources["Max_act"];
+		}
+
+		private void Deactivate_Title_Icons(object sender, MouseEventArgs e)
+		{
+			Close_btn.Fill = (ImageBrush)Main.Resources["Close_inact"];
+			Min_btn.Fill = (ImageBrush)Main.Resources["Min_inact"];
+			Max_btn.Fill = (ImageBrush)Main.Resources["Max_inact"];
+		}
+
+		private void Close_pressing(object sender, MouseButtonEventArgs e)
+		{
+			Close_btn.Fill = (ImageBrush)Main.Resources["Close_pr"];
+		}
+
+		private void Min_pressing(object sender, MouseButtonEventArgs e)
+		{
+			Min_btn.Fill = (ImageBrush)Main.Resources["Min_pr"];
+		}
+
+		private void Max_pressing(object sender, MouseButtonEventArgs e)
+		{
+			Max_btn.Fill = (ImageBrush)Main.Resources["Max_pr"];
 		}
 
 
@@ -82,14 +111,8 @@ namespace TopoGiraffe
 
 		}
 
-		private void Exit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Vous êtes sûr?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
-			if (messageBoxResult == MessageBoxResult.Yes)
-			{
-				Environment.Exit(0);
 
-			}
-		}
+
+		
 	}
 }
