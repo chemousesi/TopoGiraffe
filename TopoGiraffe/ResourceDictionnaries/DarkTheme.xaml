@@ -26,11 +26,15 @@ ImageSource="/assets/img/page.png" >
   </ImageBrush>
   
   <ImageBrush x:Key="Segment" TileMode="None"
-   ViewportUnits="Absolute" Viewport="20 30 20 30"
+   ViewportUnits="Absolute" Viewport="20 20 20 20"
    ImageSource="/assets/img/SegmentWhite.png" >
   </ImageBrush>
-  
-  <ImageBrush x:Key="Point" TileMode="None"
+    
+    <ImageBrush x:Key="AddText" TileMode="None"
+   ViewportUnits="Absolute" Viewport="20 20 20 20"
+   ImageSource="/assets/img/Twhite.png" >
+    </ImageBrush>
+    <ImageBrush x:Key="Point" TileMode="None"
   ViewportUnits="Absolute" Viewport="20 20 20 20"
   ImageSource="/assets/img/TriangleWhite.png" >
   </ImageBrush>
@@ -109,8 +113,13 @@ ImageSource= "/assets/img/Night.png" >
 
     </lvc:ColorsCollection>
 
+    <ImageBrush x:Key="DeleteCurve" TileMode="None"
+    ViewportUnits="Absolute" Viewport="20 20 20 20"
+    ImageSource= "/assets/img/DeleteCurveDark.png" >
+    </ImageBrush>
 
-    
+
+
 
 
 

@@ -16,6 +16,8 @@
     <None Remove="assets\img\deleteAll.png" />
     <None Remove="assets\img\DeleteAllGray.png" />
     <None Remove="assets\img\DeleteAllWhite.png" />
+    <None Remove="assets\img\DeleteCurveDark.png" />
+    <None Remove="assets\img\DeleteCurveLight.png" />
     <None Remove="assets\img\deletePrevious.png" />
     <None Remove="assets\img\DessinCourbeWhite.png" />
     <None Remove="assets\img\download.png" />
@@ -71,9 +73,11 @@
     <None Remove="assets\img\Segmentgray.png" />
     <None Remove="assets\img\SegmentWhite.png" />
     <None Remove="assets\img\SplashScreen2.png" />
+    <None Remove="assets\img\Tgrey.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\triangle.png" />
     <None Remove="assets\img\TriangleWhite.png" />
+    <None Remove="assets\img\Twhite.png" />
     <None Remove="assets\img\uiBlanc.png" />
     <None Remove="assets\img\view.png" />
     <None Remove="assets\img\viewOrangeDark.png" />
@@ -111,6 +115,8 @@
     <Resource Include="assets\img\arrows.png" />
     <Resource Include="assets\img\DeleteAllGray.png" />
     <Resource Include="assets\img\DeleteAllWhite.png" />
+    <Resource Include="assets\img\DeleteCurveDark.png" />
+    <Resource Include="assets\img\DeleteCurveLight.png" />
     <Resource Include="assets\img\edit-tools.png" />
     <Resource Include="assets\img\export1.png" />
     <Resource Include="assets\img\ExportWhite.png" />
@@ -133,7 +139,9 @@
     <Resource Include="assets\img\Profil.png" />
     <Resource Include="assets\img\Segmentgray.png" />
     <Resource Include="assets\img\SegmentWhite.png" />
+    <Resource Include="assets\img\Tgrey.png" />
     <Resource Include="assets\img\TriangleWhite.png" />
+    <Resource Include="assets\img\Twhite.png" />
     <Resource Include="assets\img\view.png" />
     <Resource Include="assets\img\viewOrangeDark.png" />
     <Resource Include="assets\img\viewOrangeLight.png" />

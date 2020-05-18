@@ -19,7 +19,7 @@
       d:DesignHeight="700" d:DesignWidth="1500"
       Title="MainPage"
       xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-      xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue">
+      xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue" Cursor="Hand">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -359,9 +359,7 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <StackPanel VerticalAlignment="Top"  Margin="2,20,0,0" >
-                        <Button  x:Name="deletePreviousButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource DeletePrevious}" BorderBrush="{x:Null}"
-                                 BorderThickness="0" Click="deletePreviousButton_Click" ToolTip="Supprimer l'action precedente"
-                               />
+                       
                         <Button x:Name="nav" Height="60" Margin="0,0,0,0" Background="{DynamicResource Navigation}" BorderBrush="{x:Null}"
                                 BorderThickness="0"  Click="nav_Click" ToolTip="Outil de Selection"
                                  />
@@ -376,6 +374,19 @@
                                   BorderThickness="0"  IsDefault="True" Click="add_line_Click" 
                                ToolTip="Dessiner le segment AB" Width="62" Cursor="Hand"  
                                 />
+
+                        <Button x:Name="addTextButton" Height="60"  Background="{DynamicResource AddText}" BorderBrush="{x:Null}"
+                                  BorderThickness="0"  IsDefault="True" Click="AddNewText"
+                               ToolTip="Ajouter un Texte" Width="62" Cursor="Hand"  
+                                />
+                        <Button  x:Name="deletePreviousButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource DeletePrevious}" BorderBrush="{x:Null}"
+                                 BorderThickness="0" Click="deletePreviousButton_Click" ToolTip="Supprimer l'action precedente"
+                               />
+                        <Button x:Name="DeleteCurve" Height="60"  Background="{DynamicResource DeleteCurve}" BorderBrush="{x:Null}"
+                                  BorderThickness="0"  IsDefault="True"
+                               ToolTip="Supprimer une courbe de niveau" Width="62" Cursor="Hand" Click="DeleteCurve_Click"  
+                                />
+
 
 
                     </StackPanel>

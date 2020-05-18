@@ -39,8 +39,8 @@
                 <lvc:DefaultTooltip BulletSize="10" Background="Gray" />
             </lvc:CartesianChart.DataTooltip>
             </lvc:CartesianChart>
-            <Label Content="Altitude(m)" HorizontalAlignment="Left" Margin="5,3,0,0" VerticalAlignment="Top"/>
-            <Label Content="Distance(m)" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,15,15" VerticalAlignment="Bottom"/>
+            <Label Foreground="{DynamicResource TextBox}" Content="Altitude(m)" HorizontalAlignment="Left" Margin="5,3,0,0" VerticalAlignment="Top"/>
+            <Label Foreground="{DynamicResource TextBox}" Content="Distance(m)" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,15,15" VerticalAlignment="Bottom"/>
         </Grid>
 
         <Button x:Name="Export" Content="Exporter en Pdf" HorizontalAlignment="Right" Margin="0,16,14,0" VerticalAlignment="Top" Click="Button_Click" Foreground="#FF363ED6" BorderBrush="#FF3348BC" Grid.Column="1"/>
