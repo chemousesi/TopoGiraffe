@@ -25,24 +25,21 @@ namespace TopoGiraffe.Noyau
             echelle = aEchelle;
         }
 
-
+        public Plan() { }
 
         public int Equidistance
         {
-            get => equidistance;
-            set => equidistance = value;
+            get; set;
         }
 
         public double MinAltitude
         {
-            get => minAltitude;
-            set => minAltitude = value;
+            get; set;
         }
 
         public double MaxAltitude
         {
-            get => maxAltitude;
-            set => maxAltitude = value;
+            get; set;
         }
 
 

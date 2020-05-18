@@ -45,7 +45,7 @@
             <Grid Grid.Row="1">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center"   
                          Panel.ZIndex="1" Grid.ColumnSpan="2" Height="330" Width="296" Margin="0,-15,0,0" >
-                    <TextBox x:Name="EchelleTextBoxOnFieldScaleDB" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="Echelle (mètre)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    <TextBox x:Name="EchelleTextBoxOnFieldScaleDB" Text="{Binding ScaleDistanceOnField, Mode=TwoWay}" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="Echelle (mètre)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         VerticalContentAlignment="Top" HorizontalAlignment="Center" VerticalAlignment="Center" 
                         FontSize="15" Foreground="#000000" Margin="0,0,0,0"   Height="45" Width="280" />
 
@@ -54,7 +54,7 @@
                     <RadioButton x:Name="ScaleDrawingRadioBtn" GroupName="echelle" >Sur le Dessin avec l'outil Echelle</RadioButton>
 
 
-                    <TextBox IsEnabled="{Binding ElementName=ScaleEntryRadioBtn, Path=IsChecked}" x:Name="EchelleTextBoxOnCanvasScaleDB" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="Echelle (pixel)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    <TextBox IsEnabled="{Binding ElementName=ScaleEntryRadioBtn, Path=IsChecked}" Text="{Binding ScaleDistanceOnCanvas}" x:Name="EchelleTextBoxOnCanvasScaleDB" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="Echelle (pixel)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         VerticalContentAlignment="Top" 
                         FontSize="15" Foreground="#000000"   Height="45" Width="280" />
                 </StackPanel>

@@ -1604,8 +1604,20 @@ namespace TopoGiraffe
 
                 if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
                 {
-                    mainScale = new Echelle(result1, result2);
-                    plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
+                    mainScale = new Echelle() { ScaleDistanceOnCanvas = result1, ScaleDistanceOnField = result2} ;
+                   // plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
+                    plan = new Plan() { Equidistance = Convert.ToInt32(dataDialog.Equidistance), MaxAltitude = Convert.ToInt32(dataDialog.Max), MinAltitude = Convert.ToInt32(dataDialog.Min) };
+
+                    dataDialog.EquidistanceTextBox.DataContext = plan;
+                    dataDialog.MaxTextBox.DataContext = plan;
+                    dataDialog.MinTextBox.DataContext = plan;
+
+
+
+                    echelleOnCanvasPlan.DataContext = mainScale;
+                    echelleOnFieldPlan.DataContext = mainScale;
+
+
 
 
                 }
@@ -1615,10 +1627,11 @@ namespace TopoGiraffe
                     plan = new Plan(1, 1, 1, mainScale);
                     mainScale = new Echelle(1, 1);
                 }
-                int scalecan = (int)mainScale.scaleDistanceOnCanvas;
-                int scaleFil = (int)mainScale.scaleDistanceOnField;
-                echelleOnField.Text = scaleFil.ToString();
-                echelleOnCanvas.Text = scalecan.ToString();
+
+                //int scalecan = (int)mainScale.scaleDistanceOnCanvas;
+                //int scaleFil = (int)mainScale.scaleDistanceOnField;
+                // echelleOnFieldPlan.Text = scaleFil.ToString();
+                //echelleOnCanvasPlan.Text = scalecan.ToString();
 
 
 
@@ -1690,6 +1703,11 @@ namespace TopoGiraffe
         {
             //Echelle testScale = new Echelle(10, 100);
             ScaleDialog scaleDialog = new ScaleDialog();
+
+            scaleDialog.EchelleTextBoxOnCanvasScaleDB.DataContext = mainScale;
+            scaleDialog.EchelleTextBoxOnFieldScaleDB.DataContext = mainScale;
+
+
             scaleDialog.ShowDialog();
 
             if (scaleDialog.DialogResult == true)
@@ -1699,7 +1717,16 @@ namespace TopoGiraffe
                     if (int.TryParse(scaleDialog.EchelleOnField, out int result))
                     {
                         // assign the first proprety of the scale scaleonField
-                        mainScale = new Echelle(result);
+                        
+                        if (mainScale == null)
+                        {
+                            mainScale = new Echelle() { ScaleDistanceOnField = result, ScaleDistanceOnCanvas = 0 };
+                        }
+                        else
+                        {
+                            mainScale.ScaleDistanceOnField = result;
+                        }
+
 
                         drawingScale = true;
                         btn2Clicked = false;
