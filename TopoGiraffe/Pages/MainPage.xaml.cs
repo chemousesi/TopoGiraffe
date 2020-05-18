@@ -696,12 +696,12 @@ namespace TopoGiraffe
 
                 if (scaleLinePointsCount == 2)
                 {
-                    mainScale.scaleDistanceOnCanvas = Outils.DistanceBtwTwoPoints(scalePolyline.Points[0], scalePolyline.Points[1]);
+                    mainScale.ScaleDistanceOnCanvas = Outils.DistanceBtwTwoPoints(scalePolyline.Points[0], scalePolyline.Points[1]);
 
-                    string message = "Echelle sur plan " + Math.Round(mainScale.scaleDistanceOnCanvas, 3) + "------>" + mainScale.scaleDistanceOnField + " mètres";
+                    string message = "Echelle sur plan " + Math.Round(mainScale.ScaleDistanceOnCanvas, 3) + "------>" + mainScale.ScaleDistanceOnField + " mètres";
                     MessageBox.Show(message);
                     mainCanvas.Children.Remove(scalePolyline);
-                    drawingScale = false;
+                    drawingScale = false; 
                 }
 
 
@@ -1657,10 +1657,18 @@ namespace TopoGiraffe
                     plan = new Plan(1, 1, 1, mainScale);
                     mainScale = new Echelle(1, 1);
                 }
-                int scalecan = (int)mainScale.scaleDistanceOnCanvas;
-                int scaleFil = (int)mainScale.scaleDistanceOnField;
+
+                int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
+                int scaleFil = (int)mainScale.ScaleDistanceOnField;
                 echelleOnFieldPlan.Text = scaleFil.ToString();
                 echelleOnCanvasPlan.Text = scalecan.ToString();
+
+
+                //int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
+                //int scaleFil = (int)mainScale.ScaleDistanceOnField;
+                // echelleOnFieldPlan.Text = scaleFil.ToString();
+                //echelleOnCanvasPlan.Text = scalecan.ToString();
+
 
 
 
@@ -1880,72 +1888,15 @@ namespace TopoGiraffe
         /* -------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-        private async void Import_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = import;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Importer une carte";
-
-
-        }
+        
         async Task PutTaskDelay()
         {
             await Task.Delay(5000);
         }
 
-
-        private void Import_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-
-        }
-
-
-
-        private void display_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = display;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Afficher";
-        }
-
-        private void display_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-
-
-        private void ColorPicker_MouseEnter(object sender, MouseEventArgs e)
-        {
-
-            popup_uc.PlacementTarget = cp;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir la couleur de la courbe";
-        }
-
-        private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void TypeCourbe_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = styleCourbeCmb;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir le type de la courbe";
-            
-        }
         // code pour l'aide
 
-        private async void btn14_Click(object sender, RoutedEventArgs e)
+        private async void Help_Click(object sender, RoutedEventArgs e)
         {
 
             popup_ud.IsOpen = true;
@@ -2021,12 +1972,6 @@ namespace TopoGiraffe
 
         }
 
-        private void TypeCourbe_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
         // --------------------------------------------------------------------------- popup fin -------------------------------------//
         // --------------------------------------------------------------------------------------------------------------------------//
 
@@ -2072,6 +2017,7 @@ namespace TopoGiraffe
             try
             {
                 PenteIntersectionPoints = itm2[itm2.Count() - 1];
+                IntersectionPoints = PenteIntersectionPoints;
             }
             catch (Exception x)
             {
@@ -2238,57 +2184,14 @@ namespace TopoGiraffe
 
         double pente;
         List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
-        //---------------------------------------------------------------------------------------- popup vol 2 --------------------------
-        //--------------------------------------------------------------------------------------------------------------------------------
-
-
-
-        private void EpaisseurTextBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = ThickText;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Entrer l'épaisseur";
-        }
-
-        private void Export_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void EpaisseurTextBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void AltitudeBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = AltitudeBox;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Stopwatch stopWatch = new Stopwatch();
-            //stopWatch.Start();
-            //stopWatch.Stop();
-            Header.PopupText.Text = "Entrer l'altitude";
-
-        }
-
-        private void AltitudeBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-
-        }
-
+      
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
 
             //this.DeSerialize()[this.DeSerialize().Count()-1];
             try
             {
-                Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
+                Echelle echel = new Echelle(mainScale.ScaleDistanceOnCanvas, mainScale.ScaleDistanceOnField);
             }
             catch (NullReferenceException ecp)
             {
