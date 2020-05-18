@@ -5,6 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>logoWbg.ico</ApplicationIcon>
+    <Win32Resource />
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
@@ -54,6 +57,9 @@
     <None Remove="assets\img\plusgray.png" />
     <None Remove="assets\img\plusSS.png" />
     <None Remove="assets\img\Pluswhite.png" />
+    <None Remove="assets\img\Profil Topo 3.png" />
+    <None Remove="assets\img\Profil Topo 5.png" />
+    <None Remove="assets\img\Profil.png" />
     <None Remove="assets\img\report.png" />
     <None Remove="assets\img\return.png" />
     <None Remove="assets\img\ReturnBackWhite.png" />
@@ -120,6 +126,9 @@
     <Resource Include="assets\img\Night.png" />
     <Resource Include="assets\img\plusgray.png" />
     <Resource Include="assets\img\Pluswhite.png" />
+    <Resource Include="assets\img\Profil Topo 3.png" />
+    <Resource Include="assets\img\Profil Topo 5.png" />
+    <Resource Include="assets\img\Profil.png" />
     <Resource Include="assets\img\Segmentgray.png" />
     <Resource Include="assets\img\SegmentWhite.png" />
     <Resource Include="assets\img\TriangleWhite.png" />

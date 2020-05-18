@@ -7,6 +7,7 @@
       xmlns:utils="clr-namespace:TopoGiraffe"
       xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      
       xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar;assembly=MaterialDesignThemes.Wpf"
 
 
@@ -18,7 +19,7 @@
       d:DesignHeight="700" d:DesignWidth="1500"
       Title="MainPage"
       xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-      >
+      xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -116,7 +117,7 @@
 
                     </Button>
                     <Button  x:Name="btn14" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" ToolTip="Parametres"  >
+        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" ToolTip="Parametres" Click="btn14_Click"  >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -215,7 +216,7 @@
                                     <TextBlock Text="Choisir une couleur" Margin="40,25,40,5" Foreground="{DynamicResource TextBox}" FontSize="15"/>
                                     <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="18">
                                         <xctk1:ColorPicker Name="cp" Margin="40,3,40,5" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" 
-                                                       AvailableColorsSortingMode="HueSaturationBrightness" MouseEnter="ColorPicker_MouseEnter" MouseLeave="ColorPicker_MouseLeave"
+                                                       AvailableColorsSortingMode="HueSaturationBrightness" MouseEnter="ColorPicker_MouseEnter"
                                                        materialDesign:HintAssist.Hint="Choisissez la couleur de la courbe"   
                                                         />
                                     </Border>
@@ -410,6 +411,56 @@
             <Grid>
                 <local:PopupUserControl x:Name="Header" Foreground="#E0FFFF"/>
             </Grid>
+        </Popup>
+        <Popup x:Name="popup_ud"
+                    Placement="Center"
+               IsOpen="False"
+                  
+                  >
+            <Grid>
+                <local1:Help  x:Name="help" />
+            </Grid>
+
+        </Popup>
+        <Popup x:Name="popup_ue"
+                    Placement="Center"
+               IsOpen="False"
+                  
+                  >
+            <Grid>
+                <local1:Importer  x:Name="importer" />
+            </Grid>
+
+        </Popup>
+        <Popup x:Name="popup_uf"
+                    Placement="Center"
+               IsOpen="False"
+                  
+                  >
+            <Grid>
+                <local1:DessinerCourbe  x:Name="DessinerCourbe" />
+            </Grid>
+
+        </Popup>
+        <Popup x:Name="popup_ug"
+                    Placement="Center"
+               IsOpen="False"
+                  
+                  >
+            <Grid>
+                <local1:GenererProfil  x:Name="GenererProfil" />
+            </Grid>
+
+        </Popup>
+        <Popup x:Name="popup_uh"
+                    Placement="Center"
+               IsOpen="False"
+                  
+                  >
+            <Grid>
+                <local1:Pops  x:Name="Pops" />
+            </Grid>
+
         </Popup>
     </Grid>
 

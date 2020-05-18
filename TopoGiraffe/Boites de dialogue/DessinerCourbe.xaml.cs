@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TopoGiraffe.ResourceDictionnaries
+namespace TopoGiraffe.Boites_de_dialogue
 {
     /// <summary>
-    /// Logique d'interaction pour Page1.xaml
+    /// Logique d'interaction pour DessinerCourbe.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class DessinerCourbe : UserControl
     {
-        public Page1()
+        public DessinerCourbe()
         {
             InitializeComponent();
         }
