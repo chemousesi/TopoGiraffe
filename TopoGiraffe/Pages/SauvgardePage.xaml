@@ -374,7 +374,7 @@
 
 
                         <Button Style="{DynamicResource NouveauBtn}"  x:Name="nouveau"  Foreground="#FFFFFF" Height="50" Background="#0000" BorderBrush="Transparent"
-                            BorderThickness="0" HorizontalContentAlignment="Left" Margin="0" Click="goback_Click" >
+                            BorderThickness="0" HorizontalContentAlignment="Left" Margin="0" Click="nouvelle_Click" >
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
                                 <Image Source="/assets/img/page.png" Margin="5,9" ></Image>
                                 <TextBlock Text="Nouvelle carte" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
