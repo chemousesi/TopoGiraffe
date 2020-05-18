@@ -68,7 +68,7 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Button Cursor="Hand"  Height="60" Margin="10,30,0,0" Background="{x:Null}" BorderBrush="{x:Null}"
-                        BorderThickness="0"  Click="ShowSauvgardeWindow_Click" >
+                        BorderThickness="0"  Click="ShowSauvgardeWindow_Click" ToolTip="Fichier">
                     <Image Source="/assets/img/button.png" Width="20" Height="20" Margin="0,0,0,0" />
                 </Button>
             </Grid>
@@ -91,7 +91,7 @@
                         </StackPanel>
                     </Button>
                     <Button  x:Name="btn13" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="45,20,0,0" Click="btn13_Click" ToolTip="generer le profil topographique" HorizontalContentAlignment="Center" >
+        BorderThickness="0"  Margin="45,20,0,0" Click="btn13_Click" ToolTip="Générer le profil topographique" HorizontalContentAlignment="Center" >
                         <StackPanel Orientation="Vertical"  >
                             <Image Source="/assets/img/report.png" Width="30" Height="30"/>
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -117,7 +117,7 @@
 
                     </Button>
                     <Button  x:Name="btn14" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" ToolTip="Parametres" Click="btn14_Click"  >
+        BorderThickness="0"  Margin="45,20,0,0" Foreground="#FFA37A7A" ToolTip="Paramètres" Click="btn14_Click"  >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/gear.png" Width="30" Height="30"/>
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -128,7 +128,9 @@
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Column="2" Background="{DynamicResource Img}">
-                <ToggleButton Content="" HorizontalAlignment="Center" Height="29" Width="94" Margin="16,48,2,19" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" FlowDirection="LeftToRight" Grid.IsSharedSizeScope="True" Foreground="#FF1BBA1D" Background="#FF4FDC22" ScrollViewer.HorizontalScrollBarVisibility="Visible" ToolTip="Mode d'affichage" />
+                <ToggleButton Content="" HorizontalAlignment="Center" Height="29" Width="94" Margin="16,48,2,19" Checked="ToggleButton_Checked" 
+                              Unchecked="ToggleButton_Unchecked" FlowDirection="LeftToRight" Grid.IsSharedSizeScope="True" Foreground="#FF1BBA1D" Background="#FF4FDC22" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Visible" ToolTip="Mode d'affichage" />
             </StackPanel>
             <Label  Grid.Column="2" Style="{DynamicResource ModeLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,75,-4,0" FontSize="16"/>
         </Grid>
@@ -360,13 +362,13 @@
                 <Grid Grid.Row="0">
                     <StackPanel VerticalAlignment="Top"  Margin="2,20,0,0" >
                         <Button  x:Name="deletePreviousButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource DeletePrevious}" BorderBrush="{x:Null}"
-                                 BorderThickness="0" Click="deletePreviousButton_Click" ToolTip="Supprimer l'action precedente"
+                                 BorderThickness="0" Click="deletePreviousButton_Click" ToolTip="Supprimer l'action précedente"
                                />
                         <Button x:Name="nav" Height="60" Margin="0,0,0,0" Background="{DynamicResource Navigation}" BorderBrush="{x:Null}"
                                 BorderThickness="0"  Click="nav_Click" ToolTip="Outil de Selection"
                                  />
                         <Button x:Name="dessinerButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource Dessiner}"  BorderBrush="{x:Null}"
-                                   BorderThickness="0" Click="dessinerButton_Click" ToolTip="Dessiner une courbe"
+                                   BorderThickness="0" Click="dessinerButton_Click" ToolTip="Déssiner une courbe"
                                 >
                         </Button>
                         <Button x:Name="dessinerPoint" Margin="0,0,0,0" Height="60"   BorderBrush="{x:Null}" Background="{DynamicResource Point}"
@@ -374,7 +376,7 @@
                                 />
                         <Button x:Name="add_line" Height="60"  Background="{DynamicResource Segment}" BorderBrush="{x:Null}"
                                   BorderThickness="0"  IsDefault="True" Click="add_line_Click" 
-                               ToolTip="Dessiner le segment AB" Width="62" Cursor="Hand"  
+                               ToolTip="Déssiner un segment" Width="62" Cursor="Hand"  
                                 />
 
                         <Button x:Name="addTextButton" Height="60"  Background="{DynamicResource AddText}" BorderBrush="{x:Null}"
@@ -383,7 +385,7 @@
                                 />
                         <Button x:Name="DeleteCurve" Height="60"  Background="{DynamicResource DeleteCurve}" BorderBrush="{x:Null}"
                                   BorderThickness="0"  IsDefault="True"
-                               ToolTip="Supprimer une courbe de niveau" Width="62" Cursor="Hand" Click="DeleteCurve_Click"  
+                               ToolTip="Supprimer une courbe de niveaux" Width="62" Cursor="Hand" Click="DeleteCurve_Click"  
                                 />
 
 
