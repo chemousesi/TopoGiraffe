@@ -81,7 +81,7 @@ namespace TopoGiraffe
 
             // code for first use guide
 
-            string text = File.ReadAllText(@"./assets/exec.txt");
+            string text = File.ReadAllText("../../../assets/exec.txt");
             if (text != String.Empty)
             {
                 exec = Convert.ToInt32(text);
