@@ -142,14 +142,7 @@
 
             <utils:ZoomBorder x:Name="border" ClipToBounds="True" Grid.Column="1" Margin="0" 
                               RenderTransformOrigin="0.5,0.5" KeyDown="border_KeyDown" BorderBrush="Transparent" BorderThickness="0" Background="{x:Null}">
-                <!-- <utils:ZoomBorder.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.51"/>
-                        <RotateTransform Angle="0.456"/>
-                        <TranslateTransform Y="3.009"/>
-                    </TransformGroup>
-                </utils:ZoomBorder.RenderTransform> -->
+               
                 <Grid>
                     <Grid Margin="20 30 20 25" Background="White">
                         <Grid.ColumnDefinitions>
@@ -366,7 +359,9 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <StackPanel VerticalAlignment="Top"  Margin="2,20,0,0" >
-                       
+                        <Button  x:Name="deletePreviousButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource DeletePrevious}" BorderBrush="{x:Null}"
+                                 BorderThickness="0" Click="deletePreviousButton_Click" ToolTip="Supprimer l'action precedente"
+                               />
                         <Button x:Name="nav" Height="60" Margin="0,0,0,0" Background="{DynamicResource Navigation}" BorderBrush="{x:Null}"
                                 BorderThickness="0"  Click="nav_Click" ToolTip="Outil de Selection"
                                  />
@@ -386,9 +381,6 @@
                                   BorderThickness="0"  IsDefault="True" Click="AddNewText"
                                ToolTip="Ajouter un Texte" Width="62" Cursor="Hand"  
                                 />
-                        <Button  x:Name="deletePreviousButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource DeletePrevious}" BorderBrush="{x:Null}"
-                                 BorderThickness="0" Click="deletePreviousButton_Click" ToolTip="Supprimer l'action precedente"
-                               />
                         <Button x:Name="DeleteCurve" Height="60"  Background="{DynamicResource DeleteCurve}" BorderBrush="{x:Null}"
                                   BorderThickness="0"  IsDefault="True"
                                ToolTip="Supprimer une courbe de niveau" Width="62" Cursor="Hand" Click="DeleteCurve_Click"  
@@ -399,13 +391,13 @@
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <StackPanel VerticalAlignment="Bottom"  Margin="8,0,0,20">
+                    <StackPanel VerticalAlignment="Bottom"  Margin="2,0,0,20">
                         <Button x:Name="deleteAllButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource Delete}" BorderBrush="{x:Null}"
                                  BorderThickness="0" Click="deleteAllButton_Click" ToolTip="Supperimer Tout"
                                 >
                         </Button>
                         <Button Name="export" Margin="0,0,0,0" Height="60" HorizontalContentAlignment="Center"
-                                     BorderBrush="{x:Null}" BorderThickness="0" Background="{DynamicResource Export}" Click="Button_Click" Cursor="Hand" ToolTip="Exporter"
+                                     BorderBrush="{x:Null}" BorderThickness="0" Background="{DynamicResource Export}" Click="Button_Click" Cursor="Hand" ToolTip="Importer"
                                 >
                         </Button>
                     </StackPanel>
@@ -425,7 +417,10 @@
         </Popup>
         <Popup x:Name="popup_ud"
                     Placement="Center"
-               IsOpen="False"
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"
                   
                   >
             <Grid>
@@ -434,8 +429,11 @@
 
         </Popup>
         <Popup x:Name="popup_ue"
-                    Placement="Center"
-               IsOpen="False"
+                     Placement="Center"
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"
                   
                   >
             <Grid>
@@ -444,8 +442,11 @@
 
         </Popup>
         <Popup x:Name="popup_uf"
-                    Placement="Center"
-               IsOpen="False"
+                     Placement="Center"
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"
                   
                   >
             <Grid>
@@ -455,7 +456,10 @@
         </Popup>
         <Popup x:Name="popup_ug"
                     Placement="Center"
-               IsOpen="False"
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"
                   
                   >
             <Grid>
@@ -465,11 +469,13 @@
         </Popup>
         <Popup x:Name="popup_uh"
                     Placement="Center"
-               IsOpen="False"
-                  
+                    IsOpen="False"
+                    AllowsTransparency="True"
+                    HorizontalOffset="10"
+                    VerticalOffset="10"  
                   >
             <Grid>
-                <local1:Pops  x:Name="Pops" />
+                <local1:Pops  x:Name="Pops" Foreground="#E0FFFF"/>
             </Grid>
 
         </Popup>

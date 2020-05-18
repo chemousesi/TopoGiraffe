@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TopoGiraffe.Boites_de_dialogue"
-              mc:Ignorable="d" 
-             d:DesignHeight="15" d:DesignWidth="100"  UseLayoutRounding="False" Cursor="Hand"  >
+             mc:Ignorable="d" 
+             d:DesignHeight="15" d:DesignWidth="100"   UseLayoutRounding="False" Cursor="Hand"  >
 
-    <Border BorderBrush="#FFDC7849" BorderThickness="3" CornerRadius="3" Opacity="0.8" >
-        <Grid Background="#FFDC7849" Opacity="0.8" ClipToBounds="True"  >
+    <Border BorderBrush="#EFCAC4" BorderThickness="3" CornerRadius="3" Opacity=".96" >
+        <Grid Background="#EFCAC4" Opacity="1" ClipToBounds="True" UseLayoutRounding="False" ShowGridLines="False">
+
 
             <!--draw the popup user control-->
             <Path
@@ -19,11 +20,10 @@
                           Height="25"
                           Width="20"
                           Margin="7,0"
-                        Stroke="#DCDCDC"
-                        Stretch="Fill"
-                        Fill="#DCDCDC"
+                        Stroke="#EFCAC4"
+                        Stretch="None"
+                        Fill="#EFCAC4"
                           >
-
             </Path>
             <!--reusable text-->
             <TextBlock x:Name="PopupText"
@@ -32,24 +32,22 @@
                             Panel.ZIndex="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            TextWrapping="WrapWithOverflow"
-                            Margin="7,0"
-                            >
+                            TextWrapping="WrapWithOverflow" 
+                            Margin="7,0" >
+
             </TextBlock>
 
             <Grid.Effect>
                 <DropShadowEffect
-                        BlurRadius="0"
+                        BlurRadius="5"
                         ShadowDepth="0"
                         Direction="90" 
                         Color="Transparent" 
                         Opacity="0.6"
-                
+                    
                         >
-
                 </DropShadowEffect>
             </Grid.Effect>
-
         </Grid>
     </Border>
 

@@ -5,26 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TopoGiraffe.Boites_de_dialogue"
              mc:Ignorable="d"  UseLayoutRounding="False" Width="690" Height="390" >
-    <Border BorderBrush="#DCDCDC" BorderThickness="8" CornerRadius="0" Opacity="0.8" Margin="0,0,0,0"   >
-        <Grid Background="#FF141428" ClipToBounds="True"  >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="134*"></RowDefinition>
-                <RowDefinition Height="53*"></RowDefinition>
-
-
-
-            </Grid.RowDefinitions>
-
-            <Grid   Grid.Row="0" Background="White" >
-                <Image Source="/TopoGiraffe;component/assets/img/Profil.png"  />
-
-            </Grid>
-            <TextBlock HorizontalAlignment="Left" Height="43" Margin="10,10,0,0" Grid.Row="1" Text="Generer  un profil Topographique" TextWrapping="Wrap" VerticalAlignment="Top" Width="398" Foreground="#FFFCFCFC" FontFamily="Gotham Black" FontSize="22" Padding="0,3,0,0"/>
-            <TextBlock HorizontalAlignment="Left" Height="38" Margin="35,58,0,0" Grid.Row="1" Text="Cette fonctionnalitée vous permet de generer un profil topographique qui met en avant le relief voulu" TextWrapping="Wrap" VerticalAlignment="Top" Width="596" Foreground="#FFF7F7F7" FontFamily="HelveticaNeue" FontSize="16"/>
-
-
-
-
+    <Grid  ClipToBounds="True"  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="#EFCAC4"/>
+        <Grid Grid.Column="2" Background="White">
+            <Image Source="/TopoGiraffe;component/assets/img/Profil.png" Margin="-107,117,0,30" HorizontalAlignment="Left" Width="372"   />
+            <TextBlock HorizontalAlignment="Left" Height="71" Margin="-107,56,0,0" Text="Générer un profil Topographique" TextWrapping="Wrap" 
+            VerticalAlignment="Top" Width="398" Foreground="#2a2a2a" FontFamily="Gotham Black" FontSize="25" Padding="0,3,0,0" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Height="132" Margin="303,211,0,0" 
+        Text="Cette fonctionnalité vous permet de générer un profil topographique qui met en avant le relief voulu." TextWrapping="Wrap" VerticalAlignment="Top" 
+        Width="188" Foreground="#2a2a2a" FontFamily="HelveticaNeue" FontSize="18"/>
         </Grid>
-    </Border>
+        <!--
+           
+            </Grid>
+            <TextBlock HorizontalAlignment="Left" Height="43" Margin="10,10,0,0" Grid.Row="1" Text="Generer  un profil Topographique" TextWrapping="Wrap" V
+        erticalAlignment="Top" Width="398" Foreground="#FFFCFCFC" FontFamily="Gotham Black" FontSize="22" Padding="0,3,0,0"/>
+            <TextBlock HorizontalAlignment="Left" Height="38" Margin="35,58,0,0" Grid.Row="1" 
+        Text="Cette fonctionnalitée vous permet de generer un profil topographique qui met en avant le relief voulu" TextWrapping="Wrap" VerticalAlignment="Top" 
+        Width="596" Foreground="#FFF7F7F7" FontFamily="HelveticaNeue" FontSize="16"/>
+            -->
+    </Grid>
+
 </UserControl>

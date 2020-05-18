@@ -4,31 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TopoGiraffe"
-                     xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue"
+             xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue"
 
              mc:Ignorable="d"  UseLayoutRounding="False" Width="690" Height="390" >
-    <Border BorderBrush="#DCDCDC" BorderThickness="8" CornerRadius="0" Opacity="0.8" Margin="0,0,0,0"   >
-        <Grid Background="#FF141428" ClipToBounds="True"  >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="179*"/>
-                <ColumnDefinition Width="126*"/>
 
 
-            </Grid.ColumnDefinitions>
+    <Grid  ClipToBounds="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.3*"/>
+        </Grid.ColumnDefinitions>
 
-            <Grid   Grid.Column="0" >
-                <Image Source="/TopoGiraffe;component/assets/img/SplashScreen2.png" Width="584" HorizontalAlignment="Left" Margin="-73,0,0,0"  />
-                <TextBlock HorizontalAlignment="Left" Height="29" Margin="27,160,0,0" Text="Merci d'avoir Installé TopoGiraffe" TextWrapping="Wrap" VerticalAlignment="Top" Width="291" FontFamily="Gotham XLight" FontSize="16" Padding="40,0,0,0"/>
-                <TextBlock HorizontalAlignment="Center" Height="72" Margin="0,171,0,0" Text="Bienvenue" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" FontFamily="Gotham Black" FontSize="48" Opacity="0.8" Grid.Column="1" Panel.ZIndex="33"/>
+        <Grid   Grid.Column="1" Background="#EFCAC4" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <Image Source="/TopoGiraffe;component/assets/img/SplashScreen2.png" Width="490" HorizontalAlignment="Left" RenderTransformOrigin="0.545,0.461" Margin="-35,-5,0,-17"  />
 
             </Grid>
-            <TextBlock HorizontalAlignment="Left" Height="67" Margin="391,137,0,0" Text="Prise en main." TextWrapping="Wrap" VerticalAlignment="Top" Width="279" FontFamily="HelveticaNeue" Foreground="White" FontSize="36" Grid.ColumnSpan="2" Padding="31,0,0,0"/>
+            <Grid Grid.Row="1" Background="#EFCAC4" Margin="-13,0,0,0">
 
-
+            </Grid>
 
         </Grid>
-        
-    </Border>
-    
+        <Grid Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.9*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" Background="#EFCAC4">
 
+            </Grid>
+            <Grid Grid.Column="0" Background="White">
+
+            </Grid>
+            <TextBlock HorizontalAlignment="Left" Height="80" Margin="48,228,0,0" Text="Merci d'avoir Installé TopoGiraffe. Celle-ci est une démonstration des principale fonctionnalités de TopoGiraffe."  Foreground="#3f3f3f"
+                           TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontFamily="Gotham XLight" FontSize="14" Padding="0,0,0,0" Grid.ColumnSpan="2"/>
+            <Line Stretch="UniformToFill" Stroke="#14213D" StrokeThickness="4" Height="5" X1="20" Width="80" Margin="48,169,95,216"   />
+            <TextBlock HorizontalAlignment="Left" Height="72" Margin="48,94,0,0" Text="Bienvenue" TextWrapping="Wrap" FontWeight="Bold" Foreground="#2a2a2a"
+                           VerticalAlignment="Top" Width="260" FontFamily="Gotham Black" FontSize="43" Opacity="0.8" Panel.ZIndex="33" Grid.ColumnSpan="2" />
+
+        </Grid>
+    </Grid>
 </UserControl>

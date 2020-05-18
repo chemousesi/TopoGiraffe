@@ -32,7 +32,7 @@ ImageSource="/assets/img/navigation.png" >
   
   <ImageBrush x:Key="Point" TileMode="None"
  ViewportUnits="Absolute" Viewport="20 20 20 20"
- ImageSource="/assets/img/triangle.png" >
+ ImageSource="/assets/img/basic-app.png" >
   </ImageBrush>
   <ImageBrush x:Key="Dessiner" TileMode="None"
  ViewportUnits="Absolute" Viewport="20 20 20 20"
@@ -40,7 +40,7 @@ ImageSource="/assets/img/navigation.png" >
   </ImageBrush>
   <ImageBrush x:Key="DeletePrevious" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
-ImageSource="/assets/img/deletePrevious.png" >
+ImageSource="/assets/img/go-back-left-arrow.png" >
   </ImageBrush>
     
     <ImageBrush x:Key="AddText" TileMode="None"
@@ -110,13 +110,5 @@ ImageSource= "/assets/img/DeleteCurveLight.png" >
         <Color A="255" R="230" G="57" B="70" />
 
     </lvc:ColorsCollection>
-
-
-
-
-
-
-
-
 
 </ResourceDictionary>
