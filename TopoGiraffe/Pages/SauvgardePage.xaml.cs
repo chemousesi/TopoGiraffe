@@ -107,12 +107,7 @@ namespace TopoGiraffe
 
         void HandleRequestNavigate(object sender, RoutedEventArgs e)
         {
-            string navigateUri = hl.NavigateUri.ToString();
-            // if the URI somehow came from an untrusted source, make sure to
-            // validate it before calling Process.Start(), e.g. check to see
-            // the scheme is HTTP, etc.
-            Process.Start(new Uri(navigateUri).AbsoluteUri.ToString());
-            e.Handled = true;
+          
         }
 
 
