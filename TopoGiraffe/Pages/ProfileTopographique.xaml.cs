@@ -133,7 +133,7 @@ namespace TopoGiraffe
 
                 PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(filename, FileMode.Create));
             }
-            catch (ArgumentNullException)
+            catch (ArgumentNullException excp)
             {
                 MessageBox.Show("il faut specifier un fichier pdf");
             }

@@ -266,16 +266,16 @@ namespace TopoGiraffe
 
 
 
-                // styling
+            // styling
 
 
-                courbeActuelle = myCurve;
-                AltSlider.Value = Convert.ToInt32(AltitudeString);
+            courbeActuelle = myCurve;
+            AltSlider.Value = Convert.ToInt32(AltitudeString);
 
-                courbeActuelle.polyline.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
-                myCurve.polyline.MouseMove += new MouseEventHandler(Path_MouseMove);
-                myCurve.polyline.MouseLeftButtonUp += new MouseButtonEventHandler(Path_MouseLeftButtonUp);
-                myCurve.polyline.MouseLeftButtonDown += new MouseButtonEventHandler(Path_MouseLeftButtonDown);
+            courbeActuelle.polyline.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
+            myCurve.polyline.MouseMove += new MouseEventHandler(Path_MouseMove);
+            myCurve.polyline.MouseLeftButtonUp += new MouseButtonEventHandler(Path_MouseLeftButtonUp);
+            myCurve.polyline.MouseLeftButtonDown += new MouseButtonEventHandler(Path_MouseLeftButtonDown);
 
                 mainCanvas.Children.Add(courbeActuelle.polyline);
                 PointsGlobal.Add(new List<ArtPoint>());
@@ -731,6 +731,22 @@ namespace TopoGiraffe
 
                 }
 
+            }else if (addTextClicked == true)
+            {
+
+
+
+                addTextClicked = false;
+
+                texteBlockActuel.FontSize = 9;
+                texteBlockActuel.Height = 10;
+                texteBlockActuel.Width = 20;
+                Canvas.SetLeft(texteBlockActuel, x- (texteBlockActuel.Width / 2));
+                Canvas.SetTop(texteBlockActuel, y - (texteBlockActuel.Height / 2));
+                mainCanvas.Children.Add(texteBlockActuel);
+
+
+
             }
         }
 
@@ -921,7 +937,7 @@ namespace TopoGiraffe
                 courbeActuelle = polyC;
                 mainCanvas.Children.Add(poly);
             }
-            catch (ErreurDeDessinDeSegment)
+            catch (ErreurDeDessinDeSegment exeption)
             {
 
             }
@@ -1284,7 +1300,7 @@ namespace TopoGiraffe
                     MessageBox.Show("Echelle non connue !");
                 }
             }
-            catch (ErreurDeDessinDeSegment)
+            catch (ErreurDeDessinDeSegment exception)
             {
 
             }
@@ -1566,7 +1582,7 @@ namespace TopoGiraffe
 
                     if (AltitudeMin > AltitudeMax) { throw new ErreurDeSaisieException("Altitude min ne doit pas etre superieur a l'altitude max"); }
                 }
-                catch (Exception)
+                catch (Exception ecp)
                 {
                     dataDialog = new DataDialog();
                     //dataDialog.Owner = this;
@@ -2016,7 +2032,7 @@ namespace TopoGiraffe
             {
                 IntersectionPoints = itm2[itm2.Count() - 1];
             }
-            catch (Exception)
+            catch (Exception x)
             {
                 MessageBox.Show("pas de projet importer");
             }
@@ -2160,7 +2176,7 @@ namespace TopoGiraffe
                 objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
                 s.Close();
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException x)
             {
                 MessageBox.Show("boite de dialogue fermee !!");
             }
@@ -2224,7 +2240,7 @@ namespace TopoGiraffe
             {
                 Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException ecp)
             {
                 MessageBox.Show("echelle pas encore disponible ");
             }
@@ -2348,6 +2364,7 @@ namespace TopoGiraffe
 
         Boolean drawPointsClicked = false;
 
+       
         public SerializationInfo BaseUri { get; private set; }
 
         private void drawPoint_Clicked(object sender, RoutedEventArgs e)
@@ -2478,9 +2495,50 @@ namespace TopoGiraffe
 
 
 
+        TextBlock texteBlockActuel;
+        Boolean addTextClicked = false;
+       
+
+        public void AddNewText(object sender, RoutedEventArgs e)
+        // this method creates a point and assigns it to PointAltitudeActuel
+        {
+
+            AddTextDialog addTextDialog = new AddTextDialog();// add text here
+            addTextDialog.ShowDialog();
 
 
+            if (addTextDialog.DialogResult == true)
+            {
+                if (addTextDialog.textTextBox.Text != "")
+                {
 
+
+                    addTextClicked = true;
+                    drawPointsClicked = false;
+                    addLineClicked = false;
+                    btn2Clicked = false;
+                    drawingScale = false;
+                    texteBlockActuel = new TextBlock();
+                    texteBlockActuel.Text = addTextDialog.textTextBox.Text;
+                    
+
+                }
+                else
+                {
+                    (new MssgBox("Pas de texte en entrée")).Show();
+                }
+                
+
+            }
+
+
+        }
+
+      
+
+       
+
+        
 
 
 
@@ -2523,9 +2581,5 @@ namespace TopoGiraffe
 
 
     }
-    class RectangleName
-    {
-        public Rectangle Rect { get; set; }
-        public string Name { get; set; }
-    }
+   
 }

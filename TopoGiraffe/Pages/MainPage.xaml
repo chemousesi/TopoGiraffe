@@ -389,6 +389,10 @@
                                 />
 
 
+                        <Button x:Name="addTextButton" Height="60"  Background="{DynamicResource AddText}" BorderBrush="{x:Null}"
+                                  BorderThickness="0"  IsDefault="True" Click="AddNewText"
+                               ToolTip="Ajouter un Texte" Width="62" Cursor="Hand"  
+                                />
 
                     </StackPanel>
                 </Grid>
