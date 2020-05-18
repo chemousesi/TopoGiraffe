@@ -798,17 +798,7 @@ namespace TopoGiraffe
 
 
             }
-            myLine.X1 = p.triangle.Points[0].X; myLine.Y1 = p.triangle.Points[0].Y;
-            myLine.X2 = p.triangle.Points[2].X; myLine.Y2 = p.triangle.Points[2].Y;
-            inter = intersectLines(myLine, line);
-            if (inter.intersect == true)
-            {
-
-                IntersectionPoints.Add(inter);
-                PenteIntersectionPoints.Add(inter);
-
-            }
-
+           
 
         }
 
