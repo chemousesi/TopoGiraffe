@@ -206,7 +206,7 @@ namespace TopoGiraffe
             if (finalCtrlPoint == false && btn2Clicked == true)
             {
 
-                if (currentCurveCtrlPts.Count != 0) //to handle real-time drawing
+                if (courbeActuelle.polyline.Points.Count != 0) //to handle real-time drawing
                 {
                     if (courbeActuelle.polyline.Points.Last().Equals(mousePos))
                     {
@@ -360,6 +360,7 @@ namespace TopoGiraffe
             }
 
             // suppression du segment
+            navClicked = false;
 
             if (dessinerButton.IsEnabled == false)
             {
@@ -377,6 +378,7 @@ namespace TopoGiraffe
 
                 return;
             }
+
             int index2 = CourbesNiveau.IndexOf(courbeActuelle);
             // gestion des points de ctrl
             if (ShownCtrlPoint != PointsGlobal[index2])
@@ -1010,6 +1012,7 @@ namespace TopoGiraffe
             else
             {
                 btn2Clicked = false;
+                finalCtrlPoint = true;
 
 
                 if (courbeActuelle.polyline != null)
@@ -2364,7 +2367,11 @@ namespace TopoGiraffe
 
         Boolean drawPointsClicked = false;
 
-       
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
         public SerializationInfo BaseUri { get; private set; }
 
         private void drawPoint_Clicked(object sender, RoutedEventArgs e)
