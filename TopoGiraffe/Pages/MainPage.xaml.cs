@@ -1625,8 +1625,11 @@ namespace TopoGiraffe
                     AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
                     AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
                     AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    AltSlider.SmallChange = 
                     ThickSlider.Value = 2;
                     Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+                    AltSlider.SmallChange = Equidistance;
+                    AltSlider.LargeChange = 2*Equidistance;
                     equidistance.Text = Equidistance.ToString();
                     altitudeMax.Text = AltitudeMax.ToString();
                     altMin.Text = AltitudeMin.ToString();
