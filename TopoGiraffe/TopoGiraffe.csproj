@@ -64,9 +64,11 @@
     <None Remove="assets\img\Segmentgray.png" />
     <None Remove="assets\img\SegmentWhite.png" />
     <None Remove="assets\img\SplashScreen2.png" />
+    <None Remove="assets\img\Tgrey.png" />
     <None Remove="assets\img\tour.png" />
     <None Remove="assets\img\triangle.png" />
     <None Remove="assets\img\TriangleWhite.png" />
+    <None Remove="assets\img\Twhite.png" />
     <None Remove="assets\img\uiBlanc.png" />
     <None Remove="assets\img\view.png" />
     <None Remove="assets\img\viewOrangeDark.png" />
@@ -122,7 +124,9 @@
     <Resource Include="assets\img\Pluswhite.png" />
     <Resource Include="assets\img\Segmentgray.png" />
     <Resource Include="assets\img\SegmentWhite.png" />
+    <Resource Include="assets\img\Tgrey.png" />
     <Resource Include="assets\img\TriangleWhite.png" />
+    <Resource Include="assets\img\Twhite.png" />
     <Resource Include="assets\img\view.png" />
     <Resource Include="assets\img\viewOrangeDark.png" />
     <Resource Include="assets\img\viewOrangeLight.png" />

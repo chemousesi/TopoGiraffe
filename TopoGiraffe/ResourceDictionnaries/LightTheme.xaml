@@ -42,6 +42,11 @@ ImageSource="/assets/img/navigation.png" >
 ViewportUnits="Absolute" Viewport="20 20 20 20"
 ImageSource="/assets/img/deletePrevious.png" >
   </ImageBrush>
+    
+    <ImageBrush x:Key="AddText" TileMode="None"
+   ViewportUnits="Absolute" Viewport="20 20 20 20"
+   ImageSource="/assets/img/Tgrey.png" >
+    </ImageBrush>
 
     <ImageBrush x:Key="Export" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"

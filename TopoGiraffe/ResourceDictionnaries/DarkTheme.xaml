@@ -29,8 +29,12 @@ ImageSource="/assets/img/page.png" >
    ViewportUnits="Absolute" Viewport="20 30 20 30"
    ImageSource="/assets/img/SegmentWhite.png" >
   </ImageBrush>
-  
-  <ImageBrush x:Key="Point" TileMode="None"
+    
+    <ImageBrush x:Key="AddText" TileMode="None"
+   ViewportUnits="Absolute" Viewport="20 20 20 20"
+   ImageSource="/assets/img/White.png" >
+    </ImageBrush>
+    <ImageBrush x:Key="Point" TileMode="None"
   ViewportUnits="Absolute" Viewport="20 20 20 20"
   ImageSource="/assets/img/TriangleWhite.png" >
   </ImageBrush>

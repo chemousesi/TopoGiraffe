@@ -1,9 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System;
 
 
 namespace TopoGiraffe
@@ -24,7 +24,7 @@ namespace TopoGiraffe
 
             Resources.MergedDictionaries.Clear();
 
-          AddResourceDictionary(MainPage.CurrentMode);
+            AddResourceDictionary(MainPage.CurrentMode);
         }
         private void AddResourceDictionary(string src)
         {
@@ -44,7 +44,7 @@ namespace TopoGiraffe
             pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
 
             saveFile(pngImage);
-            
+
 
         }
 

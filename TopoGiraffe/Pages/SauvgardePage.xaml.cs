@@ -24,7 +24,7 @@ namespace TopoGiraffe
         private MainPage _mainPage;
         string filename;
 
-        public SauvgardePage(List<List<IntersectionDetail>> curves, MainPage mainPage )
+        public SauvgardePage(List<List<IntersectionDetail>> curves, MainPage mainPage)
         {
             this.curves = curves;
             InitializeComponent();
@@ -86,7 +86,7 @@ namespace TopoGiraffe
             // MainWindow .saveFile()
         }
 
-      
+
 
         private void enregistrer_Click(object sender, RoutedEventArgs e)
         {
