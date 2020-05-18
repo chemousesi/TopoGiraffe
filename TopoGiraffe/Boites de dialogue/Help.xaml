@@ -41,8 +41,8 @@
             <Grid Grid.Column="0" Background="White">
 
             </Grid>
-            <TextBlock HorizontalAlignment="Left" Height="80" Margin="48,228,0,0" Text="Merci d'avoir Installé TopoGiraffe. Celle-ci est une démonstration des principale fonctionnalités de TopoGiraffe."  Foreground="#3f3f3f"
-                           TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontFamily="Gotham XLight" FontSize="14" Padding="0,0,0,0" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Height="80" Margin="48,228,0,0" Text="Merci d'avoir Installé TopoGiraffe. Ceci est une démonstration des principale fonctionnalités de TopoGiraffe."  Foreground="#3f3f3f"
+                           TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontFamily="Gotham XLight" FontSize="14" Padding="0,0,0,0" Grid.ColumnSpan="2" Cursor="Hand"/>
             <Line Stretch="UniformToFill" Stroke="#14213D" StrokeThickness="4" Height="5" X1="20" Width="80" Margin="48,169,95,216"   />
             <TextBlock HorizontalAlignment="Left" Height="72" Margin="48,94,0,0" Text="Bienvenue" TextWrapping="Wrap" FontWeight="Bold" Foreground="#2a2a2a"
                            VerticalAlignment="Top" Width="260" FontFamily="Gotham Black" FontSize="43" Opacity="0.8" Panel.ZIndex="33" Grid.ColumnSpan="2" />

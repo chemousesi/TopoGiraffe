@@ -9,7 +9,7 @@ ViewportUnits="Absolute" Viewport="22 22 32 32"
 ImageSource="/assets/img/navigation.png" >
     </ImageBrush>
     <SolidColorBrush x:Key="NormalBackground" Color="#14213D"/>
-    <SolidColorBrush x:Key="SideColor" Color="#e6e8e6"/>
+    <SolidColorBrush x:Key="SideColor" Color="#ebebeb"/>
     <SolidColorBrush x:Key="SliderColor" Color="#E63946"/>
     <SolidColorBrush x:Key="ForegroundColor" Color="Black"/>
     <SolidColorBrush x:Key="TextBox" Color="Black"/>
@@ -32,7 +32,7 @@ ImageSource="/assets/img/navigation.png" >
   
   <ImageBrush x:Key="Point" TileMode="None"
  ViewportUnits="Absolute" Viewport="20 20 20 20"
- ImageSource="/assets/img/basic-app.png" >
+ ImageSource="/assets/img/triangle.png" >
   </ImageBrush>
   <ImageBrush x:Key="Dessiner" TileMode="None"
  ViewportUnits="Absolute" Viewport="20 20 20 20"
@@ -40,7 +40,7 @@ ImageSource="/assets/img/navigation.png" >
   </ImageBrush>
   <ImageBrush x:Key="DeletePrevious" TileMode="None"
 ViewportUnits="Absolute" Viewport="20 20 20 20"
-ImageSource="/assets/img/go-back-left-arrow.png" >
+ImageSource="/assets/img/deletePrevious.png" >
   </ImageBrush>
     
     <ImageBrush x:Key="AddText" TileMode="None"
@@ -111,5 +111,13 @@ ImageSource= "/assets/img/DeleteCurveLight.png" >
         <Color A="255" R="230" G="57" B="70" />
 
     </lvc:ColorsCollection>
+
+
+
+
+
+
+
+
 
 </ResourceDictionary>

@@ -21,7 +21,10 @@ namespace TopoGiraffe.Noyau
 
         }
 
+        public Echelle()
+        {
 
+        }
 
         public double FindDistanceOnField(Line line)
         // real distance should be in meters
@@ -44,6 +47,22 @@ namespace TopoGiraffe.Noyau
         {
             return (aDistanceOnCanvas * scaleDistanceOnField) / scaleDistanceOnCanvas;
         }
+
+
+
+        public double ScaleDistanceOnCanvas
+        {
+            get; set;
+        }
+        public double ScaleDistanceOnField
+        {
+            get; set;
+        }
+
+
+
+
+
 
 
 
