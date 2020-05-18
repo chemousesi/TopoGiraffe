@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
@@ -9,7 +8,7 @@ namespace TopoGiraffe
     /// Logique d'interaction pour DataDialog.xaml
     /// </summary>
     /// 
-   
+
 
     public partial class ScaleDialog : Window
     {
@@ -17,7 +16,7 @@ namespace TopoGiraffe
         {
             InitializeComponent();
         }
-       
+
 
 
         public string EchelleOnCanvas
