@@ -16,7 +16,7 @@
 
 
 ## Authors
- -NOUI Akram
+- NOUI Akram
 - BENAZIZA Chemeseddine 
 - DJEFFAL Belkis
 - HAFRI Seif Ali 
