@@ -2311,6 +2311,7 @@ namespace TopoGiraffe
         private void DeleteCurve_Click(object sender, RoutedEventArgs e)
         {
             if (courbeActuelle == null) return;
+            if (mainCanvas.Children.Count == 0) return;
             mainCanvas.Children.Remove(courbeActuelle.polyline);
             int index = CourbesNiveau.IndexOf(courbeActuelle);
             List<ArtPoint> list = PointsGlobal[index];
