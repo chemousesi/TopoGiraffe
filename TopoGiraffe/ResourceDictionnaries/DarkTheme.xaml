@@ -73,7 +73,7 @@ ImageSource= "/assets/img/DeleteAllWhite.png" >
     </ImageBrush>
    
     <ImageBrush x:Key="Img" TileMode="None"
-ViewportUnits="Absolute" Viewport="120 52 20 20"
+ViewportUnits="Absolute" Viewport="100 30 20 20"
 ImageSource= "/assets/img/Night.png" >
     </ImageBrush>
 

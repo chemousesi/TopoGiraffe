@@ -100,6 +100,13 @@ namespace TopoGiraffe
             styleCourbeCmb.SelectedIndex = 0;
 
 
+            //binding and adding data contexts
+
+           
+
+
+
+
 
 
 
@@ -1619,21 +1626,30 @@ namespace TopoGiraffe
         int Equidistance;
         static float AltitudeMin;
         static float AltitudeMax;
+      
 
 
         List<IntersectionDetail> Infos = new List<IntersectionDetail>();
         public void UpdateTextBoxes(int equidistance , int altitudeMax , int altitudeMin , double echelleCanv , double echelleField)
         {
-            Equidistance = equidistance;
+
+
+            // we gonan create a new plann here 
+            plan = new Plan() { Equidistance = equidistance, MaxAltitude = altitudeMax, MinAltitude = altitudeMin};
             AltitudeMin = altitudeMin;
-            altMin.Text = AltitudeMin.ToString();
             AltitudeMax = altitudeMax;
-
-            echelleOnCanvasPlan.Text = echelleCanv.ToString();
-            echelleOnFieldPlan.Text = echelleField.ToString();
-            mainScale = new Echelle(echelleCanv, echelleField);
-            plan = new Plan(Convert.ToInt32(equidistance), Convert.ToInt32(altitudeMax), Convert.ToInt32(altitudeMax), mainScale);
-
+            mainScale = new Echelle() { ScaleDistanceOnCanvas = echelleCanv, ScaleDistanceOnField = echelleField };
+            equidistancePlan.DataContext = plan;
+            altitudeMaxPlan.DataContext = plan;
+            altMin.DataContext = plan;
+            echelleOnFieldPlan.DataContext = mainScale;
+            echelleOnCanvasPlan.DataContext = mainScale;
+            AltSlider.Minimum = altitudeMin;
+            AltSlider.Maximum = altitudeMax;
+            AltSlider.SmallChange = equidistance;
+            AltSlider.LargeChange = 2 * equidistance;
+            AltSlider.TickFrequency = equidistance;
+            Equidistance = equidistance;
         }
 
         public void OpenInitialDialogBox()
@@ -1659,19 +1675,15 @@ namespace TopoGiraffe
                     AltSlider.SmallChange = Equidistance;
                     AltSlider.LargeChange = 2 * Equidistance;
                     AltSlider.TickFrequency = Equidistance;
-                    equidistance.Text = Equidistance.ToString();
-                    altitudeMax.Text = AltitudeMax.ToString();
-                    altMin.Text = AltitudeMin.ToString();
+
+                   // serialization
+
                     Infos.Add(new IntersectionDetail(Equidistance, false));
                     Infos.Add(new IntersectionDetail(Convert.ToInt32(AltitudeMax), false));
                     Infos.Add(new IntersectionDetail(Convert.ToInt32(AltitudeMin), false));
-                    Infos.Add(new IntersectionDetail(Convert.ToInt32(echelleOnCanvasPlan), false));
-                    Infos.Add(new IntersectionDetail(Convert.ToInt32(echelleOnFieldPlan), false));
+                    
 
-
-
-
-
+                 
 
                     if (AltitudeMin > AltitudeMax) { throw new ErreurDeSaisieException("Altitude min ne doit pas etre superieur a l'altitude max"); }
                 }
@@ -1687,15 +1699,21 @@ namespace TopoGiraffe
                     AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
                     ThickSlider.Value = 2;
                     Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
-                    altitudeMax.Text = AltitudeMax.ToString();
-                    altMin.Text = AltitudeMin.ToString();
+                  
 
                 }
 
                 if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
                 {
                     mainScale = new Echelle() { ScaleDistanceOnCanvas = result1, ScaleDistanceOnField = result2 };
-                    // plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
+                    if (mainScale != null)
+                    {
+
+                        Infos.Add(new IntersectionDetail(result1, false));
+                        Infos.Add(new IntersectionDetail(result2, false));
+
+                    }
+              
                     plan = new Plan() { Equidistance = Convert.ToInt32(dataDialog.Equidistance), MaxAltitude = Convert.ToInt32(dataDialog.Max), MinAltitude = Convert.ToInt32(dataDialog.Min) };
 
                     dataDialog.EquidistanceTextBox.DataContext = plan;
@@ -1712,10 +1730,10 @@ namespace TopoGiraffe
                 else
                 {
                     MessageBox.Show("Attention !\n Echelle non saisie une valeur par defaut est prise en compte, veuillez la saisir avec l'outil adequat situe sur la barre a gauche");
-                    
+
                 }
 
-               
+
 
 
                 //int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
