@@ -6,8 +6,8 @@ using System.Windows.Media;
 
 namespace TopoGiraffe
 
-    //--------------------- Classe definissant le comportement de l'option de zoom---------------------------
-    //-------------------------------------------------------------------------------------------------------
+//--------------------- Classe definissant le comportement de l'option de zoom---------------------------
+//-------------------------------------------------------------------------------------------------------
 {
     public class ZoomBorder : Border
     {
@@ -35,7 +35,10 @@ namespace TopoGiraffe
             set
             {
                 if (value != null && value != this.Child)
+                {
                     this.Initialize(value);
+                }
+
                 base.Child = value;
             }
         }
@@ -103,7 +106,9 @@ namespace TopoGiraffe
 
                 double zoom = e.Delta > 0 ? .2 : -.2;
                 if (!(e.Delta > 0) && (st.ScaleX < .4 || st.ScaleY < .4))
+                {
                     return;
+                }
 
                 Point relative = e.GetPosition(child);
                 double abosuluteX;
@@ -141,7 +146,7 @@ namespace TopoGiraffe
             }
         }
 
-        void child_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void child_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.Reset();
         }

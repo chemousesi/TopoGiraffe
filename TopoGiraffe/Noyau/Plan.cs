@@ -3,17 +3,17 @@ using System.Windows.Shapes;
 
 namespace TopoGiraffe.Noyau
 {
-    class Plan
+    internal class Plan
     // cette classe va contenir toutes nos courbes, nos point et les données dessinées
     //---------------------------------------------------------------------------------
 
     {
-        private int equidistance;
-        private double minAltitude;
-        private double maxAltitude;
-        private Echelle echelle;
+        private readonly int equidistance;
+        private readonly double minAltitude;
+        private readonly double maxAltitude;
+        private readonly Echelle echelle;
 
-        private List<Polygon> courbes;
+        private readonly List<Polygon> courbes;
 
 
         //------------------------------------Constructeur-----------------------------------------
