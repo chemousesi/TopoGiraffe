@@ -207,9 +207,9 @@
     <Resource Include="assets\img\WindowBar.png" />
     <Resource Include="assets\img\zoom-in.png" />
     <Resource Include="assets\img\ZoomWhite.png" />
-    <Resource Include="logo.png" />
+    <Resource Include="assets\logo.png" />
 
-    <Resource Include="logogris.png" />
+    <Resource Include="assets\logogris.png" />
 
     <Resource Include="Pages\download.png" />
 

@@ -24,6 +24,11 @@ namespace TopoGiraffe
             this.point = point;
             this.intersect = intersect;
         }
+        public IntersectionDetail(int altitude, Boolean intersect)
+        {
+            this.altitude = altitude;
+            this.intersect = intersect;
+        }
 
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

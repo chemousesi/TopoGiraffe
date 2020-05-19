@@ -150,7 +150,7 @@
                               Unchecked="ToggleButton_Unchecked" FlowDirection="LeftToRight" Grid.IsSharedSizeScope="True" Foreground="#FF1BBA1D" Background="#FF4FDC22" 
                               ScrollViewer.HorizontalScrollBarVisibility="Visible" ToolTip="Mode d'affichage" />
             </StackPanel>
-            <Label  Grid.Column="2" Style="{DynamicResource ModeLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,-4,0" FontSize="16"/>
+            <Label  Grid.Column="2" Style="{DynamicResource ModeLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,-4,0" FontSize="16"/>
         </Grid>
         <Grid  Grid.Row="2" Background="{DynamicResource SideColor}" >
             <Grid.ColumnDefinitions>
@@ -300,14 +300,14 @@
                             </Grid.RowDefinitions>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="334" Height="40" >
 
-                                <TextBox x:Name="equidistance"  Foreground="{DynamicResource TextBox}" Text="{Binding Equidistance, Mode=TwoWay}"  Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
+                                <TextBox x:Name="equidistancePlan"  Foreground="{DynamicResource TextBox}" Text="{Binding Equidistance, Mode=TwoWay}"  Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
 
                                 <Label  Style="{DynamicResource LabelStyle}"  Content="Equidistance (m)" Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
                             </StackPanel >
 
                             <StackPanel  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="334">
 
-                                <TextBox x:Name="altitudeMax"  Foreground="{DynamicResource TextBox}" Text="{Binding MaxAltitude, Mode=TwoWay}" TextWrapping="Wrap" Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
+                                <TextBox x:Name="altitudeMaxPlan"  Foreground="{DynamicResource TextBox}" Text="{Binding MaxAltitude, Mode=TwoWay}" TextWrapping="Wrap" Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
 
                                 <Label  Style="{DynamicResource LabelStyle}" Content="Altitude Max (m)" Height="40" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
                             </StackPanel>
