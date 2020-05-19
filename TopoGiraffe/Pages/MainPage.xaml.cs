@@ -382,6 +382,8 @@ namespace TopoGiraffe
         }
 
         // supprimer la derniere action-------------------------------------------------
+        bool serializebool = false;
+
 
         private void deletePreviousButton_Click(object sender, RoutedEventArgs e)
         {
@@ -394,7 +396,7 @@ namespace TopoGiraffe
             // suppression du segment
             navClicked = false;
 
-            if (dessinerButton.IsEnabled == false)
+            if (dessinerButton.IsEnabled == false )
             {
                 mainCanvas.Children.Remove(CourbesNiveau[CourbesNiveau.Count - 1].polyline);
                 CourbesNiveau.RemoveAt(CourbesNiveau.Count - 1);
@@ -988,6 +990,7 @@ namespace TopoGiraffe
                 }
                 poly = new Polyline();
                 addLineClicked = true;
+                add_line.IsEnabled = false;
                 btn2Clicked = false;
                 LinePointscpt = 0;
                 poly.Stroke = Brushes.Indigo;
@@ -2038,24 +2041,21 @@ namespace TopoGiraffe
         {
 
             List<Polyline> curve = polylines;
-            Ellipse circle;
-            ArtPoint artpt;
-
-
-            
-
+          
+         
 
 
 
             itm2 = this.DeSerialize();
             PointsGlobal.Clear();
-            for (int i = 0; i < itm2.Count() - 1; i++)
+            mainCanvas.Children.Clear();
+            for (int i = 0; i < itm2.Count() ; i++)
             {
                 PointsGlobal.Add(new List<ArtPoint>());
-                for (int j = 0; j < itm2[i].Count(); j++)
+                for (int j = 0; j < itm2[i].Count() ; j++)
                 {
-                    circle = new Ellipse();
-                    artpt = new ArtPoint(circle, itm2[i][j].point);
+                    Ellipse circle = new Ellipse();
+                    ArtPoint artpt = new ArtPoint(circle, itm2[i][j].point);
 
                     PointsGlobal[i].Add(artpt);
 
@@ -2089,16 +2089,19 @@ namespace TopoGiraffe
 
                 alts = alts.GetRange(0, itm2.Count() - 1);
                 alts.Reverse();
+              
                 int h = 0;
                 // for (int v = 0; v < alts.Count(); v++) { MessageBox.Show("wanted message is " + alts[v].altitude.ToString()); }
-                for (int i = 0; i < itm2.Count(); i++)
+                for (int i = 0; i < itm2.Count() ; i++)
                 {
 
                     Polyline li = new Polyline();
+                    CourbeNiveau courbe = new CourbeNiveau(li);
+                    CourbesNiveau.Add(courbe);
 
                     mainCanvas.Children.Add(li);
 
-                    for (int j = 0; j < itm2[i].Count(); j++)
+                    for (int j = 0; j < itm2[i].Count() ; j++)
                     {
 
                         li.FillRule = FillRule.EvenOdd;
@@ -2110,48 +2113,56 @@ namespace TopoGiraffe
                         else
                         {
                             li.Stroke = Brushes.Black;
+                            CourbesNiveau[i].polyline.Stroke = new SolidColorBrush(AltitudeToColor(CourbesNiveau[i].altitude));
                         }
-
                         li.Visibility = System.Windows.Visibility.Visible;
-                        Ellipse circle = new Ellipse();
-                        circle.Width = 10;
-                        circle.Height = 10;
+
+                        List<ArtPoint>  list = PointsGlobal[i];
+                        ArtPoint artpt = list[j];
+                        Ellipse circle = artpt.cercle;
+                        
+                       
                         if (i == itm2.Count() - 1)
                         {
+                            artpt.cercle.Width = 15;
+                            artpt.cercle.Height = 15;
+                            artpt.cercle.Fill = Brushes.Red;
+                            mainCanvas.Children.Add(artpt.cercle);
+                          
 
-                            circle.Fill = Brushes.Red;
 
                         }
                         else
                         {
 
-
-                            circle.Fill = Brushes.Purple;
+                            artpt.cercle.Width = 10;
+                            artpt.cercle.Height = 10;
+                            artpt.cercle.Fill = Brushes.Purple;
                         }
 
 
 
-                        Canvas.SetLeft(circle, itm2[i][j].point.X - (circle.Width / 2));
-                        Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
-                        Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
+                        Point ps = new Point(artpt.P.X, artpt.P.Y);
                         li.Points.Add(ps);
+                        circle.MouseMove += new System.Windows.Input.MouseEventHandler(Cercle_Mousemove);
+                        circle.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonUp);
+                        circle.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(Ellipse_MouseLeftButtonDown);
+                        //mainCanvas.Children.Add(artpt.cercle);
 
-                        //CourbeNiveau Courbe = new CourbeNiveau(li, itm2[itm2.Count() - 1][i].altitude);
-
-
-
-                        //CourbesNiveau.Add(Courbe);                       
-                        mainCanvas.Children.Add(circle);
+                        Canvas.SetLeft(artpt.cercle, artpt.P.X - (artpt.cercle.Width / 2));
+                        Canvas.SetTop(artpt.cercle, artpt.P.Y - (artpt.cercle.Height / 2));
 
                     }
-                    CourbeNiveau courbe = new CourbeNiveau(li); 
-                    CourbesNiveau.Add(courbe);
+                   
 
                     
                     li.FillRule = FillRule.EvenOdd;
                     li.Visibility = System.Windows.Visibility.Visible;
                     h++;
-
+                   courbe.polyline.MouseMove += new MouseEventHandler(Path_MouseMove);
+                    courbe.polyline.MouseLeftButtonUp += new MouseButtonEventHandler(Path_MouseLeftButtonUp);
+                    courbe.polyline.MouseLeftButtonDown += new MouseButtonEventHandler(Path_MouseLeftButtonDown);
+                 
 
 
 
@@ -2161,7 +2172,7 @@ namespace TopoGiraffe
 
                         li.Stroke = Brushes.Purple;
                         li.StrokeThickness = 7;
-                        CourbesNiveau.RemoveAt(CourbesNiveau.Count()-1);
+                        //CourbesNiveau.RemoveAt(CourbesNiveau.Count()-1);
                         // li.Points.Add(new Point(li.Points[0].X*);
 
                     }
@@ -2170,13 +2181,23 @@ namespace TopoGiraffe
 
 
                         li.StrokeThickness = 2;
+
+                        indexPoints = CourbesNiveau.IndexOf(courbe);
+                        ShownCtrlPoint = PointsGlobal[indexPoints];
+
                     }
 
-
+                   
 
                 }
-                
-
+                for (int i = 0; i < alts.Count; i++)
+                {
+                    CourbesNiveau[i].altitude = alts[i].altitude;
+                   
+                }
+                PointsGlobal.RemoveAt(PointsGlobal.Count - 1);
+                courbeActuelle = CourbesNiveau[CourbesNiveau.Count - 1];
+              
 
                 //PointsGlobal[i][j].
             }
