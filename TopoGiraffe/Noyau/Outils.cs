@@ -8,7 +8,8 @@ namespace TopoGiraffe
     {
 
 
-
+        //----------------------------------------Calcul la distance sur canvas entre deux points ----------------------------------
+        //-------------------------------------------------------------------------------------------------------------
 
         public static double DistanceBtwTwoPoints(Point pointA, Point pointB)
         {

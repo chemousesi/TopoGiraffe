@@ -19,7 +19,7 @@
     ShowInTaskbar="False"
     FontFamily="arial"
     WindowStartupLocation="CenterOwner"  >
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -29,24 +29,26 @@
 
         <Grid Grid.Row="0">
             <TextBlock Text="Remplir les informations suivantes :" Foreground="Black" FontSize="17" 
-                           Margin="30 25 10 0" Height="44" VerticalAlignment="Top" TextWrapping="WrapWithOverflow"/>
+                           Margin="30,9,10,0" Height="25" VerticalAlignment="Top" TextWrapping="WrapWithOverflow"/>
 
         </Grid>
         <Grid Grid.Row="1">
-            <StackPanel Orientation="Vertical" Margin="30 0">
+            <TextBlock Text="l'equidistance *" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="10" Foreground="#FFED2929" Height="13" Width="90" Margin="205,-17,55,0"/>
+            <TextBlock Text="*la saisie de l'altitude doit respecter" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="10" Height="13" Width="300" Margin="45,-17,5,0"/>
+
+            <StackPanel Orientation="Vertical" Margin="30,10,30,0">
                 <TextBox x:Name="Altitude" PreviewTextInput="NumberValidationTextBox"  Margin="0,20,0,0"  Height="55"
                  VerticalContentAlignment="Top"  RenderTransformOrigin="0.506,0.45" Padding="0,1,0,0"
-                 materialDesign:HintAssist.Hint="Altitude (mètre)" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                </TextBox>
+                 materialDesign:HintAssist.Hint="Altitude (mètre)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <ComboBox x:Name="styleCourbeCmbInDialogBox" SelectedValuePath="Content" 
                           SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  
                    Margin="0" Height="55" Padding="0,8,0,0"
                   materialDesign:HintAssist.Hint="Type de courbe" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    <ComboBoxItem >Courbe simple</ComboBoxItem>
-                    <ComboBoxItem >Courbe intermediare</ComboBoxItem>
-                    <ComboBoxItem >Courbe Maitresse</ComboBoxItem>
+                    <ComboBoxItem Content="Courbe simple" />
+                    <ComboBoxItem Content="Courbe intermediare" />
+                    <ComboBoxItem Content="Courbe Maitresse" />
                 </ComboBox>
-                <ComboBox Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged"  
+                <ComboBox x:Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged"  
                           Margin="0" Height="55" Padding="0,8,0,0" VerticalAlignment="Center" VerticalContentAlignment="Top" 
                           materialDesign:HintAssist.Hint="Couleur" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <ComboBox.ItemTemplate>
@@ -57,7 +59,7 @@
                             </StackPanel>
                         </DataTemplate>
 
-                    </ComboBox.ItemTemplate> 
+                    </ComboBox.ItemTemplate>
 
 
                 </ComboBox>
@@ -80,9 +82,9 @@
                     </Style>
                 </Button.Style>
 
-            </Button>   
+            </Button>
         </Grid>
 
-        
+
     </Grid >
 </Window>

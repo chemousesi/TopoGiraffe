@@ -40,19 +40,39 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="80"/>
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0" >
-            <Menu DockPanel.Dock="Top" Background="#1f1e21">
+        <DockPanel Grid.Row="0" VerticalAlignment="Center" >
+            <Menu DockPanel.Dock="Top" Background="#1f1e21" VerticalContentAlignment="Center" FontSize="13" >
                 <MenuItem Header="_File" Height="20" Foreground="#DDFFFFFF"  >
-                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Nouveau Projet" Click="import_Click" />
                     <MenuItem Header="_Open" Click="MenuItem_Click_1" />
-                    <MenuItem Header="_Save" />
+                    <MenuItem Header="_Save"  Click="ShowSauvgardeWindow_Click"/>
                     <Separator />
                     <MenuItem Header="_Exit" Click="MenuItem_Click"  />
                 </MenuItem>
+
+                <MenuItem Header="_Courbe" Height="20" Foreground="#DDFFFFFF">
+                    <MenuItem Header="_Nouvelle Courbe" Click="dessinerButton_Click" />
+                    <MenuItem Header="_Modifer Courbe" Click="nav_Click" />
+                    
+                </MenuItem>
+                <MenuItem Header="_Profil" Height="20" Foreground="#DDFFFFFF" Click="btn13_Click">
+
+
+                </MenuItem>
+                <MenuItem Header="_Pente" Height="20" Foreground="#DDFFFFFF" Click="Pente_Click">
+
+
+                </MenuItem>
+                <MenuItem Header="_Aide" Height="20" Foreground="#DDFFFFFF" Click="Help_Click">
+
+
+                </MenuItem>
+
+
 
             </Menu>
             <TextBox AcceptsReturn="True" />
@@ -64,14 +84,14 @@
                 <ColumnDefinition Width="337"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Button Cursor="Hand"  Height="60" Margin="10,5,0,0" Background="{x:Null}" BorderBrush="{x:Null}"
+                <Button Cursor="Hand"  Height="60" Margin="10,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}"
                         BorderThickness="0"  Click="ShowSauvgardeWindow_Click" ToolTip="Fichier">
                     <Image Source="/assets/img/button.png" Width="20" Height="20" Margin="0,0,0,0" />
                 </Button>
             </Grid>
             <Grid Grid.Column="1" Cursor="Hand">
                 
-                <StackPanel Cursor="Hand" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,0,0,0" >
+                <StackPanel Cursor="Hand" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,-5,0,0" >
                     <Button x:Name="scaleButton" Width="90" Height="94" Background="{x:Null}" BorderBrush="Transparent"
         BorderThickness="0"  Margin="0,0,0,0" Click="scaleButton_Click"  ToolTip="Echelle" HorizontalAlignment="Center" >
                         <StackPanel Orientation="Vertical">
