@@ -1,7 +1,0 @@
-* régler le problème du "drag" quand on dessine - seif
-- création des classes/création différente courbe(courbe maitresse - intermédiaire) - chemsou/seif
-- Placeholder() - zoher
-- bouton "nouvelle courbe" qui génère une fenêtre pour saisir les informations - belkis
-- intersections(algorithme) akram
-- profile topographique (recherche biblio graph) zoher/ala
-- added this to test pull
