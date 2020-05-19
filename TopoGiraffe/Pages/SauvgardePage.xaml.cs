@@ -156,5 +156,12 @@ namespace TopoGiraffe
             //System.Diagnostics.Process.Start("IExplore.exe", "www.northwindtraders.com");
 
         }
+
+        private void Import_Click(object sender, RoutedEventArgs e)
+        {
+            _mainPage.imprt_Click();
+            this.NavigationService.Navigate(_mainPage);
+
+        }
     }
 }
