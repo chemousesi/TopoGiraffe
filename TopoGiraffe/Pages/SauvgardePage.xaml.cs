@@ -5,7 +5,6 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
-using System.Diagnostics;
 
 #pragma warning disable CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
 #pragma warning restore CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
@@ -106,7 +105,7 @@ namespace TopoGiraffe
 
         void HandleRequestNavigate(object sender, RoutedEventArgs e)
         {
-          
+
         }
 
         private void nouvelle_Click(object sender, RoutedEventArgs e)
@@ -129,7 +128,7 @@ namespace TopoGiraffe
             //prs.Arguments = "http://facebook.com/";
             //Process.Start(prs);
 
-           // System.Diagnostics.Process.Start("microsoft-edge:http://www.google.com");
+            // System.Diagnostics.Process.Start("microsoft-edge:http://www.google.com");
 
 
             //System.Diagnostics.Process.Start("IExplore.exe");

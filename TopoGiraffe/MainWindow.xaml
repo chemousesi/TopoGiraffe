@@ -33,12 +33,23 @@
         <SolidColorBrush Opacity="0.8" Color="White"/>
     </Window.Background>-->
 
-
+    
 
 
 
 
     <Grid x:Name="Main">
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        
+        
+        
         <Grid.Resources>
             <ImageBrush x:Key="Close_inact"  ImageSource="./assets/img/Exit.png" />
             <ImageBrush x:Key="Min_inact" ImageSource="./assets/img/Minimize.png"  />
@@ -51,11 +62,29 @@
             <ImageBrush x:Key="Max_pr" ImageSource="./assets/img/Maximize.png"  />
         </Grid.Resources>
 
-        <Frame x:Name="mainFrame" Source="/Pages/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
+       
+
+        <DockPanel Grid.Row="1" >
+            <Menu DockPanel.Dock="Top" Background="#1f1e21">
+                <MenuItem Header="_File" Height="20" Foreground="#DDFFFFFF" >
+                    <MenuItem Header="_New" />
+                        <MenuItem Header="_Open" />
+                        <MenuItem Header="_Save" />
+                        <Separator />
+                        <MenuItem Header="_Exit" />
+                    </MenuItem>
+                
+            </Menu>
+                <TextBox AcceptsReturn="True" />
+        </DockPanel>
+
+
+        <Frame Grid.Row="3" x:Name="mainFrame" Source="/Pages/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
+
+
+        
 
         <Rectangle  Height="35" VerticalAlignment="Top" MouseDown="move_window" Fill="#1f1e21"/>
-
-
 
         <TextBlock Foreground="White" VerticalAlignment="Top" Margin="58,10,0,0" HorizontalAlignment="Left" > TOPOGIRAFFE</TextBlock>
 

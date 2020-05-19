@@ -26,7 +26,7 @@ namespace TopoGiraffe
 
         public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList, Echelle mainScale, String pente)
         {
-            this.IntersectionPoints = aIntersectionPoints; 
+            this.IntersectionPoints = aIntersectionPoints;
             // this.distancesListe = adistancesList;
             this.mainScale = mainScale;    //L'échelle des x 
             this.penteText = pente;        // Creation du dailogebox du pente
@@ -49,19 +49,19 @@ namespace TopoGiraffe
 
             foreach (IntersectionDetail IntersectionPoint in IntersectionPoints) //Boucle pour parcourir la liste des points d'intersections
             {
-                double distance = System.Math.Round(mainScale.FindDistanceOnField(IntersectionPoint.distance), 3); 
+                double distance = System.Math.Round(mainScale.FindDistanceOnField(IntersectionPoint.distance), 3);
                 MyValues.Add(new ObservablePoint(distance, IntersectionPoint.altitude)); // Afectation les valeurs a la liste des valeurs "les x et les y"
             }
             SeriesCollection = new SeriesCollection   //La creation de la courbe 
                 {
-                new LineSeries 
+                new LineSeries
                 {
                     Title = " Profil Topgraphique", //Titre de graph
                    // Fill = Brushes.Red,
                    // StrokeThickness = 4,
                     Values = MyValues,           // Afectation des valeurs au graph 
                  //   PointGeometrySize = 4,
-                    AreaLimit = 0,      
+                    AreaLimit = 0,
                     LineSmoothness = 0.4,    //Ajuster la finesse des lignes
                     
                     //DataLabels = true,
@@ -70,9 +70,9 @@ namespace TopoGiraffe
 
             DataContext = this;
         }
-        private void AddResourceDictionary(string src) 
+        private void AddResourceDictionary(string src)
         {
-            Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) }); 
+            Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
         }
 
 
