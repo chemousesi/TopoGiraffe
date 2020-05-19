@@ -292,6 +292,10 @@ namespace TopoGiraffe
             {
 
             }
+            catch (ErreurAltitudeExcpetion)
+            {
+
+            }
 
 
 
@@ -343,12 +347,14 @@ namespace TopoGiraffe
                     PointsGlobal.Clear();
                     cercles.Clear();
                     IntersectionPoints.Clear();
+                    PenteIntersectionPoints.Clear();
                     itm2.Clear();
 
                     indexPoints = -1;
                     
                     nav.IsEnabled = true;
                     dessinerButton.IsEnabled = true;
+                    add_line.IsEnabled = true ;
                 }
 
             }
@@ -365,12 +371,14 @@ namespace TopoGiraffe
                     PointsGlobal.Clear();
                     cercles.Clear();
                     IntersectionPoints.Clear();
+                    PenteIntersectionPoints.Clear();
                     indexPoints = -1;
 
                     nav.IsEnabled = true;
                     dessinerButton.IsEnabled = true;
-               
-            
+                    add_line.IsEnabled = true;
+
+
         }
 
         // supprimer la derniere action-------------------------------------------------
@@ -399,6 +407,7 @@ namespace TopoGiraffe
                 IntersectionPoints.Clear();
                 nav.IsEnabled = true;
                 dessinerButton.IsEnabled = true;
+                add_line.IsEnabled = true;
 
                 return;
             }
@@ -434,6 +443,7 @@ namespace TopoGiraffe
 
                 if (courbeActuelle.polyline.Points.Count > 0)
                 {
+                    
 
                     if (courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 1].Equals(courbeActuelle.polyline.Points[0]))
                     {
@@ -448,6 +458,8 @@ namespace TopoGiraffe
                         // removing circles
                         index = CourbesNiveau.IndexOf(courbeActuelle);
                         list = PointsGlobal[index];
+                        
+                        
                         if (courbeActuelle.polyline.Points.Count == 2 && list.Count == 2)
                         {
                             mainCanvas.Children.Remove(list[0].cercle);
@@ -675,6 +687,7 @@ namespace TopoGiraffe
                     IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
                     nav.IsEnabled = false;
                     dessinerButton.IsEnabled = false;
+                    add_line.IsEnabled = false;
 
 
 
@@ -691,12 +704,12 @@ namespace TopoGiraffe
 
                 if (scaleLinePointsCount == 2)
                 {
-                    mainScale.scaleDistanceOnCanvas = Outils.DistanceBtwTwoPoints(scalePolyline.Points[0], scalePolyline.Points[1]);
+                    mainScale.ScaleDistanceOnCanvas = Outils.DistanceBtwTwoPoints(scalePolyline.Points[0], scalePolyline.Points[1]);
 
-                    string message = "Echelle sur plan " + Math.Round(mainScale.scaleDistanceOnCanvas, 3) + "------>" + mainScale.scaleDistanceOnField + " mètres";
+                    string message = "Echelle sur plan " + Math.Round(mainScale.ScaleDistanceOnCanvas, 3) + "------>" + mainScale.ScaleDistanceOnField + " mètres";
                     MessageBox.Show(message);
                     mainCanvas.Children.Remove(scalePolyline);
-                    drawingScale = false;
+                    drawingScale = false; 
                 }
 
 
@@ -1396,18 +1409,7 @@ namespace TopoGiraffe
                         ShownCtrlPoint = PointsGlobal[index];
 
                         DrawCtrlPoints(courbeActuelle);
-                        //for( int k=0; k<3;k++ )
-                        //{
-
-                        //   // mainCanvas.Children.Remove(Ellipse circle);
-
-
-
-
-
-
-                        //}
-                        
+                      
 
 
                     }
@@ -1625,8 +1627,12 @@ namespace TopoGiraffe
                     AltitudeMin = Convert.ToInt32(dataDialog.MinTextBox.Text);
                     AltitudeMax = Convert.ToInt32(dataDialog.MaxTextBox.Text);
                     AltSlider.Maximum = Convert.ToInt32(dataDialog.MaxTextBox.Text);
+                    AltSlider.SmallChange = 
                     ThickSlider.Value = 2;
                     Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
+                    AltSlider.SmallChange = Equidistance;
+                    AltSlider.LargeChange = 2*Equidistance;
+                    AltSlider.TickFrequency = Equidistance;
                     equidistance.Text = Equidistance.ToString();
                     altitudeMax.Text = AltitudeMax.ToString();
                     altMin.Text = AltitudeMin.ToString();
@@ -1652,20 +1658,8 @@ namespace TopoGiraffe
 
                 if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
                 {
-                    mainScale = new Echelle() { ScaleDistanceOnCanvas = result1, ScaleDistanceOnField = result2} ;
-                   // plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
-                    plan = new Plan() { Equidistance = Convert.ToInt32(dataDialog.Equidistance), MaxAltitude = Convert.ToInt32(dataDialog.Max), MinAltitude = Convert.ToInt32(dataDialog.Min) };
-
-                    dataDialog.EquidistanceTextBox.DataContext = plan;
-                    dataDialog.MaxTextBox.DataContext = plan;
-                    dataDialog.MinTextBox.DataContext = plan;
-
-
-
-                    echelleOnCanvasPlan.DataContext = mainScale;
-                    echelleOnFieldPlan.DataContext = mainScale;
-
-
+                    mainScale = new Echelle(result1, result2);
+                    plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
 
 
                 }
@@ -1676,10 +1670,17 @@ namespace TopoGiraffe
                     mainScale = new Echelle(1, 1);
                 }
 
-                //int scalecan = (int)mainScale.scaleDistanceOnCanvas;
-                //int scaleFil = (int)mainScale.scaleDistanceOnField;
+                int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
+                int scaleFil = (int)mainScale.ScaleDistanceOnField;
+                echelleOnFieldPlan.Text = scaleFil.ToString();
+                echelleOnCanvasPlan.Text = scalecan.ToString();
+
+
+                //int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
+                //int scaleFil = (int)mainScale.ScaleDistanceOnField;
                 // echelleOnFieldPlan.Text = scaleFil.ToString();
                 //echelleOnCanvasPlan.Text = scalecan.ToString();
+
 
 
 
@@ -1696,50 +1697,61 @@ namespace TopoGiraffe
         // this function generates a dialog box , create , style a polyline from that dialog box entries
         // and return a new polyline, :)
         {
-
-
-            Window1 window1 = new Window1();
-            window1.ShowDialog();
-
             CourbeNiveau Courbe = null;
 
-            if (window1.DialogResult == true)
+            Window1 window1 = new Window1();
+           
+                    window1.ShowDialog();
+            // gerer les exceptions d'rreur d'altitude de courbe (selon l'equidistance)
+            if (CourbesNiveau.Count > 0)
             {
-                // taking the altitude from the dialog box
 
-                if (int.TryParse(window1.Altitude.Text, out int result))
+                if ((Math.Abs((Convert.ToInt32(window1.Altitude.Text) - CourbesNiveau[0].altitude )) % Equidistance) != 0)
                 {
-                    Altitudes.Add(result);
-                    indexAltitude++;
+                               throw new ErreurAltitudeExcpetion("L'altitude entrée ne correspend pas à l'equidistance");
+                }
+                      
+            }
+    
+                if (window1.DialogResult == true)
+                {
+                    // taking the altitude from the dialog box
+
+                    if (int.TryParse(window1.Altitude.Text, out int result))
+                    {
+                        Altitudes.Add(result);
+                        indexAltitude++;
 
 
 
 
-                    AltitudeString = window1.Altitude.Text;
+                        AltitudeString = window1.Altitude.Text;
 
-                    // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
-                    Courbe = new CourbeNiveau(new Polyline(), result);
-                    //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
-                    //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
-                    Courbe.polyline.StrokeThickness = 2;
-                    Courbe.polyline.FillRule = FillRule.EvenOdd;
+                        // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
+                        Courbe = new CourbeNiveau(new Polyline(), result);
+                        //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
+                        //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+                        //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
+                        Courbe.polyline.StrokeThickness = 2;
+                        Courbe.polyline.FillRule = FillRule.EvenOdd;
 
-                    Courbe.polyline = StyleCmbToRealStyle(Courbe.polyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
+                        Courbe.polyline = StyleCmbToRealStyle(Courbe.polyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur! \n votre altitude n'est pas un entier");
+                    }
 
                 }
                 else
                 {
-                    MessageBox.Show("Erreur! \n votre altitude n'est pas un entier");
+                    throw new ErreurDeSaisieException("Erreur dans La saisie ");
                 }
-
-            }
-            else
-            {
-                throw new ErreurDeSaisieException("Erreur dans La saisie ");
-            }
+           
 
             return Courbe;
+
         }
 
 
@@ -1751,11 +1763,6 @@ namespace TopoGiraffe
         {
             //Echelle testScale = new Echelle(10, 100);
             ScaleDialog scaleDialog = new ScaleDialog();
-
-            scaleDialog.EchelleTextBoxOnCanvasScaleDB.DataContext = mainScale;
-            scaleDialog.EchelleTextBoxOnFieldScaleDB.DataContext = mainScale;
-
-
             scaleDialog.ShowDialog();
 
             if (scaleDialog.DialogResult == true)
@@ -1765,16 +1772,7 @@ namespace TopoGiraffe
                     if (int.TryParse(scaleDialog.EchelleOnField, out int result))
                     {
                         // assign the first proprety of the scale scaleonField
-                        
-                        if (mainScale == null)
-                        {
-                            mainScale = new Echelle() { ScaleDistanceOnField = result, ScaleDistanceOnCanvas = 0 };
-                        }
-                        else
-                        {
-                            mainScale.ScaleDistanceOnField = result;
-                        }
-
+                        mainScale = new Echelle(result);
 
                         drawingScale = true;
                         btn2Clicked = false;
@@ -2041,7 +2039,8 @@ namespace TopoGiraffe
 
             try
             {
-                IntersectionPoints = itm2[itm2.Count() - 1];
+                PenteIntersectionPoints = itm2[itm2.Count() - 1];
+                IntersectionPoints = PenteIntersectionPoints;
             }
             catch (Exception x)
             {
@@ -2049,7 +2048,7 @@ namespace TopoGiraffe
             }
             if (mainScale != null)
             {
-                CalcPente(IntersectionPoints, mainScale);
+                CalcPente(PenteIntersectionPoints, mainScale);
             }
             distances();
 
@@ -2215,7 +2214,7 @@ namespace TopoGiraffe
             //this.DeSerialize()[this.DeSerialize().Count()-1];
             try
             {
-                Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
+                Echelle echel = new Echelle(mainScale.ScaleDistanceOnCanvas, mainScale.ScaleDistanceOnField);
             }
             catch (NullReferenceException ecp)
             {
@@ -2304,6 +2303,7 @@ namespace TopoGiraffe
                 CourbesNiveau.Remove(courbeActuelle);
                 PointsGlobal.Remove(list);
                 list.Clear();
+               
 
                 }
                 catch (ArgumentOutOfRangeException excp) { }
@@ -2520,7 +2520,7 @@ namespace TopoGiraffe
                 }
                 else
                 {
-                    (new MssgBox("Pas de texte en entrée")).Show();
+                    (new MssgBox("Pas d'altitude en entrée")).Show();
                 }
                 
 

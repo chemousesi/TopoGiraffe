@@ -1,4 +1,5 @@
-﻿using iTextSharp.text.pdf;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
@@ -146,7 +147,11 @@ namespace TopoGiraffe
             jpg.Border = iTextSharp.text.Rectangle.BOX;
             jpg.BorderWidth = 5f;
             doc.Add(jpg);
-            doc.Add(new iTextSharp.text.Paragraph("Original Width: "));
+            iTextSharp.text.Paragraph paragraph = new iTextSharp.text.Paragraph();
+            paragraph.Font = new Font(FontFactory.GetFont("Arial", 16, Font.BOLD));
+            paragraph.Alignment = Element.ALIGN_CENTER;//here is the change
+            paragraph.Add("Profile Topographique");
+            doc.Add(paragraph);
 
             Viewbox viewbox = new Viewbox(); //Ajuster la photo dans un cadre
 
