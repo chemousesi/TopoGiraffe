@@ -47,12 +47,32 @@
         <DockPanel Grid.Row="0" VerticalAlignment="Center" >
             <Menu DockPanel.Dock="Top" Background="#1f1e21" VerticalContentAlignment="Center" FontSize="13" >
                 <MenuItem Header="_File" Height="20" Foreground="#DDFFFFFF"  >
-                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Nouveau Projet" Click="import_Click" />
                     <MenuItem Header="_Open" Click="MenuItem_Click_1" />
-                    <MenuItem Header="_Save" />
+                    <MenuItem Header="_Save"  Click="ShowSauvgardeWindow_Click"/>
                     <Separator />
                     <MenuItem Header="_Exit" Click="MenuItem_Click"  />
                 </MenuItem>
+
+                <MenuItem Header="_Courbe" Height="20" Foreground="#DDFFFFFF">
+                    <MenuItem Header="_Nouvelle Courbe" Click="dessinerButton_Click" />
+                    <MenuItem Header="_Modifer Courbe" Click="nav_Click" />
+                    
+                </MenuItem>
+                <MenuItem Header="_Profil" Height="20" Foreground="#DDFFFFFF" Click="btn13_Click">
+
+
+                </MenuItem>
+                <MenuItem Header="_Pente" Height="20" Foreground="#DDFFFFFF" Click="Pente_Click">
+
+
+                </MenuItem>
+                <MenuItem Header="_Aide" Height="20" Foreground="#DDFFFFFF" Click="Help_Click">
+
+
+                </MenuItem>
+
+
 
             </Menu>
             <TextBox AcceptsReturn="True" />
