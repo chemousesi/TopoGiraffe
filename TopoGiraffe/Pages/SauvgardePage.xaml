@@ -441,7 +441,7 @@
                         <ScrollViewer Grid.Row="2" >
                             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" xml:space="preserve" FontSize="16" Width="Auto" FontFamily="Malgun Gothic Semilight" >
                                  Ceci est un logiciel de génération de profils topographiques à partir de courbes de niveaux, réalisé par l'équipe 22 du projet 2CPI sous l'encadrement de :<LineBreak/>
-                                -Mme N.Belattar.
+                                -Mme Belattar.
                                 -Mme Bouzar.
                                 
                                 Ce logiciel conçu répond à un cahier des charges donné au début du projet. Parmi ses fonctionnalités : l’importation d’une image, ou navigation sur une carte,
