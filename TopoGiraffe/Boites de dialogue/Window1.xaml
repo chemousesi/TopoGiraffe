@@ -48,21 +48,7 @@
                     <ComboBoxItem Content="Courbe intermediare" />
                     <ComboBoxItem Content="Courbe Maitresse" />
                 </ComboBox>
-                <ComboBox x:Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged"  
-                          Margin="0" Height="55" Padding="0,8,0,0" VerticalAlignment="Center" VerticalContentAlignment="Top" 
-                          materialDesign:HintAssist.Hint="Couleur" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Rectangle Fill="{Binding Rect.Fill}" Height="20" Width="20"/>
-                                <TextBlock Text="{Binding Name}"/>
-                            </StackPanel>
-                        </DataTemplate>
-
-                    </ComboBox.ItemTemplate>
-
-
-                </ComboBox>
+                
             </StackPanel>
         </Grid>
         <!-- Accept or Cancel -->
