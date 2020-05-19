@@ -391,7 +391,7 @@
                                 <TextBlock Text="Enregistrer sous" Margin="10,0" FontSize="15" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
-                        
+
                         <Button Style="{DynamicResource EnregistrerSousBtn}" x:Name="manual" Foreground="#FFFFFF" Height="50" Click="openManual_Click" Background="#0000" BorderBrush="Transparent"
                             BorderThickness="0" HorizontalContentAlignment="Left"  Cursor="Hand" Margin="0 15 0 0">
                             <!--<StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left" >
@@ -404,7 +404,7 @@
                         </Button>
                     </StackPanel>
                 </Grid>
-                
+
             </Grid>
             <Grid Grid.Column="1" Background="#ffffff">
                 <Grid.RowDefinitions>
@@ -430,9 +430,9 @@
                             <RowDefinition Height="80"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        
+
                         <TextBlock Text="Bienvenue dans TopoGiraffe" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.323,0.104" 
-                                   FontFamily="Gotham Black" Margin="0,25,0,0" Grid.Row="1" Height="41" Width="456"/>
+                                   FontFamily="Gotham Black" Margin="0,25,0,0" Grid.Row="1" Height="41" Width="480" FontWeight="Bold"/>
 
                         <ScrollViewer Grid.Row="2" >
                             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" xml:space="preserve" FontSize="16" Width="Auto" FontFamily="Malgun Gothic Semilight" >
