@@ -21,7 +21,7 @@
                 <RowDefinition Height="5*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <TextBlock HorizontalAlignment="Center" Margin="0,41,0,41"  Text="Déssiner des courbes de niveaux" TextWrapping="WrapWithOverflow" Width="229" 
+                <TextBlock HorizontalAlignment="Center" Margin="0,41,0,41"  Text="Dessiner des courbes de niveaux" TextWrapping="WrapWithOverflow" Width="229" 
                        Foreground="#545454" FontFamily="Gotham Black" FontSize="23" Padding="0,3,0,0" FontWeight="Bold" />
 
             </Grid>
@@ -29,7 +29,7 @@
                     <Line Stretch="Uniform" Stroke="#EFCAC4" StrokeThickness="4" Height="5" X1="20"  Width="80" Margin="30,-12,190,251"   />
 
                 <TextBlock HorizontalAlignment="Center" Height="83" Margin="0,101,0,0"  
-                   Text="Vous pouvez également déssiner des courbes de niveaux, des points et un segement AB" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" 
+                   Text="Vous pouvez également dessiner des courbes de niveaux, des points et un segement AB" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" 
                    Foreground="#545454" FontFamily="HelveticaNeue" FontSize="16"/>
             </Grid>
         </Grid>
