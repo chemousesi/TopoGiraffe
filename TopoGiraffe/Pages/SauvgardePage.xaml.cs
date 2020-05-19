@@ -1,7 +1,6 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
@@ -127,6 +126,7 @@ namespace TopoGiraffe
         {
 
 
+
             System.Diagnostics.Process.Start("microsoft-edge:http://www.google.com");
 
 
@@ -145,6 +145,7 @@ namespace TopoGiraffe
 
 
             //System.Diagnostics.Process.Start("IExplore.exe", "www.northwindtraders.com");
+
         }
     }
 }
