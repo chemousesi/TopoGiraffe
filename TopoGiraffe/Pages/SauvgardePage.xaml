@@ -440,7 +440,7 @@
 
                         <ScrollViewer Grid.Row="2" >
                             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" xml:space="preserve" FontSize="16" Width="Auto" FontFamily="Malgun Gothic Semilight" >
-                                 Ceci est un logiciel de génération de profils topographiques a partir de courbes de niveaux, réalisé par l'équipe 22 du projet 2CPI sous l'encadrement de :<LineBreak/>
+                                 Ceci est un logiciel de génération de profils topographiques à partir de courbes de niveaux, réalisé par l'équipe 22 du projet 2CPI sous l'encadrement de :<LineBreak/>
                                 -Mme N.Belattar.
                                 -Mme Bouzar.
                                 
@@ -470,9 +470,9 @@
                                 
                                 
                                 
-                             Le logiciel est à utiliser pour des fins personnelles ou commerciales, le logiciel est servi sans aucune garantie ou responsabilité   
+                             Le logiciel est à utiliser pour des fins personnelles ou commerciales, le logiciel est servi sans aucune garantie ou responsabilité.  
                              
-                            @Tous les droits sont réservés ESI2020
+                            @Tous les droits sont réservés ESI2020.
 
                                 
 

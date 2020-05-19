@@ -349,7 +349,7 @@
                                 BorderThickness="0"  Click="nav_Click" ToolTip="Outil de Selection"
                                  />
                         <Button x:Name="dessinerButton" Margin="0,0,0,0" Height="60" Background="{DynamicResource Dessiner}"  BorderBrush="{x:Null}"
-                                   BorderThickness="0" Click="dessinerButton_Click" ToolTip="Déssiner une courbe"
+                                   BorderThickness="0" Click="dessinerButton_Click" ToolTip="Dessiner une courbe"
                                 >
                         </Button>
                         <Button x:Name="dessinerPoint" Margin="0,0,0,0" Height="60"   BorderBrush="{x:Null}" Background="{DynamicResource Point}"
@@ -357,7 +357,7 @@
                                 />
                         <Button x:Name="add_line" Height="60"  Background="{DynamicResource Segment}" BorderBrush="{x:Null}"
                                   BorderThickness="0"  IsDefault="True" Click="add_line_Click" 
-                               ToolTip="Déssiner un segment" Width="62" Cursor="Hand"  
+                               ToolTip="Dessiner un segment" Width="62" Cursor="Hand"  
                                 />
 
                         <Button x:Name="addTextButton" Height="60"  Background="{DynamicResource AddText}" BorderBrush="{x:Null}"
