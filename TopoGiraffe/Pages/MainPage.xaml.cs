@@ -1782,6 +1782,7 @@ namespace TopoGiraffe
                         }
 
 
+
                         mainScale = new Echelle(result);
 
                         drawingScale = true;
