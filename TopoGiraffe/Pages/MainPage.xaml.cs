@@ -2285,7 +2285,9 @@ namespace TopoGiraffe
 
                 l.X1 = points[i + 1].point.X; l.Y1 = points[i + 1].point.Y;
                 l.X2 = points[i].point.X; l.Y2 = points[i].point.Y;
-                sum += ((points[i + 1].altitude - points[i].altitude) / sc.FindDistanceOnField(l));
+                if(sc != null) { 
+                    sum += ((points[i + 1].altitude - points[i].altitude) / sc.FindDistanceOnField(l));
+                }
 
             }
             return (sum / (points.Count() - 1));
