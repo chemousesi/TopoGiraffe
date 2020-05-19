@@ -2045,7 +2045,7 @@ namespace TopoGiraffe
 
             popup_uh.PlacementTarget = dessinerButton;
             popup_uh.Placement = PlacementMode.Right;
-            Pops.PopupText.Text = "Déssiner une courbe";
+            Pops.PopupText.Text = "Dessiner une courbe";
             await PutTaskDelay();
             popup_uh.Visibility = Visibility.Collapsed;
 
@@ -2083,7 +2083,7 @@ namespace TopoGiraffe
 
             popup_uh.PlacementTarget = dessinerButton;
             popup_uh.Placement = PlacementMode.Bottom;
-            Pops.PopupText.Text = "Déssiner une courbe";
+            Pops.PopupText.Text = "Dessiner une courbe";
             await PutTaskDelay();
             popup_uh.Visibility = Visibility.Collapsed;
 
