@@ -40,7 +40,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="77"/>
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -91,7 +91,7 @@
             </Grid>
             <Grid Grid.Column="1" Cursor="Hand">
                 
-                <StackPanel Cursor="Hand" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,-5,0,0" >
+                <StackPanel Cursor="Hand" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,-3,0,0" >
                     <Button x:Name="scaleButton" Width="90" Height="94" Background="{x:Null}" BorderBrush="Transparent"
         BorderThickness="0"  Margin="0,0,0,0" Click="scaleButton_Click"  ToolTip="Echelle" HorizontalAlignment="Center" >
                         <StackPanel Orientation="Vertical">

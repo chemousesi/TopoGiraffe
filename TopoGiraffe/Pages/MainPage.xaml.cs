@@ -234,6 +234,8 @@ namespace TopoGiraffe
 
         }
 
+        
+
         // for the live preview of the Segment -------------------------------------------
 
         private void MouseMoveOnAddLine(object sender, MouseEventArgs e)
@@ -2122,6 +2124,126 @@ namespace TopoGiraffe
 
         List<IntersectionDetail> alts = new List<IntersectionDetail>();
         List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
+
+        public void imprt_Click()
+        {
+            List<Polyline> curve = polylines;
+
+
+            List<IntersectionDetail> alts = new List<IntersectionDetail>();
+
+
+
+
+            itm2 = this.DeSerialize();
+            String penteText = " la pente est de   :" + pente.ToString() + " % ";
+
+            try
+            {
+                PenteIntersectionPoints = itm2[itm2.Count() - 1];
+                IntersectionPoints = PenteIntersectionPoints;
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("pas de projet importer");
+            }
+            if (mainScale != null)
+            {
+                CalcPente(PenteIntersectionPoints, mainScale);
+            }
+            distances();
+
+            try
+            {
+                alts = itm2[itm2.Count() - 1];
+
+
+                alts = alts.GetRange(0, itm2.Count() - 1);
+                alts.Reverse();
+                int h = 0;
+                for (int i = 0; i < itm2.Count(); i++)
+                {
+
+                    Polyline li = new Polyline();
+                    mainCanvas.Children.Add(li);
+
+                    for (int j = 0; j < itm2[i].Count(); j++)
+                    {
+
+                        li.FillRule = FillRule.EvenOdd;
+                        li.StrokeThickness = 4;
+                        if (i < itm2.Count() - 1)
+                        {
+                            li.Stroke = new SolidColorBrush(AltitudeToColor(alts[i].altitude));
+                        }
+                        else
+                        {
+                            li.Stroke = Brushes.Black;
+                        }
+
+                        li.Visibility = System.Windows.Visibility.Visible;
+                        Ellipse circle = new Ellipse();
+                        circle.Width = 10;
+                        circle.Height = 10;
+                        if (i == itm2.Count() - 1)
+                        {
+
+                            circle.Fill = Brushes.Red;
+
+                        }
+                        else
+                        {
+
+
+                            circle.Fill = Brushes.Purple;
+                        }
+
+
+
+                        Canvas.SetLeft(circle, itm2[i][j].point.X - (circle.Width / 2));
+                        Canvas.SetTop(circle, itm2[i][j].point.Y - (circle.Height / 2));
+                        Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
+                        li.Points.Add(ps);
+
+                        CourbeNiveau Courbe = new CourbeNiveau(li, itm2[itm2.Count() - 1][i].altitude);
+
+
+
+                        CourbesNiveau.Add(Courbe);
+                        mainCanvas.Children.Add(circle);
+
+                    }
+                    li.FillRule = FillRule.EvenOdd;
+                    li.Visibility = System.Windows.Visibility.Visible;
+                    h++;
+
+
+
+
+
+                    if (i == (itm2.Count() - 1))
+                    {
+
+                        li.Stroke = Brushes.Purple;
+                        li.StrokeThickness = 7;
+
+                    }
+                    else
+                    {
+
+
+                        li.StrokeThickness = 2;
+                    }
+
+
+
+                }
+
+            }
+            catch (ArgumentNullException) { }
+
+        }
+
         public void Button_Click(object sender, RoutedEventArgs e)
         {
 
