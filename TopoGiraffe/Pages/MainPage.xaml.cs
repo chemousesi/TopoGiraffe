@@ -45,24 +45,24 @@ namespace TopoGiraffe
         bool btn2Clicked = false; bool addLineClicked = false; bool navClicked = false;
         Polyline poly = new Polyline();
         int LinePointscpt = 0;
-#pragma warning disable CS0414 // Le champ 'MainWindow.firstPoint' est assigné, mais sa valeur n'est jamais utilisée
+
         Boolean firstPoint = true;
-#pragma warning restore CS0414 // Le champ 'MainWindow.firstPoint' est assigné, mais sa valeur n'est jamais utilisée
+
         List<int> Altitudes = new List<int>();
 
         List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
-#pragma warning disable CS0414 // Le champ 'MainWindow.NbCourbes' est assigné, mais sa valeur n'est jamais utilisée
+
         int NbCourbes = 0;
-#pragma warning restore CS0414 // Le champ 'MainWindow.NbCourbes' est assigné, mais sa valeur n'est jamais utilisée
+
 
 
 
 
 
         Plan plan;
-#pragma warning disable CS0169 // Le champ 'MainWindow.scaleLine' n'est jamais utilisé
+
         Line scaleLine;
-#pragma warning restore CS0169 // Le champ 'MainWindow.scaleLine' n'
+
         Boolean drawingScale = false;
         Echelle mainScale;
         public static int exec = 0;
@@ -840,8 +840,8 @@ namespace TopoGiraffe
 
 
         }
-        // surcharge :/ fonction qui retourne l'intersection entre un point  et une ligne
-
+       
+        //surcharge de la foncton find intersection
         public void FindIntersection(PointAltitude p, Line line)
         {
             Line myLine = new Line();
@@ -869,6 +869,7 @@ namespace TopoGiraffe
 
         }
 
+        //une surcharge de la methode FindIntersection  
         public bool FindIntersection1(Polyline p, Line line)
         {
             Line myLine = new Line();
@@ -957,7 +958,7 @@ namespace TopoGiraffe
         }
 
 
-
+        //retourne une equation d''un segment a partir de deux points
         public Equation GetSegmentEquation(Point a, Point b)
         {
             Equation equation = new Equation();
@@ -968,6 +969,7 @@ namespace TopoGiraffe
             return equation;
         }
 
+        //Boutton ajout d'une courbe
         private void add_line_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -998,7 +1000,7 @@ namespace TopoGiraffe
 
 
 
-
+        //retourne une ligne avec style approprié
         public Polyline StyleCmbToRealStyle(Polyline pol, int index)
         {
             if (pol != null)
@@ -1038,7 +1040,7 @@ namespace TopoGiraffe
         {
             if (e.Key == Key.Back)
             {
-                MessageBox.Show("back key pressed");
+                MessageBox.Show("cle retour clické");
             }
         }
 
@@ -1052,7 +1054,7 @@ namespace TopoGiraffe
         private List<object> hitResultsList = new List<object>();
 
 
-
+        //comportement du click droit sur le canvas
         private void mainCanvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -1093,7 +1095,7 @@ namespace TopoGiraffe
             }
         }
 
-
+        //boutton de navigation
         private void nav_Click(object sender, RoutedEventArgs e)
         {
             Cursor = Cursors.Arrow;
@@ -1120,6 +1122,7 @@ namespace TopoGiraffe
         CourbeNiveau EditPolyline;
 
         bool dragbool;
+        //comportement du click droit sur le cercle
         public void Cercle_Mousemove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             ArtPoint elDraggingEllip = new ArtPoint();
@@ -1142,9 +1145,9 @@ namespace TopoGiraffe
                     Canvas.SetTop(elDraggingEllipse, ptMouse.Y - 10 / 2);
 
 
-#pragma warning disable CS0168 // La variable 'ellipse' est déclarée, mais jamais utilisée
+
                     Ellipse ellipse;
-#pragma warning restore CS0168 // La variable 'ellipse' est déclarée, mais jamais utilisée
+
                     int cpt3 = 0;
                     foreach (List<ArtPoint> ae in PointsGlobal)
                     {
@@ -1227,6 +1230,7 @@ namespace TopoGiraffe
 
             }
         }
+
         void Ellipse_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (((Ellipse)elDraggingEllipse) == null) return;
@@ -1235,9 +1239,9 @@ namespace TopoGiraffe
             //((Ellipse)elDraggingEllipse).Cursor = Cursors.Arrow; //change the cursor
             ((Ellipse)elDraggingEllipse).ReleaseMouseCapture();
             // EditPolyline.Points.Clear();
-#pragma warning disable CS0219 // La variable 'i1' est assignée, mais sa valeur n'est jamais utilisée
+
             int i1 = 0;
-#pragma warning restore CS0219 // La variable 'i1' est assignée, mais sa valeur n'est jamais utilisée
+
             if (navClicked)
             {
                 foreach (ArtPoint el in PointsGlobal[index2])
@@ -1328,7 +1332,7 @@ namespace TopoGiraffe
         double minX, minY, maxX, maxY;
         int indexdrag = 0;
 
-
+        //comportement du click sur calcul de pente
         private void btn13_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -1341,7 +1345,7 @@ namespace TopoGiraffe
                 if (mainScale != null)
                 {
                     pente = CalcPente(PenteIntersectionPoints, mainScale);
-                    pente = System.Math.Round(pente, 3);
+                    pente = System.Math.Round(pente, 3)*100;
                     String penteText = " la pente est de   :" + pente.ToString() + " % ";
                     ProfileTopographique profile = new ProfileTopographique(IntersectionPoints, distancesListe, mainScale, penteText);
                     profile.Show();
@@ -1361,7 +1365,7 @@ namespace TopoGiraffe
         List<ArtPoint> DragPoints;
         Thickness margin;
 
-
+        //comportement du click souris sur le canvas
         void Path_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             selectedPolyline = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
@@ -1422,9 +1426,11 @@ namespace TopoGiraffe
 
 
 
-#pragma warning disable CS0414 // Le champ 'MainWindow.test' est assigné, mais sa valeur n'est jamais utilisée
+
         bool test = false;
-#pragma warning restore CS0414 // Le champ 'MainWindow.test' est assigné, mais sa valeur n'est jamais utilisée
+
+
+        //comportement du click gauche sur le canvas (Different modifications) 
         void Path_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
 
@@ -1458,6 +1464,8 @@ namespace TopoGiraffe
 
         SolidColorBrush chosenBrush;
         long colorVal;
+
+        //colorisation d'une courbe
         private void cp_SelectedColorChanged_1(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
             if (cp.SelectedColor.HasValue)
@@ -1482,6 +1490,7 @@ namespace TopoGiraffe
 
         }
 
+
         private void styleCourbeCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (courbeActuelle != null)
@@ -1496,8 +1505,10 @@ namespace TopoGiraffe
 
         }
 
+
+        //comportement du glissement de souris
         void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {//path dragging
+        {
             if ((elDragging) == null) return;
             if (e.LeftButton == MouseButtonState.Pressed)
             {
@@ -1536,6 +1547,8 @@ namespace TopoGiraffe
 
         List<ArtPoint> ShownCtrlPoint;
 
+        //dessin des points d'articulation d'une courbe de niveau
+
         public void DrawCtrlPoints(CourbeNiveau polyline)
         {
             if (polyline == null) return;
@@ -1561,6 +1574,8 @@ namespace TopoGiraffe
 
             }
         }
+
+        //cacher les points d'articulation 
         public void RemoveCtrlPoints(CourbeNiveau polyline)
         {
             if (polyline == null) return;
@@ -1586,6 +1601,8 @@ namespace TopoGiraffe
 
 
         }
+
+        //effacememnt des points d'articulation (surcharge) 
         public void RemoveCtrlPoints()
         {
             if (ShownCtrlPoint == null) return;
@@ -1609,7 +1626,7 @@ namespace TopoGiraffe
 
 
 
-
+        //ouvre le dialogue des donnees
         public void OpenInitialDialogBox()
         {
             DataDialog dataDialog = new DataDialog();
@@ -1676,10 +1693,7 @@ namespace TopoGiraffe
                 echelleOnCanvasPlan.Text = scalecan.ToString();
 
 
-                //int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
-                //int scaleFil = (int)mainScale.ScaleDistanceOnField;
-                // echelleOnFieldPlan.Text = scaleFil.ToString();
-                //echelleOnCanvasPlan.Text = scalecan.ToString();
+                
 
 
 
@@ -1693,9 +1707,10 @@ namespace TopoGiraffe
 
         String AltitudeString;
 
+
+        //dessin d'une nouvelle courbe
         public CourbeNiveau DrawNewCurve()
-        // this function generates a dialog box , create , style a polyline from that dialog box entries
-        // and return a new polyline, :)
+        
         {
             CourbeNiveau Courbe = null;
 
@@ -1722,21 +1737,11 @@ namespace TopoGiraffe
                         Altitudes.Add(result);
                         indexAltitude++;
 
-
-
-
-                        AltitudeString = window1.Altitude.Text;
-
-                        // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
-                        Courbe = new CourbeNiveau(new Polyline(), result);
-                        //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
-                        //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                        //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
+                        AltitudeString = window1.Altitude.Text;                       
+                        Courbe = new CourbeNiveau(new Polyline(), result);                        
                         Courbe.polyline.StrokeThickness = 2;
                         Courbe.polyline.FillRule = FillRule.EvenOdd;
-
                         Courbe.polyline = StyleCmbToRealStyle(Courbe.polyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
-
                     }
                     else
                     {
@@ -1759,9 +1764,10 @@ namespace TopoGiraffe
 
 
         int scaleLinePointsCount = 0;
+        //comportement du boutton d'echelle
         private void scaleButton_Click(object sender, RoutedEventArgs e)
         {
-            //Echelle testScale = new Echelle(10, 100);
+            
             ScaleDialog scaleDialog = new ScaleDialog();
             scaleDialog.ShowDialog();
 
@@ -1816,17 +1822,19 @@ namespace TopoGiraffe
 
 
 
-            //double result = testScale.FindDistanceOnField(20);
-
-            //MessageBox.Show(result.ToString());
+           
 
 
         }
-
+        
+        //-------------------------------glissier de changement d'altitude----------------------------------------------------
+        //--------------------------------------------------------------------------------------------------------------------
         private void altitudeSliderValueChange(object sender, RoutedPropertyChangedEventArgs<double> e)
         {//change altitude
             changeSelectedCurveAltitude((float)AltSlider.Value);
         }
+
+        //click ajout dans la glissiere d'altitude
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e)
         {
@@ -1837,9 +1845,10 @@ namespace TopoGiraffe
             AltSlider.Value += Equidistance;
             changeSelectedCurveAltitude((float)AltSlider.Value);
 
-            //Color color = Color.AliceBlue;
-            //Console.Write(color.);
         }
+
+        //click signe moins dans la glissiere d'altitude
+
         private void ZoomOut_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1851,6 +1860,7 @@ namespace TopoGiraffe
             changeSelectedCurveAltitude((float)AltSlider.Value);
         }
 
+        //changement d'altitude pour une courbe selectionee
 
         private void changeSelectedCurveAltitude(float altit)
         {//the real change
@@ -1883,6 +1893,8 @@ namespace TopoGiraffe
             }
         }
 
+
+        //Conversion d'une altitudee a une couleur donnee pour l'associer a une courbe 
         public static Color AltitudeToColor(float altit)
         {//implemeting the predefined altitude levels
 
@@ -1911,7 +1923,7 @@ namespace TopoGiraffe
         /* -------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-        
+        //retardement de 5 secondes
         async Task PutTaskDelay()
         {
             await Task.Delay(5000);
@@ -2008,17 +2020,13 @@ namespace TopoGiraffe
         }
 
 
+        //-------navigation vers la page de sauvegarde----
+        //------------------------------------------------
         public void ShowSauvgardeWindow_Click(object sender, RoutedEventArgs e)
         {
-            //SauvgardePage pg = new SauvgardePage();
-
-            //this.Content = pg;
-
-
-
+            
             this.NavigationService.Navigate(new SauvgardePage(curves, this));
-
-            /* _mainFrame.Content = new SauvgardePage(); */
+            
         }
 
 
@@ -2060,7 +2068,6 @@ namespace TopoGiraffe
                 alts = alts.GetRange(0, itm2.Count() - 1);
                 alts.Reverse();
                 int h = 0;
-                // for (int v = 0; v < alts.Count(); v++) { MessageBox.Show("wanted message is " + alts[v].altitude.ToString()); }
                 for (int i = 0; i < itm2.Count(); i++)
                 {
 
@@ -2126,7 +2133,6 @@ namespace TopoGiraffe
 
                         li.Stroke = Brushes.Purple;
                         li.StrokeThickness = 7;
-                        // li.Points.Add(new Point(li.Points[0].X*);
 
                     }
                     else
@@ -2140,9 +2146,6 @@ namespace TopoGiraffe
 
                 }
                 
-
-
-                //PointsGlobal[i][j].
             }
             catch (ArgumentNullException) { }
 
@@ -2150,7 +2153,8 @@ namespace TopoGiraffe
 
         }
 
-        //serialization
+        //-----------methode de serialization--------------------------------------------------------------------
+        //-------------------------------------------------------------------------------------------------------
 
         public void Serializee(List<List<IntersectionDetail>> objet)
         {
@@ -2161,7 +2165,11 @@ namespace TopoGiraffe
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(s, objet);
             s.Close();
+
         }
+
+        //-----------surcharge methode de serialization--------------------------------------------------------------------
+        //-------------------------------------------------------------------------------------------------------
         public void Serializee(List<List<IntersectionDetail>> objet, string filename)
         {
 
@@ -2173,6 +2181,9 @@ namespace TopoGiraffe
             s.Close();
         }
 
+
+        //-----------methode de deserialization--------------------------------------------------------------------
+        //-------------------------------------------------------------------------------------------------------
         public List<List<IntersectionDetail>> DeSerialize()
         {
             List<List<IntersectionDetail>> objet = null;
@@ -2207,12 +2218,15 @@ namespace TopoGiraffe
 
         double pente;
         List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
-      
+
+
+        //-----------affichage de pente--------------------------------------------------------------------
+        //-------------------------------------------------------------------------------------------------------
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //this.DeSerialize()[this.DeSerialize().Count()-1];
+                
                 if (CourbesNiveau.Count == 0)
                 {
 
@@ -2231,8 +2245,9 @@ namespace TopoGiraffe
                         MessageBox.Show("echelle pas encore disponible ");
                     }
 
-                    pente = CalcPente(PenteIntersectionPoints, mainScale);
-                    MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");
+                    pente = System.Math.Round(CalcPente(PenteIntersectionPoints, mainScale),3);
+                    
+                    MessageBox.Show(" la pente est de   :" + (pente*100).ToString() + " % ");
                 }
             }
             catch (ErreurDeDessinDeSegment exception)
@@ -2240,7 +2255,8 @@ namespace TopoGiraffe
               
         }
         }
-
+        //-------------------------------Click sur boutton de map------------------------------------
+        //-------------------------------------------------------------------------------------------
         private void mapBut_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new MapPage(this));
@@ -2251,11 +2267,16 @@ namespace TopoGiraffe
 
 
         }
+        //---ajout de ressource (style)---------
+        //----------------------------------------
         public void AddResourceDictionary(string src)
         {
             Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) });
         }
         public static String CurrentMode = "ResourceDictionnaries/LightTheme.xaml";
+
+        //---------Boutton de changememnt de theme------------
+        //----------------------------------------------------
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             Resources.Clear();
@@ -2269,6 +2290,9 @@ namespace TopoGiraffe
 
         }
 
+
+        //-----------------Boutton de changememnt de theme-----------------
+        //-----------------------------------------------------------------
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             Resources.Clear();
@@ -2280,6 +2304,7 @@ namespace TopoGiraffe
         }
 
         //methode de calcul de pente
+        //--------------------------
         public double CalcPente(List<IntersectionDetail> points, Echelle sc)
         {
             double sum = 0;
@@ -2296,10 +2321,13 @@ namespace TopoGiraffe
                 }
 
             }
-            return (sum / (points.Count() - 1));
+            return (sum / (points.Count()));
         }
 
         
+
+        //-------------------suppression d'une courbe------------------
+        //-------------------------------------------------------------
         private void DeleteCurve_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -2339,7 +2367,8 @@ namespace TopoGiraffe
 
         PointAltitude pointAltitudeActuel = null;
 
-
+        //--------------------------Creer une point et l'assigne a Point Altitude actuel-----------
+        //-----------------------------------------------------------------------------------------
         public void MakeNewPoint()
         // this method creates a point and assigns it to PointAltitudeActuel
         {
@@ -2395,7 +2424,8 @@ namespace TopoGiraffe
 
         }
 
-
+        //comportement du click souris
+        //-------------------------------
         private void Control_MouseLeftButtonDown2(object sender, MouseButtonEventArgs e)
         {
             selectedTriangle = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
@@ -2421,10 +2451,6 @@ namespace TopoGiraffe
 
                     }
 
-
-
-                    //AltSlider.Value = courbeActuelle.altitude;
-                    //ThickSlider.Value = courbeActuelle.polyline.StrokeThickness;
                     mvCtrl = true;
                     ptMouseStart = e.GetPosition(this);
                     elDragging = (this).InputHitTest(ptMouseStart) as FrameworkElement;
@@ -2446,6 +2472,8 @@ namespace TopoGiraffe
             }
         }
 
+        //comportement du click souris
+        //---------------------------
         private void Control_MouseLeftButtonUp2(object sender, MouseButtonEventArgs e)
         {
             Point pnt = e.GetPosition(this);
@@ -2512,6 +2540,9 @@ namespace TopoGiraffe
         Boolean addTextClicked = false;
        
 
+        //-------------------------methode d'ajout de text sur le canvas----
+        //------------------------------------------------------------------
+
         public void AddNewText(object sender, RoutedEventArgs e)
         // this method creates a point and assigns it to PointAltitudeActuel
         {
@@ -2547,52 +2578,7 @@ namespace TopoGiraffe
 
         }
 
-      
-
-       
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //public void saveFile()
-        //{
-        //    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-        //    dlg.FileName = "Document"; // Default file name
-        //    dlg.DefaultExt = ".topo"; // Default file extension
-        //    dlg.Filter = "Text documents (.topo)|*.topo"; // Filter files by extension
-
-        //    // Show open file dialog box
-        //    Nullable<bool> result = dlg.ShowDialog();
-
-        //    // Process open file dialog box results
-        //    if (result == true)
-        //    {
-        //        // Open document
-        //        string filename = dlg.FileName;
-        //        this.Serializee(curves, filename);
-        //    }
-        //}
-
-
-
-
-
-
+     
     }
    
 }
