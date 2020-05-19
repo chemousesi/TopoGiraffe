@@ -229,7 +229,7 @@ namespace TopoGiraffe
 
 
 
-        // for the live preview of the Segment -------------------------------------------
+         //for the live preview of the Segment -------------------------------------------
 
         private void MouseMoveOnAddLine(object sender, MouseEventArgs e)
         {
@@ -1795,7 +1795,9 @@ namespace TopoGiraffe
                     dataDialog.EquidistanceTextBox.DataContext = plan;
                     dataDialog.MaxTextBox.DataContext = plan;
                     dataDialog.MinTextBox.DataContext = plan;
-
+                    equidistancePlan.DataContext = plan;
+                    altitudeMaxPlan.DataContext = plan;
+                    altMin.DataContext = plan;
 
 
                     echelleOnCanvasPlan.DataContext = mainScale;
