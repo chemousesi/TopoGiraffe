@@ -1367,7 +1367,7 @@ namespace TopoGiraffe
         void Path_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             selectedPolyline = (this).InputHitTest(e.GetPosition(this)) as FrameworkElement;
-            if (selectedPolyline == null) MessageBox.Show("Null polyline" );
+            if (selectedPolyline == null) return;
             if (selectedPolyline != null && selectedPolyline is Polyline)
             {
                 foreach (CourbeNiveau courbe in CourbesNiveau)
@@ -1408,6 +1408,7 @@ namespace TopoGiraffe
                     {
                         RemoveCtrlPoints();
                         //ShownCtrlPoint = PointsGlobal[index];
+                        
                         ShownCtrlPoint = PointsGlobal[index];
 
                         DrawCtrlPoints(courbeActuelle);
@@ -2008,32 +2009,35 @@ namespace TopoGiraffe
             /* _mainFrame.Content = new SauvgardePage(); */
         }
 
-
+        List<IntersectionDetail> alts = new List<IntersectionDetail>();
         List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
         public void Button_Click(object sender, RoutedEventArgs e)
         {
 
             List<Polyline> curve = polylines;
+            Ellipse circle;
+            ArtPoint artpt;
+
 
             
-            List<IntersectionDetail> alts = new List<IntersectionDetail>();
 
 
 
 
             itm2 = this.DeSerialize();
-            //PointsGlobal.Clear();
-            //for(int i=0; i <itm2.Count()-1;i++)
-            //{
-            //    for(int j=0; j<itm2[i].Count();j++ )
-            //    {
-            //        Ellipse circle = new Ellipse();
-            //        ArtPoint artpt = new ArtPoint(circle,itm2[i][j].point);
+            PointsGlobal.Clear();
+            for (int i = 0; i < itm2.Count() - 1; i++)
+            {
+                PointsGlobal.Add(new List<ArtPoint>());
+                for (int j = 0; j < itm2[i].Count(); j++)
+                {
+                    circle = new Ellipse();
+                    artpt = new ArtPoint(circle, itm2[i][j].point);
 
-            //        PointsGlobal[i].Add(artpt);
+                    PointsGlobal[i].Add(artpt);
 
-            //    }
-            //}
+                }
+            }
 
 
             CourbesNiveau.Clear();
@@ -2068,6 +2072,7 @@ namespace TopoGiraffe
                 {
 
                     Polyline li = new Polyline();
+
                     mainCanvas.Children.Add(li);
 
                     for (int j = 0; j < itm2[i].Count(); j++)
