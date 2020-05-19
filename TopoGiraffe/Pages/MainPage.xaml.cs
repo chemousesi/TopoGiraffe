@@ -2359,8 +2359,9 @@ namespace TopoGiraffe
 
             try
             {
-                PenteIntersectionPoints = itm2[itm2.Count() - 2];
+                PenteIntersectionPoints = itm2[itm2.Count() - 3];
                 IntersectionPoints = PenteIntersectionPoints;
+                distances();
             }
             catch (Exception)
             {
@@ -2512,7 +2513,7 @@ namespace TopoGiraffe
                 dessinerButton.IsEnabled = false;
                 add_line.IsEnabled = false;
                 dessinerPoint.IsEnabled = false;
-                distances();
+              
 
 
 
