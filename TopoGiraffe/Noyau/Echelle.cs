@@ -2,7 +2,10 @@
 using System.Windows.Shapes;
 
 namespace TopoGiraffe.Noyau
+
 {
+    //----------------------------------------Definition ed l'echelle et ses methodes ----------------------------------
+    //-------------------------------------------------------------------------------------------------------------
     public class Echelle
     {
 
@@ -24,7 +27,8 @@ namespace TopoGiraffe.Noyau
         {
 
         }
-
+        ////----------------------------------------Trouver la distance sur terrain a partir del'echellle----------------------------------
+        //-------------------------------------------------------------------------------------------------------------
         public double FindDistanceOnField(Line line)
         // real distance should be in meters
         {
@@ -39,7 +43,8 @@ namespace TopoGiraffe.Noyau
 
         }
 
-        //overriding the previous method
+        //surcharge de la methode precedente
+
 
         public double FindDistanceOnField(double aDistanceOnCanvas)//pixels
         // takes a distance from the canvas (distance btw two points) and returns distance in meters
