@@ -97,6 +97,9 @@
     <None Remove="less.png" />
     <None Remove="logo.png" />
     <None Remove="logogris.png" />
+    <None Remove="Pages\download.png" />
+    <None Remove="Pages\export.png" />
+    <None Remove="Pages\folder.png" />
     <None Remove="Pages\logogris.png" />
     <None Remove="Pages\softwarebox.png" />
     <None Remove="plus.png" />
@@ -207,6 +210,12 @@
     <Resource Include="logo.png" />
 
     <Resource Include="logogris.png" />
+
+    <Resource Include="Pages\download.png" />
+
+    <Resource Include="Pages\export.png" />
+
+    <Resource Include="Pages\folder.png" />
 
     <Resource Include="Pages\logogris.png" />
 

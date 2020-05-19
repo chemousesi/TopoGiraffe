@@ -377,8 +377,11 @@
                                 <TextBlock Text="Nouvelle carte" Margin="10,0" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{DynamicResource EnregistrerBtn}" x:Name="enregistrer" Foreground="#FFFFFF" Height="50" Background="#0000" BorderBrush="Transparent"
+                        <Button Style="{DynamicResource EnregistrerBtn}" x:Name="enregistrer" Foreground="#FFFFFF" Height="50" BorderBrush="Transparent"
                             BorderThickness="0" HorizontalContentAlignment="Left" Margin="0 15 0 0" Click="enregistrer_Click" >
+                            <Button.Background>
+                                <ImageBrush/>
+                            </Button.Background>
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
                                 <Image Source="/assets/img/download.png" Margin="5,9" ></Image>
                                 <TextBlock Text="Enregistrer" Margin="10,0" FontSize="15" VerticalAlignment="Center"/>
@@ -389,18 +392,19 @@
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left" >
                                 <Image Source="/assets/img/save.png" Margin="5,8" RenderTransformOrigin="0.849,0.548" ></Image>
                                 <TextBlock Text="Enregistrer sous" Margin="10,0" FontSize="15" VerticalAlignment="Center"/>
+                                <Image Height="100" Width="100"/>
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{DynamicResource EnregistrerSousBtn}" x:Name="manual" Foreground="#FFFFFF" Height="50" Click="openManual_Click" Background="#0000" BorderBrush="Transparent"
+
+                        <Button Style="{DynamicResource ExporterBtn}" x:Name="Import" Foreground="#FFFFFF" Height="50" Click="Import_Click" Background="#0000" BorderBrush="Transparent"
+
                             BorderThickness="0" HorizontalContentAlignment="Left"  Cursor="Hand" Margin="0 15 0 0">
-                            <!--<StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left" >
-                                <Image Source="/assets/img/manual.png" Margin="5,8" RenderTransformOrigin="0.849,0.548" ></Image>
-                                
-                                <TextBlock  Margin="10,0" FontSize="15" VerticalAlignment="Center"  >
-                                     
-                                </TextBlock>
-                            </StackPanel>-->
+                            <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left" >
+                                <Image Source="/assets/img/download.png" Margin="5,8" RenderTransformOrigin="0.849,0.548" ></Image>
+                                <TextBlock Text="Importer" Margin="10,0" FontSize="15" VerticalAlignment="Center"/>
+                                <Image Height="100" Width="100"/>
+                            </StackPanel>
                         </Button>
                     </StackPanel>
                 </Grid>
