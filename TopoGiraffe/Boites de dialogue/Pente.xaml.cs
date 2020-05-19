@@ -13,16 +13,14 @@ using System.Windows.Shapes;
 namespace TopoGiraffe.Boites_de_dialogue
 {
     /// <summary>
-    /// Interaction logic for Window2.xaml
+    /// Interaction logic for Pente.xaml
     /// </summary>
-    public partial class Window2 : Window
+    public partial class Pente : Window
     {
-        public Window2(String pente)
+        public Pente(String pente)
         {
             InitializeComponent();
             penteb.Text = pente;
         }
-
-       
     }
 }
