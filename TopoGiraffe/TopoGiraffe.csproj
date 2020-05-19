@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="assets\img\arrows.png" />
+    <None Remove="assets\img\basic-app.png" />
     <None Remove="assets\img\button.png" />
     <None Remove="assets\img\deleteAll.png" />
     <None Remove="assets\img\DeleteAllGray.png" />
@@ -38,6 +39,8 @@
     <None Remove="assets\img\importOrangeDark.png" />
     <None Remove="assets\img\importOrangeLight.png" />
     <None Remove="assets\img\ImportWhite.png" />
+    <None Remove="assets\img\information-buttonDark.png" />
+    <None Remove="assets\img\information-buttonLight.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\Light.png" />
     <None Remove="assets\img\line.png" />
@@ -113,6 +116,7 @@
 
   <ItemGroup>
     <Resource Include="assets\img\arrows.png" />
+    <Resource Include="assets\img\basic-app.png" />
     <Resource Include="assets\img\DeleteAllGray.png" />
     <Resource Include="assets\img\DeleteAllWhite.png" />
     <Resource Include="assets\img\DeleteCurveDark.png" />
@@ -125,6 +129,8 @@
     <Resource Include="assets\img\importOrangeDark.png" />
     <Resource Include="assets\img\importOrangeLight.png" />
     <Resource Include="assets\img\ImportWhite.png" />
+    <Resource Include="assets\img\information-buttonDark.png" />
+    <Resource Include="assets\img\information-buttonLight.png" />
     <Resource Include="assets\img\Light.png" />
     <Resource Include="assets\img\Localisation.png" />
     <Resource Include="assets\img\logoWbg.png" />

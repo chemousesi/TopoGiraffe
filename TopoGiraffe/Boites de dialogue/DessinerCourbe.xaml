@@ -5,26 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TopoGiraffe.Boites_de_dialogue"
                mc:Ignorable="d"  UseLayoutRounding="False" Width="690" Height="390" >
-    <Border BorderBrush="#DCDCDC" BorderThickness="8" CornerRadius="0" Opacity="0.8" Margin="0,0,0,0"   >
-        <Grid Background="#FF141428" ClipToBounds="True"  >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="134*"></RowDefinition>
-                <RowDefinition Height="53*"></RowDefinition>
-
-
-
-            </Grid.RowDefinitions>
-
-            <Grid   Grid.Row="0" Background="White" >
-                <Image Source="/TopoGiraffe;component/assets/img/Profil Topo 3.png"  />
-
-            </Grid>
-            <TextBlock HorizontalAlignment="Left" Height="43" Margin="10,10,0,0" Grid.Row="1" Text="Dessiner des courbes de niveau" TextWrapping="Wrap" VerticalAlignment="Top" Width="398" Foreground="#FFFCFCFC" FontFamily="Gotham Black" FontSize="22" Padding="0,3,0,0"/>
-            <TextBlock HorizontalAlignment="Left" Height="38" Margin="35,58,0,0" Grid.Row="1" Text="Vous pouvez egalement dessiner des courbes de niveau , des points , et un segement AB" TextWrapping="Wrap" VerticalAlignment="Top" Width="596" Foreground="#FFF7F7F7" FontFamily="HelveticaNeue" FontSize="16"/>
-
-
-
+    <Border BorderBrush="Transparent" BorderThickness="0">
+    <Grid ClipToBounds="True"  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Background="White" >
+            <Image Source="/TopoGiraffe;component/assets/img/Profil Topo 3.png"  />
 
         </Grid>
+        <Grid Grid.Column="0" Background="#FAF3DD">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock HorizontalAlignment="Center" Margin="0,41,0,41"  Text="Déssiner des courbes de niveaux" TextWrapping="WrapWithOverflow" Width="229" 
+                       Foreground="#545454" FontFamily="Gotham Black" FontSize="23" Padding="0,3,0,0" FontWeight="Bold" />
+
+            </Grid>
+            <Grid Grid.Row="1">
+                    <Line Stretch="Uniform" Stroke="#EFCAC4" StrokeThickness="4" Height="5" X1="20"  Width="80" Margin="30,-12,190,251"   />
+
+                <TextBlock HorizontalAlignment="Center" Height="83" Margin="0,101,0,0"  
+                   Text="Vous pouvez également déssiner des courbes de niveaux, des points et un segement AB" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" 
+                   Foreground="#545454" FontFamily="HelveticaNeue" FontSize="16"/>
+            </Grid>
+        </Grid>
+    </Grid>
     </Border>
 </UserControl>

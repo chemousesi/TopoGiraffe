@@ -4,9 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TopoGiraffe"
-      Background="{DynamicResource MaterialDesignPaper}"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       FontFamily="arial" Cursor="Hand"
@@ -371,8 +370,6 @@
                 <Grid Grid.Row="1">
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,0,0" >
-
-
                         <Button Style="{DynamicResource NouveauBtn}"  x:Name="nouveau"  Foreground="#FFFFFF" Height="50" Background="#0000" BorderBrush="Transparent"
                             BorderThickness="0" HorizontalContentAlignment="Left" Margin="0" Click="nouvelle_Click" >
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left">
@@ -413,7 +410,7 @@
                     </Button>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="1" Background="#FFFCFAFA">
+            <Grid Grid.Column="1" Background="#ffffff">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="*"/>
@@ -424,10 +421,9 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <TextBlock x:Name="CarteTitre" Text="Titre : " HorizontalAlignment="Right" FontSize="15" FontWeight="Bold" Foreground="#000000" Margin="50,5"/>
                     </Grid>
                 </Grid>
-                <Grid Background="AliceBlue" Grid.RowSpan="2">
+                <Grid Background="#ffffff" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
@@ -439,24 +435,25 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         
-                        <TextBlock Text="Bienvenue à Topogiraffe" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.323,0.104" FontFamily="Gotham Black" Margin="0,-1,0,0" Grid.Row="1" Height="41" Width="456"/>
+                        <TextBlock Text="Bienvenue à Topogiraffe" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.323,0.104" 
+                                   FontFamily="Gotham Black" Margin="0,25,0,0" Grid.Row="1" Height="41" Width="456"/>
 
                         <ScrollViewer Grid.Row="2" >
                             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" xml:space="preserve" FontSize="16" Width="Auto" FontFamily="Malgun Gothic Semilight" >
-                                 Ceci est un logiciel de generation de profils topographiques a partir de courbes de niveaux réalisé par l'equipe 22 du projet 2CPI sous l'encadrement de :<LineBreak/>
+                                 Ceci est un logiciel de génération de profils topographiques a partir de courbes de niveaux, réalisé par l'équipe 22 du projet 2CPI sous l'encadrement de :<LineBreak/>
                                 -Mme N.Belattar.
                                 -Mme Bouzar.
                                 
                                 Ce logiciel conçu répond à un cahier des charges donné au début du projet. Parmi ses fonctionnalités : l’importation d’une image, ou navigation sur une carte,
-                                le dessin de courbes de niveaux,la génération d’un profil topographique d’une région, le calcul de pente et l’exportation.
+                                le dessin de courbes de niveaux, la génération d’un profil topographique d’une région, le calcul de pente et l’exportation.
                                 Ce travail a vu le jour avec le travail collectif de six étudiants dont un est chef d’équipe :
                                 
-                                -  Noui Akram
-                                -  Benaziza ChemsEddine  
-                                -  Hafri SeifAli  
-                                -  Dejffal Belkis  
-                                -  Nasri AlaEddine  
-                                -  Lourguoui Zoher
+                                -  NOUI Akram
+                                -  BENAZIZA ChemsEddine  
+                                -  HAFRI SeifAli  
+                                -  DJEFFAL Belkis  
+                                -  NASRI AlaEddine  
+                                -  LOURGUIOUI Zoher
                                 
                                 
                              <Image HorizontalAlignment="Right" Height="320" VerticalAlignment="Bottom" Width="250" Source="softwarebox.png" Margin="0,0,0,0" Grid.Row="2"/>
@@ -466,16 +463,16 @@
                                 
                              - Le lien du projet sur github pour les contributions : <Hyperlink> https://github.com/chemousesi/TopoGiraffe </Hyperlink> 
                              - Email : <Hyperlink>Topogiraffe@gmail.com</Hyperlink> 
-                             - Lien vers manuel d'utilisation: <Hyperlink>https://lourguioui.github.io/TopoGiraffeDocs/ </Hyperlink>
+                             - Lien vers le manuel d'utilisation: <Hyperlink>https://lourguioui.github.io/TopoGiraffeDocs/ </Hyperlink>
                                 
                                 
                                 
                                 
                                 
                                 
-                             le logiciel est a utiliser a des fins personnels ou commercials, le logiciel est servi sans aucune garantie ou responsabilité   
+                             Le logiciel est à utiliser pour des fins personnelles ou commerciales, le logiciel est servi sans aucune garantie ou responsabilité   
                              
-                            @Tous le droits sont réservés ESI2020
+                            @Tous les droits sont réservés ESI2020
 
                                 
 
