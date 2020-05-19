@@ -43,7 +43,6 @@
     <None Remove="assets\img\information-buttonLight.png" />
     <None Remove="assets\img\ink.png" />
     <None Remove="assets\img\Light.png" />
-    <None Remove="assets\img\line.png" />
     <None Remove="assets\img\Localisation.png" />
     <None Remove="assets\img\location.png" />
     <None Remove="assets\img\logoWbg.png" />
@@ -180,9 +179,6 @@
     <Resource Include="assets\img\draw.png" />
     <Resource Include="assets\img\gear.png" />
     <Resource Include="assets\img\import.png" />
-    <Content Include="assets\img\line.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Resource Include="assets\img\maps2.png" />
     <Resource Include="assets\img\Maximize.png" />
     <Resource Include="assets\img\Minimize.png" />

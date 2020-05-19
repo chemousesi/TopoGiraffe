@@ -41,7 +41,9 @@ namespace TopoGiraffe
 
         }
 
+#pragma warning disable CS0169 // Le champ 'AddTextDialog.clr' n'est jamais utilisé
         private readonly SolidColorBrush clr;
+#pragma warning restore CS0169 // Le champ 'AddTextDialog.clr' n'est jamais utilisé
 
 
 

@@ -12,11 +12,15 @@ namespace TopoGiraffe.Noyau
     {
         public Point point;
         public double altitude;
+#pragma warning disable CS0169 // Le champ 'PointAltitude.cercle' n'est jamais utilisé
         private readonly Ellipse cercle;
+#pragma warning restore CS0169 // Le champ 'PointAltitude.cercle' n'est jamais utilisé
         public Polygon triangle = new Polygon();
         private readonly TypePoint typePoint;
         public TextBlock altitudeTextBlock = new TextBlock();
+#pragma warning disable CS0414 // Le champ 'PointAltitude.nbPoints' est assigné, mais sa valeur n'est jamais utilisée
         private static readonly int nbPoints = 0;
+#pragma warning restore CS0414 // Le champ 'PointAltitude.nbPoints' est assigné, mais sa valeur n'est jamais utilisée
 
         public PointAltitude(Point aPoint, double anAltitude, int index)
         {
