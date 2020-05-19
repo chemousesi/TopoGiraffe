@@ -2373,7 +2373,7 @@ namespace TopoGiraffe
                 alts = itm2[itm2.Count() - 2];
 
 
-                alts = alts.GetRange(0, alts.Count() - 1 );
+                alts = alts.GetRange(0, alts.Count() - 2);
                 alts.Reverse();
 
                 int h = 0;
@@ -2467,7 +2467,6 @@ namespace TopoGiraffe
                                 Canvas.SetTop(artpt.cercle, artpt.P.Y - (artpt.cercle.Height / 2));
 
                                 // Polyline 
-                             
                                 li.FillRule = FillRule.EvenOdd;
                                 li.Visibility = System.Windows.Visibility.Visible;
                                 h++;
@@ -2497,7 +2496,7 @@ namespace TopoGiraffe
 
                 }
                 // gestion des altitudes ----------------------------
-                for (int i = 0; i < alts.Count - 1; i++)
+                for (int i = 0; i < alts.Count; i++)
                 {
                     CourbesNiveau[i].altitude = alts[i].altitude;
                     CourbesNiveau[i].polyline.Stroke = new SolidColorBrush(AltitudeToColor(CourbesNiveau[i].altitude));
@@ -2519,6 +2518,7 @@ namespace TopoGiraffe
 
 
         }
+
 
         //-----------methode de serialization--------------------------------------------------------------------
         //-------------------------------------------------------------------------------------------------------
