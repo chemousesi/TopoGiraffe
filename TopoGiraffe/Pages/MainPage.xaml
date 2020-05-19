@@ -371,9 +371,6 @@
                                   BorderThickness="0"  IsDefault="True"
                                ToolTip="Supprimer une courbe de niveaux" Width="62" Cursor="Hand" Click="DeleteCurve_Click"  
                                 />
-
-
-
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="1">
