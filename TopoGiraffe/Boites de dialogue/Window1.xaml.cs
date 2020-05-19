@@ -50,8 +50,7 @@ namespace TopoGiraffe
                 rectangleNames.Add(rn);
             }
 
-            colorComboBox.ItemsSource = rectangleNames;
-            colorComboBox.SelectedIndex = 7;
+            
             //  colors end here
 
             styleCourbeCmbInDialogBox.SelectedIndex = 0;
@@ -82,28 +81,9 @@ namespace TopoGiraffe
 
 
 
-        //binding colors combobox
-        //Clr is the variable to use
-        SolidColorBrush clr;
-        private void colorComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            clr = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-            //clr = (RectangleName)(colorComboBox.SelectedItem);
+        
 
-        }
-
-        //binding  type combobox
-
-
-
-        // string typ ;
-
-        //private void Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    typ = Type.SelectedValue.ToString();
-        //    MessageBox.Show(typ);
-
-        //}
+     
 
         //binding Altitude
         string alti;
