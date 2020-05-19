@@ -2214,7 +2214,11 @@ namespace TopoGiraffe
             //this.DeSerialize()[this.DeSerialize().Count()-1];
             if (CourbesNiveau.Count == 0)
             {
-
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Dessiner les courbes d'abords", "Confirmation", System.Windows.MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    
+                }
             }
             else { 
             try
