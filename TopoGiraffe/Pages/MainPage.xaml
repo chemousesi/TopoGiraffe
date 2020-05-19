@@ -16,7 +16,7 @@
       Background="#454F56"
        
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1500"
+      d:DesignHeight="680" d:DesignWidth="1500"
       Title="MainPage"
       xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
       xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue" Cursor="Hand">
@@ -39,12 +39,44 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
-            <RowDefinition Height="118"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="90"/>
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <DockPanel Grid.Row="0" >
+            <Menu DockPanel.Dock="Top" Background="#1f1e21">
+                <MenuItem Header="_File" Height="20" Foreground="#DDFFFFFF"  >
+                    <MenuItem Header="_Nouveau Projet" Click="import_Click" />
+                    <MenuItem Header="_Open" Click="MenuItem_Click_1" />
+                    <MenuItem Header="_Save"  Click="ShowSauvgardeWindow_Click"/>
+                    <Separator />
+                    <MenuItem Header="_Exit" Click="MenuItem_Click"  />
+                </MenuItem>
 
+                <MenuItem Header="_Courbe" Height="20" Foreground="#DDFFFFFF">
+                    <MenuItem Header="_Nouvelle Courbe" Click="dessinerButton_Click" />
+                    <MenuItem Header="_Modifer Courbe" Click="nav_Click" />
+                    
+                </MenuItem>
+                <MenuItem Header="_Profil" Height="20" Foreground="#DDFFFFFF" Click="btn13_Click">
+
+
+                </MenuItem>
+                <MenuItem Header="_Pente" Height="20" Foreground="#DDFFFFFF" Click="Pente_Click">
+
+
+                </MenuItem>
+                <MenuItem Header="_Aide" Height="20" Foreground="#DDFFFFFF" Click="Help_Click">
+
+
+                </MenuItem>
+
+
+
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
         <Grid Grid.Row="1"  Background="{DynamicResource NormalBackground}" Opacity="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="65" />
@@ -52,15 +84,16 @@
                 <ColumnDefinition Width="337"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Button Cursor="Hand"  Height="60" Margin="10,30,0,0" Background="{x:Null}" BorderBrush="{x:Null}"
+                <Button Cursor="Hand"  Height="60" Margin="10,5,0,0" Background="{x:Null}" BorderBrush="{x:Null}"
                         BorderThickness="0"  Click="ShowSauvgardeWindow_Click" ToolTip="Fichier">
                     <Image Source="/assets/img/button.png" Width="20" Height="20" Margin="0,0,0,0" />
                 </Button>
             </Grid>
             <Grid Grid.Column="1" Cursor="Hand">
-                <StackPanel Cursor="Hand" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,14,0,0" >
+                
+                <StackPanel Cursor="Hand" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,0,0,0" >
                     <Button x:Name="scaleButton" Width="90" Height="94" Background="{x:Null}" BorderBrush="Transparent"
-        BorderThickness="0"  Margin="0,20,0,0" Click="scaleButton_Click"  ToolTip="Echelle" HorizontalAlignment="Center" >
+        BorderThickness="0"  Margin="0,0,0,0" Click="scaleButton_Click"  ToolTip="Echelle" HorizontalAlignment="Center" >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/ruler.png" Width="30" Height="30" />
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -68,7 +101,7 @@
                         </StackPanel>
                     </Button>
                     <Button  x:Name="Pente" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,20,0,0" Click="Pente_Click" ToolTip="Pente" >
+        BorderThickness="0"  Margin="40,0,0,0" Click="Pente_Click" ToolTip="Pente" >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/Pente.png" Width="30" Height="30"/>
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -76,7 +109,7 @@
                         </StackPanel>
                     </Button>
                     <Button  x:Name="btn13" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,20,0,0" Click="btn13_Click" ToolTip="Générer le profil topographique" HorizontalContentAlignment="Center" >
+        BorderThickness="0"  Margin="40,0,0,0" Click="btn13_Click" ToolTip="Générer le profil topographique" HorizontalContentAlignment="Center" >
                         <StackPanel Orientation="Vertical"  >
                             <Image Source="/assets/img/report.png" Width="30" Height="30"/>
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
@@ -84,7 +117,7 @@
                         </StackPanel>
                     </Button>
                     <Button  x:Name="mapBut" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,20,0,0" Foreground="#FFA37A7A"  Click="mapBut_Click"  ToolTip="Importer une carte à partir de Maps" >
+        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A"  Click="mapBut_Click"  ToolTip="Importer une carte à partir de Maps" >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/Localisation.png" Width="30" Height="30" RenderTransformOrigin="0.5,0.5">
                                 <Image.RenderTransform>
@@ -102,22 +135,22 @@
 
                     </Button>
                     <Button  x:Name="HelpBtn" Width="90" Height="94"  Background="{x:Null}"  BorderBrush="Transparent"
-        BorderThickness="0"  Margin="40,20,0,0" Foreground="#FFA37A7A" ToolTip="Aide" Click="Help_Click"  >
+        BorderThickness="0"  Margin="40,0,0,0" Foreground="#FFA37A7A" ToolTip="Aide" Click="Help_Click"  >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/assets/img/information-buttonDark.png" Width="30" Height="30"/>
                             <Label HorizontalAlignment="Center" FontSize="11" Height="23" Width="65" VerticalContentAlignment="Bottom" 
                                    Foreground="White" Content="Aide" HorizontalContentAlignment="Center" Margin="0 5 0 0" />
                         </StackPanel>
-                    </Button> 
+                    </Button>
 
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Column="2" Background="{DynamicResource Img}">
-                <ToggleButton Content="" HorizontalAlignment="Center" Height="29" Width="94" Margin="16,48,2,19" Checked="ToggleButton_Checked" 
+                <ToggleButton Content="" HorizontalAlignment="Center" Height="29" Width="94" Margin="16,25,2,19" Checked="ToggleButton_Checked" 
                               Unchecked="ToggleButton_Unchecked" FlowDirection="LeftToRight" Grid.IsSharedSizeScope="True" Foreground="#FF1BBA1D" Background="#FF4FDC22" 
                               ScrollViewer.HorizontalScrollBarVisibility="Visible" ToolTip="Mode d'affichage" />
             </StackPanel>
-            <Label  Grid.Column="2" Style="{DynamicResource ModeLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,75,-4,0" FontSize="16"/>
+            <Label  Grid.Column="2" Style="{DynamicResource ModeLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,-4,0" FontSize="16"/>
         </Grid>
         <Grid  Grid.Row="2" Background="{DynamicResource SideColor}" >
             <Grid.ColumnDefinitions>
@@ -223,7 +256,7 @@
                                     <Button x:Name="ZoomOut" Width="60" Height="50" Margin="60,0,40,0" HorizontalAlignment="Left" Background="{DynamicResource Minus}"
                                                 Click="ZoomOut_Click" BorderBrush="{x:Null}" BorderThickness="0" />
                                     <Button x:Name="ZoomIn"  HorizontalAlignment="Right" Background="{DynamicResource Plus}" Width="60" Height="50" Margin="57,0,0,0" 
-                                                BorderBrush="{x:Null}" BorderThickness="0"  Click="ZoomIn_Click"  />                               
+                                                BorderBrush="{x:Null}" BorderThickness="0"  Click="ZoomIn_Click"  />
                                 </WrapPanel>
 
                                 <Grid Grid.Row="2">
@@ -383,7 +416,7 @@
                                      BorderBrush="{x:Null}" BorderThickness="0" Background="{DynamicResource Export}" Click="Button_Click" Cursor="Hand" ToolTip="Importer"
                                 >
                         </Button>
-                        
+
                     </StackPanel>
 
                 </Grid>
@@ -394,7 +427,7 @@
         <Popup x:Name="popup_uc"
                    AllowsTransparency="True"
                    HorizontalOffset="10"
-                   VerticalOffset="10">
+                   VerticalOffset="10" Margin="0,0,0,118" Grid.RowSpan="2">
             <Grid>
                 <local:PopupUserControl x:Name="Header" Foreground="#E0FFFF"/>
             </Grid>
@@ -404,7 +437,7 @@
                     IsOpen="False"
                     AllowsTransparency="True"
                     HorizontalOffset="10"
-                    VerticalOffset="10"
+                    VerticalOffset="10" Margin="0,0,0,118" Grid.RowSpan="2"
                   
                   >
             <Grid>
@@ -417,7 +450,7 @@
                     IsOpen="False"
                     AllowsTransparency="True"
                     HorizontalOffset="10"
-                    VerticalOffset="10"
+                    VerticalOffset="10" Margin="0,0,0,118" Grid.RowSpan="2"
                   
                   >
             <Grid>
@@ -430,7 +463,7 @@
                     IsOpen="False"
                     AllowsTransparency="True"
                     HorizontalOffset="10"
-                    VerticalOffset="10"
+                    VerticalOffset="10" Margin="0,0,0,118" Grid.RowSpan="2"
                   
                   >
             <Grid>
@@ -443,7 +476,7 @@
                     IsOpen="False"
                     AllowsTransparency="True"
                     HorizontalOffset="10"
-                    VerticalOffset="10"
+                    VerticalOffset="10" Margin="0,0,0,118" Grid.RowSpan="2"
                   
                   >
             <Grid>
@@ -456,7 +489,7 @@
                     IsOpen="False"
                     AllowsTransparency="True"
                     HorizontalOffset="10"
-                    VerticalOffset="10"  
+                    VerticalOffset="10" Margin="0,0,0,118" Grid.RowSpan="2"  
                   >
             <Grid>
                 <local1:Pops  x:Name="Pops" Foreground="#E0FFFF"/>

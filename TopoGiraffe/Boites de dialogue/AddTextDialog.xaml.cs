@@ -1,6 +1,5 @@
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -19,7 +18,7 @@ namespace TopoGiraffe
         public AddTextDialog()
         {
             InitializeComponent();
-           
+
         }
 
 
@@ -46,7 +45,7 @@ namespace TopoGiraffe
         SolidColorBrush clr;
 
 
-        
+
 
 
 

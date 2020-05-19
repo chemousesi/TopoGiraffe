@@ -34,6 +34,7 @@ namespace TopoGiraffe
 			}
 		}
 
+
 		//----------------------------------------Click sur minimiser de barre de titre----------------------------------
 		//-------------------------------------------------------------------------------------------------------------
 		private void MINIMIZE(object sender, MouseButtonEventArgs e)
@@ -48,6 +49,7 @@ namespace TopoGiraffe
 			if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
 			else this.WindowState = WindowState.Normal;
 		}
+
 
 		
 		private void Activate_Title_Icons(object sender, MouseEventArgs e)
@@ -103,13 +105,21 @@ namespace TopoGiraffe
 				WM_NCLBUTTONDOWN, HT_CAPTION, 0);
 		}
 
-		private void mainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
-		{
+
+        private void mainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
 
 		}
 
 
 
 
+
 	}
+
+       
+        
+    
+
 }
