@@ -44,12 +44,18 @@ namespace TopoGiraffe
         private bool navClicked = false;
         private Polyline poly = new Polyline();
         private int LinePointscpt = 0;
+#pragma warning disable CS0414 // Le champ 'MainPage.firstPoint' est assigné, mais sa valeur n'est jamais utilisée
         private Boolean firstPoint = true;
+#pragma warning restore CS0414 // Le champ 'MainPage.firstPoint' est assigné, mais sa valeur n'est jamais utilisée
         private readonly List<int> Altitudes = new List<int>();
         private readonly List<List<ArtPoint>> PointsGlobal = new List<List<ArtPoint>>();
+#pragma warning disable CS0414 // Le champ 'MainPage.NbCourbes' est assigné, mais sa valeur n'est jamais utilisée
         private readonly int NbCourbes = 0;
+#pragma warning restore CS0414 // Le champ 'MainPage.NbCourbes' est assigné, mais sa valeur n'est jamais utilisée
         private Plan plan;
+#pragma warning disable CS0169 // Le champ 'MainPage.scaleLine' n'est jamais utilisé
         private readonly Line scaleLine;
+#pragma warning restore CS0169 // Le champ 'MainPage.scaleLine' n'est jamais utilisé
         private Boolean drawingScale = false;
         private Echelle mainScale;
         public static int exec = 0;
@@ -387,7 +393,9 @@ namespace TopoGiraffe
         }
 
         // supprimer la derniere action-------------------------------------------------
+#pragma warning disable CS0414 // Le champ 'MainPage.serializebool' est assigné, mais sa valeur n'est jamais utilisée
         private readonly bool serializebool = false;
+#pragma warning restore CS0414 // Le champ 'MainPage.serializebool' est assigné, mais sa valeur n'est jamais utilisée
 
 
         private void deletePreviousButton_Click(object sender, RoutedEventArgs e)
@@ -666,14 +674,14 @@ namespace TopoGiraffe
                     curves.Add(IntersectionPoints);
                     curves.Add(Infos);
 
-                    this.Serializee(curves);
+                    //    this.Serializee(curves);
                     List<Object> info = new List<Object>();
 
                     info.Add(Equidistance);
                     info.Add(AltitudeMax);
                     info.Add(AltitudeMin);
                     info.Add(mainScale);
-                    //this.Serializee(info,"");
+                    //this.Serializee(info, "");
 
 
 
@@ -707,6 +715,7 @@ namespace TopoGiraffe
                     dessinerButton.IsEnabled = false;
                     add_line.IsEnabled = false;
                     dessinerPoint.IsEnabled = false;
+                    addLineClicked = false;
 
 
 
@@ -1354,11 +1363,23 @@ namespace TopoGiraffe
         // code to handle dragging of the poyline --------------------------------------------------------------------------------------------------------
         private bool isDragging, mvCtrl = true;
         private FrameworkElement elDragging;
+#pragma warning disable CS0169 // Le champ 'MainPage.selectedPath' n'est jamais utilisé
         private readonly FrameworkElement selectedPath;
+#pragma warning restore CS0169 // Le champ 'MainPage.selectedPath' n'est jamais utilisé
         private FrameworkElement selectedPolyline;
         private FrameworkElement selectedTriangle;
+#pragma warning disable CS0169 // Le champ 'MainPage.minX' n'est jamais utilisé
+#pragma warning disable CS0169 // Le champ 'MainPage.maxY' n'est jamais utilisé
+#pragma warning disable CS0169 // Le champ 'MainPage.maxX' n'est jamais utilisé
+#pragma warning disable CS0169 // Le champ 'MainPage.minY' n'est jamais utilisé
         private readonly double minX, minY, maxX, maxY;
+#pragma warning restore CS0169 // Le champ 'MainPage.minY' n'est jamais utilisé
+#pragma warning restore CS0169 // Le champ 'MainPage.maxX' n'est jamais utilisé
+#pragma warning restore CS0169 // Le champ 'MainPage.maxY' n'est jamais utilisé
+#pragma warning restore CS0169 // Le champ 'MainPage.minX' n'est jamais utilisé
+#pragma warning disable CS0414 // Le champ 'MainPage.indexdrag' est assigné, mais sa valeur n'est jamais utilisée
         private readonly int indexdrag = 0;
+#pragma warning restore CS0414 // Le champ 'MainPage.indexdrag' est assigné, mais sa valeur n'est jamais utilisée
 
         //comportement du click sur calcul de pente
         private void btn13_Click(object sender, RoutedEventArgs e)
@@ -1390,7 +1411,9 @@ namespace TopoGiraffe
             }
         }
 
+#pragma warning disable CS0649 // Le champ 'MainPage.DragPoints' n'est jamais assigné et aura toujours sa valeur par défaut null
         private readonly List<ArtPoint> DragPoints;
+#pragma warning restore CS0649 // Le champ 'MainPage.DragPoints' n'est jamais assigné et aura toujours sa valeur par défaut null
         private Thickness margin;
 
         //comportement du click souris sur le canvas
@@ -1463,7 +1486,9 @@ namespace TopoGiraffe
             }
         }
 
+#pragma warning disable CS0414 // Le champ 'MainPage.test' est assigné, mais sa valeur n'est jamais utilisée
         private bool test = false;
+#pragma warning restore CS0414 // Le champ 'MainPage.test' est assigné, mais sa valeur n'est jamais utilisée
 
 
         //comportement du click gauche sur le canvas (Different modifications) 
@@ -2348,7 +2373,7 @@ namespace TopoGiraffe
                 alts = itm2[itm2.Count() - 2];
 
 
-                alts = alts.GetRange(0, alts.Count() - 2);
+                alts = alts.GetRange(0, alts.Count() - 1 );
                 alts.Reverse();
 
                 int h = 0;
@@ -2442,7 +2467,7 @@ namespace TopoGiraffe
                                 Canvas.SetTop(artpt.cercle, artpt.P.Y - (artpt.cercle.Height / 2));
 
                                 // Polyline 
-                                li.Stroke = new SolidColorBrush(AltitudeToColor(alts[i].altitude));
+                             
                                 li.FillRule = FillRule.EvenOdd;
                                 li.Visibility = System.Windows.Visibility.Visible;
                                 h++;
@@ -2472,7 +2497,7 @@ namespace TopoGiraffe
 
                 }
                 // gestion des altitudes ----------------------------
-                for (int i = 0; i < alts.Count; i++)
+                for (int i = 0; i < alts.Count - 1; i++)
                 {
                     CourbesNiveau[i].altitude = alts[i].altitude;
                     CourbesNiveau[i].polyline.Stroke = new SolidColorBrush(AltitudeToColor(CourbesNiveau[i].altitude));
@@ -2903,7 +2928,9 @@ namespace TopoGiraffe
 
                     if (elDragging == null)
                     {
+#pragma warning disable CS1717 // Assignation effectuée à la même variable ; souhaitiez-vous assigner un autre élément ?
                         elDragging = (elDragging);
+#pragma warning restore CS1717 // Assignation effectuée à la même variable ; souhaitiez-vous assigner un autre élément ?
                     }
 
                     double left = ptElementStart.X + ptMouse.X - ptMouseStart.X;

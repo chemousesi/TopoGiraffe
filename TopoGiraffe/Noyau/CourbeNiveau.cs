@@ -5,7 +5,9 @@ namespace TopoGiraffe.Noyau
 {
     //--------------------------------------Definition d'une courbe de niveau ----------------------------------
     //-------------------------------------------------------------------------------------------------------------
+#pragma warning disable CS0659 // 'CourbeNiveau' se substitue à Object.Equals(object o) mais pas à Object.GetHashCode()
     public class CourbeNiveau
+#pragma warning restore CS0659 // 'CourbeNiveau' se substitue à Object.Equals(object o) mais pas à Object.GetHashCode()
     {
         public Polyline polyline;
         public float altitude;

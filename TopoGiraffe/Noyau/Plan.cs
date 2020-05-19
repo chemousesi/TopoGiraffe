@@ -13,7 +13,9 @@ namespace TopoGiraffe.Noyau
         private readonly double maxAltitude;
         private readonly Echelle echelle;
 
+#pragma warning disable CS0649 // Le champ 'Plan.courbes' n'est jamais assigné et aura toujours sa valeur par défaut null
         private readonly List<Polygon> courbes;
+#pragma warning restore CS0649 // Le champ 'Plan.courbes' n'est jamais assigné et aura toujours sa valeur par défaut null
 
 
         //------------------------------------Constructeur-----------------------------------------

@@ -20,7 +20,9 @@ namespace TopoGiraffe
     public partial class ProfileTopographique : Window
     {
         private readonly List<IntersectionDetail> IntersectionPoints;   //La liste des points d'intersection
+#pragma warning disable CS0169 // Le champ 'ProfileTopographique.distancesListe' n'est jamais utilisé
         private readonly List<double> distancesListe;  //La liste des deistances entre chaque deux points 
+#pragma warning restore CS0169 // Le champ 'ProfileTopographique.distancesListe' n'est jamais utilisé
         private readonly Echelle mainScale;
         private readonly String penteText;
 
