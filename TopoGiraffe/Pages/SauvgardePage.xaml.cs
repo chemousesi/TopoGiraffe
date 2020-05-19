@@ -7,6 +7,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Diagnostics;
 
+using System.Windows.Navigation;
+using System.Windows.Documents;
+
 #pragma warning disable CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
 #pragma warning restore CS0105 // La directive using de 'System.Windows' est apparue précédemment dans cet espace de noms
 #pragma warning disable CS0105 // La directive using de 'System.Windows.Controls' est apparue précédemment dans cet espace de noms
@@ -121,6 +124,11 @@ namespace TopoGiraffe
 
         }
 
+
+      
+
+
+        
 
         private void openManual_Click(object sender, RoutedEventArgs e)
         {

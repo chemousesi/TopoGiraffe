@@ -3,6 +3,8 @@ using System.Windows.Shapes;
 
 namespace TopoGiraffe.Noyau
 {
+    //--------------------------------------Definition d'une courbe de niveau ----------------------------------
+    //-------------------------------------------------------------------------------------------------------------
     public class CourbeNiveau
     {
         public Polyline polyline;
@@ -30,30 +32,7 @@ namespace TopoGiraffe.Noyau
         public CourbeNiveau()
         {
         }
-        //public Polyline polyline
-        //{
-        //    get => polyline;
-        //    set => polyline = value;
-        //}
-
-        //public float Altitude
-        //{
-        //    get => altitude;
-        //    set => altitude = value;
-        //}
-
-
-        //public string Couleur
-        //{
-        //    get => couleur;
-        //    set => couleur = value;
-        //}
-
-        //public string StyleDessin
-        //{
-        //    get => styleDessin;
-        //    set => styleDessin = value;
-        //}
+        
         public override bool Equals(Object obj)
         {
             //Check for null and compare run-time types.

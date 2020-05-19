@@ -21,6 +21,9 @@ namespace TopoGiraffe
 
 		}
 
+		//----------------------------------------Click sur quitter de barre de titre----------------------------------
+		//-------------------------------------------------------------------------------------------------------------
+
 		private void EXIT(object sender, MouseButtonEventArgs e)
 		{
 			MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Vous êtes sûr?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
@@ -31,17 +34,22 @@ namespace TopoGiraffe
 			}
 		}
 
+		//----------------------------------------Click sur minimiser de barre de titre----------------------------------
+		//-------------------------------------------------------------------------------------------------------------
 		private void MINIMIZE(object sender, MouseButtonEventArgs e)
 		{
 			this.WindowState = WindowState.Minimized;
 		}
 
+		//----------------------------------------Click sur maximiser de barre de titre----------------------------------
+		//-------------------------------------------------------------------------------------------------------------
 		private void MAX_RESTORE(object sender, MouseButtonEventArgs e)
 		{
 			if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
 			else this.WindowState = WindowState.Normal;
 		}
 
+		
 		private void Activate_Title_Icons(object sender, MouseEventArgs e)
 		{
 			//hover effect, make sure your grid is named "Main" or replace "Main" with the name of your grid

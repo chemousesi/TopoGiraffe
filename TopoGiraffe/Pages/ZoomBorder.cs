@@ -5,6 +5,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 
 namespace TopoGiraffe
+
+    //--------------------- Classe definissant le comportement de l'option de zoom---------------------------
+    //-------------------------------------------------------------------------------------------------------
 {
     public class ZoomBorder : Border
     {

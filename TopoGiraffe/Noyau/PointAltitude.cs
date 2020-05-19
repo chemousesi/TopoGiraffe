@@ -6,6 +6,8 @@ using System.Windows.Shapes;
 
 namespace TopoGiraffe.Noyau
 {
+    //---------------------------------------definition de Point altitude---------------------------------------
+    //----------------------------------------------------------------------------------------------------------
     public class PointAltitude
     {
         public Point point;
@@ -69,6 +71,8 @@ namespace TopoGiraffe.Noyau
 
         }
 
+        //----------------Creation d'un point sommet triangulaire--------------------------------
+        //---------------------------------------------------------------------------------------
 
         public void MakeTriangleSommet(Canvas canvas)
         {
@@ -97,6 +101,8 @@ namespace TopoGiraffe.Noyau
 
         }
 
+        //---------------------Creation d'un point cote ---------------------------------
+        //------------------------------------------------------------------------------
         public void MakeTriangleCote(Canvas canvas)
         {
 
@@ -121,7 +127,8 @@ namespace TopoGiraffe.Noyau
 
         }
 
-
+        //---------------------------dessin du style des points---------------------------
+        //--------------------------------------------------------------------------------
         public void DrawShape(Canvas canvas)
         {
             if (this.typePoint == TypePoint.COTE)
@@ -134,7 +141,8 @@ namespace TopoGiraffe.Noyau
             }
         }
 
-
+        //---------------------------le libelle de l'altitude de texte-----------------------
+        //-----------------------------------------------------------------------------------
         public void DisplayAltitudeTextBox(Canvas canvas)
         {
 
