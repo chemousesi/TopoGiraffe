@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TopoGiraffe.Boites_de_dialogue"
         mc:Ignorable="d"
-       
+        WindowStyle="None"
         Background="Transparent"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
