@@ -20,9 +20,9 @@ namespace TopoGiraffe.Boites_de_dialogue
         public Window2(String pente)
         {
             InitializeComponent();
-            pentebox = pente;
+            penteb.Text = pente;
         }
 
-        public string pentebox { get; private set; }
+       
     }
 }

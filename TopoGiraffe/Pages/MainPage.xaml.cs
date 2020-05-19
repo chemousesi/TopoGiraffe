@@ -2212,6 +2212,7 @@ namespace TopoGiraffe
       
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
+            String pentetext;
             try
             {
                 //this.DeSerialize()[this.DeSerialize().Count()-1];
@@ -2234,9 +2235,10 @@ namespace TopoGiraffe
                     }
                     
                     pente = CalcPente(PenteIntersectionPoints, mainScale);
-                    Window2 pentebox = new Window2("ll");
+                    pentetext = (pente * 100).ToString() + " % ";
+                    Window2 pentebox = new Window2(pentetext);
                     pentebox.Show();
-                 /*   MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");*/
+                   /* MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");*/
                 }
             }
             catch (ErreurDeDessinDeSegment exception)
@@ -2376,6 +2378,11 @@ namespace TopoGiraffe
         Boolean drawPointsClicked = false;
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void echelleOnFieldPlan_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

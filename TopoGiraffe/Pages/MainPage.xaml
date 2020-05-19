@@ -288,7 +288,7 @@
 
                             <StackPanel  Grid.Row="3" Height="40" Margin="0,0,-1,2" Grid.RowSpan="1">
 
-                                <TextBox x:Name="echelleOnFieldPlan"  Foreground="{DynamicResource TextBox}"  Text="{Binding ScaleDistanceOnField, Mode=TwoWay}" TextWrapping="Wrap" Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0"/>
+                                <TextBox x:Name="echelleOnFieldPlan"  Foreground="{DynamicResource TextBox}"  Text="{Binding ScaleDistanceOnField, Mode=TwoWay}" TextWrapping="Wrap" Width="60" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0" TextChanged="echelleOnFieldPlan_TextChanged"/>
 
                                 <Label Style="{DynamicResource LabelStyle}" Content="Echelle en (m)" Height="44" Width="160" HorizontalAlignment="Left" Margin="7,-29,-2,-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Padding="4,-7,4,-1" FontWeight="Normal" VerticalAlignment="Center" FontFamily="Open Sans"/>
                             </StackPanel>

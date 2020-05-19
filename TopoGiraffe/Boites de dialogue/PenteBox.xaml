@@ -12,7 +12,7 @@
             <ColumnDefinition Width="201*"/>
         </Grid.ColumnDefinitions>
         <Label Content="La pente est de : " FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1" Margin="0,51,0,0"/>
-        <Label Content="{Binding pentebox}" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1" Margin="0,77,0,0"/>
+        <TextBox x:Name="penteb" HorizontalAlignment="Center" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Grid.Column="1" Margin="0,91,0,0"/>
 
     </Grid>
 </Window>
