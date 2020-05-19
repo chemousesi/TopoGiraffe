@@ -1,7 +1,6 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
@@ -123,10 +122,10 @@ namespace TopoGiraffe
         }
 
 
-        //private void openManual_Click(object sender, RoutedEventArgs e)
-        //{
-        //    System.Diagnostics.Process.Start("IExplore.exe");
-        //    //System.Diagnostics.Process.Start("IExplore.exe", "www.northwindtraders.com");
-        //}
+        private void openManual_Click(object sender, RoutedEventArgs e)
+        {
+            //System.Diagnostics.Process.Start("IExplore.exe");
+            System.Diagnostics.Process.Start("IExplore.exe", "www.northwindtraders.com");
+        }
     }
 }
