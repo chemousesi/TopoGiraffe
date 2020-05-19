@@ -2238,7 +2238,7 @@ namespace TopoGiraffe
                     pentetext = (pente * 100).ToString() + " % ";
                     Pente pentebox = new Pente(pentetext);
                     pentebox.Show();
-                    MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");
+                 /*   MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");*/
                 }
             }
             catch (ErreurDeDessinDeSegment exception)

@@ -5,18 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TopoGiraffe.Boites_de_dialogue"
         mc:Ignorable="d"
-        Title="Pente" Height="140" Width="256">
-    <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Width="352" Margin="0,-15,0,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="29*"/>
-        </Grid.ColumnDefinitions>
-        <Border CornerRadius="12,12,12,12" BorderThickness="6" Padding="4" Grid.ColumnSpan="2" Margin="0,0,33,0">
-            <!-- ...set your desired border brush color here... -->
-        </Border>
-        <Label Content="La pente est de : " FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="2" Margin="64,46,0,0" />
-        <TextBox x:Name="penteb" HorizontalAlignment="Left" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Grid.Column="2" Margin="68,91,0,0"/>
-
-    </Grid>
+       
+        Background="Transparent"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen"
+        Height="172" Width="321">
+    <Border Background="White"  CornerRadius="5" BorderBrush="Black" BorderThickness="1">
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Width="352" Margin="0,-15,0,0" Height="134">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="29*"/>
+            </Grid.ColumnDefinitions>
+            <Border CornerRadius="12,12,12,12" BorderThickness="6" Padding="4" Grid.ColumnSpan="2" Margin="0,0,33,0">
+                <!-- ...set your desired border brush color here... -->
+            </Border>
+            <Label Content="La pente est de : " FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="2" Margin="64,46,0,0" />
+            <TextBlock x:Name="penteb" HorizontalAlignment="Left" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Grid.Column="2" Margin="68,91,0,0"/>
+            <Button Content="OK"   Grid.Column="2" Height="40" Width="90" Click="Button_Click" Margin="92,131,137,-37" />
+        </Grid>
+    </Border>
 </Window>

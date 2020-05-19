@@ -22,5 +22,10 @@ namespace TopoGiraffe.Boites_de_dialogue
             InitializeComponent();
             penteb.Text = pente;
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }
