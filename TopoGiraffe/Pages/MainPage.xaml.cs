@@ -2551,7 +2551,7 @@ namespace TopoGiraffe
                 }
                 else
                 {
-                    (new MssgBox("Pas de texte en entrée")).Show();
+                    (new MssgBox("Pas d'altitude en entrée")).Show();
                 }
                 
 
