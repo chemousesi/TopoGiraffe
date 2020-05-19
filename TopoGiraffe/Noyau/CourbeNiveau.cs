@@ -32,7 +32,7 @@ namespace TopoGiraffe.Noyau
         public CourbeNiveau()
         {
         }
-        
+
         public override bool Equals(Object obj)
         {
             //Check for null and compare run-time types.

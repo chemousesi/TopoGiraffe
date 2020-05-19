@@ -12,11 +12,11 @@ namespace TopoGiraffe.Noyau
     {
         public Point point;
         public double altitude;
-        private Ellipse cercle;
+        private readonly Ellipse cercle;
         public Polygon triangle = new Polygon();
-        private TypePoint typePoint;
+        private readonly TypePoint typePoint;
         public TextBlock altitudeTextBlock = new TextBlock();
-        static int nbPoints = 0;
+        private static readonly int nbPoints = 0;
 
         public PointAltitude(Point aPoint, double anAltitude, int index)
         {
@@ -154,7 +154,6 @@ namespace TopoGiraffe.Noyau
 
     }
 
-
-    enum TypePoint { SOMMET, COTE }
+    internal enum TypePoint { SOMMET, COTE }
 
 }

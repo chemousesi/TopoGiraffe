@@ -42,26 +42,11 @@
                  materialDesign:HintAssist.Hint="Altitude (mètre)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <ComboBox x:Name="styleCourbeCmbInDialogBox" SelectedValuePath="Content" 
                           SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  
-                   Margin="0" Height="55" Padding="0,8,0,0"
+                   Margin="0,28,0,0" Height="55" Padding="0,8,0,0"
                   materialDesign:HintAssist.Hint="Type de courbe" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <ComboBoxItem Content="Courbe simple" />
                     <ComboBoxItem Content="Courbe intermediare" />
                     <ComboBoxItem Content="Courbe Maitresse" />
-                </ComboBox>
-                <ComboBox x:Name="colorComboBox" SelectionChanged="colorComboBox_SelectionChanged"  
-                          Margin="0" Height="55" Padding="0,8,0,0" VerticalAlignment="Center" VerticalContentAlignment="Top" 
-                          materialDesign:HintAssist.Hint="Couleur" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Rectangle Fill="{Binding Rect.Fill}" Height="20" Width="20"/>
-                                <TextBlock Text="{Binding Name}"/>
-                            </StackPanel>
-                        </DataTemplate>
-
-                    </ComboBox.ItemTemplate>
-
-
                 </ComboBox>
             </StackPanel>
         </Grid>

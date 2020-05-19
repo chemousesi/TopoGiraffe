@@ -2,7 +2,7 @@
 
 namespace TopoGiraffe
 {
-    class IntersectsItselfException : Exception
+    internal class IntersectsItselfException : Exception
     {
     }
 }

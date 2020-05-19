@@ -4,7 +4,7 @@ using TopoSurf.MessageBoxStyle;
 
 namespace TopoGiraffe.Exceptions
 {
-    class ErreurAltitudeExcpetion : Exception
+    internal class ErreurAltitudeExcpetion : Exception
     {
         public ErreurAltitudeExcpetion(string message)
         {

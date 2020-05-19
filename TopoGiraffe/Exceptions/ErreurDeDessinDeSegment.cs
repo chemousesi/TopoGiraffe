@@ -3,7 +3,7 @@ using TopoSurf.MessageBoxStyle;
 
 namespace TopoGiraffe.Exceptions
 {
-    class ErreurDeDessinDeSegment : Exception
+    internal class ErreurDeDessinDeSegment : Exception
     {
         public ErreurDeDessinDeSegment(String Message)
         {
