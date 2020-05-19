@@ -2216,7 +2216,7 @@ namespace TopoGiraffe
                 if (CourbesNiveau.Count == 0)
                 {
 
-                    throw new ErreurDeDessinDeSegment("Aucun point d'intersection n'est trouvé!");
+                    throw new ErreurDeDessinDeSegment("Aucune courbes n'est dessiner!");
 
                 }
 
