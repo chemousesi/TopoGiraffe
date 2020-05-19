@@ -5,7 +5,7 @@ namespace TopoGiraffe.Noyau
 {
     public class Echelle
     {
-       
+
 
         public Echelle(double aDistanceOnField)
         {

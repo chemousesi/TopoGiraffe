@@ -27,7 +27,7 @@
 
             </Grid>
             <Grid Grid.Row="1" Margin="0,55,0,0">
-                <TextBlock HorizontalAlignment="Left" Height="98" Margin="64,33,0,0" Text="Vous Pouvez importer  une carte et saisir ses informations relatives (Echelle , Equidistance , Altitudes Min et Max )" 
+                <TextBlock HorizontalAlignment="Left" Height="98" Margin="64,33,0,0" Text="Vous pouvez importer  une carte et saisir ses informations relatives (Echelle , Equidistance , Altitudes Min et Max )" 
                    TextWrapping="Wrap" VerticalAlignment="Top" Width="276" Foreground="#FFF7F7F7" FontFamily="HelveticaNeue" FontSize="16"/>
             </Grid>
         </Grid>

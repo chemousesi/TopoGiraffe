@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="100"   UseLayoutRounding="False" Cursor="Hand"  >
 
-    <Border BorderBrush="#EFCAC4" BorderThickness="3" CornerRadius="3" Opacity=".96" >
+    <Border BorderBrush="#EFCAC4" BorderThickness="3" CornerRadius="3" Opacity=".97" >
         <Grid Background="#EFCAC4" Opacity="1" ClipToBounds="True" UseLayoutRounding="False" ShowGridLines="False" Margin="-1,-1,-1,-1">
 
 
@@ -28,7 +28,7 @@
             <!--reusable text-->
             <TextBlock x:Name="PopupText"
                             FontSize="11"
-                            Foreground="White"
+                            Foreground="#595959"
                             Panel.ZIndex="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
