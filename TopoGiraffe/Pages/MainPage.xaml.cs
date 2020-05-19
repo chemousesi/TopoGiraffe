@@ -659,6 +659,16 @@ namespace TopoGiraffe
 
 
                     this.Serializee(curves);
+                    List<Object> info = new List<Object> ();
+                   
+                    info.Add(Equidistance);
+                    info.Add(AltitudeMax);
+                    info.Add(AltitudeMin);
+                    info.Add(mainScale);
+                    //this.Serializee(info,"");
+
+
+
 
                     // dessin des cercles representant les points d'intersection
                     foreach (IntersectionDetail inters in IntersectionPoints)
@@ -1406,6 +1416,7 @@ namespace TopoGiraffe
                     {
                         RemoveCtrlPoints();
                         //ShownCtrlPoint = PointsGlobal[index];
+                        
                         ShownCtrlPoint = PointsGlobal[index];
 
                         DrawCtrlPoints(courbeActuelle);
@@ -2021,20 +2032,39 @@ namespace TopoGiraffe
             /* _mainFrame.Content = new SauvgardePage(); */
         }
 
-
+        List<IntersectionDetail> alts = new List<IntersectionDetail>();
         List<List<IntersectionDetail>> itm2 = new List<List<IntersectionDetail>>();
         public void Button_Click(object sender, RoutedEventArgs e)
         {
 
             List<Polyline> curve = polylines;
+            Ellipse circle;
+            ArtPoint artpt;
+
 
             
-            List<IntersectionDetail> alts = new List<IntersectionDetail>();
 
 
 
 
             itm2 = this.DeSerialize();
+            PointsGlobal.Clear();
+            for (int i = 0; i < itm2.Count() - 1; i++)
+            {
+                PointsGlobal.Add(new List<ArtPoint>());
+                for (int j = 0; j < itm2[i].Count(); j++)
+                {
+                    circle = new Ellipse();
+                    artpt = new ArtPoint(circle, itm2[i][j].point);
+
+                    PointsGlobal[i].Add(artpt);
+
+                }
+            }
+
+
+            CourbesNiveau.Clear();
+            
             String penteText = " la pente est de   :" + pente.ToString() + " % ";
 
             try
@@ -2044,7 +2074,7 @@ namespace TopoGiraffe
             }
             catch (Exception x)
             {
-                MessageBox.Show("pas de projet importer");
+                MessageBox.Show("pas de projet importé");
             }
             if (mainScale != null)
             {
@@ -2065,6 +2095,7 @@ namespace TopoGiraffe
                 {
 
                     Polyline li = new Polyline();
+
                     mainCanvas.Children.Add(li);
 
                     for (int j = 0; j < itm2[i].Count(); j++)
@@ -2105,14 +2136,18 @@ namespace TopoGiraffe
                         Point ps = new Point(itm2[i][j].point.X, itm2[i][j].point.Y);
                         li.Points.Add(ps);
 
-                        CourbeNiveau Courbe = new CourbeNiveau(li, itm2[itm2.Count() - 1][i].altitude);
+                        //CourbeNiveau Courbe = new CourbeNiveau(li, itm2[itm2.Count() - 1][i].altitude);
 
 
 
-                        CourbesNiveau.Add(Courbe);                       
+                        //CourbesNiveau.Add(Courbe);                       
                         mainCanvas.Children.Add(circle);
 
                     }
+                    CourbeNiveau courbe = new CourbeNiveau(li); 
+                    CourbesNiveau.Add(courbe);
+
+                    
                     li.FillRule = FillRule.EvenOdd;
                     li.Visibility = System.Windows.Visibility.Visible;
                     h++;
@@ -2126,6 +2161,7 @@ namespace TopoGiraffe
 
                         li.Stroke = Brushes.Purple;
                         li.StrokeThickness = 7;
+                        CourbesNiveau.RemoveAt(CourbesNiveau.Count()-1);
                         // li.Points.Add(new Point(li.Points[0].X*);
 
                     }
@@ -2172,6 +2208,17 @@ namespace TopoGiraffe
             bf.Serialize(s, objet);
             s.Close();
         }
+        public void Serializee(List<object> objet)
+        {
+
+            OpenFileDialog op = new OpenFileDialog();
+
+            Stream s = File.Open(path: "test.dat", FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(s, objet);
+           
+            s.Close();
+        }
 
         public List<List<IntersectionDetail>> DeSerialize()
         {
@@ -2193,6 +2240,7 @@ namespace TopoGiraffe
 
                 BinaryFormatter bf = new BinaryFormatter();
                 objet = (List<List<IntersectionDetail>>)bf.Deserialize(s);
+               
                 s.Close();
             }
             catch (FileNotFoundException x)
