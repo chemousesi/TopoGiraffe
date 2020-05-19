@@ -2212,6 +2212,11 @@ namespace TopoGiraffe
         {
 
             //this.DeSerialize()[this.DeSerialize().Count()-1];
+            if (CourbesNiveau.Count == 0)
+            {
+
+            }
+            else { 
             try
             {
                 Echelle echel = new Echelle(mainScale.ScaleDistanceOnCanvas, mainScale.ScaleDistanceOnField);
@@ -2223,6 +2228,7 @@ namespace TopoGiraffe
 
             pente = CalcPente(PenteIntersectionPoints, mainScale);
             MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");
+            }
         }
 
         private void mapBut_Click(object sender, RoutedEventArgs e)
