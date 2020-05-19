@@ -2238,7 +2238,7 @@ namespace TopoGiraffe
             catch (ErreurDeDessinDeSegment exception)
             {
               
-        }
+            }
         }
 
         private void mapBut_Click(object sender, RoutedEventArgs e)
