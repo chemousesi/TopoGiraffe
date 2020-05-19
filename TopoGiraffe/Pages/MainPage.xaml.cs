@@ -249,7 +249,7 @@ namespace TopoGiraffe
 
 
         }
-
+        List<IntersectionDetail> altit = new List<IntersectionDetail>();
         // button de dessin d'une Courbe de niveau ---------------------------------
 
         private void dessinerButton_Click(object sender, RoutedEventArgs e)
@@ -279,6 +279,8 @@ namespace TopoGiraffe
 
 
                 courbeActuelle = myCurve;
+                altit.Add(new IntersectionDetail(Convert.ToInt32(courbeActuelle.altitude) , false));
+
                 AltSlider.Value = Convert.ToInt32(AltitudeString);
 
                 courbeActuelle.polyline.Stroke = new SolidColorBrush(AltitudeToColor(Convert.ToInt32(AltitudeString)));
@@ -673,6 +675,7 @@ namespace TopoGiraffe
 
                     curves.Add(IntersectionPoints);
                     curves.Add(Infos);
+                    curves.Add(altit);
 
                     //    this.Serializee(curves);
                     List<Object> info = new List<Object>();
@@ -2336,7 +2339,7 @@ namespace TopoGiraffe
             itm2 = this.DeSerialize();
             PointsGlobal.Clear();
             mainCanvas.Children.Clear();
-            for (int i = 0; i < itm2.Count() - 1; i++)
+            for (int i = 0; i < itm2.Count() - 2; i++)
             {
                 PointsGlobal.Add(new List<ArtPoint>());
                 for (int j = 0; j < itm2[i].Count(); j++)
@@ -2370,20 +2373,20 @@ namespace TopoGiraffe
 
             try
             {
-                alts = itm2[itm2.Count() - 2];
+                //alts = itm2[itm2.Count() - 2];
 
 
-                alts = alts.GetRange(0, alts.Count() - 2);
-                alts.Reverse();
+                //alts = alts.GetRange(0, alts.Count() - 2);
+                //alts.Reverse();
 
                 int h = 0;
-                for (int i = 0; i < itm2.Count(); i++)
+                for (int i = 0; i < itm2.Count() - 1; i++)
                 {
 
 
 
                     // infos du plan
-                    if (i == itm2.Count() - 1)
+                    if (i == itm2.Count() - 2)
                     {
                         UpdateTextBoxes(Convert.ToInt32(itm2[i][0].altitude), Convert.ToInt32(itm2[i][1].altitude), Convert.ToInt32(itm2[i][2].altitude), Convert.ToInt32(itm2[i][3].altitude), Convert.ToInt32(itm2[i][4].altitude));
 
@@ -2409,7 +2412,7 @@ namespace TopoGiraffe
                             ArtPoint artpt = list[j];
                             Ellipse circle = artpt.cercle;
                             // segment AB ----------------------------------
-                            if (i == itm2.Count() - 2)
+                            if (i == itm2.Count() - 3)
                             {
 
 
@@ -2496,9 +2499,10 @@ namespace TopoGiraffe
 
                 }
                 // gestion des altitudes ----------------------------
-                for (int i = 0; i < alts.Count; i++)
+                for (int i = 0; i < itm2[itm2.Count - 1].Count; i++)
                 {
-                    CourbesNiveau[i].altitude = alts[i].altitude;
+                    List<IntersectionDetail> list = itm2[itm2.Count - 1];
+                    CourbesNiveau[i].altitude = list[i].altitude;
                     CourbesNiveau[i].polyline.Stroke = new SolidColorBrush(AltitudeToColor(CourbesNiveau[i].altitude));
 
                 }
