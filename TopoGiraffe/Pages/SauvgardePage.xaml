@@ -391,13 +391,13 @@
                                 <TextBlock Text="Enregistrer sous" Margin="10,0" FontSize="15" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{DynamicResource EnregistrerSousBtn}" x:Name="manual" Foreground="#FFFFFF" Height="50" Background="#0000" BorderBrush="Transparent"
+                        <!--<Button Style="{DynamicResource EnregistrerSousBtn}" x:Name="manual" Foreground="#FFFFFF" Height="50" Click="openManual_Click" Background="#0000" BorderBrush="Transparent"
                             BorderThickness="0" HorizontalContentAlignment="Left"  Cursor="Hand" Margin="0 15 0 0">
                             <StackPanel Orientation="Horizontal" Margin="20,0" HorizontalAlignment="Left" >
                                 <Image Source="/assets/img/manual.png" Margin="5,8" RenderTransformOrigin="0.849,0.548" ></Image>
                                 <TextBlock Text="Manuel d'utilistaion" Margin="10,0" FontSize="15" VerticalAlignment="Center" />
                             </StackPanel>
-                        </Button>
+                        </Button>-->
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="3">
@@ -440,7 +440,7 @@
 
                         <ScrollViewer Grid.Row="2" >
                             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" xml:space="preserve" FontSize="16" Width="Auto" FontFamily="Malgun Gothic Semilight" >
-                                 Ceci est un logiciel de génération de profils topographiques a partir de courbes de niveaux, réalisé par l'équipe 22 du projet 2CPI sous l'encadrement de :<LineBreak/>
+                                 Ceci est un logiciel de génération de profils topographiques à partir de courbes de niveaux, réalisé par l'équipe 22 du projet 2CPI sous l'encadrement de :<LineBreak/>
                                 -Mme N.Belattar.
                                 -Mme Bouzar.
                                 
@@ -470,9 +470,9 @@
                                 
                                 
                                 
-                             Le logiciel est à utiliser pour des fins personnelles ou commerciales, le logiciel est servi sans aucune garantie ou responsabilité   
+                             Le logiciel est à utiliser pour des fins personnelles ou commerciales, le logiciel est servi sans aucune garantie ou responsabilité.  
                              
-                            @Tous les droits sont réservés ESI2020
+                            @Tous les droits sont réservés ESI2020.
 
                                 
 
