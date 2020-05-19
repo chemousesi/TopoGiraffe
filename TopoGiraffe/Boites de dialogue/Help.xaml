@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TopoGiraffe"
              xmlns:local1="clr-namespace:TopoGiraffe.Boites_de_dialogue"
 
-             mc:Ignorable="d"  UseLayoutRounding="False" Width="690" Height="390" >
+             mc:Ignorable="d"  UseLayoutRounding="False" Width="690" Height="390" Cursor="Hand" >
 
 
     <Grid  ClipToBounds="True">
