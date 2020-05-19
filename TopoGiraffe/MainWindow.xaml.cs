@@ -95,13 +95,14 @@ namespace TopoGiraffe
                 WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
 
+
+
         private void mainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
 
         }
 
-
-
-
+       
+        
     }
 }

@@ -39,12 +39,24 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="90"/>
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <DockPanel Grid.Row="0" >
+            <Menu DockPanel.Dock="Top" Background="#1f1e21">
+                <MenuItem Header="_File" Height="20" Foreground="#DDFFFFFF"  >
+                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Open" Click="MenuItem_Click_1" />
+                    <MenuItem Header="_Save" />
+                    <Separator />
+                    <MenuItem Header="_Exit" Click="MenuItem_Click"  />
+                </MenuItem>
 
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
         <Grid Grid.Row="1"  Background="{DynamicResource NormalBackground}" Opacity="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="65" />

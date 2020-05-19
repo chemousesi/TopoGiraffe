@@ -43,7 +43,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="20"/>
+            
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
@@ -64,22 +64,10 @@
 
        
 
-        <DockPanel Grid.Row="1" >
-            <Menu DockPanel.Dock="Top" Background="#1f1e21">
-                <MenuItem Header="_File" Height="20" Foreground="#DDFFFFFF" >
-                    <MenuItem Header="_New" />
-                        <MenuItem Header="_Open" />
-                        <MenuItem Header="_Save" />
-                        <Separator />
-                        <MenuItem Header="_Exit" />
-                    </MenuItem>
-                
-            </Menu>
-                <TextBox AcceptsReturn="True" />
-        </DockPanel>
+       
 
 
-        <Frame Grid.Row="3" x:Name="mainFrame" Source="/Pages/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
+        <Frame Grid.Row="2" x:Name="mainFrame" Source="/Pages/MainPage.xaml" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
 
 
         

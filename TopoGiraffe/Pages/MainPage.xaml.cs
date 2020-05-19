@@ -2375,6 +2375,11 @@ namespace TopoGiraffe
 
         }
 
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new SauvgardePage(curves, this));
+        }
+
         public SerializationInfo BaseUri { get; private set; }
 
         private void drawPoint_Clicked(object sender, RoutedEventArgs e)
