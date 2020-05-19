@@ -228,7 +228,7 @@
 
                                 <Grid Grid.Row="2">
                                     <Slider  IsSnapToTickEnabled="True" Minimum = "-200" Maximum = "1000" Value="0" x:Name="AltSlider"   ToolTip="Altitude" Width="150"  
-                                             ValueChanged="altitudeSliderValueChange"  TickFrequency="5" DockPanel.Dock="Bottom" Height="30"
+                                             ValueChanged="altitudeSliderValueChange"   DockPanel.Dock="Bottom" Height="30"
                                              Margin="40,-41,40,0" Foreground="{DynamicResource SliderColor}" HorizontalAlignment="Center"
                                              />
                                 </Grid>

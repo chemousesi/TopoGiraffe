@@ -292,6 +292,10 @@ namespace TopoGiraffe
             {
 
             }
+            catch (ErreurAltitudeExcpetion)
+            {
+
+            }
 
 
 
@@ -349,6 +353,7 @@ namespace TopoGiraffe
                     
                     nav.IsEnabled = true;
                     dessinerButton.IsEnabled = true;
+                    add_line.IsEnabled = true ;
                 }
 
             }
@@ -369,8 +374,9 @@ namespace TopoGiraffe
 
                     nav.IsEnabled = true;
                     dessinerButton.IsEnabled = true;
-               
-            
+                    add_line.IsEnabled = true;
+
+
         }
 
         // supprimer la derniere action-------------------------------------------------
@@ -399,6 +405,7 @@ namespace TopoGiraffe
                 IntersectionPoints.Clear();
                 nav.IsEnabled = true;
                 dessinerButton.IsEnabled = true;
+                add_line.IsEnabled = true;
 
                 return;
             }
@@ -675,6 +682,7 @@ namespace TopoGiraffe
                     IntersectionPoints = IntersectionPoints.OrderBy(o => o.distance).ToList();
                     nav.IsEnabled = false;
                     dessinerButton.IsEnabled = false;
+                    add_line.IsEnabled = false;
 
 
 
@@ -1630,6 +1638,7 @@ namespace TopoGiraffe
                     Equidistance = Convert.ToInt32(dataDialog.EquidistanceTextBox.Text);
                     AltSlider.SmallChange = Equidistance;
                     AltSlider.LargeChange = 2*Equidistance;
+                    AltSlider.TickFrequency = Equidistance;
                     equidistance.Text = Equidistance.ToString();
                     altitudeMax.Text = AltitudeMax.ToString();
                     altMin.Text = AltitudeMin.ToString();
@@ -1699,50 +1708,61 @@ namespace TopoGiraffe
         // this function generates a dialog box , create , style a polyline from that dialog box entries
         // and return a new polyline, :)
         {
-
-
-            Window1 window1 = new Window1();
-            window1.ShowDialog();
-
             CourbeNiveau Courbe = null;
 
-            if (window1.DialogResult == true)
+            Window1 window1 = new Window1();
+           
+                    window1.ShowDialog();
+            // gerer les exceptions d'rreur d'altitude de courbe (selon l'equidistance)
+            if (CourbesNiveau.Count > 0)
             {
-                // taking the altitude from the dialog box
 
-                if (int.TryParse(window1.Altitude.Text, out int result))
+                if ((Math.Abs((Convert.ToInt32(window1.Altitude.Text) - CourbesNiveau[0].altitude )) % Equidistance) != 0)
                 {
-                    Altitudes.Add(result);
-                    indexAltitude++;
+                               throw new ErreurAltitudeExcpetion("L'altitude entrée ne correspend pas à l'equidistance");
+                }
+                      
+            }
+    
+                if (window1.DialogResult == true)
+                {
+                    // taking the altitude from the dialog box
+
+                    if (int.TryParse(window1.Altitude.Text, out int result))
+                    {
+                        Altitudes.Add(result);
+                        indexAltitude++;
 
 
 
 
-                    AltitudeString = window1.Altitude.Text;
+                        AltitudeString = window1.Altitude.Text;
 
-                    // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
-                    Courbe = new CourbeNiveau(new Polyline(), result);
-                    //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
-                    //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
-                    //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
-                    Courbe.polyline.StrokeThickness = 2;
-                    Courbe.polyline.FillRule = FillRule.EvenOdd;
+                        // StyleCmbToRealStyle(courbeActuelle,Convert.ToInt32(Window1.Type.SelectedIndex));
+                        Courbe = new CourbeNiveau(new Polyline(), result);
+                        //colorComboBox.SelectedIndex = window1.colorComboBox.SelectedIndex;
+                        //newPolyline.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString((colorComboBox.SelectedItem as RectangleName).Name);
+                        //newPolyline.Stroke = System.Windows.Media.Brushes.Black;
+                        Courbe.polyline.StrokeThickness = 2;
+                        Courbe.polyline.FillRule = FillRule.EvenOdd;
 
-                    Courbe.polyline = StyleCmbToRealStyle(Courbe.polyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
+                        Courbe.polyline = StyleCmbToRealStyle(Courbe.polyline, window1.styleCourbeCmbInDialogBox.SelectedIndex); // styling it 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur! \n votre altitude n'est pas un entier");
+                    }
 
                 }
                 else
                 {
-                    MessageBox.Show("Erreur! \n votre altitude n'est pas un entier");
+                    throw new ErreurDeSaisieException("Erreur dans La saisie ");
                 }
-
-            }
-            else
-            {
-                throw new ErreurDeSaisieException("Erreur dans La saisie ");
-            }
+           
 
             return Courbe;
+
         }
 
 
