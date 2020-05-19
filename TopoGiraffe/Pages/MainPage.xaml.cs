@@ -363,6 +363,8 @@ namespace TopoGiraffe
                     nav.IsEnabled = true;
                     dessinerButton.IsEnabled = true;
                     add_line.IsEnabled = true;
+                    dessinerPoint.IsEnabled = true;
+
                 }
 
             }
@@ -385,6 +387,8 @@ namespace TopoGiraffe
             nav.IsEnabled = true;
             dessinerButton.IsEnabled = true;
             add_line.IsEnabled = true;
+            dessinerPoint.IsEnabled = true;
+
 
 
         }
@@ -418,6 +422,8 @@ namespace TopoGiraffe
                 nav.IsEnabled = true;
                 dessinerButton.IsEnabled = true;
                 add_line.IsEnabled = true;
+                dessinerPoint.IsEnabled = true;
+
 
                 return;
             }
@@ -512,6 +518,8 @@ namespace TopoGiraffe
             nav.IsEnabled = true;
             dessinerButton.IsEnabled = true;
             btn2Clicked = true;
+            dessinerPoint.IsEnabled = true;
+
 
         }
 
@@ -707,6 +715,8 @@ namespace TopoGiraffe
                     nav.IsEnabled = false;
                     dessinerButton.IsEnabled = false;
                     add_line.IsEnabled = false;
+                    dessinerPoint.IsEnabled = false;
+
 
 
 
@@ -2116,11 +2126,7 @@ namespace TopoGiraffe
         {
 
             List<Polyline> curve = polylines;
-          
          
-
-
-
             itm2 = this.DeSerialize();
             PointsGlobal.Clear();
             mainCanvas.Children.Clear();
@@ -2161,7 +2167,7 @@ namespace TopoGiraffe
                 alts = itm2[itm2.Count() - 2];
 
 
-                alts = alts.GetRange(0, itm2.Count() - 2);
+                alts = alts.GetRange(0, alts.Count() - 2);
                 alts.Reverse();
               
                 int h = 0;
@@ -2296,6 +2302,7 @@ namespace TopoGiraffe
                 nav.IsEnabled = false;
                 dessinerButton.IsEnabled = false;
                 add_line.IsEnabled = false;
+                dessinerPoint.IsEnabled = false;
                 distances();
 
 
