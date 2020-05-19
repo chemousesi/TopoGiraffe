@@ -19,7 +19,7 @@ namespace TopoGiraffe
     {
 
         //colors related 
-        class RectangleName
+        private class RectangleName
         {
             public Rectangle Rect { get; set; }
             public string Name { get; set; }
@@ -60,7 +60,7 @@ namespace TopoGiraffe
 
 
         //buttons behaviour
-        void OkButton_Click(object sender, RoutedEventArgs e)
+        private void OkButton_Click(object sender, RoutedEventArgs e)
         {
 
             DialogResult = true;
@@ -86,7 +86,7 @@ namespace TopoGiraffe
      
 
         //binding Altitude
-        string alti;
+        private string alti;
         private void Altitude_TextChanged(object sender, TextChangedEventArgs e)
         {
             alti = Altitude.Text;

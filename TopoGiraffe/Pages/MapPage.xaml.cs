@@ -13,8 +13,7 @@ namespace TopoGiraffe
     /// </summary>
     public partial class MapPage : Page
     {
-
-        MainPage _mainPage;
+        private readonly MainPage _mainPage;
 
         public MapPage(MainPage mainPage)
         {

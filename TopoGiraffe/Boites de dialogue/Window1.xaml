@@ -42,7 +42,7 @@
                  materialDesign:HintAssist.Hint="Altitude (mètre)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <ComboBox x:Name="styleCourbeCmbInDialogBox" SelectedValuePath="Content" 
                           SelectedItem="{Binding myComboBoxSelectedItem, UpdateSourceTrigger=PropertyChanged}"  
-                   Margin="0" Height="55" Padding="0,8,0,0"
+                   Margin="0,28,0,0" Height="55" Padding="0,8,0,0"
                   materialDesign:HintAssist.Hint="Type de courbe" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <ComboBoxItem Content="Courbe simple" />
                     <ComboBoxItem Content="Courbe intermediare" />

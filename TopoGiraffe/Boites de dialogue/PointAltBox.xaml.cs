@@ -25,7 +25,7 @@ namespace TopoGiraffe
 
 
         //buttons behaviour
-        void OkButton_Click(object sender, RoutedEventArgs e)
+        private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
         }
@@ -43,12 +43,11 @@ namespace TopoGiraffe
 
         }
 
-
-        SolidColorBrush clr;
+        private readonly SolidColorBrush clr;
 
 
         //binding Altitude
-        string alti;
+        private string alti;
         private void Altitude_TextChanged(object sender, TextChangedEventArgs e)
         {
             alti = Altitude.Text;

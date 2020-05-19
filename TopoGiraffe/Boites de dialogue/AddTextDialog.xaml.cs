@@ -23,7 +23,7 @@ namespace TopoGiraffe
 
 
         //buttons behaviour
-        void OkButton_Click(object sender, RoutedEventArgs e)
+        private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
         }
@@ -41,8 +41,7 @@ namespace TopoGiraffe
 
         }
 
-
-        SolidColorBrush clr;
+        private readonly SolidColorBrush clr;
 
 
 

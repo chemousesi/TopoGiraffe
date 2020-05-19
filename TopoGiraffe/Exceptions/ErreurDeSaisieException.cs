@@ -3,7 +3,7 @@ using TopoSurf.MessageBoxStyle;
 
 namespace TopoGiraffe.Exceptions
 {
-    class ErreurDeSaisieException : Exception
+    internal class ErreurDeSaisieException : Exception
     {
         public ErreurDeSaisieException(string message)
         {

@@ -19,10 +19,10 @@ namespace TopoGiraffe
     /// </summary>
     public partial class ProfileTopographique : Window
     {
-        List<IntersectionDetail> IntersectionPoints;   //La liste des points d'intersection
-        List<double> distancesListe;  //La liste des deistances entre chaque deux points 
-        Echelle mainScale;
-        String penteText;
+        private readonly List<IntersectionDetail> IntersectionPoints;   //La liste des points d'intersection
+        private readonly List<double> distancesListe;  //La liste des deistances entre chaque deux points 
+        private readonly Echelle mainScale;
+        private readonly String penteText;
 
         public ProfileTopographique(List<IntersectionDetail> aIntersectionPoints, List<double> adistancesList, Echelle mainScale, String pente)
         {
@@ -62,7 +62,7 @@ namespace TopoGiraffe
                     Values = MyValues,           // Afectation des valeurs au graph 
                  //   PointGeometrySize = 4,
 
-                    AreaLimit = 0,      
+                    AreaLimit = 0,
                     LineSmoothness = 0.2,    //Ajuster la finesse des lignes
                     
                     //DataLabels = true,
@@ -98,7 +98,10 @@ namespace TopoGiraffe
             bitmap.Render(visual);
             var frame = BitmapFrame.Create(bitmap);
             encoder.Frames.Add(frame);
-            using (var stream = File.Create(fileName)) encoder.Save(stream);
+            using (var stream = File.Create(fileName))
+            {
+                encoder.Save(stream);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)   //Sauvgarder le profile topographique en pdf
@@ -134,7 +137,7 @@ namespace TopoGiraffe
             {
                 PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(filename, FileMode.Create));
             }
-            catch (ArgumentNullException excp)
+            catch (ArgumentNullException)
             {
                 MessageBox.Show("il faut specifier un fichier pdf"); //le cas de ne pas selectioner un fichier
             }
