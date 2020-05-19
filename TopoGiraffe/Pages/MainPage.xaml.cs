@@ -2279,19 +2279,35 @@ namespace TopoGiraffe
       
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
-
-            //this.DeSerialize()[this.DeSerialize().Count()-1];
             try
             {
-                Echelle echel = new Echelle(mainScale.ScaleDistanceOnCanvas, mainScale.ScaleDistanceOnField);
-            }
-            catch (NullReferenceException ecp)
-            {
-                MessageBox.Show("echelle pas encore disponible ");
-            }
+                //this.DeSerialize()[this.DeSerialize().Count()-1];
+                if (CourbesNiveau.Count == 0)
+                {
 
-            pente = CalcPente(PenteIntersectionPoints, mainScale);
-            MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");
+                    throw new ErreurDeDessinDeSegment("Aucun point d'intersection n'est trouvé!");
+
+                }
+
+                else
+                {
+                    try
+                    {
+                        Echelle echel = new Echelle(mainScale.ScaleDistanceOnCanvas, mainScale.ScaleDistanceOnField);
+                    }
+                    catch (NullReferenceException ecp)
+                    {
+                        MessageBox.Show("echelle pas encore disponible ");
+                    }
+
+                    pente = CalcPente(PenteIntersectionPoints, mainScale);
+                    MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");
+                }
+            }
+            catch (ErreurDeDessinDeSegment exception)
+            {
+              
+        }
         }
 
         private void mapBut_Click(object sender, RoutedEventArgs e)

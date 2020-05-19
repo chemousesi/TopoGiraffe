@@ -435,7 +435,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         
-                        <TextBlock Text="Bienvenue à Topogiraffe" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.323,0.104" 
+                        <TextBlock Text="Bienvenue dans TopoGiraffe" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.323,0.104" 
                                    FontFamily="Gotham Black" Margin="0,25,0,0" Grid.Row="1" Height="41" Width="456"/>
 
                         <ScrollViewer Grid.Row="2" >
