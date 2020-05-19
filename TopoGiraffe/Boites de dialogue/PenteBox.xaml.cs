@@ -8,19 +8,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TopoGiraffe.Boites_de_dialogue
 {
     /// <summary>
-    /// Interaction logic for PenteBox.xaml
+    /// Interaction logic for Window2.xaml
     /// </summary>
-    public partial class PenteBox : Page
+    public partial class Window2 : Window
     {
-        public PenteBox()
+        public Window2(String pente)
         {
             InitializeComponent();
+            pentebox = pente;
         }
+
+        public string pentebox { get; private set; }
     }
 }

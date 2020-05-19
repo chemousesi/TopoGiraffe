@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TopoGiraffe.Boites_de_dialogue;
 using TopoGiraffe.Exceptions;
 using TopoGiraffe.Noyau;
 using TopoSurf.MessageBoxStyle;
@@ -2230,9 +2232,11 @@ namespace TopoGiraffe
                     {
                         MessageBox.Show("echelle pas encore disponible ");
                     }
-
+                    
                     pente = CalcPente(PenteIntersectionPoints, mainScale);
-                    MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");
+                    Window2 pentebox = new Window2("ll");
+                    pentebox.Show();
+                 /*   MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");*/
                 }
             }
             catch (ErreurDeDessinDeSegment exception)
