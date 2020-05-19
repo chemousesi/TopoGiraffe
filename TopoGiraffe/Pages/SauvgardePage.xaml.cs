@@ -124,8 +124,28 @@ namespace TopoGiraffe
 
         private void openManual_Click(object sender, RoutedEventArgs e)
         {
+
+
+
+            System.Diagnostics.Process.Start("microsoft-edge:http://www.google.com");
+
+
             //System.Diagnostics.Process.Start("IExplore.exe");
-            System.Diagnostics.Process.Start("IExplore.exe", "www.northwindtraders.com");
+
+            //ProcessStartInfo startInfo = new ProcessStartInfo("IExplore.exe");
+            //startInfo.WindowStyle = ProcessWindowStyle.Minimized;
+
+            //Process.Start(startInfo);
+
+            //startInfo.Arguments = "www.google.com";
+
+            //Process.Start(startInfo);
+
+
+
+
+            //System.Diagnostics.Process.Start("IExplore.exe", "www.northwindtraders.com");
+
         }
     }
 }

@@ -343,6 +343,7 @@ namespace TopoGiraffe
                     PointsGlobal.Clear();
                     cercles.Clear();
                     IntersectionPoints.Clear();
+                    PenteIntersectionPoints.Clear();
                     itm2.Clear();
 
                     indexPoints = -1;
@@ -365,6 +366,7 @@ namespace TopoGiraffe
                     PointsGlobal.Clear();
                     cercles.Clear();
                     IntersectionPoints.Clear();
+                    PenteIntersectionPoints.Clear();
                     indexPoints = -1;
 
                     nav.IsEnabled = true;
@@ -434,6 +436,7 @@ namespace TopoGiraffe
 
                 if (courbeActuelle.polyline.Points.Count > 0)
                 {
+                    
 
                     if (courbeActuelle.polyline.Points[courbeActuelle.polyline.Points.Count - 1].Equals(courbeActuelle.polyline.Points[0]))
                     {
@@ -448,6 +451,8 @@ namespace TopoGiraffe
                         // removing circles
                         index = CourbesNiveau.IndexOf(courbeActuelle);
                         list = PointsGlobal[index];
+                        
+                        
                         if (courbeActuelle.polyline.Points.Count == 2 && list.Count == 2)
                         {
                             mainCanvas.Children.Remove(list[0].cercle);
@@ -691,12 +696,12 @@ namespace TopoGiraffe
 
                 if (scaleLinePointsCount == 2)
                 {
-                    mainScale.scaleDistanceOnCanvas = Outils.DistanceBtwTwoPoints(scalePolyline.Points[0], scalePolyline.Points[1]);
+                    mainScale.ScaleDistanceOnCanvas = Outils.DistanceBtwTwoPoints(scalePolyline.Points[0], scalePolyline.Points[1]);
 
-                    string message = "Echelle sur plan " + Math.Round(mainScale.scaleDistanceOnCanvas, 3) + "------>" + mainScale.scaleDistanceOnField + " mètres";
+                    string message = "Echelle sur plan " + Math.Round(mainScale.ScaleDistanceOnCanvas, 3) + "------>" + mainScale.ScaleDistanceOnField + " mètres";
                     MessageBox.Show(message);
                     mainCanvas.Children.Remove(scalePolyline);
-                    drawingScale = false;
+                    drawingScale = false; 
                 }
 
 
@@ -1396,18 +1401,7 @@ namespace TopoGiraffe
                         ShownCtrlPoint = PointsGlobal[index];
 
                         DrawCtrlPoints(courbeActuelle);
-                        //for( int k=0; k<3;k++ )
-                        //{
-
-                        //   // mainCanvas.Children.Remove(Ellipse circle);
-
-
-
-
-
-
-                        //}
-                        
+                      
 
 
                     }
@@ -1652,20 +1646,8 @@ namespace TopoGiraffe
 
                 if (int.TryParse(dataDialog.EchelleOnCanvas, out int result1) && int.TryParse(dataDialog.EchelleOnField, out int result2))
                 {
-                    mainScale = new Echelle() { ScaleDistanceOnCanvas = result1, ScaleDistanceOnField = result2} ;
-                   // plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
-                    plan = new Plan() { Equidistance = Convert.ToInt32(dataDialog.Equidistance), MaxAltitude = Convert.ToInt32(dataDialog.Max), MinAltitude = Convert.ToInt32(dataDialog.Min) };
-
-                    dataDialog.EquidistanceTextBox.DataContext = plan;
-                    dataDialog.MaxTextBox.DataContext = plan;
-                    dataDialog.MinTextBox.DataContext = plan;
-
-
-
-                    echelleOnCanvasPlan.DataContext = mainScale;
-                    echelleOnFieldPlan.DataContext = mainScale;
-
-
+                    mainScale = new Echelle(result1, result2);
+                    plan = new Plan(Convert.ToInt32(dataDialog.Equidistance), Convert.ToInt32(dataDialog.Min), Convert.ToInt32(dataDialog.Max), mainScale);
 
 
                 }
@@ -1676,10 +1658,17 @@ namespace TopoGiraffe
                     mainScale = new Echelle(1, 1);
                 }
 
-                //int scalecan = (int)mainScale.scaleDistanceOnCanvas;
-                //int scaleFil = (int)mainScale.scaleDistanceOnField;
+                int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
+                int scaleFil = (int)mainScale.ScaleDistanceOnField;
+                echelleOnFieldPlan.Text = scaleFil.ToString();
+                echelleOnCanvasPlan.Text = scalecan.ToString();
+
+
+                //int scalecan = (int)mainScale.ScaleDistanceOnCanvas;
+                //int scaleFil = (int)mainScale.ScaleDistanceOnField;
                 // echelleOnFieldPlan.Text = scaleFil.ToString();
                 //echelleOnCanvasPlan.Text = scalecan.ToString();
+
 
 
 
@@ -1751,11 +1740,6 @@ namespace TopoGiraffe
         {
             //Echelle testScale = new Echelle(10, 100);
             ScaleDialog scaleDialog = new ScaleDialog();
-
-            scaleDialog.EchelleTextBoxOnCanvasScaleDB.DataContext = mainScale;
-            scaleDialog.EchelleTextBoxOnFieldScaleDB.DataContext = mainScale;
-
-
             scaleDialog.ShowDialog();
 
             if (scaleDialog.DialogResult == true)
@@ -1765,16 +1749,7 @@ namespace TopoGiraffe
                     if (int.TryParse(scaleDialog.EchelleOnField, out int result))
                     {
                         // assign the first proprety of the scale scaleonField
-                        
-                        if (mainScale == null)
-                        {
-                            mainScale = new Echelle() { ScaleDistanceOnField = result, ScaleDistanceOnCanvas = 0 };
-                        }
-                        else
-                        {
-                            mainScale.ScaleDistanceOnField = result;
-                        }
-
+                        mainScale = new Echelle(result);
 
                         drawingScale = true;
                         btn2Clicked = false;
@@ -1913,72 +1888,15 @@ namespace TopoGiraffe
         /* -------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-        private async void Import_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = import;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Importer une carte";
-
-
-        }
+        
         async Task PutTaskDelay()
         {
             await Task.Delay(5000);
         }
 
-
-        private void Import_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-
-        }
-
-
-
-        private void display_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = display;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Afficher";
-        }
-
-        private void display_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-
-
-        private void ColorPicker_MouseEnter(object sender, MouseEventArgs e)
-        {
-
-            popup_uc.PlacementTarget = cp;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir la couleur de la courbe";
-        }
-
-        private void ColorPicker_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void TypeCourbe_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = styleCourbeCmb;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Choisir le type de la courbe";
-            
-        }
         // code pour l'aide
 
-        private async void btn14_Click(object sender, RoutedEventArgs e)
+        private async void Help_Click(object sender, RoutedEventArgs e)
         {
 
             popup_ud.IsOpen = true;
@@ -2054,12 +1972,6 @@ namespace TopoGiraffe
 
         }
 
-        private void TypeCourbe_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
         // --------------------------------------------------------------------------- popup fin -------------------------------------//
         // --------------------------------------------------------------------------------------------------------------------------//
 
@@ -2104,7 +2016,8 @@ namespace TopoGiraffe
 
             try
             {
-                IntersectionPoints = itm2[itm2.Count() - 1];
+                PenteIntersectionPoints = itm2[itm2.Count() - 1];
+                IntersectionPoints = PenteIntersectionPoints;
             }
             catch (Exception x)
             {
@@ -2112,7 +2025,7 @@ namespace TopoGiraffe
             }
             if (mainScale != null)
             {
-                CalcPente(IntersectionPoints, mainScale);
+                CalcPente(PenteIntersectionPoints, mainScale);
             }
             distances();
 
@@ -2271,57 +2184,14 @@ namespace TopoGiraffe
 
         double pente;
         List<IntersectionDetail> PenteIntersectionPoints = new List<IntersectionDetail>();
-        //---------------------------------------------------------------------------------------- popup vol 2 --------------------------
-        //--------------------------------------------------------------------------------------------------------------------------------
-
-
-
-        private void EpaisseurTextBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = ThickText;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Header.PopupText.Text = "Entrer l'épaisseur";
-        }
-
-        private void Export_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void EpaisseurTextBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-        }
-
-        private void AltitudeBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = AltitudeBox;
-            popup_uc.Placement = PlacementMode.Bottom;
-            popup_uc.IsOpen = true;
-            Stopwatch stopWatch = new Stopwatch();
-            //stopWatch.Start();
-            //stopWatch.Stop();
-            Header.PopupText.Text = "Entrer l'altitude";
-
-        }
-
-        private void AltitudeBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popup_uc.Visibility = Visibility.Collapsed;
-            popup_uc.IsOpen = false;
-
-        }
-
+      
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
 
             //this.DeSerialize()[this.DeSerialize().Count()-1];
             try
             {
-                Echelle echel = new Echelle(mainScale.scaleDistanceOnCanvas, mainScale.scaleDistanceOnField);
+                Echelle echel = new Echelle(mainScale.ScaleDistanceOnCanvas, mainScale.ScaleDistanceOnField);
             }
             catch (NullReferenceException ecp)
             {
@@ -2410,6 +2280,7 @@ namespace TopoGiraffe
                 CourbesNiveau.Remove(courbeActuelle);
                 PointsGlobal.Remove(list);
                 list.Clear();
+               
 
                 }
                 catch (ArgumentOutOfRangeException excp) { }
@@ -2626,7 +2497,7 @@ namespace TopoGiraffe
                 }
                 else
                 {
-                    (new MssgBox("Pas de texte en entrée")).Show();
+                    (new MssgBox("Pas d'altitude en entrée")).Show();
                 }
                 
 
