@@ -44,10 +44,8 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <TextBlock Margin="38,25,38,0" Text="Remplir les informations suivantes pour créer un point :"
-                       TextWrapping="WrapWithOverflow" Height="50">
-
-            </TextBlock>
+            <TextBlock Margin="38,5,38,20" Text="Remplir les informations suivantes pour créer un point :"
+                       TextWrapping="WrapWithOverflow"/>
         </Grid>
 
 
@@ -71,5 +69,8 @@
                 Margin="200,10,0,10" Width="60" Height="30" Click="OkButton_Click" Foreground="White"  />
         <Button Content="Cancel" FontSize="13" Background="{DynamicResource NormalBackground}" Padding="5,5,5,5" HorizontalAlignment="Left" IsCancel="True" Grid.Row="3" Opacity=".7"
                 Margin="130,10,0,10" Width="60" Height="30" Grid.Column="1" Click="CancelButton_Click" Foreground="White"/>
+        <TextBlock Text="*la saisie de l'altitude doit respecter" TextWrapping="Wrap" Margin="10,45,-10,0" FontSize="10"/>
+        <TextBlock Text="l'equidistance *" TextWrapping="Wrap" Margin="171,45,40,0" FontSize="10" Foreground="#FFED2929"/>
+
     </Grid >
 </Window>
