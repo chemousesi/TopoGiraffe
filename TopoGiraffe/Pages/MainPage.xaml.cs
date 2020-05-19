@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TopoGiraffe.Boites_de_dialogue;
 using TopoGiraffe.Exceptions;
 using TopoGiraffe.Noyau;
 using TopoSurf.MessageBoxStyle;
@@ -2221,6 +2223,7 @@ namespace TopoGiraffe
 
         private void Pente_Click(object sender, RoutedEventArgs e)
         {
+            String pentetext;
             try
             {
                 //this.DeSerialize()[this.DeSerialize().Count()-1];
@@ -2241,9 +2244,12 @@ namespace TopoGiraffe
                     {
                         MessageBox.Show("echelle pas encore disponible ");
                     }
-
+                    
                     pente = CalcPente(PenteIntersectionPoints, mainScale);
-                    MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");
+                    pentetext = (pente * 100).ToString() + " % ";
+                    Pente pentebox = new Pente(pentetext);
+                    pentebox.Show();
+                 /*   MessageBox.Show(" la pente est de   :" + (pente * 100).ToString() + " % ");*/
                 }
             }
             catch (ErreurDeDessinDeSegment exception)
@@ -2389,6 +2395,7 @@ namespace TopoGiraffe
         {
 
         }
+
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {

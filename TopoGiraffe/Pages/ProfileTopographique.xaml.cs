@@ -61,8 +61,9 @@ namespace TopoGiraffe
                    // StrokeThickness = 4,
                     Values = MyValues,           // Afectation des valeurs au graph 
                  //   PointGeometrySize = 4,
-                    AreaLimit = 0,
-                    LineSmoothness = 0.4,    //Ajuster la finesse des lignes
+
+                    AreaLimit = 0,      
+                    LineSmoothness = 0.2,    //Ajuster la finesse des lignes
                     
                     //DataLabels = true,
                 }
