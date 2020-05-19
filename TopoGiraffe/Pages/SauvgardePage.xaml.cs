@@ -125,9 +125,9 @@ namespace TopoGiraffe
         private void openManual_Click(object sender, RoutedEventArgs e)
         {
 
-            var prs = new ProcessStartInfo("iexplore.exe");
-            prs.Arguments = "http://facebook.com/";
-            Process.Start(prs);
+            //var prs = new ProcessStartInfo("iexplore.exe");
+            //prs.Arguments = "http://facebook.com/";
+            //Process.Start(prs);
 
            // System.Diagnostics.Process.Start("microsoft-edge:http://www.google.com");
 
