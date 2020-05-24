@@ -2,7 +2,7 @@
 
 # TopoGiraffe
 
->TopoGiraffe est un logiciel de traitement de terrains pour aider les topographes à générer des plans topographiques à partir des images sur terrain. En plus ce programme aide à concevoir des routes et des segments sur un terrain en relief. Ce projet est exclusivement fait pour des fins d'apprentissage.
+>TopoGiraffe est un logiciel de traitement de dessins topographiques, il est fait pour aider les topographes à générer des plans à partir des images sur un terrain. En plus ce programme aide à concevoir des routes et des segments sur un terrain en relief. Ce projet est exclusivement fait pour des fins d'apprentissage.
 
 ## Installation
 
